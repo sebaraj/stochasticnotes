@@ -1,18 +1,130 @@
 \documentclass{article}
 \usepackage{graphicx}
+\usepackage{amsfonts}
+% \usepackage{amsmath}
 
-\title{S\&DS 351 - Stochastic Processes - Lecture 2}
+\title{S\&DS 351 - Stochastic Processes - Lecture 2 Notes}
 \author{Bryan SebaRaj}
-\date{January 2025}
+\date{January 15, 2025}
 
 \begin{document}
 
 \maketitle
 
-\section{Lecture Notes}
+\section{Admin}
+Total 9 HWs, see syllabus
 
-\subsection{Part 1}
+\section{Review}
 
+\subsection{Limit Theorems} 
+\begin{itemize} 
+    \item For iid (independent and
+    identically distributed) sequence of random variables $X_1, X_2, \ldots,
+    X_n$ with mean $\mu$ and variance $\sigma^2$, the sample mean $\bar{X}_n =
+    \frac{1}{n} \sum_{i=1}^{n} X_i$ has mean $\mu$ and variance
+\item Weak Law of Large Numbers (WLLN): $\bar{X}_n = \frac{x_1+...+x_n}{n}$, n = 1,2,..., $\forall \epsilon > 0, P(|\bar{X}_n - \mu| \geq \epsilon) \rightarrow 0$ as $n \rightarrow \infty$
+\item Note: $E[\bar(X_n)=E[\frac{x_1+...+x_n}{n}]] = \frac{E[x_1]+...+E[x_n]}{n} = \mu$
+\item $P(|\bar{X_n}-\mu| \geq \epsilon)=P[|\bar{X_m} | \geq \epsilon$ $\leq \frac{Var(\bar{X_n})}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2}\rightarrow 0 as n \rightarrow + \infty$
+\item Theorem (Central Limit theorem)
+    \begin{itemize}
+        \item Formally, $\forall \in R, P(\frac{\bar{X_n - \mu}}{\sqrt{\sigma^2/n}} \leq t) \rightarrow P(X \leq t)=\int_{-\infty}^{t_1}\frac{1}{\\sqrt{2\pi}}e^{-\frac{s^2}{2}ds}$ 
+    \end{itemize}
+\end{itemize}
+
+% \subsection{Part 1}
+
+\section{Stochastic Processes}
+\begin{itemize}
+    \item Informally, a stochastic process is a collection of random variables that are indexed with time
+\end{itemize}
+
+\subsection{Discrete-time:}
+\begin{itemize}
+    \item $X_0, X_1, X_2, \ldots$ are random variables
+    \item there are contably many times of interests
+\end{itemize}
+
+
+\subsection{Continuous-time:}
+\begin{itemize}
+    \item $X_t, t \geq 0$ are random variables
+\end{itemize}
+
+\subsection{Discrete space:}
+\begin{itemize}
+    \item each $X_n$ or $X_t$ takes countably many values
+\end{itemize}
+
+\subsection{Continuous space:}
+\begin{itemize}
+    \item each $X_n$ or $X_t$ takes values in $\mathbb{R}$
+\end{itemize}
+
+\subsection{Simplete stoch process:}
+\begin{itemize}
+    \item The iid process for distr P, $X_0, X_1, X_2, \ldots$, each $X_i \sim P$ independently
+    \item Great things: Law of large numbers
+    \item bad things: poor model for reality (no dependency)
+\end{itemize}
+
+\section{Markov Chains} 
+\begin{itemize} 
+    \item Discrete time + discrete space
+    \item definition: a stochastic process $X_0, X_1, X_2, \ldots$ is a Markov
+        chain if for all $X_n$ take values in some countable set $S$ and it satisfies the Markov Property: $\forall n, \forall i_0, i_1, \ldots, i_{n+1} \in S, P(X_{n+1} = i_{n+1} | X_n = i_n, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0) = P(X_{n+1} = i_{n+1} | X_n = i_n)$
+    \item Markov property simplified: $\forall n, X_{n+1}$ independent for $X_{n-1},...,X_{0}$ given $X_n$
+    \item in words, the ``future" $X_{x+1}$ is independent of the ``past" $X_{n-1},...,X_0$ given the ``present" $X_n$
+    \item this course makes the assumption of time-homogeneous Markov chains
+    \begin{itemize}
+        \item $\forall n, i,j \in S, P(X_{n+1}=j | X_n=i)=P(X_1=j|X_0=i)$
+    \end{itemize}
+\item Let $N=|S|$, i.e. the cardinality of the state space, $S$
+\end{itemize}
+
+\section{Probability Transition Matrix}
+\subsection{Definition}
+\begin{itemize}
+    \item Let a matrix $P=(P_{ij})\in \mathbb{R}^{N \times N}$ given by $P_{ij}=P(X_1=j|X_0=i)$ 
+    \item Properties: $P_{ij} \geq 0, \sum_{j=1}^{N} P_{ij}=1$ (i.e. all rows sum up to 1)
+    \item given $X_0$, via matrix $P$, I can learn "everything" about the markov chain
+    \item given $X_0=i_0$, for any states $i_1, i_2, \ldots, i_n \in S$, $P(X_n=i_n|X_{n-1}=i_{n-1}, \ldots, X_0=i_0)=P(X_n=i_n|X_{n-1}=i_{n-1})=P_{i_{n-1}i_n}$
+    \item $P_{i_0 i_1} \mathbb{P}(X_2=i_2|X_1=i_1)P(X_n=i_n,\ldots X_3=i_3 | X_2=i_2, X_1=i_1, X_0=i_0)=P_{i_0 i_1}\cdot P_{i_1 i_2}\cdot \ldots \cdot P_{i_{n-1} i_n}$
+\end{itemize}
+
+\subsection{Examples}
+\begin{itemize}
+    \item $S=${Eat, Sleep, Play}
+    \item 
+\end{itemize}
+
+% \begin{matrix} 
+%   0 & 0 & 1 \\ 
+%   0.33 & 0.33 & 0.33 \\ 
+%   0 & 0.5 & 0.5
+% \end{matrix}
+
+\begin{itemize}
+    \item Random walk on $\mathbb{X}$
+    \item $S=\mathbb{Z}$
+    \item First, $N=|S|=\infty$
+    \item Given $X_n = i, P(X_{n+1}=j|X_n=i)=P(X_{n+1}=j|X_n=i)=P_{ij}$
+\end{itemize}
+
+\includegraphics[width=0.8\textwidth]{/Users/bryansebaraj/Downloads/IMG_37BABB0F2CC9-1.jpeg}
+
+\begin{itemize}
+    \item Game: Alice has $k$ dollars an Bob flips an indepdent coin w/ prob 1/2 and for each coin: $H\rightarrow$ Alice +1 dollars and if $T\rightarrow$ Alice -1 dollar
+    \item Alice decides to play until she either reaches n dollars or loses all her money
+\end{itemize}
+
+\includegraphics[width=0.8\textwidth]{/Users/bryansebaraj/Downloads/IMG_A89333C014C4-1.jpeg}
+
+\begin{itemize}
+    \item To fully characterize a markov chain, we need $P$ and we also need the initial distribution of $X_0$, $\pi_0 (\pi_0(i)=P(X_0=i))\in S$
+    \item simulate: $X_0 \sim \pi_0$, $\forall n,$ if $X_n=i$, $X_{n+1}=j$ with probability $P_{ij}$
+    \item This works b/c $\mathbb{P}(X_n)=i_n,\ldots, X_1=i_1, X_0=i_0)=\mathbb{P}(X_0=i_0)\mathbb{P}(X_n=i_n,\ldots X_1=i_1|X_0=i_0=\pi_0(i_0)P_{i_0,i_1}\ldots P_{i_{n-1},i_n})$
+
+\end{itemize}
 
 
 \end{document}
