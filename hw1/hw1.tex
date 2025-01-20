@@ -67,7 +67,7 @@ Suppose you have a matrix $X \in \mathbb{R}^{m \times n}$ and another matrix $Y 
         For $j=3$, $\pi_3 = \pi_1 + \frac{1}{3}\pi_2 + \frac{1}{2}\pi_3 = \pi_1 + \frac{1}{3}\pi_2 + \frac{1}{2}\pi_3$ \\
         Normalizing using $\pi_1 + \pi_2 + \pi_3 = 1$, $$\pi_1 + \pi_2 + \pi_3 = \frac{1}{3}\pi_2 + \pi_2 + \frac{4}{3}\pi_2=\frac{8}{3}\pi_2=1$$ \\
     Therefore, $\pi_2 = \frac{3}{8}$, $\pi_1 = \frac{1}{3}\pi_2 = \frac{1}{8}$, and $\pi_3 = \frac{4}{3}\pi_2 = \frac{1}{2}$. \\
-$$\pi=\left( \frac{1}{8}, \frac{3}{8}, \frac{1}{2} \right)$$ \\ 
+$$\pi=\left( \frac{1}{8}, \frac{3}{8}, \frac{1}{2} \right)$$ 
      In a $3 \times 3$ matrix, where every row is $\pi$, we get 
      \[
 \lim_{n \to \infty} P^n = 
@@ -120,7 +120,19 @@ Suppose that two teams play a best of 5 series. That is, whichever team wins 3 g
 
 \begin{enumerate}[label=(\alph*)]
     \item (5 points) What is the probability that team $A$ wins the series?
+
+    \textcolor{blue}{The probability that A wins the best of 5 series can be denoted by $X\sim$ Binomial$(n=5,p-0.7)$ \\
+        Therefore, $$\mathbb{P}(X \geq 3)=\sum_{k=3}^{5}\binom{5}{k}0.7^k0.3^{5-k}$$
+        $$\mathbb{P}(X \geq 3)=\binom{5}{3}(0.7)^3(0.3)^2 + \binom{5}{4}(0.7)^4(0.3) + \binom{5}{5}(0.7)^5$$
+        $$\mathbb{P}(X \geq 3)=10(0.7)^3(0.3)^2 + 5(0.7)^4(0.3) + (0.7)^5$$
+        $$\mathbb{P}(X\geq 3)\approx 0.8369$$}
+
     \item (5 points) What is the probability that team $A$ wins the series conditioned on the fact that team $B$ won the first game? If you had to bet, would you bet on $A$ winning the series? Would you still bet on $A$ winning after $B$ won the first game?
+
+        \textcolor{blue}{Given that $B$ won the first game, the series is now a best of 4 series, where $A$ needs to win 3 games, from the perspective of team $A$. Let $Y\sim$ Binomial$(n=4,p=0.7)$. Therefore, $$\mathbb{P}(Y \geq 3)=\sum_{k=3}^{4}\binom{4}{k}(0.7)^k(0.3)^{4-k}$$
+        Therefore, $\mathbb{P}(A$ winning the series $| B$ won the first game$)=\mathbb{P}(Y \geq 3)=\binom{4}{3}(0.7)^3(0.3)+\binom{4}{4}(0.7)^4= 0.6517$ \\ 
+        Given those probabilities, I would bet on $A$ winning the series, regardless if $B$ wins the first game.} 
+
 \end{enumerate}
 
 \section*{Problem 1.4}
@@ -128,8 +140,18 @@ Let $X, Y$ be two \textit{independent} standard normal random variables. Let $R$
 
 \begin{enumerate}[label=(\alph*)]
     \item (5 points) Compute $\mathbb{P}(R = 0)$ (please note that this isn’t the PDF of $R$ at 0, we are asking what is the probability that $R$ equals 0).
+    
+        \textcolor{blue}{Given that $R$ is an exponential random variable, it is a continuous distribution on $[0,\infty)$, so $$\mathbb{P}(R=0)=0$$.}
+
     \item (10 points) Compute $\mathbb{P}(X^2 + Y^2 \geq t)$.
+
+        \textcolor{blue}{Since $X,Y$ are independent $N(0,1)$, $X^2+Y^2$ follows a $\chi^2$ distribution with 2 degrees of freedom, which is an exponential distribution with rate $\frac{1}{2}$. Specifically, 
+        $$\mathbb{P}(X^2+Y^2 \geq t)=e^{-\frac{t}{2}}, \ t \geq 0$$}
+
     \item (10 points) Assume that $R$ and $\Theta$ are independent. Define $A = \sqrt{R}\cos(\Theta)$ and $B = \sqrt{R}\sin(\Theta)$, what is the joint PDF of $A, B$? What is the marginal PDF of $A$?
+
+    \textcolor{blue}{}
+
 \end{enumerate}
 
 \section*{Problem 1.5}
@@ -146,8 +168,19 @@ Given a fair die with 8 possible sides, let $T$ be the number of times you have 
 
 \begin{enumerate}[label=(\alph*)]
     \item (5 points) Find $\mathbb{E}(T)$.
+
+    \textcolor{blue}{$$\mathbb{E}[T]=n\left( 1 + \frac{1}{2} + ... + \frac{1}{n}\right)$$
+    $$\mathbb{E}[T]\left( 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} \right)$$
+$$\mathbb{E}[T]\approx 21.743$$}
+
     \item (5 points) Find $\mathbb{E}(N)$.
+
+    \textcolor{blue}{}
+
     \item (5 points) Find $\mathbb{E}(T \mid N = 4)$.
+
+    \textcolor{blue}{}
+
 \end{enumerate}
 
 
