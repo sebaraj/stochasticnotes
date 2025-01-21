@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1737441822.57411 "hw1.tex" "hw1.pdf" "hw1" 1737441822.98943 0
+["pdflatex"] 1737445356.89189 "hw1.tex" "hw1.pdf" "hw1" 1737445357.29662 0
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -70,8 +70,8 @@
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1724987660 92935 ab22f987f93038b61e05dc32d7c07157 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1724987687 6829296 8721aa43ee9a14915d884e1568411a02 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf.cnf" 1725035431.1561 708 85fd07691b6294ba94c59dbc62380410 ""
-  "hw1.aux" 1737441822.8917 32 77e0dffd05b653a64f0caf3eb9bb454a "pdflatex"
-  "hw1.tex" 1737441820.92343 15643 0c28b8810fcd2e9e484cae19139b0987 ""
+  "hw1.aux" 1737445357.20255 32 4d1825978335c8847f72f7c473f9edc8 "pdflatex"
+  "hw1.tex" 1737445355.56531 17843 e102f1439a6b3aa63c8061732e1880eb ""
   (generated)
   "hw1.aux"
   "hw1.log"

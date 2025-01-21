@@ -141,16 +141,40 @@ Let $X, Y$ be two \textit{independent} standard normal random variables. Let $R$
 \begin{enumerate}[label=(\alph*)]
     \item (5 points) Compute $\mathbb{P}(R = 0)$ (please note that this isn’t the PDF of $R$ at 0, we are asking what is the probability that $R$ equals 0).
     
-        \textcolor{blue}{Given that $R$ is an exponential random variable, it is a continuous distribution on $[0,\infty)$, so $$\mathbb{P}(R=0)=0$$.}
+        \textcolor{blue}{Given that $R$ is an exponential random variable with parameter 1, its distribution is continuous on $[0,\infty)$. A fundamental property of continuous distributions is that they place 0 probability mass on a single point, or 
+        $$\mathbb{P}(R=0)=\int_{0}^{\infty}f_R(r)\mathbf{1}{r=0}dr=0$$ where $f_R(r)=e^{-r} \ \forall r \geq 0$.
+        Therefore, $\mathbb{P}(R=0)=0$}
 
     \item (10 points) Compute $\mathbb{P}(X^2 + Y^2 \geq t)$.
 
-        \textcolor{blue}{Since $X,Y$ are independent $N(0,1)$, $X^2+Y^2$ follows a $\chi^2$ distribution with 2 degrees of freedom, which is an exponential distribution with rate $\frac{1}{2}$. Specifically, 
+        \textcolor{blue}{Since $X,Y$ are independent $N(0,1)$, $X^2+Y^2$ follows a $\chi^2$ distribution with 2 degrees of freedom, 
+            $$X^2 + Y^2 \sim \chi_{2}^2$$
+            which is an exponential distribution with rate $\frac{1}{2}$
+            $$X^2 + Y^2 \sim \text{Exp}\left(\frac{1}{2}\right)$$
+            Specifically,
+            $$\mathbb{P}(X^2+Y^2 \leq r)=1-e^{-\frac{r}{2}}, \\ \forall r \geq 0$$
+            Therefore, 
+            $$\mathbb{P}(X^2+Y^2 \geq t)=1-[1-e^{-\frac{t}{2}}]=e^{-\frac{t}{2}}$$
         $$\mathbb{P}(X^2+Y^2 \geq t)=e^{-\frac{t}{2}}, \ t \geq 0$$}
 
     \item (10 points) Assume that $R$ and $\Theta$ are independent. Define $A = \sqrt{R}\cos(\Theta)$ and $B = \sqrt{R}\sin(\Theta)$, what is the joint PDF of $A, B$? What is the marginal PDF of $A$?
 
-    \textcolor{blue}{}
+        \textcolor{blue}{Calculating the joint PDF of $A,B$, we can first invert the transformation from $$A=\sqrt{R}\text{cos}\theta \text{ and } B= \sqrt{R}\text{sin}\theta$$
+        to yield $R$ and $\Theta$ in terms of $A$ and $B$:
+    $$R=A^2+B^2 \text{ and } \theta=\text{arctan}(B,A)$$
+    This yields a bijection from $(r,\theta)\in [0,\infty) \times [0,2\pi] \text{ to } (a,b)\in \mathbb{R}^2$
+Computing the Jacobian of the transformation using the generation formula for transformation of PDFs:
+$$f_{A.B}(a,b)=f_{R,\Theta}(r,\theta)\cdot \left| \text{det}\frac{\partial(r,\theta)}{\partial(a,b)}\right|$$
+First, note that $$f_{R,\Theta}(r,\theta)=f_R(r)f_{\Theta}(\theta)=(e^{-r}\mathbf{1}_{r\geq 0})(\frac{1}{2\pi}\mathbf{1}_{[0,2\pi]}\theta)=\frac{1}{2\pi}e^{-r}, \\ (r\geq 0, 0 \leq \theta \leq 2\pi)$$
+Computing the forward Jaconbian, $$\frac{\partial a}{\partial r}=\frac{1}{2\sqrt{r}}\text{cos}\theta$$
+$$\frac{\partial a}{\partial \theta}=-\sqrt{r}\text{sin}\theta$$
+$$\frac{\partial b}{\partial r}=\frac{1}{2\sqrt{r}}\text{sin}\theta$$
+$$\frac{\partial b}{\partial \theta}=\sqrt{r}\text{cos}\theta$$
+Hence, det$$\frac{\partial (a,b)}{\partial (r,\theta)}=\frac{1}{2\sqrt{r}}\text{cos}\theta \cdot \sqrt{r}\text{cos}\theta - (-\sqrt{r}\text{sin}\theta \cdot \frac{1}{2\sqrt{r}}\text{sin}\theta)=\frac{1}{2}\text{cos}^2\theta + \frac{1}{2}\text{sin}^2\theta=\frac{1}{2}$$
+Therefore, $$\text{det}\frac{\partial (r, \theta)}{\partial (a, b)}=\frac{1}{\frac{1}{2}}=2$$
+Substituting $r, \theta$ and the Jacobian factor into $f_{R,\Theta}(r\theta)$:
+$$f_{A,B}(abs)=f_{R,\Theta}(r,\theta)(a^2+b^2, \text{ arctan}(b,a)) \times 2$$
+Since }
 
 \end{enumerate}
 
