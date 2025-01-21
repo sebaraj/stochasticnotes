@@ -159,8 +159,30 @@ Suppose that $X \sim \text{Exp}(\lambda_1)$, $Y \sim \text{Exp}(\lambda_2)$, and
 
 \begin{enumerate}[label=(\alph*)]
     \item (5 points) Compute $\mathbb{P}(X > Y)$.
+
+        \textcolor{blue}{From the suppositions above, $$f_X(x)=\lambda_1e^{-\lambda_1x},\ x \geq 0$$ and $\mathbb{P}(X>t)=e^{-\lambda_1t}$ and 
+        $$f_Y(y)=\lambda_2e^{-\lambda_2y},\ y \geq 0$$ and $\mathbb{P}(Y>t)=e^{-\lambda_2t}$. \\ \\ 
+        $Y$ being independent of $X$ implies that $$f_{X,Y}(x,y)=f_X(x)f_Y(y), \forall x,y \geq 0$$
+    $$\mathbb{P}(X>Y)=\int_{0}^{\infty}\int_{0}^{\infty}\mathbf{1}_{x>y}f_{X,Y}(x,y)dx\ dy$$
+    $$\mathbb{P}(X>Y)=\int_{0}^{\infty}\int_{x=y}^{\infty}\lambda_1e^{-\lambda_1x}\lambda_2 e^{-\lambda_2 y} dx\ dy= \int_{0}^{\infty}e^{-\lambda_1y}\lambda_2 e^{-\lambda_2 y}\ dy$$
+$$\mathbb{P})(X>Y)=\lambda_2 \int_0^{\infty}x^{-(\lambda_1 + \lambda_2)y}dy$$
+$$\mathbb{P}(X>Y)=\lambda_2 \left( - \left. \frac{e^{-(\lambda_1 + \lambda_2)y}}{\lambda_1 + \lambda_2}\right|_{0}^{\infty} \right) $$
+$$\mathbb{P}(X>Y)=\frac{\lambda_2}{\lambda_1 + \lambda_2}$$}
+
     \item (5 points) Compute $\mathbb{P}(X > (t + x) \mid X > t)$, for $t > 0$ and $x > 0$.
+
+    \textcolor{blue}{From the definition of conditional probability, $$\mathbb{P}(X > (t + x) \mid X > t)=\frac{\mathbb{P}(X > (t + x) \cap X > t)}{\mathbb{P}(X > t)}$$
+        Since $x>0$, ${X>t+x}$ is contained in ${X>t}$, so $\mathbb{P}(X > (t + x) \cap X > t)=\mathbb{P}(X > t + x)$ \\ \\ 
+    Therefore, $$\mathbb{P}(X > (t + x) \mid X > t)=\frac{\mathbb{P}(X > t + x)}{\mathbb{P}(X > t)}$$
+Since $X \sim $ Exp$(\lambda_1)$, $$\mathbb{P}(X>t+x|X>t)=e^{\lambda_1(t+x)},\text{ and }  \mathbb{P}(X>t)=e^{-\lambda_1t}$$
+Therefore, $$\mathbb{P}(X>t+x|X>t)=\frac{e^{-\lambda_1(t+x)}}{e^{-\lambda_1t}}=e^{-\lambda_1x}$$}
+
     \item (5 points) Compute $\mathbb{P}(\min(X, Y) > t)$.
+
+        \textcolor{blue}{${min(X,Y)>t}$ can be rewritten as ${X>t \cup Y>t}$. \\ \\ Therefore, given that $X$ and $Y$ are independent, $$\mathbb{P}(\min(X,Y)>t)=\mathbb{P}(X>t)\mathbb{P}(Y>t)$$
+            Since $X \sim$ Exp$(\lambda_1)$ and $Y \sim$ Exp$(\lambda_2)$, $$\mathbb{P}(X>t)=e^{-\lambda_1t} \text{ and } \mathbb{P}(Y>t)=e^{-\lambda_2t}$$
+        Therefore, $$\mathbb{P}(\min(X,Y)>t)=e^{-\lambda_1t}e^{-\lambda_2t}=e^{-(\lambda_1+\lambda_2)t}$$}
+
 \end{enumerate}
 
 \section*{Problem 1.6}
@@ -169,17 +191,43 @@ Given a fair die with 8 possible sides, let $T$ be the number of times you have 
 \begin{enumerate}[label=(\alph*)]
     \item (5 points) Find $\mathbb{E}(T)$.
 
-    \textcolor{blue}{$$\mathbb{E}[T]=n\left( 1 + \frac{1}{2} + ... + \frac{1}{n}\right)$$
-    $$\mathbb{E}[T]\left( 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} \right)$$
+        \textcolor{blue}{Let $t_i$ be the number of die rolls required to obtain the $i$th distinct side, where $i=1,2,...,8$, after $i-1$ distinct rolls have been observed.
+            $$T=t_1+t_2+...+t_n$$
+            Note that the probability of rolling a distinct side on the $i$th roll is $\frac{n-i+1}{n}$. Therefore, $t_i$ has a geometric distribution with expectation $$\frac{1}{p_i}=\mathbb{E}[t_i]=\frac{n}{n-i+1}$$
+            By linearity of expectations, $$\mathbb{E}[T]=\mathbb{E}[t_1+t_2+...+t_n]$$
+            $$\mathbb{E}[T]=\mathbb{E}[t_1]+\mathbb{E}[t_2]+...+\mathbb{E}[t_n]$$
+            $$\mathbb{E}[T]=\frac{n}{n}+\frac{n}{n-1}+...\frac{n}{1}$$
+            $$\mathbb{E}[T]= 8\left(\frac{1}{8} + \frac{1}{7} + \frac{1}{6} + \frac{1}{5} + \frac{1}{4} + \frac{1}{3} + \frac{1}{2} + 1 \right)$$
 $$\mathbb{E}[T]\approx 21.743$$}
 
     \item (5 points) Find $\mathbb{E}(N)$.
 
-    \textcolor{blue}{}
+    \textcolor{blue}{For $1\leq i \leq 8$, let $X_i$ be the indicator random variable which equals 1 if $i$th distinct side appears at least once in the first eight rolls, and 0 otherwise. \\ \\ 
+    The total number of distinct sides obtained is then $$N=\sum_{i=1}^{8}X_i$$
+By linearity of expectations, $$\mathbb{E}[N]=\mathbb{E}[\sum_{i=1}^{8}X_i]=\sum_{i=1}^{8}\mathbb{E}[X_i]$$
+Since $X_i$ is an indicator random variable, $\mathbb{E}[X_i]=\mathbb{P}(X_i=1)$, which is the probability that the $i$th distinct side appears at least once in the first eight rolls. \\ \\
+$$\mathbb{P}(X_i=1)=1-\mathbb{P}(\text{face $i$ does not appear in the first eight rolls})$$
+$$\mathbb{P}(X_i=1)=1-\left(\frac{7}{8}\right)^8$$
+Therefore, $$\mathbb{E}[N]=8\left[1-\left( \frac{7}{8} \right)^8 \right]$$
+$$\mathbb{E}[N]\approx 5.251$$}
+
 
     \item (5 points) Find $\mathbb{E}(T \mid N = 4)$.
 
-    \textcolor{blue}{}
+    \textcolor{blue}{$T$ can be expressed as $T=8+(T-8)$. Let $T'$ be the number of rolls required to see all missing, distinct sides, starting after roll 8 (i.e. on roll 9). $$T'=T-8$$ 
+    $$\mathbb{E}[T | N = 4]=\mathbb{E}[8+(T-8)|N=4]=8+\mathbb{E}[T'|N=4]$$
+    (Note: I'm going to attempt to define this as a Markov chain, but the same logic from part (a) can also be applied). \\ \\ 
+    Let $S$ be a set of relevant states, where $S=\{0,1,2,3,4\}$, where state $i$ represents the number of missing, unobserved sides (e.g. state 0 represents the observation of all 8 distinct sides). \\ \\ 
+    Let the Markov chain start in state 4 (since $8-N=8-4=4$) and let $p_{ij}$ be the probability of transitioning from state $i$ to state $j$, such that $j=i-1$. \\ \\
+From any state $i$, $p(i,j)=\frac{i}{8}$. Therefore, from state $i$ where $1\leq i \leq 4$: $$\mathbb{P}(i,j)=\frac{i}{8} \text{ and } \mathbb{P}(i,i)=1-\frac{i}{8}$$
+and for state 0, we remain in state 0 with probability 1, i.e. state 0 is the absorbing state. \\ \\
+Let $T_i$ be the number of rolls required to see all missing, distinct sides, starting from state $i$ to state 0. From the markov chain, we can define the standard equation:
+$$T_i=1+\frac{i}{8}T_{i-1}+\left(1-\frac{i}{8}\right)T_i$$
+$$T_i=\frac{8}{i}+T_{i-1}$$
+This takes the closed form: $$T_i=\sum_{k=1}^{i}\frac{8}{k} \text{ where } T_0=0$$
+$$T_4 = 0 + \frac{8}{1} + \frac{8}{2} + \frac{8}{3} + \frac{8}{4} = \frac{50}{3}$$
+Therefore, $$\mathbb{E}[T'|N=4]=\frac{50}{3}$$
+Since $\mathbb{E}[T|N=4]=8+\mathbb{E}[T'|N=4]$, $$\mathbb{E}[T|N=4]=8+\frac{50}{3}=\frac{74}{3}$$}
 
 \end{enumerate}
 
