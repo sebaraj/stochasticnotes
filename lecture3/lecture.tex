@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+
+
+\title{S\&DS 351 - Stochastic Processes - Lecture 3 Notes}
+\author{Bryan SebaRaj}
+\date{January 15, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Recall}
+
+\begin{itemize}
+    \item Markov Chain: $\mathbb{P}(X_{n+1}=i_{n+1} | X_{n}=i_n, ..., X_0 = i_0)=\mathbb{P}(X_{n+1}=i_{n+1} | X_n=i_n)$
+\item Transition Matrix: $P = [p_{ij}]$ where $p_{ij} = \mathbb{P}(X_{n+1}=j | X_n=i)=\mathbb{P}(X_1=j | X_0 = i)$
+    \item $\mathbb{P}(X_n=i_n, X_{n-1}=i_{n-1}, ... , X_0=i_0)=\Pi_{0}(i_0)P_{0,1} ... P_{n-1,n}$
+
+\end{itemize}
+
+\section{Marginal distirbution at time $n$}
+
+\begin{itemize}
+    \item MC: $P$ - transition matrix
+    \item $(\Pi_0) \in S$ - initialization distribution
+\item Assume $N=|S| < + \infty$
+\item $X_0 \sim \Pi_0$, $X_1 \sim \Pi_1$, ..., $X_n \sim \Pi_n$
+\item $\forall j \in S$, $$\Pi_1(j)=\mathbb{P}_{x_0, \Pi_0}(X_1 = j) = \sum_{i \in S}\mathbb{P}(X_1=j | X_0 = i) = \sum_{i \in S}\Pi_0 (i)P_{i,j}$$
+\item which is the same as $\Pi_1=\Pi_0 P$
+\item with identical reasoning, $\Pi_2 = \Pi_1 P=\Pi_0 p^2$, $\Pi_3 = \Pi_2 P = \Pi_0 P^3$, ...
+\item by induction, $\Pi_n = \Pi_{0} P^n$
+\end{itemize}
+
+\subsection{Example: Markov Dog}
+
+\includegraphics[scale=0.1]{/Users/bryansebaraj/Downloads/IMG_5F23B1D9BE5E-1.jpeg}
+
+\begin{itemize}
+    \item Claim: $\forall i, j \in S$, $\forall n, (P^n)_{i,j}=\mathbb{P}(X_n = j | x_0 = i)$
+    \item Proof: $\forall i \in S, \Pi_0 = (00...01...0)$ where $i\in S$ is 1 
+    \item $\Pi_n$ is the distribution of $X_n$
+    \item $\Pi_n = \Pi_0 P^n =$ $i^{th}$ row of $P^n$
+    \item $\Pi_n{j}=P^n_{i,j}, \ \forall j \in S$
+    \item $\mathbb{P}(X_n=j | X_0 =i)$
+\end{itemize}
+
+\begin{itemize}
+    \item Claim: $\forall i,j \in S, n \in \mathbb{N}$
+    \item $(P^n)_{i,j} = \sum_{i_1,...,i_{n-1} \in S}P_{i_0,i_1}P_{i_1,i_2}...P_{n-1, n}$
+    \item i.e. all possible walks from $i$ to $j$ of any length less than $n$
+    \item Proof: 
+    \begin{itemize}
+        \item We know $$(P^n)_{i,j} = \mathbb{P}(X_n=j | X_0=i)=\sum_{i_1,...,i_{n-1} \in S}\mathbb{P}(X_n=j, X_{n-1}=i_{n-1}, ... , X_1 = i_1 | X_0 = i_0)$$ 
+            $$= \sum_{i_1,...,i_{n-1} \in S}P_{i_0, i_1}...P_{i_{n-1}, n}$$
+    \end{itemize}
+\end{itemize}
+
+But this is often way too computationally expensive. Note the cardinality of a matrix with a large $n$
+
+\subsection{Smarter way to calculate}
+
+Yes, if
+\begin{itemize}
+    \item $P$ is diagonalizable
+    \item We can quickly find its eigen decomposition
+    \item Recall: eigenvectors and eigenvalues of matrices
+    \item If matrix $A\in \mathbb{R}$ is symmetric, then it has $n$ real eigenvalues and $n$ eigenvectors that are linearly independent
+    \item $\exists q \in \mathbb{R}^{m\times n }$ and the inv. is D-diagonal, then $A=qDq^{-1}$
+\end{itemize}
+
+\subsection{Applcation to Markov Chains}
+
+\begin{itemize}
+    \item Observe, $\forall m, A^m = q D q^{-1} q D q^{-1} ... = q D^m q^{-1}$
+    \item and $D^m$ is trivial easy to calculate (review), since its diagonal
+\end{itemize}
+
+\subsection{Example: }
+
+\includegraphics[scale=0.15]{/Users/bryansebaraj/Downloads/IMG_FD366A56754E-1.jpeg}
+
+\begin{itemize}
+    \item Are all MCs linear algebra?
+    \item Not really, especially if $|S|$ is not ``small enough'' or $P$ is not diagonalizable
+    \item Example: 
+    \begin{itemize}
+        \item deck of 52 cards, and you want to shuffle it
+        \item Step 1: pick a uniformly random card
+        \item Step 2: put in on the top of the deck
+        \item Question: how many shuffles lead to a uniform ``global shuffle'' of the whole deck
+        \item $S$ is the set of all permutations of 52 cards
+        \item $|S|=52!$
+        \item $\Pi_n \approx (\frac{1}{52!}, ...)$. state space is too large, so need to think of it probabalistically and not just through the lens of linear algebra
+    \end{itemize}
+\end{itemize}
+
+\subsection{Remarks}
+
+\begin{itemize}
+    \item iid process is a Markov Chain
+    \begin{itemize}
+        \item $X_0, X_1, ..., X_n$ iid from $\mu$ on $S$
+        \item $\mathbb{P}(X_n=i_n |  X_{n-1}=i_{n-1}, ... , X_0 = i_0) = \mathbb{P}(X_n = i_n)  = \mu(i_n) = \mathbb{P}(X_n=i_n | X_{n-1}=i_{n-1})$
+        \item $P =$ rows of $\mu$
+    \end{itemize}
+    \item higher order markov chains
+    \begin{itemize}
+        \item a stochastic process $X_0, X_1, ..., X_n$ is a Markov Chain
+        \item All $X_n$ take value in a countable set $S$
+        \item $\forall n, i_0, ..., i_n \in S$, $$\mathbb{P}(X_n=i_n | X_{n-1}=i_{n-1}, ... , X_0 = i_0) = \mathbb{P}(X_n = i_n | X_{n-1}=i_{n-1}, ..., X_{n-i+1} = i_{n-i+1}$$
+        \item ObservationL any $r^{th}$ order MC can be analyzed via a markov chain
+    \item Define $Y_n=(X_{n}, Y_{n+1}), n \in \mathbb{N}$
+    \item Takes values on $S\times S$
+    \item $\forall n, i_0, ..., i_n, i_{n+1} \in S$, $$\mathbb{P}(Y_{n+1}=(i_{n+1}, i_{n+2} | Y_n = (i_n, i_{n+1}) ..., Y_0 = (i_0, i_1))$$
+    $$= \mathbb{P}(X_{n+2}=i_{n+2} | X_{n+1}=i_{n+1}, ... , X_0 = i_0)$$
+    $$= \mathbb{P}(X_{n+2}=i_{n+2} | X_{n+1}=i_{n+1},X_n = i_n)$$
+    $$= \mathbb{P}(X_{n+2}=i_{n+2}, X_{n+1} = i_{n+1} | X_{n+1}=i_{n+1})$$
+    $$= \mathbb{P}(Y_{n+1}=(i_{n+1}, i_{n+2}) | Y_{n}=(i_{n},i_{n+1})$$
+    \end{itemize}
+\end{itemize}
+
+\end{document}
+
+

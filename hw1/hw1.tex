@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{amsfonts}
-\usepackage{amsmath}
+\sepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{xcolor}
@@ -79,7 +79,15 @@ $$\pi=\left( \frac{1}{8}, \frac{3}{8}, \frac{1}{2} \right)$$
 \]}
 
 
-\item (Bonus, 10 points) Prove the following statement for any $P \in \mathbb{R}^{3 \times 3}$. Assume the limit of $P^n$ as $n \to \infty$ equals a matrix of the form $\mathbf{1}\pi^\top$ for some $\pi \in \mathbb{R}^{3 \times 1}$ and $\mathbf{1} = (1, 1, 1)^\top \in \mathbb{R}^{3 \times 1}$. Confirm that $\mathbf{1}^\top \pi \in \mathbb{R}^{3 \times 3}$. Prove that $P^\top \pi = \pi$.
+\item (Bonus, 10 points) Prove the following statement for any $P \in \mathbb{R}^{3 \times 3}$. Assume the limit of $P^n$ as $n \to \infty$ equals a matrix of the form $\mathbf{1}\pi^\top$ for some $\pi \in \mathbb{R}^{3 \times 1}$ and $\mathbf{1} = (1, 1, 1)^\top \in \mathbb{R}^{3 \times 1}$. Confirm that $\mathbf{1} \pi^\top \in \mathbb{R}^{3 \times 3}$. Prove that $P^\top \pi = \pi$.
+
+    \textcolor{blue}{Given that $\mathbf{1}=(1,1,1)^\top \in \mathbb{P}^{3\times 1}$ and $\pi \in \mathbb{R}^{3\times1}$, $\pi^\top$ is a $1\times 3$ matrix and $\mathbf{1}\pi^\top$ yields the dimensions $(3\times 1)\times (1\times 3)=3\times 3$. This confirms that $\mathbf{1}^\top\pi \in \mathbb{R}^{3\times 3}$ \\ \\ 
+    Proving $P^\top \pi = \pi$: \\ \\
+Given that $P^n \to \mathbf{1}\pi^\top$ as $n \to \infty$, $$P^{n+1}=P^n P \to (\mathbf{1}\pi^\top) \text{ as } n \to \infty$$
+Since $P^{n+1}$ also converges to $\mathbf{1}\pi^\top$, $$\mathbf{1}\pi^\top = \mathbf{1}(\pi^\top P)$$
+Since $\mathbf{1}$ is non-zero, this yields $$\pi^\top = \pi^\top P$$
+Therefore, $\pi^\top$ is a left-eigenvector of $P$ with eigenvalue $1$; we can transpose both side to yield $$\pi=P^\top \pi$$
+Thus, $P^\top \pi = \pi$}
 
         % \textcolor{blue}{Since $P$ is row-stochastic and the property is preserved under matrix multiplication, $$P^n\mathbf{1}=\mathbf{1}, \ \forall n$$
     %     Therefore, $$\lim_{n \to \infty} P^n\mathbf{1}=\mathbf{1}$$
@@ -170,11 +178,20 @@ Computing the forward Jaconbian, $$\frac{\partial a}{\partial r}=\frac{1}{2\sqrt
 $$\frac{\partial a}{\partial \theta}=-\sqrt{r}\text{sin}\theta$$
 $$\frac{\partial b}{\partial r}=\frac{1}{2\sqrt{r}}\text{sin}\theta$$
 $$\frac{\partial b}{\partial \theta}=\sqrt{r}\text{cos}\theta$$
-Hence, det$$\frac{\partial (a,b)}{\partial (r,\theta)}=\frac{1}{2\sqrt{r}}\text{cos}\theta \cdot \sqrt{r}\text{cos}\theta - (-\sqrt{r}\text{sin}\theta \cdot \frac{1}{2\sqrt{r}}\text{sin}\theta)=\frac{1}{2}\text{cos}^2\theta + \frac{1}{2}\text{sin}^2\theta=\frac{1}{2}$$
+Hence, $$\text{det}\frac{\partial (a,b)}{\partial (r,\theta)}=\frac{1}{2\sqrt{r}}\text{cos}\theta \cdot \sqrt{r}\text{cos}\theta - (-\sqrt{r}\text{sin}\theta \cdot \frac{1}{2\sqrt{r}}\text{sin}\theta)=\frac{1}{2}\text{cos}^2\theta + \frac{1}{2}\text{sin}^2\theta=\frac{1}{2}$$
 Therefore, $$\text{det}\frac{\partial (r, \theta)}{\partial (a, b)}=\frac{1}{\frac{1}{2}}=2$$
 Substituting $r, \theta$ and the Jacobian factor into $f_{R,\Theta}(r\theta)$:
-$$f_{A,B}(abs)=f_{R,\Theta}(r,\theta)(a^2+b^2, \text{ arctan}(b,a)) \times 2$$
-Since }
+$$f_{A,B}(a,b)=f_{R,\Theta}(r,\theta)(a^2+b^2, \text{ arctan}(b,a)) \times 2$$
+Since $f_{R,\Theta}(r,\theta)=\frac{1}{2\pi}e^{-r}$, $$f_{A,B}(a,b)=\frac{1}{2\pi}e^{-(a^2+b^2)}\times 2=\frac{1}{\pi}e^{-(a^2+b^2)}, \ \forall a,b \in \mathbb{R}$$
+Confirming that this integrates to 1 (i.e. a valid PDF)), $$\int_{\mathbb{R}}\frac{1}{\pi}e^{-(a^2+b^2)}da \ db = \frac{1}{\pi}\int_{0}^{2\pi} \int_{0}^{\infty}e^{-\rho^2}\rho d\rho \ d\theta = 2\int_{0}^{\infty}\rho e^{-\rho^2}d\rho$$
+Setting $u=\rho^2$, $du=2\rho d\rho$, yield $$2\int_{0}^{\infty}\rho e^{-\rho^2}d\rho=2\frac{1}{2}=1$$
+Therefore, the joint PDF of $A,B$ is valid.
+The joint PDF of $A,B$ is $$f_{A,B}(a,b)=\frac{1}{\pi}e^{-(a^2+b^2)}, \ (a,b)\in \mathbb{R}$$
+To find the marginal PDF of $A$, $B$ must be integrated out, $$f_A(a)=\int_{-\infty}^{\infty}f_{A,B}(a,b)db=\int_{-\infty}^{\infty}\frac{1}{\pi}e^{-(a^2+b^2)}db=\frac{1}{\pi}e^{-a^2}\int_{-\infty}^{\infty}e^{-b^2}db$$
+Since $\int_{-\infty}^{\infty}e^{-b^2}db=\sqrt{\pi}$, $$f_A(a)=\frac{1}{\pi}e^{-\a^2}\times \sqrt{\pi}=\frac{1}{\sqrt{\pi}}e^{-a^2}$$
+The marginal PDF can be demonstrated to be a valid PDF through integration: $$\int_{-\infty}^{\infty}\frac{1}{\sqrt{\pi}}e^{-a^2}da = \frac{1}{\sqrt{\pi}}\sqrt{\pi}=1$$
+Therefore, the marginal PDF is a valid PDF.
+Thus, the marginal PDF of $A$ is $$f_A(a)=\frac{1}{\sqrt{\pi}}e^{-a^2}, \ a \in \mathbb{R}$$}
 
 \end{enumerate}
 
