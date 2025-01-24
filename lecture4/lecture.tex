@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+
+
+\title{S\&DS 351 - Stochastic Processes - Lecture 4 Notes}
+\author{Bryan SebaRaj}
+\date{January 24, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Example: stochastic process that is not a Markov Chain of any finite order}
+
+\begin{itemize}
+    \item Imagine you have access to a coin with Bernoulli($\frac{1}{3}$) and a coin with Bernoulli($\frac{1}{3}$).
+    \item Step 1: choose one coins with probability $\frac{1}{2}$
+    \item Step 2: flip this choise coin iid, $X_0, X_1, X_2, ...$
+    \item Nick's answer: not a markov chain (memoryless), as your certainty of the next state depends on the previous states, increasing as $N$ increases (as you become more certain which coin it is)
+    \item Proof: \\ 
+
+        \includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/fixlecturesds.jpg}
+\end{itemize}
+
+\section{Basic Limit Theorem of MCs}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0422.jpg}
+
+\subsection{How ``common'' is that $\pi_n$ converges in the limit?}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0423.jpg}
+
+\subsection{Basic Limit Theorem}
+
+\textbf{If an Markov Chain is irreducible, aperiodic, and positive recurrent, then it has a unique stationary distribution}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0424.jpg}
+
+\subsection{Example: Markov Dog}
+
+See my solution in homework 1 for more detail
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0425.jpg}
+
+\subsection{Existence and uniqueness of stationary distribution}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0426.jpg} \\ 
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0427.jpg}
+
+\subsection{Remarks}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0428.jpg}
+
+\subsection{The Ehrenfest Model}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0429.jpg} \\ 
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0430.jpg} \\ 
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0431.jpg}
+
+
+\end{document}
+
+
