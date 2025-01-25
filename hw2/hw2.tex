@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+% \hfuzz=10pt
+% \sbox{\mybox}{\hbadness=10000 \parbox{2cm}{\lipsum[1]}}
+
+\title{S\&DS 351: Stochastic Processes - Homework 2}
+\author{Bryan SebaRaj \\[0.8em] Professor Ilias Zadik}
+\date{January 31, 2025}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Problem 1.1 (15 points)}
+Suppose that we are given a Markov Chain $X_0, X_1, \ldots$. Show that for any $1 \leq k \leq n-1$, and states $i, j, j_1, j_2, \ldots, j_{n-k}$:
+\[
+P(X_n = i | X_{n-k} = j, X_{n-k-1} = j_1, X_{n-k-2} = j_2, \ldots, X_0 = j_{n-k}) = P(X_n = i | X_{n-k} = j).
+\]
+Prove this result and show your steps.
+
+\textcolor{blue}{Suppose }
+
+\subsection*{Problem 1.2 (10 points)} 
+Consider the following
+coin-tossing game. A single fair coin is flipped sequentially. Alice
+wins if \texttt{TTT} comes up first and Bob wins if \texttt{HTT}
+comes up. What is the probability that Alice wins?
+
+\textcolor{blue}{Let $A$ be the event that Alice wins and $B$ be the event that Bob wins. Solving for $P(A)$,}
+
+
+
+\subsection*{Problem 1.3 (Moran model)} 
+In population genetics, the
+Moran model is a simple Markov chain-based model to describe
+evolutionary competition. Consider a population of $N$ individuals,
+divided into two types called $A$ and $B$. The population evolves
+according to the following mechanism: At each time $n \geq 0$, two
+individuals are selected from the current population by independent
+random sampling \textit{with replacement}. The first individual gives
+birth to a copy of itself, which joins the population together with
+its parent. Then, the second individual dies and is removed from the
+population. The result of these two steps is the population at time
+$n + 1$. The random samplings at different times are all independent
+and uniform. Note that by design, the size of the total population
+stays at $N$.
+
+\begin{enumerate}
+    \item[(a)] (5 points) Let $X_n$ denote the number of individuals of type $A$ at time $n$. Show that $\{X_n : n \geq 0\}$ is a Markov chain. Identify the state space and find the transition probabilities $P = (P_{ij})$.
+    \item[(b)] (5 points) For $N = 3$, write down the transition matrix $P$ explicitly. Find the stationary distribution(s), i.e., the distribution(s) $\pi$ with $\pi = P \pi$. Is it unique?
+\end{enumerate}
+
+\subsection*{Problem 1.4}
+Let $M$ be a positive integer. Let $Y_0, Y_1, \ldots$ be iid and uniformly distributed on $\{1, \ldots, M\}$. Let $X_n = \min\{Y_0, \ldots, Y_n\}$.
+
+\begin{enumerate}
+    \item[(a)] (5 points) Show that $\{X_n : n \geq 0\}$ is a Markov chain.
+    \item[(b)] (5 points) Identify the state space and find the probability transition matrix $P$.
+    \item[(c)] (5 points) Find the stationary distribution $\pi$. Is it unique? Provide an intuitive explanation for your conclusion.
+    \item[(d)] (5 points) Let $Y_0 = 1$. Prove that the marginal distribution of $X_n$ converges to the stationary distribution, i.e., if $\pi_n(i) = P(X_n = i), i = 1, \ldots, M$ then for all $i = 1, \ldots, M$:
+    \[
+    \lim_{n \to \infty} \pi_n(i) = \pi(i).
+    \]
+\end{enumerate}
+
+\section*{Problems from Chang}
+
+\section*{Exercise 1.1}
+Let $X_0, X_1, \ldots$ be a Markov chain, and let $A$ and $B$ be subsets of the state space.
+
+\begin{enumerate}
+    \item[(a)] Is it true that $P\{X_2 \in B \mid X_1 = x_1, X_0 \in A\} = P\{X_2 \in B \mid X_1 = x_1\}$? Give a proof or counterexample.
+    \item[(b)] Is it true that $P\{X_2 \in B \mid X_1 \in A, X_0 = x_0\} = P\{X_2 \in B \mid X_1 \in A\}$? Give a proof or counterexample.
+\end{enumerate}
+
+\section*{Exercise 1.3} 
+Let $\{X_n\}$ be a finite-state Markov chain
+and let $A$ be a subset of the state space. Suppose we want to
+determine the expected time until the chain enters the set $A$,
+starting from an arbitrary initial state. That is, letting $\tau_A =
+\inf\{n \geq 0 : X_n \in A\}$ denote the first time to hit $A$
+[defined to be $0$ if $X_0 \in A$], we want to determine
+$\mathbb{E}_i(\tau_A)$. Show that \[ \mathbb{E}_i(\tau_A) = 1 + \sum_k P(i, k)
+\mathbb{E}_k(\tau_A) \] for $i \notin A$.
+
+\section*{Exercise 1.4} 
+You are tossing a coin repeatedly. Which
+pattern would you expect to see faster: \texttt{HH} or \texttt{HT}?
+For example, if you get the sequence \texttt{TTHHHTH...}, then you
+see \texttt{HH} at the 4th toss and \texttt{HT} at the 6th. Letting
+$N_1$ and $N_2$ denote the times required to see \texttt{HH} and
+\texttt{HT}, respectively, can you guess intuitively whether $\mathbb{E}(N_1)$
+is smaller than, the same as, or larger than $\mathbb{E}(N_2)$? Go ahead, make
+a guess [and my day]. Why don’t you also simulate some to see how the answer
+looks; I recommed a computer, buf if you like tossing real coins, enjoy yourself by all means. Finally, you can use the reasoning of Exercise [1.3] to solve the
+problem and evaluate $\mathbb{E}(N_i)$. A hint is to set up a Markov chain
+having the 4 states \texttt{HH}, \texttt{HT}, \texttt{TH}, and
+\texttt{TT}.
+
+\section*{Exercise 1.6}
+[A moving average process] Moving average models are used frequently in time series analysis, economics and engineering. For these models, one assumes that there is an underlying, unobserved process $\ldots, Y_{-1}, Y_0, Y_1, \ldots$ of \textit{iid} random variables. A \textbf{\textit{moving average process}} takes an average (possibly a weighted average) of these \textit{iid} random variables in a “sliding window.” For example, suppose that at time $n$ we simply take the average of the $Y_n$ and $Y_{n-1}$, defining $X_n = \frac{1}{2}(Y_n + Y_{n-1})$. Our goal is to show that the process $X_0, X_1, \ldots$ defined in this way is not Markov. As a simple example, suppose that the distribution of the \textit{iid} $Y$ random variables is $\mathbb{P}\{Y_i = 1\} = 1/2 = \mathbb{P}\{Y_i = -1\}$.
+
+\begin{enumerate}
+    \item[(a)] Show that $X_0, X_1, \ldots$ is not a Markov chain.
+    \item[(b)] Show that $X_0, X_1, \ldots$ is not an $r$th order Markov chain for any finite $r$.
+\end{enumerate}
+
+
+\end{document}
+
