@@ -36,7 +36,44 @@ coin-tossing game. A single fair coin is flipped sequentially. Alice
 wins if \texttt{TTT} comes up first and Bob wins if \texttt{HTT}
 comes up. What is the probability that Alice wins?
 
-\textcolor{blue}{Let $A$ be the event that Alice wins and $B$ be the event that Bob wins. Solving for $P(A)$,}
+% \textcolor{blue}{Let $A$ be the event that Alice wins and $B$ be the event that Bob wins. Solving for $P(A)$,}
+
+\textcolor{blue}{Let $S$ be a set of possible states. Define $S_0$ as the starting state with no flips or no partial pattern of TTT or HTT. Define $S_1$ as the state where there has been exactly one tail in a row, i.e. the most recent flip was T, without any prior heads. Define $S_2$ as the state where the last two flips were consecutive tails, without any prior heads. Define $S_A$ as the state where the last three flips were consecutive tails, i.e. the absorbing state where Alice has won. Define $S_B$ as the state where the last three flips were consecutive heads, i.e. the absorbing state where Bob has won. Finally, define $S_H$ to be the state where at least one heads has been seen. \\ This yields the following Markov Chain:}
+
+\begin{center}
+\includegraphics[scale=0.11]{/Users/bryansebaraj/Downloads/IMG_2158.jpg}
+\end{center}
+
+\textcolor{blue}{This yields the transition matrix,}
+
+    $$P = \begin{bmatrix}
+        P_{S_0, S_0} & P_{S_0, S_1} & P_{S_0, S_2} & P_{S_0, S_A} & P_{S_0, S_B} & P_{S_0, S_H}\\
+        P_{S_1, S_0} & P_{S_1, S_1} & P_{S_1, S_2} & P_{S_1, S_A} & P_{S_1, S_B} & P_{S_1, S_H}\\
+        P_{S_2, S_0} & P_{S_2, S_1} & P_{S_2, S_2} & P_{S_2, S_A} & P_{S_2, S_B} & P_{S_2, S_H}\\
+        P_{S_A, S_0} & P_{S_A, S_1} & P_{S_A, S_2} & P_{S_A, S_A} & P_{S_A, S_B} & P_{S_A, S_H}\\
+        P_{S_B, S_0} & P_{S_B, S_1} & P_{S_B, S_2} & P_{S_B, S_A} & P_{S_B, S_B} & P_{S_B, S_H}\\
+        P_{S_H, S_0} & P_{S_H, S_1} & P_{S_H, S_2} & P_{S_H, S_A} & P_{S_H, S_B} & P_{S_H, S_H}
+
+        
+\end{bmatrix}$$
+
+$$P=\begin{bmatrix}
+    0 & 0.5 & 0 & 0 & 0 & 0.5 \\
+    0 & 0 & 0.5 & 0 & 0 & 0.5 \\ 
+    0 & 0 & 0 & 0.5 & 0 & 0.5 \\ 
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & P_{S_H, S_B}\neq 0 & P_{S_H, S_H}\neq 0
+\end{bmatrix}$$
+
+\textcolor{blue}{Note that after $S_H$ has been reached, Alice can no longer win, as HTT will always preceed TTT, i.e. $\lim_{n \rightarrow \infty} \pi_{S_H} = (0, 0, 0, 0, 1, 0)$, or Bob will eventually always win after $S_H$ is reached. Since $S_A$ is the only absorbing state where Alice can win, the probabilty of reaching $S_A$ is given by, \\ 
+    $$p_0=\mathbb{P}(S_A | S_0), p_1=\mathbb{P}(S_A | S_1), p_2=\mathbb{P}(S_A | S_2)$$
+Using the probability transition matrix and that any transition to $S_H$ prohibits Alice from winning, 
+$$p_2 = 1 \cdot P_{S_2, S_A} + 0 \cdot P_{S_2, S_H} = \frac{1}{2}$$
+$$p_1 = P_{S_1, S_2} \cdot P_{S_2, S_A} + 0 \cdot P_{S_1, S_H} = \frac{1}{4}$$
+$$p_0 = P_{S_0, S_1} \cdot P_{S_1, S_2} \cdot P_{S_2, S_A} + 0 \cdot P_{S_0, S_H} = \frac{1}{8}$$
+Thus, the probability that Alice wins is $\frac{1}{8}$.}
+
 
 
 
