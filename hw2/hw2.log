@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  28 JAN 2025 02:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  29 JAN 2025 02:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -255,8 +255,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--75
 
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
 
-[3] (./hw2.aux)
+ []
+
+
+Overfull \hbox (15.67049pt too wide) detected at line 134
+\OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]; X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 A\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+
+ []
+
+
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--190
+
+ []
+
+
+
+[4]
+
+[5] (./hw2.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-16>
@@ -271,10 +315,10 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  57i,8n,65p,841b,217s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (3 pages, 811168 bytes).
+Output written on hw2.pdf (5 pages, 818272 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 101 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

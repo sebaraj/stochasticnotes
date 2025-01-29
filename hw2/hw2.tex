@@ -104,7 +104,7 @@ Let $M$ be a positive integer. Let $Y_0, Y_1, \ldots$ be iid and uniformly distr
     \item[(a)] (5 points) Show that $\{X_n : n \geq 0\}$ is a Markov chain.
     \item[(b)] (5 points) Identify the state space and find the probability transition matrix $P$.
     \item[(c)] (5 points) Find the stationary distribution $\pi$. Is it unique? Provide an intuitive explanation for your conclusion.
-    \item[(d)] (5 points) Let $Y_0 = 1$. Prove that the marginal distribution of $X_n$ converges to the stationary distribution, i.e., if $\pi_n(i) = P(X_n = i), i = 1, \ldots, M$ then for all $i = 1, \ldots, M$:
+    \item[(d)] (5 points) Let $Y_0 = M$. Prove that the marginal distribution of $X_n$ converges to the stationary distribution, i.e., if $\pi_n(i) = P(X_n = i), i = 1, \ldots, M$ then for all $i = 1, \ldots, M$:
     \[
     \lim_{n \to \infty} \pi_n(i) = \pi(i).
     \]
@@ -117,7 +117,39 @@ Let $X_0, X_1, \ldots$ be a Markov chain, and let $A$ and $B$ be subsets of the 
 
 \begin{enumerate}
     \item[(a)] Is it true that $P\{X_2 \in B \mid X_1 = x_1, X_0 \in A\} = P\{X_2 \in B \mid X_1 = x_1\}$? Give a proof or counterexample.
+
+    \textcolor{blue}{By the definition of conditional probability,
+$$P\{X_2 \in B \mid X_1 = x_1, X_0 \in A\} = \frac{P\{X_2 \in B, X_1 = x_1, X_0 \in A\}}{P\{X_1 = x_1, X_0 \in A\}}$$
+Using the law of total probability,
+$$P\{X_2 \in B, X_1 = x_1, X_0 \in A\} = \sum_{y \in A} P\{X_2 \in B, X_1 = x_1, X_0 = y\}$$
+By the chain rule,
+$$P\{X_2 \in B, X_1 = x_1, X_0 = y\} = P\{X_2 \in B \mid X_1 = x_1, X_0 = y\} \cdot P\{X_1 = x_1, X_0 = y\}$$
+By the Markov property,
+$$P\{X_2 \in B \mid X_1 = x_1, X_0 = y\} = P\{X_2 \in B \mid X_1 = x_1\}$$
+Substituting yields,
+$$P\{X_2 \in B, X_1 = x_1, X_0 = y\} = P\{X_2 \in B \mid X_1 = x_1\} \cdot P\{X_1 = x_1, X_0 = y\}$$
+$$P\{X_2 \in B, X_1 = x_1, X_0 \in A\} = P\{X_2 \in B \mid X_1 = x_1\} \sum_{y \in A} P\{X_1 = x_1, X_0 = y\}$$
+Note that $\sum_{y \in A} P\{X_1 = x_1, X_0 = y\} = P\{X_1 = x_1, X_0 \in A\}$ \\
+$$P\{X_2 \in B \mid X_1 = x_1, X_0 \in A\} = P\{X_2 \in B \mid X_1 = x_1\} \frac{P\{X_1 = x_1, X_0 \in A\}}{P\{X_1 = x_1, X_0 \in A\}} = P\{X_2 \in B \mid X_1 = x_1\}$$
+Therefore, $$P\{X_2 \in B \mid X_1 = x_1, X_0 \in A\} = P\{X_2 \in B \mid X_1 = x_1\}$$}
+
+
     \item[(b)] Is it true that $P\{X_2 \in B \mid X_1 \in A, X_0 = x_0\} = P\{X_2 \in B \mid X_1 \in A\}$? Give a proof or counterexample.
+
+
+    \textcolor{blue}{The above statement is false. Consider the Markov chain
+    with states $S = \{0, 1, 2\}$ and transition probabilities: $$P_{0,1}=1,
+    P_{1,2}=1, \text{ and } P_{2,0}=1$$where $P_{i,j}$ is the probability of switching
+from state $i$ to state $j$ at time $n$. \\ \\ Suppose $A=\{0,1\}$ and $B=\{2\}$ and the initial state, $x_0=0$. \\ \\
+In this trivial scenario,
+$$P\{X_2 \in B \mid X_1 \in A, X_0 = 0\} = 1$$
+If $X_0 = 0$, then $X_1 = 1$, and from state 1 we must go to state 2. Since state 1 is in $A$, the probability of being in $B$ at time 2 is 1. \\
+\\However, consider
+$$P\{X_2 \in B \mid X_1 \in A\}$$$A$ includes cases where $X_1 = 0$ (which would lead to state 1 at time 2, not state 2).
+Therefore, the probability of being in $B$ at time 2 is 0 given $X_1 = 0$. \\
+This counterexample shows that knowing the specific value of $X_0$ can provide additional information about which state in $A$ the chain is in at time 1, which affects the probability of being in $B$ at time 2.
+Therefore, the statement is false.}
+
 \end{enumerate}
 
 \section*{Exercise 1.3} 
@@ -129,6 +161,15 @@ starting from an arbitrary initial state. That is, letting $\tau_A =
 [defined to be $0$ if $X_0 \in A$], we want to determine
 $\mathbb{E}_i(\tau_A)$. Show that \[ \mathbb{E}_i(\tau_A) = 1 + \sum_k P(i, k)
 \mathbb{E}_k(\tau_A) \] for $i \notin A$.
+
+
+\textcolor{blue}{Let $\tau_A$ be defined as the first time the chain enters $A$, where if $X_0\in A, \tau_A=0$ and $X_0\notin A, \tau_A$ is the first time $n \geq 1$ such that $X_n \in A$. \\ \\ Starting from $i\notin A$, the chain must take one step to some state $k$ with probability $P_{i,k}$. Let us define the total expected time to reach $A$ as $$\mathbb{E}(\tau_a)=\mathbb{E}[\tau_a \mid X_0=i]$$
+Since at least one step if required to reach $A$, $\tau_A$ can be decomposed as $$\tau_A = 1 + \tau_A'$$ where $\tau_A'$ is the remaining time to reach $A$ after the first step. \\ \\
+Applying the law of total expectation conditioned in $X_1=k$, $$\mathbb{E}(\tau_A)=\mathbb{E}[1+\tau_A' \mid X_0=i] = 1 + \mathbb{E}[\tau_A' \mid X_0 =i]$$
+By the Markov property, $$\mathbb{E}[\tau_A' \mid  X_0=i] = \sum_k P_{i,k}\mathbb{E}[\tau_A \mid X_1=k]$$
+Note that if $k\in A$, then $\tau_A=0$ as $X_1 \in A$, so $\mathbb{E}(\tau_A)=0$. \\ 
+If $k\notin A$, then $\tau_A'$ follows the same distribution as $\tau_a$ starting from $k$. Therefore, $$\mathbb{E}[\tau_A' \mid X_1= k]=\mathbb{E}(\tau_A)$$
+Thus, $$\mathbb{E}(\tau_A)=1+\sum_k P_{i,k}\mathbb{E}(\tau_A)$$}
 
 \section*{Exercise 1.4} 
 You are tossing a coin repeatedly. Which
@@ -143,6 +184,10 @@ looks; I recommed a computer, buf if you like tossing real coins, enjoy yourself
 problem and evaluate $\mathbb{E}(N_i)$. A hint is to set up a Markov chain
 having the 4 states \texttt{HH}, \texttt{HT}, \texttt{TH}, and
 \texttt{TT}.
+
+\textcolor{blue}{Intuitively, I would guess that $\mathbb{E}(N_1)=\mathbb{E}(N_2)$, as both events are dependent, and only dependent on the first heads. Since a coin is equally and independently likely to get heads or tails on the next flip, the probabilites are the same (I know this is a naive assumption). \\ \\ 
+First, let us define the Markov chain with states $S=\{HH, HT, TH, TT\}$ and transition probabilities: $$P_{HH,HH}=0.5, P_{HH,HT}=0.5, P_{HH,TH}=0, P_{HH,TT}=0$$ $$P_{HT,HH}=0, P_{HT,HT}=0, P_{HT,TH}=0.5, P_{HT,TT}=0.5$$ $$P_{TH,HH}=0.5, P_{TH,HT}=0.5, P_{TH,TH}=0, P_{TH,TT}=0$$ $$P_{TT,HH}=0, P_{TT,HT}=0, P_{TT,TH}=0.5, P_{TT,TT}=0.5$$
+Regarding $\mathbb{E}(N_1)$, }
 
 \section*{Exercise 1.6}
 [A moving average process] Moving average models are used frequently in time series analysis, economics and engineering. For these models, one assumes that there is an underlying, unobserved process $\ldots, Y_{-1}, Y_0, Y_1, \ldots$ of \textit{iid} random variables. A \textbf{\textit{moving average process}} takes an average (possibly a weighted average) of these \textit{iid} random variables in a “sliding window.” For example, suppose that at time $n$ we simply take the average of the $Y_n$ and $Y_{n-1}$, defining $X_n = \frac{1}{2}(Y_n + Y_{n-1})$. Our goal is to show that the process $X_0, X_1, \ldots$ defined in this way is not Markov. As a simple example, suppose that the distribution of the \textit{iid} $Y$ random variables is $\mathbb{P}\{Y_i = 1\} = 1/2 = \mathbb{P}\{Y_i = -1\}$.

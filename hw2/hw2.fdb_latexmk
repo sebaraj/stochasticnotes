@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1738050663.05629 "hw2.tex" "hw2.pdf" "hw2" 1738050663.50909 0
+["pdflatex"] 1738134456.01622 "hw2.tex" "hw2.pdf" "hw2" 1738134456.51868 0
   "/Users/bryansebaraj/Downloads/IMG_2158.jpg" 1738050574 627893 9011821c1f3b5f85f5a146541a45c283 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -77,8 +77,8 @@
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1724987660 92935 ab22f987f93038b61e05dc32d7c07157 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1724987687 6829296 8721aa43ee9a14915d884e1568411a02 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf.cnf" 1725035431.1561 708 85fd07691b6294ba94c59dbc62380410 ""
-  "hw2.aux" 1738050663.4094 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
-  "hw2.tex" 1738050662.97079 8788 747d5d21b24edc22863c013a1329a720 ""
+  "hw2.aux" 1738134456.42234 32 2d1df76398b3c48c6419a45a7331db2d "pdflatex"
+  "hw2.tex" 1738134455.09063 12804 9fed46513fab3ad770bf99c39630b4d9 ""
   (generated)
   "hw2.aux"
   "hw2.log"
