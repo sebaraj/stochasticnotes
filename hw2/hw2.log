@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  29 JAN 2025 02:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  31 JAN 2025 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -238,87 +238,131 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
  (/Users/bryansebaraj/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-</Users/bryansebaraj/Downloads/IMG_2158.jpg, id=1, 2057.6875pt x 1147.28625pt>
-File: /Users/bryansebaraj/Downloads/IMG_2158.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_2158.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_2158.jpg  used on input line 44.
-(pdftex.def)             Requested size: 226.34633pt x 126.20187pt.
+Underfull \hbox (badness 10000) in paragraph at lines 28--94
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+
+ []
+
+
+Overfull \hbox (34.56537pt too wide) detected at line 94
+\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 j; X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 j[]; [] ; X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 j[]\OT1/cmr/m/n/10 ) = [] \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 i; X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 r \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 j; [] ; X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 j[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+
+ []
+
 
 
 [1
 
-{/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/bryansebaraj/Downloads/IMG_2158.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+{/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+</Users/bryansebaraj/Downloads/IMG_2158.jpg, id=16, 2057.6875pt x 1147.28625pt>
+File: /Users/bryansebaraj/Downloads/IMG_2158.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_2158.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_2158.jpg  used on input line 108.
+(pdftex.def)             Requested size: 226.34633pt x 126.20187pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--139
 
  []
 
 
 
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 134--134
-
- []
-
-
-Overfull \hbox (15.67049pt too wide) detected at line 134
-\OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]; X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 A\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[2 </Users/bryansebaraj/Downloads/IMG_2158.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 203--203
 
  []
 
 
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Overfull \hbox (15.67049pt too wide) detected at line 241
+\OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]; X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 A\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
 
  []
 
 
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
 
-[5] (./hw2.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--279
+
+ []
+
+
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 320--320
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--320
+
+ []
+
+
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
+
+ []
+
+
+
+[7] (./hw2.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-16>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4353 strings out of 475539
- 66097 string characters out of 5776665
- 1942957 words of memory out of 5000000
- 26954 multiletter control sequences out of 15000+600000
- 566805 words of font info for 70 fonts, out of 8000000 for 9000
+ 4359 strings out of 475539
+ 66214 string characters out of 5776665
+ 1944957 words of memory out of 5000000
+ 26959 multiletter control sequences out of 15000+600000
+ 567140 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 57i,8n,65p,841b,217s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (5 pages, 818272 bytes).
+ 57i,8n,65p,841b,253s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on hw2.pdf (7 pages, 829660 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 114 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

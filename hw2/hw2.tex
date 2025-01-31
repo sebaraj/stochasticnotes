@@ -26,9 +26,73 @@ Suppose that we are given a Markov Chain $X_0, X_1, \ldots$. Show that for any $
 \[
 P(X_n = i | X_{n-k} = j, X_{n-k-1} = j_1, X_{n-k-2} = j_2, \ldots, X_0 = j_{n-k}) = P(X_n = i | X_{n-k} = j).
 \]
-Prove this result and show your steps.
-
-\textcolor{blue}{Suppose }
+Prove this result and show your steps. \\  \\ 
+\textcolor{blue}{
+Base Case ($k = 1$): By the Markov property,
+\[
+P\bigl(X_{n} = i \,\big\vert\, X_{n-1} = j, X_{n-2} = j_1, \ldots, X_0 = j_{n-1}\bigr)
+=
+P\bigl(X_{n} = i \,\big\vert\, X_{n-1} = j\bigr).
+\]
+Hence, the statement holds for $k=1$. \\  \\ 
+Inductive Step: Suppose the statement holds for some $k \ge 1$,
+\[
+P\bigl(X_n = i \,\big\vert\, X_{n-(k+1)} = j,\, X_{n-(k+1)-1} = j_1,\, \ldots,\, X_0 = j_{n-(k+1)}\bigr).
+\]
+Suppose $m = n - (k+1)$, so $n = m + (k+1)$,
+\[
+P(X_{m + (k+1)} = i \mid X_m = j, X_{m-1} = j_1, \ldots, X_0 = j_m)
+=
+\sum_{r}
+P(X_{m + (k+1)} = i, X_{m+k} = r \mid X_m = j, \ldots, X_0 = j_m),
+\]
+where the sum is over all possible states $r$ of $X_{m+k}$. \\ \\ By the chain rule for conditional probabilities,
+\[
+= \sum_{r}
+P(X_{m + (k+1)} = i \mid X_{m+k} = r, X_m = j, \ldots)
+\,
+P(X_{m+k} = r \mid X_m = j, \ldots).
+\]
+By the Markov property,
+\[
+P\bigl(X_{m + (k+1)} = i \mid X_{m+k} = r, X_m = j, \ldots\bigr)
+=
+P\bigl(X_{m + (k+1)} = i \mid X_{m+k} = r\bigr).
+\]
+Applying our initial assumption to $k$ steps,
+\[
+P\bigl(X_{m+k} = r \mid X_m = j, X_{m-1} = j_1, \ldots, X_0 = j_m\bigr)
+=
+P\bigl(X_{m+k} = r \mid X_m = j\bigr).
+\]
+Hence,
+\[
+\sum_{r}
+P\bigl(X_{m + (k+1)} = i \mid X_{m+k} = r\bigr)\,
+P\bigl(X_{m+k} = r \mid X_m = j\bigr).
+\]
+So,
+\[
+\sum_{r}
+P\bigl(X_{m + (k+1)} = i \mid X_{m+k} = r\bigr)\,
+P\bigl(X_{m+k} = r \mid X_m = j\bigr)
+=
+P\bigl(X_{m + (k+1)} = i \mid X_m = j\bigr).
+\]
+Therefore,
+\[
+P\bigl(X_n = i \mid X_{n-(k+1)} = j, X_{n-(k+1)-1} = j_1, \ldots, X_0 = j_{n-(k+1)}\bigr)
+=
+P\bigl(X_n = i \mid X_{n-(k+1)} = j\bigr).
+\]
+Thus by induction, the equality holds for all $k = 1, 2, \ldots, n-1$. 
+\[
+P\bigl(X_n = i \,\big\vert\, X_{n-k} = j,\, X_{n-k-1} = j_1,\, \ldots,\, X_0 = j_{n-k}\bigr)
+=
+P\bigl(X_n = i \,\big\vert\, X_{n-k} = j\bigr).
+\]
+}
+% \textcolor{blue}{Suppose }
 
 \subsection*{Problem 1.2 (10 points)} 
 Consider the following
@@ -93,7 +157,50 @@ and uniform. Note that by design, the size of the total population
 stays at $N$.
 
 \begin{enumerate}
-    \item[(a)] (5 points) Let $X_n$ denote the number of individuals of type $A$ at time $n$. Show that $\{X_n : n \geq 0\}$ is a Markov chain. Identify the state space and find the transition probabilities $P = (P_{ij})$.
+    \item[(a)] (5 points) Let $X_n$ denote the number of individuals of type $A$ at time $n$. Show that $\{X_n : n \geq 0\}$ is a Markov chain. Identify the state space and find the transition probabilities $P = (P_{ij})$. \\ 
+        \textcolor{blue}{From the problem, $X_n \in \{0,1,2,\ldots,N\} $ for each $n$. Thus, the state space is $S = \{0,1,2,\ldots,N\}$.
+In order to prove $\{X_n\}$ is a Markov chain,
+\[
+P(X_{n+1} = j \mid X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0)
+\;=\;
+P(X_{n+1} = j \mid X_n = i).
+\]
+Given the current number of individuals of type $A$, the distribution of the number of $A$'s at the next step does not rely on history beyond the current state. 
+\begin{itemize}
+    \item At time $n$, there are $i$ individuals of type $A$ (and $N - i$ of type $B$).
+    \item Two draws with replacement are made from the $N$ individuals. The composition of the population \textit{before} time $n$ beyond $X_n = i$ does not affect the probability of who is chosen at time $n+1$ because all draws are independent and uniform on the current population.
+\end{itemize}
+Hence the process is memoryless apart from the current state $i$, which confirms the Markov property. \\ \\ 
+To find $P(X_{n+1} = j \mid X_n = i)$, note that $X_{n+1}$ can only be $i+1$, $i-1$, or remain $i$, except for the edge cases $i=0$ or $i=N$. Assume $1 \le i \le N-1$. There are four equally likely outcomes:
+\begin{itemize}
+    \item[(1)] first selection (F) $=$ A and second selection (S) $=$ A. Note that $X_{n+1}$ maintians the same $i$ as $X_n$. This is also the only outcome (or an absorbing state) when $i_n=N$, i.e. the population is entire individuals of type A.
+    \item[(2)] F $=$ A and S $=$ B. Note that $X_{n+1} = i_n + 1$.
+    \item[(3)] F $=$ B and S $=$ A. Note that $X_{n+1} = i_n - 1$.
+    \item[(4)] F $=$ B and S $=$ B. Note that $X_{n+1}$ maintians the same $i$ as $X_n$. This is also the only outcome when $i_n=0$, i.e. the population is entire individuals of type B.
+\end{itemize}
+Since each draw is uniform from the $N$ individuals,
+\[
+\mathbb{P}(\text{F= A}) = \frac{i}{N}, 
+\quad
+\mathbb{P}(\text{F= B}) = \frac{N-i}{N},
+\]
+Therefore with replacement,
+\[
+P_{i,i+1} 
+\,=\, \mathbb{P}(\text{F=A, S=B})
+\,=\, \frac{i}{N}\,\frac{N-i}{N},
+\]
+\[
+P_{i,i-1} 
+\,=\, \mathbb{P}(\text{F=B, S=A})
+\,=\, \frac{N-i}{N}\,\frac{i}{N},
+\]
+\[
+P_{i,i} 
+\,=\, \mathbb{P}(\text{F=A, S=A}) + \mathbb{P}(\text{F=B, S=B})
+\,=\, \Bigl(\frac{i}{N}\Bigr)^2 \;+\; \Bigl(\frac{N-i}{N}\Bigr)^2.
+\]
+}
     \item[(b)] (5 points) For $N = 3$, write down the transition matrix $P$ explicitly. Find the stationary distribution(s), i.e., the distribution(s) $\pi$ with $\pi = P \pi$. Is it unique?
 \end{enumerate}
 
@@ -187,14 +294,57 @@ having the 4 states \texttt{HH}, \texttt{HT}, \texttt{TH}, and
 
 \textcolor{blue}{Intuitively, I would guess that $\mathbb{E}(N_1)=\mathbb{E}(N_2)$, as both events are dependent, and only dependent on the first heads. Since a coin is equally and independently likely to get heads or tails on the next flip, the probabilites are the same (I know this is a naive assumption). \\ \\ 
 First, let us define the Markov chain with states $S=\{HH, HT, TH, TT\}$ and transition probabilities: $$P_{HH,HH}=0.5, P_{HH,HT}=0.5, P_{HH,TH}=0, P_{HH,TT}=0$$ $$P_{HT,HH}=0, P_{HT,HT}=0, P_{HT,TH}=0.5, P_{HT,TT}=0.5$$ $$P_{TH,HH}=0.5, P_{TH,HT}=0.5, P_{TH,TH}=0, P_{TH,TT}=0$$ $$P_{TT,HH}=0, P_{TT,HT}=0, P_{TT,TH}=0.5, P_{TT,TT}=0.5$$
-Regarding $\mathbb{E}(N_1)$, }
+For simplicity, define the time is takes to reach some state $S_i$ from $S_j$ as $\mathbb{T}(S_j)$. \\ \\ 
+Regarding $\mathbb{E}(N_1)$, using the definition of $\mathbb{E}(\tau_a)$ from 1.3 and that HH is the absorbing state, the expected number of steps to reach state HH from HH is $$\mathbb{T}(HH)=0$$
+$$\mathbb{T}(TH)=1 + 0.5 \mathbb{T}(HT) + 0.5 \mathbb{T}(TT)$$
+$$\mathbb{T}(TT)=1 + 0.5 \mathbb{T}(HT) + 0.5 \mathbb{T}(TT)$$
+$$\mathbb{T}(HT)=1 + 0.5 \mathbb{T}(HH) + 0.5 \mathbb{T}(TH) = 1 + 0.5 \mathbb{T}(TH)$$
+Solving the system and treated HH as the absorbing state,
+$$\mathbb{T}(TT) = 2 + \mathbb{T}(HT)$$
+$$\mathbb{T}(TH) = 1 + 0.5 \mathbb{T}(HT) + 1 + 0.5 \mathbb{T}(HT)$$
+$$\mathbb{T}(TH) = 2 + \mathbb{T}(HT)$$
+$$\mathbb{T}(TH) = 2 + 1 + 0.5 \mathbb{T}(TH)$$
+$$\mathbb{T}(TH) = 6$$
+$$\mathbb{T}(HT) = 4$$
+$$\mathbb{T}(TT) = 6$$
+Therefore, $$\mathbb{E}(HH)=\mathbb{E}(N_1)=6$$
+Similarly, when treating HT as the absorbing state, $$\mathbb{T}(HT) = 0$$
+$$\mathbb{T}(TH) = 1 + 0.5 \mathbb{T}(HT) + 0.5 \mathbb{T}(TT) = 1 + 0.5 \mathbb{T}(TT)$$
+$$\mathbb{T}(TT) = 1 + 0.5 \mathbb{T}(HT) + 0.5 \mathbb{T}(TT) = 1 + 0.5 \mathbb{T}(TT)$$
+$$\mathbb{T}(HH) = 1 + 0.5 \mathbb{T}(HH) + 0.5 \mathbb{T}(TH)$$
+Solving the system,
+$$\mathbb{T}(TT)=2$$
+$$\mathbb{T}(TH)=2$$
+$$\mathbb{T}(HH)=2 + 2 = 4$$
+Therefore, $$\mathbb{E}(HT)=\mathbb{E}(N_2)=4$$
+Thus, one would expect to see HT faster than HH.}
+
 
 \section*{Exercise 1.6}
 [A moving average process] Moving average models are used frequently in time series analysis, economics and engineering. For these models, one assumes that there is an underlying, unobserved process $\ldots, Y_{-1}, Y_0, Y_1, \ldots$ of \textit{iid} random variables. A \textbf{\textit{moving average process}} takes an average (possibly a weighted average) of these \textit{iid} random variables in a “sliding window.” For example, suppose that at time $n$ we simply take the average of the $Y_n$ and $Y_{n-1}$, defining $X_n = \frac{1}{2}(Y_n + Y_{n-1})$. Our goal is to show that the process $X_0, X_1, \ldots$ defined in this way is not Markov. As a simple example, suppose that the distribution of the \textit{iid} $Y$ random variables is $\mathbb{P}\{Y_i = 1\} = 1/2 = \mathbb{P}\{Y_i = -1\}$.
 
 \begin{enumerate}
     \item[(a)] Show that $X_0, X_1, \ldots$ is not a Markov chain.
+
+        \textcolor{blue}{Let $X_0=\frac{1}{2}(Y_0 + Y_{-1})$. Consider two cases: 
+            \begin{enumerate}
+                \item If $X_0=1$, then $Y_0 + Y_{-1} = 2$, so $(Y_0,Y_{-1})=(1,1)$.
+                \item If $X_0=-1$, then $Y_0 + Y_{-1} = -2$, so $(Y_0,Y_{-1})=(-1,-1)$.
+            \end{enumerate}
+        Now, suppose that $X_1=0$, so $Y_1 + Y_0 = 0$.
+            \begin{enumerate}
+                \item In case (a), $X_0=1$ and $Y_0=1$, so $X_1=0$ implies $Y_1=-1$. Hence, $$X_2 = \frac{1}{2}(Y_2-Y_1) = \frac{1}{2}(Y_2 - 1)$$. So, if $Y_2=1$ then $X_2=0$ and if $Y_2=-1$, then $X_2=-1$, each with $\frac{1}{2}$ probability.
+                \item In case (b), $X_0=-1$ and $Y_0=-1$, so $X_1=0$ implies $Y_1=1$. Hence, $$X_2 = \frac{1}{2}(Y_2-Y_1) = \frac{1}{2}(Y_2 + 1)$$. So, if $Y_2=1$ then $X_2=1$ and if $Y_2=-1$, then $X_2=0$, each with $\frac{1}{2}$ probability.
+            \end{enumerate}
+            Under case (a), $\mathbb{P}(X_2=-1 | X_1 = 0, X_0 = 1) = \frac{1}{2}$ and $\mathbb{P}(X_2=0 | X_1 = 0, X_0 = 1) = \frac{1}{2}$. \\ \\ 
+            Under case (b), $\mathbb{P}(X_2=1 | X_1 = 0, X_0 = -1) = \frac{1}{2}$ and $\mathbb{P}(X_2=0 | X_1 = 0, X_0 = -1) = \frac{1}{2}$. \\ \\ 
+            Note that the outcomes of $X_2$ are dependent on the values of $X_0$, even if $X_1$ is shared between scenarios/chains. More formally, $$\mathbb{P}_{case \ a}(X_2=1 | X_1=0, X_0=1) \neq \mathbb{P}_{case \ b}(X_2=1 | X_1 = 0, X_0 = -1)$$ Thus, this process is not Markov.
+        }
+
+
     \item[(b)] Show that $X_0, X_1, \ldots$ is not an $r$th order Markov chain for any finite $r$.
+
+        \textcolor{blue}{}
 \end{enumerate}
 
 
