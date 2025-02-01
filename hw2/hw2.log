@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  31 JAN 2025 15:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  31 JAN 2025 20:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -280,89 +280,108 @@ Underfull \hbox (badness 10000) in paragraph at lines 203--203
  []
 
 
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 241--241
+Underfull \hbox (badness 10000) in paragraph at lines 204--284
 
  []
 
 
-Overfull \hbox (15.67049pt too wide) detected at line 241
+
+[3]
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 321--321
+
+ []
+
+
+Overfull \hbox (15.67049pt too wide) detected at line 321
 \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]; X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 A\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 P\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 X[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 g
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 
  []
 
 
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 279--279
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 279--279
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 320--320
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 320--320
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
 
  []
 
 
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 422--422
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 422--422
 
  []
 
 
 
-[7] (./hw2.aux)
+[8]
+Overfull \hbox (3.78949pt too wide) in paragraph at lines 522--522
+\OT1/cmr/m/n/10 Since $\OML/cmm/m/it/10 Y[] \OT1/cmr/m/n/10 = (\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1)[]$ and $\OML/cmm/m/it/10 Y[]$ \OT1/cmr/m/n/10 is still an in-de-pen-dent $\OMS/cmsy/m/n/10 ^^F\OT1/cmr/m/n/10 1$ vari-able, un-con-strained by $\OML/cmm/m/it/10 X[]; [] ; X[] \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--522
+
+ []
+
+
+
+[9] (./hw2.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-16>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4359 strings out of 475539
- 66214 string characters out of 5776665
- 1944957 words of memory out of 5000000
- 26959 multiletter control sequences out of 15000+600000
+ 4363 strings out of 475539
+ 66326 string characters out of 5776665
+ 1949957 words of memory out of 5000000
+ 26963 multiletter control sequences out of 15000+600000
  567140 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 57i,8n,65p,841b,253s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,9n,65p,841b,344s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw2.pdf (7 pages, 829660 bytes).
+Output written on hw2.pdf (9 pages, 838842 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
+ 120 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
