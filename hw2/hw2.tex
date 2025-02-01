@@ -388,7 +388,75 @@ Intuitively, the process \(\{X_n\}\) is the running minimum of \(\{Y_n\}\) bound
     \lim_{n \to \infty} \pi_n(i) = \pi(i).
     \]
 
-    \textcolor{blue}{}
+    \textcolor{blue}{Suppose \(Y_0 = M\).  Then
+\[
+  X_n \;=\; \min\{\,Y_0,\,Y_1,\dots,Y_n\}
+  \;=\; \min\{\,M,\,Y_1,\dots,Y_n\}
+  \;=\; \min\{\,Y_1,\dots,Y_n\},
+\]
+For any \(1 \le i \le M\), 
+\[
+  \{X_n \ge i\}
+  \;=\; \{\,Y_1 \ge i,\;Y_2 \ge i,\;\dots,\;Y_n \ge i\}.
+\]
+Because each \(Y_j\) is uniform on \(\{1,\dots,M\}\),
+\[
+  \mathbb{P}(Y_j \ge i) \;=\; \frac{M - i + 1}{M}.
+\]
+As such,
+\[
+  \mathbb{P}(X_n \ge i)
+  \;=\;
+  \left(\frac{M - i + 1}{M}\right)^n.
+\]
+Therefore,
+\[
+  \begin{aligned}
+     \mathbb{P}(X_n > i) 
+     &= 
+     \mathbb{P}\bigl(Y_1 > i,\dots,Y_n > i\bigr)
+     \;=\;
+     \left(\frac{M - i}{M}\right)^n,
+     \\[6pt]
+     \mathbb{P}(X_n = i)
+     &=  
+     \mathbb{P}(X_n \ge i)\;-\;\mathbb{P}(X_n > i)
+     \;=\;
+     \left(\frac{M - i + 1}{M}\right)^n
+     \;-\;
+     \left(\frac{M - i}{M}\right)^n.
+  \end{aligned}
+\]
+As \(n\to\infty\),
+\(\bigl(\frac{M-i}{M}\bigr)^n\) or \(\bigl(\frac{M - i + 1}{M}\bigr)^n\) approach \(0\) for \(i>1\).  However, for \(i=1\),
+\[
+   \left(\frac{M - 1 + 1}{M}\right)^n
+   \;=\; \bigl(1\bigr)^n
+   \;=\;1
+   \quad\text{and}\quad
+   \left(\frac{M - 1}{M}\right)^n 
+   \;\to\;0.
+\]
+Therefore
+\[
+  \lim_{n\to\infty} \mathbb{P}(X_n=1) 
+  \;=\; 1,
+  \quad
+  \lim_{n\to\infty} \mathbb{P}(X_n=i) 
+  \;=\; 0
+  \quad\text{for all }i>1.
+\]
+\[
+  \lim_{n\to\infty} \pi_n(i)
+  \;=\; \pi(i)
+  \;=\;
+  \begin{cases}
+    1, & i=1,\\
+    0, & i>1,
+  \end{cases}
+\]
+which converges to the stationary distribution.
+}
 
 \end{enumerate}
 
