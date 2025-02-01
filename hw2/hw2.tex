@@ -289,12 +289,107 @@ Let $M$ be a positive integer. Let $Y_0, Y_1, \ldots$ be iid and uniformly distr
 
 \begin{enumerate}
     \item[(a)] (5 points) Show that $\{X_n : n \geq 0\}$ is a Markov chain.
+
+    \textcolor{blue}{Observe that
+\[
+  X_{n+1} 
+  \;=\; \min\{\,Y_0,\ldots,Y_n,\;Y_{n+1}\}
+  \;=\; \min\bigl(X_n,\;Y_{n+1}\bigr).
+\]
+Hence
+\[
+  \mathbb{P}\bigl(X_{n+1}=x \,\big\vert\, X_n, X_{n-1},\dots\bigr)
+  \;=\; \mathbb{P}\bigl(\min(X_n,\,Y_{n+1}) = x \,\big\vert\, X_n, X_{n-1},\dots\bigr).
+\]
+Because \(Y_{n+1}\) is independent of all previous \(Y\)-values, 
+\[
+  \mathbb{P}\bigl(X_{n+1}=x \,\big\vert\, X_n, X_{n-1},\dots\bigr)
+  \;=\; \mathbb{P}\bigl(\min(X_n,\,Y_{n+1})=x \,\big\vert\, X_n\bigr).
+\]
+Therefore,
+\[
+  \mathbb{P}\bigl(X_{n+1} = x \,\big\vert\, X_0,\ldots,X_n\bigr)
+  \;=\;
+  \mathbb{P}\bigl(X_{n+1} = x \,\big\vert\, X_n\bigr),
+\]
+Thus, \(\{X_n\}\) is a Markov chain.
+}
+
     \item[(b)] (5 points) Identify the state space and find the probability transition matrix $P$.
+
+    \textcolor{blue}{Since each \(Y_i \in \{1,2,\dots,M\}\), the minimum \(X_n = \min\{Y_0,\dots,Y_n\}\) also takes values in \(\{1,2,\dots,M\}\). \(X_n\) cannot ever increase, so the state space is
+\[
+  S \;=\; \{1,2,\dots,M\}.
+\]
+If \(X_n = i\), then
+\[
+  X_{n+1} \;=\; \min\bigl(i,\;Y_{n+1}\bigr).
+\]
+Recall \(Y_{n+1}\) is uniform on \(\{1,\dots,M\}\).  Hence:
+\[
+  \begin{aligned}
+  \mathbb{P}\bigl(X_{n+1}=j \,\big\vert\, X_n=i\bigr)
+  &=
+  \begin{cases}
+     \displaystyle
+     \frac{i-1}{M}
+     &\quad\text{if } 1 \le j < i
+       \text{ and } Y_{n+1} = j,\\[1em]
+     \displaystyle
+     \frac{M - i+1}{M}
+     &\quad\text{if } j = i
+       \text{ and } Y_{n+1} \ge i,\\[0.75em]
+     0
+     &\quad\text{otherwise (i.e.\ if } j>i).
+  \end{cases}
+  \end{aligned}
+\]
+Equivalently, in matrix form, $P$ where:
+\[
+  P_{ij}
+  \;=\;
+  \begin{cases}
+     \tfrac{i-1}{M}, & j < i,\\[6pt]
+     \tfrac{M-i+1}{M}, & j = i,\\[6pt]
+     0, & j> i.
+  \end{cases}
+\]
+Confirming the validity, \(\sum_{j=1}^M P_{ij} = 1\) for each \(i\).
+}
+
     \item[(c)] (5 points) Find the stationary distribution $\pi$. Is it unique? Provide an intuitive explanation for your conclusion.
+
+    \textcolor{blue}{
+Notice that state \(1\) is absorbing, i.e.\
+\[
+  \mathbb{P}\bigl(X_{n+1} = 1 \,\big\vert\, X_n = 1\bigr)
+  \;=\;1.
+\]
+Once the chain enters state \(1\), it stays there forever, which forces \(\pi(1)=1\) in any stationary distribution.  Indeed, if \(\pi_0\) has \(\pi(1)=\alpha>0\), then
+\[
+  (\pi P)(1) 
+  \;=\; \pi(1) \cdot 1 + \sum_{i=2}^M \pi(i)\cdot p_{i,1}.
+\]
+But stationarity requires \(\pi(1) = (\pi P)(1)\).  We also know \(p_{1,1}=1\) and each \(p_{i,1}>0\) for \(i>1\). Therefore to satisfy \(\pi P=\pi\)
+\[
+  \pi(1) \;=\;1
+  \quad\text{and}\quad
+  \pi(2)=\cdots=\pi(M)=0.
+\]
+Thus
+\[
+ \pi \;=\; \bigl(1,\,0,\,0,\dots,\,0\bigr)
+\]
+Intuitively, the process \(\{X_n\}\) is the running minimum of \(\{Y_n\}\) bounded at 1.  Once the minimum hits \(1\), it remains \(1\) forever (absorbing).  No other states are absorbing, and there is always a positive probability to jump to a strictly lower minimum, so eventually the Markov chain will get to \(1\). 
+}
+
     \item[(d)] (5 points) Let $Y_0 = M$. Prove that the marginal distribution of $X_n$ converges to the stationary distribution, i.e., if $\pi_n(i) = P(X_n = i), i = 1, \ldots, M$ then for all $i = 1, \ldots, M$:
     \[
     \lim_{n \to \infty} \pi_n(i) = \pi(i).
     \]
+
+    \textcolor{blue}{}
+
 \end{enumerate}
 
 \section*{Problems from Chang}
