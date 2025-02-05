@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  3 FEB 2025 14:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  5 FEB 2025 14:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -227,117 +227,88 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
  (/Users/bryansebaraj/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-</Users/bryansebaraj/Downloads/IMG_0480.jpg, id=1, 890.3664pt x 453.6147pt>
-File: /Users/bryansebaraj/Downloads/IMG_0480.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0480.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0480.jpg  used on input line 23.
-(pdftex.def)             Requested size: 445.18211pt x 226.8068pt.
-</Users/bryansebaraj/Downloads/IMG_0481.jpg, id=2, 731.1315pt x 407.121pt>
-File: /Users/bryansebaraj/Downloads/IMG_0481.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0481.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0481.jpg  used on input line 25.
-(pdftex.def)             Requested size: 438.68228pt x 244.27449pt.
-</Users/bryansebaraj/Downloads/IMG_0482.jpg, id=3, 970.827pt x 606.1044pt>
-File: /Users/bryansebaraj/Downloads/IMG_0482.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0482.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0482.jpg  used on input line 29.
-(pdftex.def)             Requested size: 485.41231pt x 303.05145pt.
+</Users/bryansebaraj/Downloads/IMG_0500.jpg, id=1, 920.7198pt x 515.526pt>
+File: /Users/bryansebaraj/Downloads/IMG_0500.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0500.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0500.jpg  used on input line 23.
+(pdftex.def)             Requested size: 460.35878pt x 257.76237pt.
+</Users/bryansebaraj/Downloads/IMG_0501.jpg, id=2, 834.2367pt x 313.17pt>
+File: /Users/bryansebaraj/Downloads/IMG_0501.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0501.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0501.jpg  used on input line 25.
+(pdftex.def)             Requested size: 333.68877pt x 125.26576pt.
+</Users/bryansebaraj/Downloads/IMG_0502.jpg, id=3, 914.9382pt x 470.7186pt>
+File: /Users/bryansebaraj/Downloads/IMG_0502.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0502.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0502.jpg  used on input line 28.
+(pdftex.def)             Requested size: 457.46799pt x 235.35872pt.
+</Users/bryansebaraj/Downloads/IMG_0503.jpg, id=4, 763.8939pt x 505.1673pt>
+File: /Users/bryansebaraj/Downloads/IMG_0503.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0503.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0503.jpg  used on input line 31.
+(pdftex.def)             Requested size: 458.33987pt x 303.1027pt.
 
 
 [1
 
-{/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/bryansebaraj/Downloads/IMG_0480.jpg> </Users/bryansebaraj/Downloads/IMG_0481.jpg>]
-</Users/bryansebaraj/Downloads/IMG_0483.jpg, id=12, 879.285pt x 584.9052pt>
-File: /Users/bryansebaraj/Downloads/IMG_0483.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0483.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0483.jpg  used on input line 32.
-(pdftex.def)             Requested size: 439.64143pt x 292.45187pt.
-</Users/bryansebaraj/Downloads/IMG_0484.jpg, id=13, 970.827pt x 516.2487pt>
-File: /Users/bryansebaraj/Downloads/IMG_0484.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0484.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0484.jpg  used on input line 35.
-(pdftex.def)             Requested size: 485.41231pt x 258.12372pt.
+{/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/bryansebaraj/Downloads/IMG_0500.jpg> </Users/bryansebaraj/Downloads/IMG_0501.jpg> </Users/bryansebaraj/Downloads/IMG_0502.jpg>]
+</Users/bryansebaraj/Downloads/IMG_0505.jpg, id=13, 893.4981pt x 475.0548pt>
+File: /Users/bryansebaraj/Downloads/IMG_0505.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0505.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0505.jpg  used on input line 34.
+(pdftex.def)             Requested size: 446.74796pt x 237.52681pt.
+</Users/bryansebaraj/Downloads/IMG_0506.jpg, id=14, 812.3148pt x 507.8172pt>
+File: /Users/bryansebaraj/Downloads/IMG_0506.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0506.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0506.jpg  used on input line 37.
+(pdftex.def)             Requested size: 487.39264pt x 304.69266pt.
 
 
-[2 </Users/bryansebaraj/Downloads/IMG_0482.jpg> </Users/bryansebaraj/Downloads/IMG_0483.jpg>]
-</Users/bryansebaraj/Downloads/IMG_0485.jpg, id=18, 756.426pt x 490.9542pt>
-File: /Users/bryansebaraj/Downloads/IMG_0485.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0485.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0485.jpg  used on input line 37.
-(pdftex.def)             Requested size: 453.8591pt x 294.57478pt.
-</Users/bryansebaraj/Downloads/IMG_0486.jpg, id=19, 970.827pt x 606.1044pt>
-File: /Users/bryansebaraj/Downloads/IMG_0486.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0486.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0486.jpg  used on input line 40.
-(pdftex.def)             Requested size: 485.41231pt x 303.05145pt.
+[2 </Users/bryansebaraj/Downloads/IMG_0503.jpg> </Users/bryansebaraj/Downloads/IMG_0505.jpg>]
+</Users/bryansebaraj/Downloads/IMG_0507.jpg, id=18, 820.7463pt x 453.6147pt>
+File: /Users/bryansebaraj/Downloads/IMG_0507.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0507.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0507.jpg  used on input line 40.
+(pdftex.def)             Requested size: 410.37215pt x 226.8068pt.
+</Users/bryansebaraj/Downloads/IMG_0508.jpg, id=19, 788.4657pt x 452.1693pt>
+File: /Users/bryansebaraj/Downloads/IMG_0508.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0508.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0508.jpg  used on input line 42.
+(pdftex.def)             Requested size: 394.23187pt x 226.08409pt.
+</Users/bryansebaraj/Downloads/IMG_0509.jpg, id=20, 568.2831pt x 383.2719pt>
+File: /Users/bryansebaraj/Downloads/IMG_0509.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0509.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0509.jpg  used on input line 45.
+(pdftex.def)             Requested size: 284.14085pt x 191.63547pt.
 
 
-[3 </Users/bryansebaraj/Downloads/IMG_0484.jpg> </Users/bryansebaraj/Downloads/IMG_0485.jpg>]
-</Users/bryansebaraj/Downloads/IMG_0489.jpg, id=23, 823.3962pt x 478.1865pt>
-File: /Users/bryansebaraj/Downloads/IMG_0489.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0489.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0489.jpg  used on input line 45.
-(pdftex.def)             Requested size: 452.86931pt x 263.00337pt.
-</Users/bryansebaraj/Downloads/IMG_0490.jpg, id=24, 970.827pt x 552.8655pt>
-File: /Users/bryansebaraj/Downloads/IMG_0490.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0490.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0490.jpg  used on input line 48.
-(pdftex.def)             Requested size: 485.41231pt x 276.43207pt.
+[3 </Users/bryansebaraj/Downloads/IMG_0506.jpg> </Users/bryansebaraj/Downloads/IMG_0507.jpg> </Users/bryansebaraj/Downloads/IMG_0508.jpg>]
+</Users/bryansebaraj/Downloads/IMG_0511.jpg, id=24, 895.4253pt x 463.7325pt>
+File: /Users/bryansebaraj/Downloads/IMG_0511.jpg Graphic file (type jpg)
+<use /Users/bryansebaraj/Downloads/IMG_0511.jpg>
+Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0511.jpg  used on input line 50.
+(pdftex.def)             Requested size: 447.71155pt x 231.86568pt.
 
 
-[4 </Users/bryansebaraj/Downloads/IMG_0486.jpg> </Users/bryansebaraj/Downloads/IMG_0489.jpg>]
-</Users/bryansebaraj/Downloads/IMG_0491.jpg, id=30, 869.8899pt x 545.8794pt>
-File: /Users/bryansebaraj/Downloads/IMG_0491.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0491.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0491.jpg  used on input line 52.
-(pdftex.def)             Requested size: 434.94388pt x 272.93903pt.
-</Users/bryansebaraj/Downloads/IMG_0492.jpg, id=31, 970.827pt x 540.0978pt>
-File: /Users/bryansebaraj/Downloads/IMG_0492.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0492.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0492.jpg  used on input line 54.
-(pdftex.def)             Requested size: 485.41231pt x 270.04823pt.
-
-
-[5 </Users/bryansebaraj/Downloads/IMG_0490.jpg> </Users/bryansebaraj/Downloads/IMG_0491.jpg>]
-</Users/bryansebaraj/Downloads/IMG_0493.jpg, id=35, 792.8019pt x 540.8205pt>
-File: /Users/bryansebaraj/Downloads/IMG_0493.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0493.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0493.jpg  used on input line 57.
-(pdftex.def)             Requested size: 396.39998pt x 270.40958pt.
-</Users/bryansebaraj/Downloads/IMG_0494.jpg, id=36, 970.827pt x 554.5518pt>
-File: /Users/bryansebaraj/Downloads/IMG_0494.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0494.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0494.jpg  used on input line 60.
-(pdftex.def)             Requested size: 485.41231pt x 277.27522pt.
-
-
-[6 </Users/bryansebaraj/Downloads/IMG_0492.jpg> </Users/bryansebaraj/Downloads/IMG_0493.jpg>]
-</Users/bryansebaraj/Downloads/IMG_0495.jpg, id=40, 971.3088pt x 728.4816pt>
-File: /Users/bryansebaraj/Downloads/IMG_0495.jpg Graphic file (type jpg)
-<use /Users/bryansebaraj/Downloads/IMG_0495.jpg>
-Package pdftex.def Info: /Users/bryansebaraj/Downloads/IMG_0495.jpg  used on input line 62.
-(pdftex.def)             Requested size: 485.65321pt x 364.23991pt.
-
-
-[7 </Users/bryansebaraj/Downloads/IMG_0494.jpg> </Users/bryansebaraj/Downloads/IMG_0495.jpg>] (./lecture.aux)
+[4 </Users/bryansebaraj/Downloads/IMG_0509.jpg> </Users/bryansebaraj/Downloads/IMG_0511.jpg>] (./lecture.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-16>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3703 strings out of 475539
- 58855 string characters out of 5776665
+ 3663 strings out of 475539
+ 57360 string characters out of 5776665
  1927957 words of memory out of 5000000
- 26327 multiletter control sequences out of 15000+600000
- 565019 words of font info for 64 fonts, out of 8000000 for 9000
+ 26290 multiletter control sequences out of 15000+600000
+ 563013 words of font info for 55 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  57i,6n,65p,223b,223s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on lecture.pdf (7 pages, 26173186 bytes).
+</Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on lecture.pdf (4 pages, 14603424 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
