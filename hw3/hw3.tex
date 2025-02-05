@@ -372,144 +372,71 @@ Rewriting compactly,
 }
 
 
-\subsection*{Exercise 1.10} On page \textbf{13} we argued that a limiting distribution must be stationary. This argument was clear in the case of a finite state space. For you fans of mathematical analysis, what happens in the case of a countably infinite state space? Can you still make the limiting argument work?
+\subsection*{Exercise 1.16} Show that if an irreducible Markov chain has a state $i$ such that $P(i, i) > 0$, then the chain
+is aperiodic. Also show by example that this sufficient condition is not necessary.
 
 \textcolor{blue}{
-Let \(\{X_n\}\) be a Markov chain with countably infinite state space \(S\),
-and let \(P\) be its one-step transition matrix.  Suppose \(\pi_n\) is the
-distribution of \(X_n\), i.e.\ for each \(j \in S\),
+Let $\{X_n\}$ be an irreducible Markov chain on a countable state space $S$. Suppose there is a state $i \in S$ such that
 \[
-  \pi_n(j) \;=\; \mathbb{P}(X_n = j).
+    P(i,i) > 0.
 \]
-Assume that \(\pi_{n+1} = \pi_n P\) for all \(n\).  
-If there is a distribution \(\tilde{\pi}\) such that
+The period of state $i$ is defined as
 \[
-  \lim_{n \to \infty} \pi_n(i) \;=\; \tilde{\pi}(i)
-  \quad \text{for all } i \in S,
+    d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \},
 \]
-then \(\tilde{\pi}\) is a stationary distribution for \(P\), i.e.\
+Since $P(i,i) = P^1(i,i)> 0$, there is a positive probability of returning to $i$ in exactly 1 step. As such, $1 \in \{n: P^n(i,i) > 0\}$, so any common divisor of all $n$ must trivially divide 1. \\ \\ Therefore,
 \[
-  \tilde{\pi} \;=\; \tilde{\pi}\,P.
+    d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \} \;=\; 1.
 \]
-By hypothesis, \(\pi_{n+1} = \pi_n P\).  In coordinates, that means
+Thus, $i$ is an aperiodic state. \\ \\ 
+By irreducibility, for any other state $j \in S$, there exist integers $m,k \ge 1$ such that $P^m(j,i) > 0$ and $P^k(i,j) > 0$. Then for any $n \ge 1$,
 \[
-  \pi_{n+1}(j) \;=\; \sum_{i \in S} \pi_n(i)\,P(i,j)
-  \quad \text{for each } j \in S.
+    P^{m+n+k}(j,j) 
+    \;\ge\; P^m(j,i) \, P^n(i,i) \, P^k(i,j).
 \]
-Taking limits as \(n \to \infty\), we want to show
+Since $P^n(i,i) > 0$ for all $n \ge 1$ (as argued above, using the self-loop at $i$ repeatedly if necessary), we conclude that for arbitrarily many $n$, the probability $P^{m+n+k}(j,j)$ is strictly positive. It follows that
 \[
-  \tilde{\pi}(j)
-  \;=\;
-  \sum_{i \in S} \tilde{\pi}(i)\,P(i,j)
-  \quad \text{for all } j \in S.
+    d(j) \;=\; \gcd\{ n \ge 1 : P^n(j,j) > 0 \} \;=\; 1.
 \]
-The delicate step is justifying that we can pass the limit inside the infinite sum.
-\medskip
-\noindent
-\textbf{Step 1: Pointwise limits.}
-By assumption, for each \(i \in S\),
+Hence \emph{every} state in an irreducible chain with a self-loop ($P(i,i) > 0$ for some $i$) has period 1, which means the chain is aperiodic.
+\bigskip
+We now show that having $P(i,i) > 0$ for some state $i$ is \emph{not} a necessary condition for aperiodicity by giving a simple Markov chain that is irreducible, aperiodic, and yet has no self-loops (i.e.\ $P(i,i)=0$ for all $i$).
+Consider a chain on three states $\{1,2,3\}$ with transition matrix:
 \[
-  \lim_{n \to \infty} \pi_n(i) \;=\; \tilde{\pi}(i).
+    P \;=\; \begin{pmatrix}
+    0 & 1 & 0 \\[6pt]
+    \tfrac{1}{2} & 0 & \tfrac{1}{2} \\[6pt]
+    \tfrac{1}{2} & \tfrac{1}{2} & 0
+    \end{pmatrix}.
 \]
-Thus, \(\{\pi_n(i)\}\) is a convergent sequence of nonnegative numbers (since
-all \(\pi_n\) are probability distributions).  Moreover, because
-\(\sum_{i \in S} \pi_n(i) = 1\) for each \(n\), we have \(\{\pi_n(i)\}\)
-bounded above by 1.
-\medskip
-\noindent
-\textbf{Step 2: Passing the limit through the sum.}
-Consider the sum
+Explicitly:
 \[
-  \sum_{i \in S} \pi_n(i)\,P(i,j).
+    P(1,1)=0, \quad P(1,2)=1, \quad P(1,3)=0, 
 \]
-Since \(P(i,j)\ge 0\) (transition probabilities are nonnegative) and
-\(\sum_{i \in S} \pi_n(i)=1\), we have
 \[
-  0 \;\le\; \pi_n(i)\,P(i,j) \;\le\; \pi_n(i).
+    P(2,1)=\tfrac{1}{2}, \quad P(2,2)=0, \quad P(2,3)=\tfrac{1}{2},
 \]
-Hence,
 \[
-  0 \;\le\; \sum_{i \in S} \pi_n(i)\,P(i,j)
-     \;\le\; \sum_{i \in S} \pi_n(i)
-     \;=\; 1.
+    P(3,1)=\tfrac{1}{2}, \quad P(3,2)=\tfrac{1}{2}, \quad P(3,3)=0.
 \]
-We want to apply a standard result (often called the Dominated Convergence Theorem for series or the Monotone Convergence Theorem in the setting of nonnegative series) to interchange the limit and the infinite sum.  Specifically, each term \(\pi_n(i)\,P(i,j)\) is dominated by \(\pi_n(i)\), and
+Observe that:
+\begin{itemize}
+    \item The chain is \emph{irreducible} because each state communicates with all others (e.g.\ from $1$ you can reach $2$, then $3$, and back to $1$, etc.).
+    \item There are \emph{no self-loops}: $P(i,i)=0$ for $i=1,2,3$.
+\end{itemize}
+To see that state $1$ is aperiodic, note:
 \[
-   \sum_{i\in S} \pi_n(i)
-   \;=\; 1
+    P^2(1,1) = P(1,2)P(2,1) = (1)\left(\tfrac{1}{2}\right) = \tfrac{1}{2} > 0,
 \]
-is a convergent sum (it does not depend on \(i\)).  Therefore,
+and
 \[
-  \lim_{n \to \infty} \sum_{i \in S} \pi_n(i)\,P(i,j)
-  \;=\;
-  \sum_{i \in S} \lim_{n \to \infty} \bigl[\pi_n(i)\,P(i,j)\bigr]
-  \;=\;
-  \sum_{i \in S} \tilde{\pi}(i)\,P(i,j).
+    P^3(1,1) = P(1,2)P(2,3)P(3,1) = 1 \cdot \tfrac{1}{2} \cdot \tfrac{1}{2}
+    = \tfrac{1}{4} > 0.
 \]
-(The second equality uses \(\lim_{n\to\infty}\pi_n(i) = \tilde{\pi}(i)\).)
-\medskip
-\noindent
-\textbf{Step 3: Concluding \(\tilde{\pi}\) is stationary.}
-Since \(\pi_{n+1}(j) = \sum_{i \in S} \pi_n(i)\,P(i,j)\), we also have
-\[
-  \lim_{n \to \infty} \pi_{n+1}(j)
-  \;=\;
-  \lim_{n \to \infty} \sum_{i \in S} \pi_n(i)\,P(i,j).
-\]
-But \(\lim_{n \to \infty} \pi_{n+1}(j) = \tilde{\pi}(j)\).  Hence,
-\[
-  \tilde{\pi}(j) 
-  \;=\;
-  \sum_{i \in S} \tilde{\pi}(i)\,P(i,j)
-  \quad \text{for all } j \in S,
-\]
-which is precisely the condition
-\[
-  \tilde{\pi} \;=\; \tilde{\pi}P.
-\]
-Thus, \(\tilde{\pi}\) is a stationary (or invariant) distribution for the
-transition matrix \(P\). \\ \\
-The crucial point in the above proof is the passage of the limit inside the
-(infinite) sum.  We use the fact that
-\(\sum_{i \in S} \pi_n(i) P(i,j)\) is a nonnegative series and is dominated
-by the convergent series \(\sum_{i \in S} \pi_n(i)=1\).  Thus, standard
-convergence theorems guarantee that
-\[
-   \lim_{n \to \infty}
-   \sum_{i \in S} \pi_n(i)\,P(i,j)
-   \;=\;
-   \sum_{i \in S} \lim_{n \to \infty} \bigl[\pi_n(i)\,P(i,j)\bigr].
-\]
-This justifies exchanging ``\(\lim\)'' and ``\(\sum\)'' and completes the
-proof that a limiting distribution must be stationary even in the
-countably infinite case.}
+Hence $1$ can return to itself in both $2$ steps and $3$ steps, so the set of possible return times to $1$ contains $\{2,3\}$. The greatest common divisor of $2$ and $3$ is $1$, which implies the period of $1$ is $1$. By irreducibility, every other state also has period $1$, making the entire chain aperiodic.
+This example proves that $P(i,i) > 0$ for some $i$ is not a necessary condition for a chain to be aperiodic.
+}
 
-%
-% \textcolor{blue}{By assumption, each \(\pi_n\) is a probability distribution on the countably infinite state space \(S\).  Hence for every \(j \in S\), we have
-% \[
-%    \pi_{n+1}(j) \;=\; \sum_{i \in S} \pi_n(i)\,P(i,j).
-% \]
-% Because \(\lim_{n\to\infty} \pi_n(i) = \tilde{\pi}(i)\) for each \(i\in S\), and because the terms in the sum are nonnegative and bounded above by 1, we may apply the Dominated Convergence Theorem (or, equivalently, use uniform integrable bounds for probability distributions) to interchange the limit and the infinite sum.  Thus,
-% \[
-%    \lim_{n\to\infty} \pi_{n+1}(j)
-%    \;=\;
-%    \lim_{n\to\infty}
-%    \sum_{i \in S} \pi_n(i)\,P(i,j)
-%    \;=\;
-%    \sum_{i \in S} \lim_{n\to\infty} \bigl[\pi_n(i)\,P(i,j)\bigr]
-%    \;=\;
-%    \sum_{i \in S} \tilde{\pi}(i)\,P(i,j).
-% \]
-% On the left side, since \(\pi_{n+1} \to \tilde{\pi}\) pointwise, we have \(\lim_{n\to\infty} \pi_{n+1}(j) = \tilde{\pi}(j)\).  Consequently,
-% \[
-%    \tilde{\pi}(j) 
-%    \;=\;
-%    \sum_{i \in S} \tilde{\pi}(i)\,P(i,j)
-%    \quad \text{for all } j \in S,
-% \]
-% which is precisely the condition \(\tilde{\pi} = \tilde{\pi}P\).  Therefore, \(\tilde{\pi}\) is a stationary distribution for \(P\).
-% }
-%
 
 \end{document}
 

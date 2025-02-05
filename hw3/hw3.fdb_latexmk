@@ -1,5 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1738740044.65493 "hw3.tex" "hw3.pdf" "hw3" 1738740045.09955 0
+["pdflatex"] 1738792208.23208 "hw3.tex" "hw3.pdf" "hw3" 1738792208.66903 0
+  "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -71,10 +72,11 @@
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty" 1700082560 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/web2c/texmf.cnf" 1719785820 42007 0b741a3c21a5ca32b40e3846e75b3548 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1724987660 92935 ab22f987f93038b61e05dc32d7c07157 ""
+  "/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk" 1736964384.48706 11524 1c2dd27d9692fd1eab599f04e7aa4fb2 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1724987687 6829296 8721aa43ee9a14915d884e1568411a02 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf.cnf" 1725035431.1561 708 85fd07691b6294ba94c59dbc62380410 ""
-  "hw3.aux" 1738740045.00063 32 77e0dffd05b653a64f0caf3eb9bb454a "pdflatex"
-  "hw3.tex" 1738740043.27176 15688 0304a81379c921bbf766027857fe092f ""
+  "hw3.aux" 1738792208.56532 32 2d1df76398b3c48c6419a45a7331db2d "pdflatex"
+  "hw3.tex" 1738792208.14274 13574 23c23cea87083b7d091b1c1cfc51827c ""
   (generated)
   "hw3.aux"
   "hw3.log"
