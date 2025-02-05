@@ -38,7 +38,7 @@ for some $p \in (0,1)$ with $p \neq \tfrac{1}{2}$. Starting at state 0, state 0 
 \smallskip
 \noindent
 Define the period as $d_i = \text{gcd}\{n:P^n(i,i)>0\}$, where $P$ is the transition matrix. \\
-In the random walk, the walk must trivially take as many $+1$ steps as $-1$ steps to reach the initial state. Thus one can only return to state $x$ starting from $x$ in an even number of steps. Hence for each integer $x$, 
+In the random walk, the walk must trivially take as many $+1$ steps as $-1$ steps to reach the initial state. Thus one can only return to state $x$ starting from $x$ in an even number of steps. Note that this holds for all integers. Hence for each integer $x$, 
 \[
   (P^n)(x,x) \;>\;0 
   \quad\Longrightarrow\quad 
@@ -189,13 +189,327 @@ P(0,1) = P(0,-1) = \frac{1}{2}.
 
 This is a chain with infinitely many states, but it has a sort of probabilistic ``restoring force'' that always pushes back toward 0. Find the stationary distribution.
 
-\textcolor{blue}{}
+\textcolor{blue}{From the ``resisting force'' there is a single stationary distribution, expected to be symmetric around $0$, with a geometric decay away from $0$.
+\medskip
+\textbf{Step 2. Stationarity equations and ratio method.}
+Denote the stationary distribution by $\{\pi_i\}_{i\in\mathbb{Z}}$, satisfying
+\[
+\sum_{j \in \mathbb{Z}} \pi_j P(j,i) \;=\; \pi_i
+\quad \text{for all } i \in \mathbb{Z},
+\]
+and $\sum_{i \in \mathbb{Z}} \pi_i = 1$.
+Because this is a (two-sided) birth-death type chain, one may use the standard balance equations:
+\[
+\pi_i \, P(i, i+1) \;=\; \pi_{i+1} \, P(i+1, i).
+\]
+Concretely, for $i \ge 1$:
+\[
+\pi_i \times 0.4 \;=\; \pi_{i+1} \times 0.6
+\quad \Longrightarrow \quad 
+\frac{\pi_{i+1}}{\pi_i} = \frac{0.4}{0.6} = \frac{2}{3}.
+\]
+For $i \le -1$:
+\[
+\pi_i \times 0.6 \;=\; \pi_{i+1} \times 0.4
+\quad \Longrightarrow \quad 
+\frac{\pi_{i+1}}{\pi_i} = \frac{0.6}{0.4} = \frac{3}{2}.
+\]
+We also need to handle the special transitions at $i=0$. The balance equation between $0$ and $1$ yields:
+\[
+\pi_0 \times 0.5 \;=\; \pi_1 \times 0.6
+\quad \Longrightarrow \quad
+\frac{\pi_1}{\pi_0} = \frac{0.5}{0.6} = \frac{5}{6}.
+\]
+And for $i=-1$:
+\[
+\pi_{-1} \times 0.6 = \pi_0 \times 0.5
+\quad \Longrightarrow \quad 
+\frac{\pi_{-1}}{\pi_{0}} = \frac{0.5}{0.6} = \frac{5}{6},
+\]
+Hence,
+\[
+\pi_1 = \frac{5}{6}\,\pi_0, 
+\quad
+\pi_{-1} = \frac{5}{6}\,\pi_0.
+\]
+This shows the symmetry $\pi_1 = \pi_{-1}$ indeed.  
+\medskip
+\noindent
+\emph{(a) For \, $i>0$:}
+\[
+\frac{\pi_{i+1}}{\pi_i} = \frac{2}{3} 
+\quad\Longrightarrow\quad 
+\pi_i = \left(\frac{2}{3}\right)^{\,i-1} \,\pi_1
+\quad \text{for } i \ge 1.
+\]
+But $\pi_1 = \frac{5}{6}\,\pi_0$, so 
+\[
+\pi_i 
+\;=\; 
+\left(\frac{2}{3}\right)^{\,i-1} \cdot \frac{5}{6}\,\pi_0
+\quad \text{for } i \ge 1.
+\]
+\emph{(b) For \, $i<0$:}
+\[
+\frac{\pi_{i+1}}{\pi_i} = \frac{3}{2} 
+\quad\Longrightarrow\quad
+\pi_{i} = \frac{2}{3}\,\pi_{\,i+1}
+\quad \text{for } i\le -2,
+\]
+stepping upward until $i=-1$, for which we already have
+$\pi_{-1} = \tfrac{5}{6}\,\pi_0$. Iterating gives
+\[
+\pi_{-2} 
+\;=\; 
+\frac{2}{3}\,\pi_{-1}
+\;=\;
+\frac{2}{3} \cdot \frac{5}{6}\,\pi_0 
+\;=\; 
+\frac{5}{9}\,\pi_0,
+\]
+\[
+\pi_{-3} 
+\;=\; 
+\frac{2}{3}\,\pi_{-2}
+\;=\; 
+\frac{2}{3}\cdot \frac{5}{9}\,\pi_0 
+\;=\; 
+\frac{10}{27}\,\pi_0,
+\]
+and so on. In fact, a direct pattern emerges, and for $i<0$,
+\[
+\pi_i 
+\;=\;
+\frac{5}{6}\,\left(\frac{2}{3}\right)^{\,|i|-1}\,\pi_0.
+\]
+\medskip
+\textbf{Step 3. A unified formula.}
+To summarize, set $|0|-1 = -1$ in the exponents interpreted carefully, or write piecewise.  A concise way is:
+\[
+\pi_0 = \pi_0,
+\quad
+\pi_i 
+\;=\;
+\frac{5}{6} \,\biggl(\frac{2}{3}\biggr)^{|i|-1}\,\pi_0 
+\quad
+\text{for } i \neq 0.
+\]
+We still must determine the constant $\pi_0$ by requiring
+\[
+\sum_{i=-\infty}^{\infty} \pi_i \;=\; 1.
+\]
+Hence
+\[
+\pi_0 
+\;+\;
+\sum_{i\neq 0} \frac{5}{6} \,\biggl(\tfrac{2}{3}\biggr)^{|i|-1}\,\pi_0
+\;=\; 1.
+\]
+Factor out $\pi_0$:
+\[
+\pi_0 
+\biggl[
+1 
+\;+\; 
+\frac{5}{6}\sum_{i\neq 0}\bigl(\tfrac{2}{3}\bigr)^{|i|-1}
+\biggr]
+\;=\; 1.
+\]
+Next we split the sum at $i>0$ and $i<0$, noticing the symmetry:
+\[
+\sum_{i\neq 0}\bigl(\tfrac{2}{3}\bigr)^{|i|-1} 
+\;=\;
+2 \sum_{j=1}^{\infty} \bigl(\tfrac{2}{3}\bigr)^{j-1}
+\;=\;
+2 \sum_{k=0}^{\infty} \bigl(\tfrac{2}{3}\bigr)^{k}
+\;=\;
+2 \cdot \frac{1}{1 - \tfrac{2}{3}}
+\;=\;
+2 \cdot 3
+\;=\;
+6.
+\]
+Thus
+\[
+\frac{5}{6} \cdot 6
+\;=\;
+5,
+\]
+and so
+\[
+\pi_0 \Bigl[\,1 + 5\,\Bigr] 
+\;=\;
+6\,\pi_0
+\;=\;
+1 
+\quad\Longrightarrow\quad
+\pi_0 
+\;=\; 
+\frac{1}{6}.
+\]
+Therefore,
+\[
+\pi_0 = \frac{1}{6},
+\quad
+\pi_i 
+\;=\;
+\frac{5}{6}\,\biggl(\frac{2}{3}\biggr)^{|i|-1}\,\frac{1}{6}
+\;=\;
+\frac{5}{36}\,\biggl(\frac{2}{3}\biggr)^{|i|-1},
+\ \ i \neq 0.
+\]
+Rewriting compactly,
+\[
+\pi_i
+=
+\begin{cases}
+\displaystyle \frac{1}{6}, 
+& i=0,\\[6pt]
+\displaystyle \frac{5}{36}\,\bigl(\tfrac{2}{3}\bigr)^{|i|-1},
+& i \neq 0.
+\end{cases}
+\]
+}
 
 
 \subsection*{Exercise 1.10} On page \textbf{13} we argued that a limiting distribution must be stationary. This argument was clear in the case of a finite state space. For you fans of mathematical analysis, what happens in the case of a countably infinite state space? Can you still make the limiting argument work?
 
-\textcolor{blue}{}
+\textcolor{blue}{
+Let \(\{X_n\}\) be a Markov chain with countably infinite state space \(S\),
+and let \(P\) be its one-step transition matrix.  Suppose \(\pi_n\) is the
+distribution of \(X_n\), i.e.\ for each \(j \in S\),
+\[
+  \pi_n(j) \;=\; \mathbb{P}(X_n = j).
+\]
+Assume that \(\pi_{n+1} = \pi_n P\) for all \(n\).  
+If there is a distribution \(\tilde{\pi}\) such that
+\[
+  \lim_{n \to \infty} \pi_n(i) \;=\; \tilde{\pi}(i)
+  \quad \text{for all } i \in S,
+\]
+then \(\tilde{\pi}\) is a stationary distribution for \(P\), i.e.\
+\[
+  \tilde{\pi} \;=\; \tilde{\pi}\,P.
+\]
+By hypothesis, \(\pi_{n+1} = \pi_n P\).  In coordinates, that means
+\[
+  \pi_{n+1}(j) \;=\; \sum_{i \in S} \pi_n(i)\,P(i,j)
+  \quad \text{for each } j \in S.
+\]
+Taking limits as \(n \to \infty\), we want to show
+\[
+  \tilde{\pi}(j)
+  \;=\;
+  \sum_{i \in S} \tilde{\pi}(i)\,P(i,j)
+  \quad \text{for all } j \in S.
+\]
+The delicate step is justifying that we can pass the limit inside the infinite sum.
+\medskip
+\noindent
+\textbf{Step 1: Pointwise limits.}
+By assumption, for each \(i \in S\),
+\[
+  \lim_{n \to \infty} \pi_n(i) \;=\; \tilde{\pi}(i).
+\]
+Thus, \(\{\pi_n(i)\}\) is a convergent sequence of nonnegative numbers (since
+all \(\pi_n\) are probability distributions).  Moreover, because
+\(\sum_{i \in S} \pi_n(i) = 1\) for each \(n\), we have \(\{\pi_n(i)\}\)
+bounded above by 1.
+\medskip
+\noindent
+\textbf{Step 2: Passing the limit through the sum.}
+Consider the sum
+\[
+  \sum_{i \in S} \pi_n(i)\,P(i,j).
+\]
+Since \(P(i,j)\ge 0\) (transition probabilities are nonnegative) and
+\(\sum_{i \in S} \pi_n(i)=1\), we have
+\[
+  0 \;\le\; \pi_n(i)\,P(i,j) \;\le\; \pi_n(i).
+\]
+Hence,
+\[
+  0 \;\le\; \sum_{i \in S} \pi_n(i)\,P(i,j)
+     \;\le\; \sum_{i \in S} \pi_n(i)
+     \;=\; 1.
+\]
+We want to apply a standard result (often called the Dominated Convergence Theorem for series or the Monotone Convergence Theorem in the setting of nonnegative series) to interchange the limit and the infinite sum.  Specifically, each term \(\pi_n(i)\,P(i,j)\) is dominated by \(\pi_n(i)\), and
+\[
+   \sum_{i\in S} \pi_n(i)
+   \;=\; 1
+\]
+is a convergent sum (it does not depend on \(i\)).  Therefore,
+\[
+  \lim_{n \to \infty} \sum_{i \in S} \pi_n(i)\,P(i,j)
+  \;=\;
+  \sum_{i \in S} \lim_{n \to \infty} \bigl[\pi_n(i)\,P(i,j)\bigr]
+  \;=\;
+  \sum_{i \in S} \tilde{\pi}(i)\,P(i,j).
+\]
+(The second equality uses \(\lim_{n\to\infty}\pi_n(i) = \tilde{\pi}(i)\).)
+\medskip
+\noindent
+\textbf{Step 3: Concluding \(\tilde{\pi}\) is stationary.}
+Since \(\pi_{n+1}(j) = \sum_{i \in S} \pi_n(i)\,P(i,j)\), we also have
+\[
+  \lim_{n \to \infty} \pi_{n+1}(j)
+  \;=\;
+  \lim_{n \to \infty} \sum_{i \in S} \pi_n(i)\,P(i,j).
+\]
+But \(\lim_{n \to \infty} \pi_{n+1}(j) = \tilde{\pi}(j)\).  Hence,
+\[
+  \tilde{\pi}(j) 
+  \;=\;
+  \sum_{i \in S} \tilde{\pi}(i)\,P(i,j)
+  \quad \text{for all } j \in S,
+\]
+which is precisely the condition
+\[
+  \tilde{\pi} \;=\; \tilde{\pi}P.
+\]
+Thus, \(\tilde{\pi}\) is a stationary (or invariant) distribution for the
+transition matrix \(P\). \\ \\
+The crucial point in the above proof is the passage of the limit inside the
+(infinite) sum.  We use the fact that
+\(\sum_{i \in S} \pi_n(i) P(i,j)\) is a nonnegative series and is dominated
+by the convergent series \(\sum_{i \in S} \pi_n(i)=1\).  Thus, standard
+convergence theorems guarantee that
+\[
+   \lim_{n \to \infty}
+   \sum_{i \in S} \pi_n(i)\,P(i,j)
+   \;=\;
+   \sum_{i \in S} \lim_{n \to \infty} \bigl[\pi_n(i)\,P(i,j)\bigr].
+\]
+This justifies exchanging ``\(\lim\)'' and ``\(\sum\)'' and completes the
+proof that a limiting distribution must be stationary even in the
+countably infinite case.}
 
+%
+% \textcolor{blue}{By assumption, each \(\pi_n\) is a probability distribution on the countably infinite state space \(S\).  Hence for every \(j \in S\), we have
+% \[
+%    \pi_{n+1}(j) \;=\; \sum_{i \in S} \pi_n(i)\,P(i,j).
+% \]
+% Because \(\lim_{n\to\infty} \pi_n(i) = \tilde{\pi}(i)\) for each \(i\in S\), and because the terms in the sum are nonnegative and bounded above by 1, we may apply the Dominated Convergence Theorem (or, equivalently, use uniform integrable bounds for probability distributions) to interchange the limit and the infinite sum.  Thus,
+% \[
+%    \lim_{n\to\infty} \pi_{n+1}(j)
+%    \;=\;
+%    \lim_{n\to\infty}
+%    \sum_{i \in S} \pi_n(i)\,P(i,j)
+%    \;=\;
+%    \sum_{i \in S} \lim_{n\to\infty} \bigl[\pi_n(i)\,P(i,j)\bigr]
+%    \;=\;
+%    \sum_{i \in S} \tilde{\pi}(i)\,P(i,j).
+% \]
+% On the left side, since \(\pi_{n+1} \to \tilde{\pi}\) pointwise, we have \(\lim_{n\to\infty} \pi_{n+1}(j) = \tilde{\pi}(j)\).  Consequently,
+% \[
+%    \tilde{\pi}(j) 
+%    \;=\;
+%    \sum_{i \in S} \tilde{\pi}(i)\,P(i,j)
+%    \quad \text{for all } j \in S,
+% \]
+% which is precisely the condition \(\tilde{\pi} = \tilde{\pi}P\).  Therefore, \(\tilde{\pi}\) is a stationary distribution for \(P\).
+% }
+%
 
 \end{document}
 
