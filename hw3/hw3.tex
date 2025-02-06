@@ -56,7 +56,35 @@ Therefore, the greatest common divisor of all such $n$ is $2$, and every state $
     \begin{enumerate}
         \item (5 points) Prove that $Y_n = X_{kn}$ is also a Markov chain. Find its transition matrix.
 
-            \textcolor{blue}{}
+            \textcolor{blue}{
+By the definition $Y_n = X_{kn}$,
+\[
+P\bigl(Y_{n+1} = j \,\big\vert\, Y_0 = i_0, \dots, Y_n = i_n\bigr)
+= P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{0} = i_0, X_k = i_1, \dots, X_{kn} = i_n\bigr).
+\]
+Since $\{X_n\}$ is a Markov chain, it satisfies the Markov property:
+\[
+P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_0 = x_0, \dots, X_m = x_m\bigr)
+= P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m\bigr).
+\]
+Applying this property step-by-step for the transitions from time $kn$ to time $k(n+1)$ (i.e., $k$ steps), we obtain:
+\[
+P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{kn} = i_n\bigr) = \bigl(P^k\bigr)(i_n, j).
+\]
+Because all intermediate states between $X_{kn}$ and $X_{k(n+1)}$ do not affect this probability beyond the conditioning on $X_{kn}$, we conclude:
+\[
+P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{0} = i_0, \dots, X_{kn} = i_n\bigr)
+= P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{kn} = i_n\bigr)
+= \bigl(P^k\bigr)(i_n, j).
+\]
+Hence,
+\[
+P\bigl(Y_{n+1} = j \,\big\vert\, Y_0 = i_0, \dots, Y_n = i_n\bigr)
+= P\bigl(Y_{n+1} = j \,\big\vert\, Y_n = i_n\bigr),
+\]
+proving that $\{Y_n\}$ is a Markov chain. \\ \\
+Finally, by the computation above, the one-step transition probability for $Y_n$ from state $i_n$ to state $j$ is exactly $\bigl(P^k\bigr)(i_n, j)$. Therefore, the transition matrix of $\{Y_n\}$ is $P^k$.
+}
 
         
         \item (10 points) Suppose that the original chain $\{X_n\}$ is irreducible. Is $\{Y_n\}$ irreducible? If so, prove it; if not, provide a counterexample.
@@ -189,20 +217,18 @@ P(0,1) = P(0,-1) = \frac{1}{2}.
 
 This is a chain with infinitely many states, but it has a sort of probabilistic ``restoring force'' that always pushes back toward 0. Find the stationary distribution.
 
-\textcolor{blue}{From the ``resisting force'' there is a single stationary distribution, expected to be symmetric around $0$, with a geometric decay away from $0$.
-\medskip
-\textbf{Step 2. Stationarity equations and ratio method.}
-Denote the stationary distribution by $\{\pi_i\}_{i\in\mathbb{Z}}$, satisfying
+\textcolor{blue}{
+Denote the stationary distribution by $\{\pi_i\}_{i\in\mathbb{Z}}$
 \[
 \sum_{j \in \mathbb{Z}} \pi_j P(j,i) \;=\; \pi_i
 \quad \text{for all } i \in \mathbb{Z},
 \]
 and $\sum_{i \in \mathbb{Z}} \pi_i = 1$.
-Because this is a (two-sided) birth-death type chain, one may use the standard balance equations:
+As this is a two-sided birth-death chain,
 \[
 \pi_i \, P(i, i+1) \;=\; \pi_{i+1} \, P(i+1, i).
 \]
-Concretely, for $i \ge 1$:
+For $i \ge 1$:
 \[
 \pi_i \times 0.4 \;=\; \pi_{i+1} \times 0.6
 \quad \Longrightarrow \quad 
@@ -210,17 +236,16 @@ Concretely, for $i \ge 1$:
 \]
 For $i \le -1$:
 \[
-\pi_i \times 0.6 \;=\; \pi_{i+1} \times 0.4
+    \pi_{i-1} \times 0.6 \;=\; \pi_{i} \times 0.4
 \quad \Longrightarrow \quad 
-\frac{\pi_{i+1}}{\pi_i} = \frac{0.6}{0.4} = \frac{3}{2}.
+\frac{\pi_{i-1}}{\pi_i} = \frac{0.4}{0.6} = \frac{2}{3}.
 \]
-We also need to handle the special transitions at $i=0$. The balance equation between $0$ and $1$ yields:
+When $i=0$,
 \[
 \pi_0 \times 0.5 \;=\; \pi_1 \times 0.6
 \quad \Longrightarrow \quad
 \frac{\pi_1}{\pi_0} = \frac{0.5}{0.6} = \frac{5}{6}.
 \]
-And for $i=-1$:
 \[
 \pi_{-1} \times 0.6 = \pi_0 \times 0.5
 \quad \Longrightarrow \quad 
@@ -232,80 +257,49 @@ Hence,
 \quad
 \pi_{-1} = \frac{5}{6}\,\pi_0.
 \]
-This shows the symmetry $\pi_1 = \pi_{-1}$ indeed.  
-\medskip
-\noindent
-\emph{(a) For \, $i>0$:}
+As the probabilities of a jump remain the same, generalizing for all $i\geq1$,
 \[
-\frac{\pi_{i+1}}{\pi_i} = \frac{2}{3} 
+\pi_{i+1} = \frac{2}{3} \pi_{i}
 \quad\Longrightarrow\quad 
 \pi_i = \left(\frac{2}{3}\right)^{\,i-1} \,\pi_1
 \quad \text{for } i \ge 1.
 \]
-But $\pi_1 = \frac{5}{6}\,\pi_0$, so 
 \[
 \pi_i 
 \;=\; 
 \left(\frac{2}{3}\right)^{\,i-1} \cdot \frac{5}{6}\,\pi_0
-\quad \text{for } i \ge 1.
+\quad \forall i \ge 1.
 \]
-\emph{(b) For \, $i<0$:}
+Generalizing for all $i\leq-1$,
 \[
-\frac{\pi_{i+1}}{\pi_i} = \frac{3}{2} 
+    \pi_{i-1} = \frac{2}{3} \pi_{i}
 \quad\Longrightarrow\quad
-\pi_{i} = \frac{2}{3}\,\pi_{\,i+1}
-\quad \text{for } i\le -2,
-\]
-stepping upward until $i=-1$, for which we already have
-$\pi_{-1} = \tfrac{5}{6}\,\pi_0$. Iterating gives
-\[
-\pi_{-2} 
-\;=\; 
-\frac{2}{3}\,\pi_{-1}
-\;=\;
-\frac{2}{3} \cdot \frac{5}{6}\,\pi_0 
-\;=\; 
-\frac{5}{9}\,\pi_0,
+\pi_{i} = \frac{2}{3}^{-i-1}\,\pi_{-1}
+\quad \forall i\leq -1,
 \]
 \[
-\pi_{-3} 
+    \pi_{i} 
 \;=\; 
-\frac{2}{3}\,\pi_{-2}
-\;=\; 
-\frac{2}{3}\cdot \frac{5}{9}\,\pi_0 
-\;=\; 
-\frac{10}{27}\,\pi_0,
+\left(\frac{2}{3}\right)^{\,-i-1} \cdot \frac{5}{6}\,\pi_0
+\quad \forall i \leq -1.
 \]
-and so on. In fact, a direct pattern emerges, and for $i<0$,
+Combining the two cases,
 \[
 \pi_i 
 \;=\;
-\frac{5}{6}\,\left(\frac{2}{3}\right)^{\,|i|-1}\,\pi_0.
+\frac{5}{6}\,\left(\frac{2}{3}\right)^{\,|i|-1}\,\pi_0, \quad \forall i \neq 0.
 \]
-\medskip
-\textbf{Step 3. A unified formula.}
-To summarize, set $|0|-1 = -1$ in the exponents interpreted carefully, or write piecewise.  A concise way is:
-\[
-\pi_0 = \pi_0,
-\quad
-\pi_i 
-\;=\;
-\frac{5}{6} \,\biggl(\frac{2}{3}\biggr)^{|i|-1}\,\pi_0 
-\quad
-\text{for } i \neq 0.
-\]
-We still must determine the constant $\pi_0$ by requiring
+Solving for $\pi_0$, first recall that,
 \[
 \sum_{i=-\infty}^{\infty} \pi_i \;=\; 1.
 \]
-Hence
+Hence,
 \[
 \pi_0 
 \;+\;
 \sum_{i\neq 0} \frac{5}{6} \,\biggl(\tfrac{2}{3}\biggr)^{|i|-1}\,\pi_0
 \;=\; 1.
 \]
-Factor out $\pi_0$:
 \[
 \pi_0 
 \biggl[
@@ -315,7 +309,7 @@ Factor out $\pi_0$:
 \biggr]
 \;=\; 1.
 \]
-Next we split the sum at $i>0$ and $i<0$, noticing the symmetry:
+Exploiting the symmetry of the chain,
 \[
 \sum_{i\neq 0}\bigl(\tfrac{2}{3}\bigr)^{|i|-1} 
 \;=\;
@@ -331,13 +325,7 @@ Next we split the sum at $i>0$ and $i<0$, noticing the symmetry:
 \]
 Thus
 \[
-\frac{5}{6} \cdot 6
-\;=\;
-5,
-\]
-and so
-\[
-\pi_0 \Bigl[\,1 + 5\,\Bigr] 
+\pi_0 \Bigl[\,1 + \frac56 \cdot 6\,\Bigr] 
 \;=\;
 6\,\pi_0
 \;=\;
@@ -349,24 +337,13 @@ and so
 \]
 Therefore,
 \[
-\pi_0 = \frac{1}{6},
-\quad
-\pi_i 
-\;=\;
-\frac{5}{6}\,\biggl(\frac{2}{3}\biggr)^{|i|-1}\,\frac{1}{6}
-\;=\;
-\frac{5}{36}\,\biggl(\frac{2}{3}\biggr)^{|i|-1},
-\ \ i \neq 0.
-\]
-Rewriting compactly,
-\[
 \pi_i
 =
 \begin{cases}
-\displaystyle \frac{1}{6}, 
-& i=0,\\[6pt]
-\displaystyle \frac{5}{36}\,\bigl(\tfrac{2}{3}\bigr)^{|i|-1},
-& i \neq 0.
+\displaystyle \frac{1}{6},
+& i=0\\[6pt]
+\displaystyle \frac{5}{36}\,\bigl(\tfrac{2}{3}\bigr)^{|i|-1}
+& i \neq 0
 \end{cases}
 \]
 }
@@ -389,27 +366,17 @@ Since $P(i,i) = P^1(i,i)> 0$, there is a positive probability of returning to $i
     d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \} \;=\; 1.
 \]
 Thus, $i$ is an aperiodic state. \\ \\ 
-By irreducibility, for any other state $j \in S$, there exist integers $m,k \ge 1$ such that $P^m(j,i) > 0$ and $P^k(i,j) > 0$. Then for any $n \ge 1$,
+By irreducibility, for any other state $j \in S$, $\exists m,k \in \mathbb{Z}$ such that $ m,k\ge 1$, $P^m(j,i) > 0$, and $P^k(i,j) > 0$. Therefore as proven in lecture, for any $n \ge 1$,
 \[
     P^{m+n+k}(j,j) 
     \;\ge\; P^m(j,i) \, P^n(i,i) \, P^k(i,j).
 \]
-Since $P^n(i,i) > 0$ for all $n \ge 1$ (as argued above, using the self-loop at $i$ repeatedly if necessary), we conclude that for arbitrarily many $n$, the probability $P^{m+n+k}(j,j)$ is strictly positive. It follows that
+Since $P^n(i,i) > 0$ for all $n \ge 1$, for arbitrarily many $n$, the probability $P^{m+n+k}(j,j)$ is strictly positive. As such,
 \[
     d(j) \;=\; \gcd\{ n \ge 1 : P^n(j,j) > 0 \} \;=\; 1.
 \]
-Hence \emph{every} state in an irreducible chain with a self-loop ($P(i,i) > 0$ for some $i$) has period 1, which means the chain is aperiodic.
-\bigskip
-We now show that having $P(i,i) > 0$ for some state $i$ is \emph{not} a necessary condition for aperiodicity by giving a simple Markov chain that is irreducible, aperiodic, and yet has no self-loops (i.e.\ $P(i,i)=0$ for all $i$).
-Consider a chain on three states $\{1,2,3\}$ with transition matrix:
-\[
-    P \;=\; \begin{pmatrix}
-    0 & 1 & 0 \\[6pt]
-    \tfrac{1}{2} & 0 & \tfrac{1}{2} \\[6pt]
-    \tfrac{1}{2} & \tfrac{1}{2} & 0
-    \end{pmatrix}.
-\]
-Explicitly:
+Thus, every state in an irreducible chain with a self-loop, i.e. $P(i,i) > 0$, is aperiodic. \\ \\ 
+To show that this sufficient condition is not necessary, consider a chain on three states $\{1,2,3\}$ with transition matrix:
 \[
     P(1,1)=0, \quad P(1,2)=1, \quad P(1,3)=0, 
 \]
@@ -419,22 +386,17 @@ Explicitly:
 \[
     P(3,1)=\tfrac{1}{2}, \quad P(3,2)=\tfrac{1}{2}, \quad P(3,3)=0.
 \]
-Observe that:
-\begin{itemize}
-    \item The chain is \emph{irreducible} because each state communicates with all others (e.g.\ from $1$ you can reach $2$, then $3$, and back to $1$, etc.).
-    \item There are \emph{no self-loops}: $P(i,i)=0$ for $i=1,2,3$.
-\end{itemize}
-To see that state $1$ is aperiodic, note:
+Note that the chain is irreducible, but does not contain any self-loops, i.e. $P(i,i)=0$ for $i=1,2,3$. \\ \\ 
 \[
     P^2(1,1) = P(1,2)P(2,1) = (1)\left(\tfrac{1}{2}\right) = \tfrac{1}{2} > 0,
 \]
-and
 \[
     P^3(1,1) = P(1,2)P(2,3)P(3,1) = 1 \cdot \tfrac{1}{2} \cdot \tfrac{1}{2}
     = \tfrac{1}{4} > 0.
 \]
-Hence $1$ can return to itself in both $2$ steps and $3$ steps, so the set of possible return times to $1$ contains $\{2,3\}$. The greatest common divisor of $2$ and $3$ is $1$, which implies the period of $1$ is $1$. By irreducibility, every other state also has period $1$, making the entire chain aperiodic.
-This example proves that $P(i,i) > 0$ for some $i$ is not a necessary condition for a chain to be aperiodic.
+Therefore, state $1$ can return to itself in both $2$ steps and $3$ steps, which comprises a subset of the set of all possible return times back to state 1. The gcd of $2$ and $3$ is $1$, or a period of $1$. 
+Note that $P^2(2,2)>0$, $P^2(3,3)>0$, and $P^3(2,2)>0$, $P^3(3,3)>0$, so every state also has period $1$, making the entire chain aperiodic.
+Thus, $P(i,i) > 0$ for some $i$ is not a necessary condition for a chain to be aperiodic.
 }
 
 
