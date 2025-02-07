@@ -53,63 +53,209 @@ Therefore, the greatest common divisor of all such $n$ is $2$, and every state $
 }
    
 \subsection*{Problem 2} Let $X_0, X_1, \dots$ be a Markov chain with transition matrix $P$. Let $k \geq 1$ be an integer.
-    \begin{enumerate}
-        \item (5 points) Prove that $Y_n = X_{kn}$ is also a Markov chain. Find its transition matrix.
+\begin{enumerate}
+    \item[(a)] (5 points) Prove that $Y_n = X_{kn}$ is also a Markov chain. Find its transition matrix.
 
             \textcolor{blue}{
-By the definition $Y_n = X_{kn}$,
+                Since $Y_n = X_{kn}$, the conditional probability for $Y_{n+1}$ can be defined as
 \[
-P\bigl(Y_{n+1} = j \,\big\vert\, Y_0 = i_0, \dots, Y_n = i_n\bigr)
-= P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{0} = i_0, X_k = i_1, \dots, X_{kn} = i_n\bigr).
+\mathbb{P}\left(X_{k(n+1)} = y_{n+1} \mid X_{kn} = y_n, X_{k(n-1)} = y_{n-1}, \dots, X_0 = y_0\right)
 \]
-Since $\{X_n\}$ is a Markov chain, it satisfies the Markov property:
-\[
-P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_0 = x_0, \dots, X_m = x_m\bigr)
+Because $\{X_n\}$ is a Markov chain, it satisfies the Markov property,
+ \[
+P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m, \dots, X_0 = x_0\bigr)
 = P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m\bigr).
 \]
-Applying this property step-by-step for the transitions from time $kn$ to time $k(n+1)$ (i.e., $k$ steps), we obtain:
+Applying for the $k$-steps from time $kn$ to time $k(n+1)$,
 \[
-P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{kn} = i_n\bigr) = \bigl(P^k\bigr)(i_n, j).
+\mathbb{P}\left(X_{k(n+1)} = y_{n+1} \mid X_{kn} = y_n, X_{k(n-1)} = y_{n-1}, \dots, X_0 = y_0\right)
+= \mathbb{P}\left(X_{k(n+1)} = y_{n+1} \mid X_{kn} = y_n\right)
 \]
-Because all intermediate states between $X_{kn}$ and $X_{k(n+1)}$ do not affect this probability beyond the conditioning on $X_{kn}$, we conclude:
+Therefore,
 \[
-P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{0} = i_0, \dots, X_{kn} = i_n\bigr)
-= P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{kn} = i_n\bigr)
-= \bigl(P^k\bigr)(i_n, j).
+\mathbb{P}\left(Y_{n+1} = y_{n+1} \mid Y_n = y_n, Y_{n-1} = y_{n-1}, \dots, Y_0 = y_0\right)
+= \mathbb{P}\left(Y_{n+1} = y_{n+1} \mid Y_n = y_n\right)
 \]
-Hence,
+Thus, $\{Y_n\}$ satisfies the Markov property and is a Markov chain. \\ \\ 
+Solving for the transition matrix, note that for any state $i,j \in S$,
 \[
-P\bigl(Y_{n+1} = j \,\big\vert\, Y_0 = i_0, \dots, Y_n = i_n\bigr)
-= P\bigl(Y_{n+1} = j \,\big\vert\, Y_n = i_n\bigr),
+\mathbb{P}(Y_{n+1} = j \mid Y_n = i) = \mathbb{P}(X_{k(n+1)} = j \mid X_{kn} = i)
 \]
-proving that $\{Y_n\}$ is a Markov chain. \\ \\
-Finally, by the computation above, the one-step transition probability for $Y_n$ from state $i_n$ to state $j$ is exactly $\bigl(P^k\bigr)(i_n, j)$. Therefore, the transition matrix of $\{Y_n\}$ is $P^k$.
+In the Markov chain $\{X_n\}$, 
+\[
+\mathbb{P}(X_{k(n+1)} = j \mid X_{kn} = i) = (P^k)_{ij}
+\]
+Thus, the one-step transition probability for $\{Y_n\}$ is
+\[
+\mathbb{P}(Y_{n+1} = j \mid Y_n = i) = (P^k)_{ij}.
+\]
+Therefore, the transition matrix for $\{Y_n\}$ is $P^k$.
+% By the definition $Y_n = X_{kn}$,
+% \[
+% P\bigl(Y_{n+1} = j \,\big\vert\, Y_0 = i_0, \dots, Y_n = i_n\bigr)
+% = P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{0} = i_0, X_k = i_1, \dots, X_{kn} = i_n\bigr).
+% \]
+% Since $\{X_n\}$ is a Markov chain, it satisfies the Markov property:
+% \[
+% P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_0 = x_0, \dots, X_m = x_m\bigr)
+% = P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m\bigr).
+% \]
+% Applying this property step-by-step for the transitions from time $kn$ to time $k(n+1)$ (i.e., $k$ steps), we obtain:
+% \[
+% P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{kn} = i_n\bigr) = \bigl(P^k\bigr)(i_n, j).
+% \]
+% Because all intermediate states between $X_{kn}$ and $X_{k(n+1)}$ do not affect this probability beyond the conditioning on $X_{kn}$, we conclude:
+% \[
+% P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{0} = i_0, \dots, X_{kn} = i_n\bigr)
+% = P\bigl(X_{k(n+1)} = j \,\big\vert\, X_{kn} = i_n\bigr)
+% = \bigl(P^k\bigr)(i_n, j).
+% \]
+% Hence,
+% \[
+% P\bigl(Y_{n+1} = j \,\big\vert\, Y_0 = i_0, \dots, Y_n = i_n\bigr)
+% = P\bigl(Y_{n+1} = j \,\big\vert\, Y_n = i_n\bigr),
+% \]
+% proving that $\{Y_n\}$ is a Markov chain. \\ \\
+% Finally, by the computation above, the one-step transition probability for $Y_n$ from state $i_n$ to state $j$ is exactly $\bigl(P^k\bigr)(i_n, j)$. Therefore, the transition matrix of $\{Y_n\}$ is $P^k$.
 }
 
         
-        \item (10 points) Suppose that the original chain $\{X_n\}$ is irreducible. Is $\{Y_n\}$ irreducible? If so, prove it; if not, provide a counterexample.
+        \item[(b)] (10 points) Suppose that the original chain $\{X_n\}$ is irreducible. Is $\{Y_n\}$ irreducible? If so, prove it; if not, provide a counterexample.
+
+            \textcolor{blue}{
+            Consider a Markov chain, with state space $S=\{X_0, X_1\}$. Define its transition matrix as $$P_X=
+  \left( {\begin{array}{cc}
+   0 & 1 \\
+   1 & 0 \\
+  \end{array} } \right)$$
+  Since $X_0$ and $X_1$ communicate, this chain is trivially irreducible. \\ \\ 
+  Suppose $k=2$. The transition matrix of $Y_m=X_{2n}$ is $$P_Y=P_X^2=\left( {\begin{array}{cc}
+   1 & 0 \\
+   0 & 1 \\
+  \end{array} } \right)$$
+  $X_0$ and $X_1$ do not communicate in the new chain, as $X_0$ and $X_1$ are closed subsets on $S$. Therefore, $Y_n$ is not irreducible. \\ \\ 
+  Note that this can be generalized to any Markov chain $X_0, X_1,...,X_k$, where $\mathbb{P}_X(i,j)=1$ for $j = (i + 1) \text{ mod } k$ and $\mathbb{P}_X(i,j)=0$ for all other $i$, for all $j$. This chain is trivially irreducible, and yields a transition matrix $P^k$ which is a $k\times k$ identity matrix. As such, the chain $Y_n$ is not irreducible, as the states $X_0, X_1,...,X_k$ are closed subsets on $S$.
+               }
+
+        
+        \item[(c)] (10 points) Suppose that the original chain $\{X_n\}$ is aperiodic. Is $\{Y_n\}$ aperiodic? If so, prove it; if not, provide a counterexample.
+
+            \textcolor{blue}{\begin{itemize}
+\item A Markov chain with transition matrix $P$ is called \emph{aperiodic} if every state $i$ has period~$1$.  Concretely, the period of a state~$i$ is defined as
+\[
+   d(i) \;=\; \gcd\!\Bigl\{\, n \ge 1 : (P^n)_{ii} > 0 \Bigr\}.
+\]
+If this $\gcd$ equals~$1$ for every $i$, then the chain is aperiodic.  
+\item In the chain $\{Y_n\}$ defined by $Y_n := X_{kn}$, its transition probabilities arise from the $k$-step transition probabilities of the original chain.  In particular,
+\[
+  \mathbb{P}(Y_{m+1} = j \mid Y_m = i)
+  \;=\; \mathbb{P}(X_{k(m+1)} = j \mid X_{km} = i)
+  \;=\; \bigl(P^k\bigr)_{ij}.
+\]
+Hence the transition matrix of $\{Y_n\}$ is exactly $P^k$, and the $m$-step transition probabilities in $\{Y_n\}$ are given by $(P^k)^m = P^{km}$.
+\item Therefore, the period of state~$i$ as a state of the chain $\{Y_n\}$ is
+\[
+   d_Y(i) \;=\; \gcd\!\Bigl\{\, m \ge 1 : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}.
+\]
+We must show that $d_Y(i) = 1$ whenever $d(i) = 1$ in the original chain.
+\end{itemize}
+\bigskip
+\noindent
+\textbf{Key idea: Aperiodicity implies eventually-positive returns in all large times.}
+A standard characterization of aperiodicity is that for each state $i$, there exists some integer $N$ (possibly depending on~$i$) such that 
+\[
+  (P^n)_{ii} \;>\; 0 \quad \text{for all } n \ge N.
+\]
+(Equivalently, the set $\{\,n : (P^n)_{ii} > 0\}$ is \emph{co‐finite}, i.e.\ it contains all sufficiently large~$n$.)
+We use this fact to see what happens when we look only at $k$-step transitions, i.e.\ the set 
+\[
+   \Bigl\{\, m : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}.
+\]
+If $(P^n)_{ii} > 0$ for all $n\ge N$, then in particular $(P^{km})_{ii} > 0$ whenever $km \ge N$.  Hence for all integers
+\[
+   m \;\ge\; \bigl\lceil N/k \bigr\rceil,
+\]
+we have $(P^{km})_{ii} > 0.$  Thus 
+\[
+   \Bigl\{\, m : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}
+\]
+contains \emph{all} sufficiently large integers $m$.
+\bigskip
+\noindent
+\textbf{Period calculation for the chain $\{Y_n\}$.}
+For the chain $\{Y_n\}$, the period of $i$ is 
+\[
+  d_Y(i) 
+  \;=\; \gcd\!\Bigl\{\, m \ge 1 : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}.
+\]
+Since this set includes \emph{all} sufficiently large integers $m$, its greatest common divisor must be~$1$.  Indeed, any infinite set of consecutive integers has $\gcd$ equal to~$1$.  Formally:
+\begin{itemize}
+\item Because $\{X_n\}$ is aperiodic at $i$, there is an $N$ such that $(P^n)_{ii}>0$ for every $n \ge N$.
+\item Consequently, for every integer $m \ge \lceil N/k \rceil$, we have 
+\[
+  (P^{km})_{ii} > 0.
+\]
+\item Hence $\{ m : (P^{km})_{ii}>0\}$ contains the tail set $\{\lceil N/k\rceil, \lceil N/k\rceil +1, \lceil N/k\rceil+2, \dots\}$ of \emph{all} sufficiently large integers.
+\item The greatest common divisor of any infinite set of consecutive integers is~$1$.
+\item Therefore $d_Y(i) = 1$.
+\end{itemize}
+Since $d_Y(i)=1$ for every state $i$, the subsampled chain $\{Y_n\}$ is indeed aperiodic.
+}
+        
+        \item[(d)] (10 points) Suppose that the original chain $\{X_n\}$ is transient. Is $\{Y_n\}$ transient? If so, prove it; if not, provide a counterexample.
 
             \textcolor{blue}{}
 
         
-        \item (10 points) Suppose that the original chain $\{X_n\}$ is aperiodic. Is $\{Y_n\}$ aperiodic? If so, prove it; if not, provide a counterexample.
-
-            \textcolor{blue}{}
-        
-        \item (10 points) Suppose that the original chain $\{X_n\}$ is transient. Is $\{Y_n\}$ transient? If so, prove it; if not, provide a counterexample.
+        \item[(e)] (15 points) Suppose that the original chain $\{X_n\}$ is recurrent. Is $\{Y_n\}$ recurrent? If so, prove it; if not, provide a counterexample.
 
             \textcolor{blue}{}
 
         
-        \item (15 points) Suppose that the original chain $\{X_n\}$ is recurrent. Is $\{Y_n\}$ recurrent? If so, prove it; if not, provide a counterexample.
+        \item[(f)] (5 points) Suppose that the original chain $X_n$ is irreducible and that it has period $d$. What is the period of each state $i$ in the new Markov chain $Y_n$ for $k = d$?
 
-            \textcolor{blue}{}
-
-        
-        \item (5 points) Suppose that the original chain $X_n$ is irreducible and that it has period $d$. What is the period of each state $i$ in the new Markov chain $Y_n$ for $k = d$?
-
-           \textcolor{blue}{}
-
+           \textcolor{blue}{Since the original chain is irreducible with period~$d$, for each state~$i$,
+\[
+    (P^d_X)_{ii} \;>\; 0 \quad \text{and} \quad (P^{d-b}_X)_{ii} \;=\; 0, \quad \forall b = 1, 2, \dots, d-1.
+\]
+Therefore, for any multiple of $d$, $a\in \mathbb{Z}$ such that $a \geq 1$, $$(P^d_X)^a_{ii} > 0$$
+As such, all returns to $i$ can occur only at multiples of~$d$ steps.   \\ \\ 
+Define the transition matrix for $Y_n$ where $k=d$ as
+\[
+  \mathbb{P}(Y_{m+1} = j \,\big|\; Y_m = i)
+    \;=\; (P^k_X)_{ij}
+  \;=\; (P^d_X)_{ij}
+\]
+When $j=i$, 
+\[
+  (P^1_Y)_{ii} 
+    \;=\; (P^d_X)_{ii}
+  \;>\; 0
+\]
+As such, state $i$ can reach itself in a single step in chain $Y$, forming a self-loop in Y. \\ \\ 
+Defining the period of $i$ in $Y$,
+\[
+  d_Y(i)
+  \;=\;
+  \gcd\,\bigl\{\, m \;\ge\; 1 : (P^{d\,m})_{ii} > 0 \bigr\}.
+\]
+Note that $(P^d)_{ii} > 0$, so at $m=1$, $(P^{d\cdot 1})_{ii} = (P^d)_{ii} > 0$. Since the chain is irreducible, raising $P^d$ to a higher power trivially cannot change its positivity:
+\[
+   (P^{d\,2})_{ii} = \bigl(P^d\bigr)^2_{ii} > 0, 
+   \quad
+   (P^{d\,3})_{ii} > 0, 
+   \;\;\dots
+\]
+$(P^{dn})_{ii} > 0$ holds for all $n \ge 1$, so the set of possible $m$ is $\{1,2,3,\dots\}$.
+Thus,
+\[
+  \bigl\{\,m : (P^{d\,m})_{ii} > 0 \bigr\}
+  \;=\;
+  \{1, 2, 3, \dots\},
+\]
+with a trivial gcd of 1. Note that since the $d$ period was a state property in the original chain, $\{X_n\}$, it holds for all states in the old chain, and thus all states in the new chain. \\ \\ 
+As such, the period of each state in the new chain $\{Y_n\}$ is $1$. In other words, the chain $\{Y_n\}$ is aperiodic.
+}
     \end{enumerate}
 
 \subsection*{Problem 3} (Asymmetric random walk, 15 points) Consider the \textit{asymmetric} random walk on $\mathbb{Z}$, that is, $X_n = X_{n-1} + Z_n$, where $Z_1, Z_2, \dots$ are iid and $\mathbb{P}(Z_n = +1) = p$ and $\mathbb{P}(Z_n = -1) = 1 - p$, with $p \in [0,1]$ and $p \neq \frac{1}{2}$. Show that the state 0 is a transient state.
