@@ -134,7 +134,7 @@ Therefore, the transition matrix for $\{Y_n\}$ is $P^k$.
    0 & 1 \\
   \end{array} } \right)$$
   $X_0$ and $X_1$ do not communicate in the new chain, as $X_0$ and $X_1$ are closed subsets on $S$. Therefore, $Y_n$ is not irreducible. \\ \\ 
-  Note that this can be generalized to any Markov chain $X_0, X_1,...,X_k$, where $\mathbb{P}_X(i,j)=1$ for $j = (i + 1) \text{ mod } k$ and $\mathbb{P}_X(i,j)=0$ for all other $i$, for all $j$. This chain is trivially irreducible, and yields a transition matrix $P^k$ which is a $k\times k$ identity matrix. As such, the chain $Y_n$ is not irreducible, as the states $X_0, X_1,...,X_k$ are closed subsets on $S$.
+  Note that this can be generalized to any Markov chain $X_0, X_1,...,X_k$, where $\mathbb{P}_X(i,j)=1$ for $j = (i + 1) \text{ mod } k$ and $\mathbb{P}_X(i,j)=0$ for all other $i$, for all $j$. This chain is trivially irreducible, and yields a transition matrix $P^k$ which is a $k\times k$ identity matrix. The chain $Y_n$ is not irreducible, as the states $X_0, X_1,...,X_k$ are closed subsets on $S$.
                }
 
         
@@ -204,12 +204,176 @@ Since $d_Y(i)=1$ for every state $i$, the subsampled chain $\{Y_n\}$ is indeed a
         
         \item[(d)] (10 points) Suppose that the original chain $\{X_n\}$ is transient. Is $\{Y_n\}$ transient? If so, prove it; if not, provide a counterexample.
 
-            \textcolor{blue}{}
+%             \textcolor{blue}{
+%                 Recall that a Markov chain $\{X_n\}$ is said to be \emph{transient} if for every state $i$ in its state space,
+% \[
+% \mathbb{P}\bigl(\text{the chain visits state $i$ infinitely many times}\bigr) = 0.
+% \]
+% Equivalently, each state $i$ is visited only finitely many times with probability $1$. \\ 
+% Now, let $\{Y_n\}$ be the $k$-step chain defined by $Y_n := X_{kn}$. We show that if $\{X_n\}$ is transient, then so is $\{Y_n\}$. \\ 
+% Fix any state $i$ in the state space. Define the event $A_i := \{\text{$Y_n = i$ for infinitely many $n$}\}$. Observe that if $Y_n = i$ for infinitely many $n$, it means $X_{kn} = i$ for infinitely many $n$. Hence, the event $A_i$ can occur only if the original chain $\{X_n\}$ visits the state $i$ \emph{infinitely often} at the times $\{k,2k,3k,\dots\}$. \\ 
+% However, by transience of $\{X_n\}$, we know that the probability that $X_n$ visits $i$ infinitely often (at \emph{any} set of time indices) is $0$. In particular,
+% \[
+% \mathbb{P}\Bigl(\{\text{$X_n = i$ infinitely often}\}\Bigr) = 0.
+% \]
+% Since $\{\text{$X_{kn} = i$ infinitely often}\} \subseteq \{\text{$X_n = i$ infinitely often}\}$, it follows that
+% \[
+% \mathbb{P}(A_i)
+% \;=\;
+% \mathbb{P}\bigl(\{\text{$Y_n = i$ infinitely often}\}\bigr)
+% \;\le\;
+% \mathbb{P}\bigl(\{\text{$X_n = i$ infinitely often}\}\bigr)
+% \;=\; 0.
+% \]
+% Therefore, for each state $i$, the probability that $i$ is visited infinitely many times by the chain $\{Y_n\}$ is $0$. This shows that $\{Y_n\}$ is also transient.
+%                 observe that $\{P^{kn}(i,i)\}_{n=0}^\infty$ is a subsequence of the original sequence $\{P^m(i,i)\}_{m=0}^\infty$ with indices restricted to $m = kn$. Specifically:
+% \[
+% \sum_{n=0}^\infty P^{kn}(i,i) = \sum_{m \in \{0, k, 2k, \dots\}} P^m(i,i).
+% \]
+% Since $P^m(i,i) \geq 0$ for all $m \geq 0$, the series $\sum_{m=0}^\infty P^m(i,i)$ is a sum of non-negative terms. By the **comparison test for series**, if $\sum_{m=0}^\infty a_m$ converges and $0 \leq b_m \leq a_m$ for all $m$, then $\sum_{m=0}^\infty b_m$ also converges. Here, take:
+% \[
+% a_m = P^m(i,i), \quad b_m = \begin{cases} 
+% P^m(i,i) & \text{if } m \text{ is a multiple of } k, \\
+% 0 & \text{otherwise}.
+% \end{cases}
+% \]
+% Then $\sum_{m=0}^\infty b_m = \sum_{n=0}^\infty P^{kn}(i,i)$. Since $\sum_{m=0}^\infty a_m < \infty$ (by transience of $\{X_n\}$) and $0 \leq b_m \leq a_m$ for all $m$, it follows that:
+% \[
+% \sum_{n=0}^\infty P^{kn}(i,i) \leq \sum_{m=0}^\infty P^m(i,i) < \infty.
+% \]
+% Thus, the expected number of visits to state $i$ for $\{Y_n\}$ is finite. Since this holds for all states $i \in S$, the chain $\{Y_n\}$ is transient.
+% }
+            \textcolor{blue}{We first recall the definition of transience for a Markov chain:
+A Markov chain $\{X_n\}$ on a state space $S$ is \emph{transient} if there exists at least one state $i \in S$ such that 
+\[
+\mathbb{P}_i\bigl(\text{the chain ever returns to } i\bigr) < 1.
+\]
+Equivalently, a state $i$ is called \emph{transient} if 
+\[
+\mathbb{P}_i\bigl(\exists n \ge 1: X_n = i\bigr) < 1.
+\]
+We want to show that if $X_n$ is transient, then the new process $Y_n = X_{kn}$ is also transient.  \\
+Consider a state $i \in S$ and suppose we start from $X_0 = i$. 
+By transience of $\{X_n\}$, we have
+\[
+\mathbb{P}_i\bigl(\exists m \ge 1 : X_m = i\bigr) < 1.
+\]
+Define the event 
+\[
+A = \{\exists m \ge 1 : X_m = i\}
+\]
+and the event 
+\[
+B = \{\exists n \ge 1 : Y_n = i\} = \{\exists n \ge 1 : X_{kn} = i\}.
+\]
+Note that $B \subseteq A$ since if $X_{kn} = i$ for some $n$, it is in particular true that $X_m = i$ for $m = kn$. Hence,
+\[
+\mathbb{P}_i(B) \;\le\; \mathbb{P}_i(A).
+\]
+Since $A$ has probability strictly less than 1 (by the transience of $X_n$), it follows that 
+\[
+\mathbb{P}_i\bigl(\exists n \ge 1 : Y_n = i\bigr) \;=\; \mathbb{P}_i(B) \;<\; 1.
+\]
+But this is precisely the statement that from state $i$, the chain $\{Y_n\}$ returns to $i$ with probability strictly less than 1. Therefore, $i$ is transient for the chain $\{Y_n\}$ as well. \\ 
+Because this argument applies to every state $i \in S$ that is transient in $\{X_n\}$, it shows that no state $i$ can become ``recurrent'' under the $k$‐step sampling. Indeed, the probability that $\{Y_n\}$ returns to $i$ is bounded above by the probability that $\{X_n\}$ returns to $i$, and the latter is less than 1 for transient states. \\ 
+Since transience is preserved under $k$‐step sampling (because the event of returning at multiples of $k$ steps is a subset of returning at any step), we conclude that if the original Markov chain $\{X_n\}$ is transient, then the sampled chain $\{Y_n\} = \{X_{kn}\}$ is also transient. \\ 
+An intuitive way to see why $\{Y_n\}$ cannot suddenly become recurrent if $\{X_n\}$ is transient is:
+\begin{itemize}
+    \item If the original chain rarely returns to a state $i$ (with probability $<1$), then restricting our view to every $k$‐th step only makes returns even less likely, not more.
+    \item Formally, the event of ``returning to $i$ at a multiple of $k$'' is a strict subset of the event ``returning to $i$ at least once at any time.''
+\end{itemize}}
 
         
         \item[(e)] (15 points) Suppose that the original chain $\{X_n\}$ is recurrent. Is $\{Y_n\}$ recurrent? If so, prove it; if not, provide a counterexample.
 
-            \textcolor{blue}{}
+%             \textcolor{blue}{By definition of recurrence, for any state $i \in S$:
+% \[
+% \sum_{m=0}^\infty P^m(i,i) = \infty,
+% \]
+% where $P^m(i,i)$ is the probability of returning to $i$ in $m$ steps.
+% \vspace{0.5em}
+% \noindent \textbf{Step 2: Transition Structure of $\{Y_n\}$} \\
+% The process $\{Y_n\}$ has transition matrix $P^k$ because:
+% \[
+% Y_{n+1} = X_{k(n+1)} = X_{kn + k}.
+% \]
+% Thus, the $n$-step transition probability for $\{Y_n\}$ is:
+% \[
+% P_Y^n(i,i) = (P^k)^n(i,i) = P^{kn}(i,i).
+% \]
+% \vspace{0.5em}
+% \noindent \textbf{Step 3: Expected Visits for $\{Y_n\}$} \\
+% The expected number of visits to $i$ for $\{Y_n\}$ is:
+% \[
+% \sum_{n=0}^\infty P_Y^n(i,i) = \sum_{n=0}^\infty P^{kn}(i,i).
+% \]
+% This is a subseries of $\sum_{m=0}^\infty P^m(i,i)$ where only terms with $m = kn$ are included.
+% \vspace{0.5em}
+% \noindent \textbf{Step 4: Divergence of the Subseries} \\
+% Assume for contradiction that $\sum_{n=0}^\infty P^{kn}(i,i) < \infty$. Since $P^m(i,i) \geq 0$ for all $m$, we have:
+% \[
+% \sum_{m=0}^\infty P^m(i,i) \geq \sum_{n=0}^\infty P^{kn}(i,i).
+% \]
+% But this implies $\sum_{m=0}^\infty P^m(i,i) < \infty$, which contradicts the recurrence of $\{X_n\}$. Therefore:
+% \[
+% \sum_{n=0}^\infty P^{kn}(i,i) = \infty.
+% \]
+% \vspace{0.5em}
+% \noindent \textbf{Step 5: Conclusion for $\{Y_n\}$} \\
+% Since $\sum_{n=0}^\infty P_Y^n(i,i) = \infty$ for all $i \in S$, every state $i$ is recurrent for $\{Y_n\}$. Thus, $\{Y_n\}$ is recurrent.}
+%
+\textcolor{blue}{Let $\{X_n\}_{n\ge 0}$ be a Markov chain on a state space $\mathcal{S}$ with transition matrix $P$, and assume that $\{X_n\}$ is recurrent. Fix a state $i\in\mathcal{S}$ that is recurrent, meaning that
+\[
+\mathbb{P}_i\Bigl(\{n\ge 1 : X_n = i\} \text{ is infinite}\Bigr)=1.
+\]
+For a fixed integer $k\ge 1$, define the $k$--skeleton (or subsequence) chain $\{Y_n\}_{n\ge 0}$ by
+\[
+Y_n=X_{kn},\quad n=0,1,2,\dots.
+\]
+We wish to show that the state $i$ is also recurrent for $\{Y_n\}$; that is,
+\[
+\mathbb{P}_i\Bigl(\{n\ge 1 : Y_n=i\} \text{ is infinite}\Bigr)=1.
+\]
+Since $i$ is recurrent for $\{X_n\}$, the set
+\[
+A=\{n\ge 1 : X_n=i\}
+\]
+is almost surely infinite. Now, note that every positive integer belongs to one of the $k$ residue classes modulo $k$, i.e.,
+\[
+\mathbb{N}=\bigcup_{r=0}^{k-1}\{n\in\mathbb{N} : n\equiv r\pmod{k}\}.
+\]
+Thus, we can partition the return times as
+\[
+A=\bigcup_{r=0}^{k-1}A_r,\quad \text{where } A_r=\{n\in A : n\equiv r\pmod{k}\}.
+\]
+Because $A$ is infinite almost surely, by the pigeonhole principle at least one of the sets $A_r$ must be infinite (almost surely). That is, there exists an $r_0\in\{0,1,\dots,k-1\}$ such that
+\[
+\mathbb{P}_i\Bigl( A_{r_0} \text{ is infinite}\Bigr)=1.
+\]
+There are now two cases to consider:
+\medskip
+\textbf{Case 1.} If $r_0=0$, then infinitely many returns to $i$ occur at times that are multiples of $k$. In other words,
+\[
+A_0=\{n\ge 1 : X_n=i \text{ and } n\equiv 0\pmod{k}\}
+\]
+is infinite almost surely. But note that
+\[
+\{n\ge 1 : Y_n=i\}=\{n\ge 1 : X_{kn}=i\}
+\]
+which is exactly $A_0$. Hence, $i$ is visited infinitely often by the chain $\{Y_n\}$ and is therefore recurrent.
+\medskip
+\textbf{Case 2.} If $r_0\neq 0$, define a time-shifted chain
+\[
+\widetilde{Y}_n=X_{kn+r_0},\quad n=0,1,2,\dots.
+\]
+Since $\widetilde{Y}_n$ is merely a shifted version of the $k$--skeleton chain, it is also a Markov chain (with the same state space and transition matrix $P^k$) and has the same recurrence properties (recurrence is invariant under a finite time shift). The fact that $A_{r_0}$ is infinite means that
+\[
+\{n\ge 0 : \widetilde{Y}_n=i\}=\{n\ge 0 : X_{kn+r_0}=i\}
+\]
+is infinite almost surely. Therefore, $i$ is recurrent for the chain $\{\widetilde{Y}_n\}$. But since $\widetilde{Y}_n$ and $Y_n$ differ only by a fixed time shift, it follows that the recurrence properties are the same for both chains. (In more detail, the state space of $\{Y_n\}$ decomposes into cyclic classes corresponding to the residue classes modulo $k$, and recurrence is a class property.) Hence, $i$ is recurrent for $\{Y_n\}$ as well.
+\medskip
+In either case, we conclude that if $i$ is recurrent for $\{X_n\}$, then it is also recurrent for the chain $\{Y_n\}$ defined by $Y_n=X_{kn}$. Since the choice of $i\in\mathcal{S}$ was arbitrary (or, more precisely, since recurrence is a class property), we deduce that the entire chain $\{Y_n\}$ is recurrent.
+}
 
         
         \item[(f)] (5 points) Suppose that the original chain $X_n$ is irreducible and that it has period $d$. What is the period of each state $i$ in the new Markov chain $Y_n$ for $k = d$?
