@@ -27,7 +27,7 @@ Yes, it is possible for a transient state to be periodic. Consider a 1-dimension
    \quad\text{where}\quad
    \mathbb{P}(Z_n = +1) \;=\; p
    \quad\text{and}\quad
-   \mathbb{P}(Z_n = -1) \;=\; 1 - p,
+   \mathbb{P}(Z_n = -1) \;=\; 1 - p
 \]
 for some $p \in (0,1)$ with $p \neq \tfrac{1}{2}$. Starting at state 0, state 0 is transient (see Problem 3). \\ \\ 
 % We claim that in this Markov chain:
@@ -42,12 +42,12 @@ In the random walk, the walk must trivially take as many $+1$ steps as $-1$ step
 \[
   (P^n)(x,x) \;>\;0 
   \quad\Longrightarrow\quad 
-  n \ \text{is even}.
+  n \ \text{is even}
 \]
 \[
   (P^n)(x,x) \;=\;0 
   \quad\Longrightarrow\quad 
-  n \ \text{is odd}.
+  n \ \text{is odd}
 \]
 Therefore, the greatest common divisor of all such $n$ is $2$, and every state $x\in\mathbb{Z}$ has period~$2$.
 }
@@ -64,7 +64,7 @@ Therefore, the greatest common divisor of all such $n$ is $2$, and every state $
 Because $\{X_n\}$ is a Markov chain, it satisfies the Markov property,
  \[
 P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m, \dots, X_0 = x_0\bigr)
-= P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m\bigr).
+= P\bigl(X_{m+1} = x_{m+1} \,\big\vert\, X_m = x_m\bigr)
 \]
 Applying for the $k$-steps from time $kn$ to time $k(n+1)$,
 \[
@@ -87,7 +87,7 @@ In the Markov chain $\{X_n\}$,
 \]
 Thus, the one-step transition probability for $\{Y_n\}$ is
 \[
-\mathbb{P}(Y_{n+1} = j \mid Y_n = i) = (P^k)_{ij}.
+\mathbb{P}(Y_{n+1} = j \mid Y_n = i) = (P^k)_{ij}
 \]
 Therefore, the transition matrix for $\{Y_n\}$ is $P^k$.
 % By the definition $Y_n = X_{kn}$,
@@ -140,71 +140,47 @@ Therefore, the transition matrix for $\{Y_n\}$ is $P^k$.
         
         \item[(c)] (10 points) Suppose that the original chain $\{X_n\}$ is aperiodic. Is $\{Y_n\}$ aperiodic? If so, prove it; if not, provide a counterexample.
 
-            \textcolor{blue}{\begin{itemize}
-\item A Markov chain with transition matrix $P$ is called \emph{aperiodic} if every state $i$ has period~$1$.  Concretely, the period of a state~$i$ is defined as
+            \textcolor{blue}{
+Recall that the period of a state~$i$ is defined as
 \[
-   d(i) \;=\; \gcd\!\Bigl\{\, n \ge 1 : (P^n)_{ii} > 0 \Bigr\}.
+   d(i) \;=\; \gcd\!\Bigl\{\, n \ge 1 : (P^n)_{ii} > 0 \Bigr\}
 \]
-If this $\gcd$ equals~$1$ for every $i$, then the chain is aperiodic.  
-\item In the chain $\{Y_n\}$ defined by $Y_n := X_{kn}$, its transition probabilities arise from the $k$-step transition probabilities of the original chain.  In particular,
+If this $\gcd$ equals~$1$ for every $i$, then the chain is aperiodic.  \\ 
+In the chain $\{Y_n\}$ defined by $Y_n = X_{kn}$, the transition probabilites are given by
 \[
   \mathbb{P}(Y_{m+1} = j \mid Y_m = i)
   \;=\; \mathbb{P}(X_{k(m+1)} = j \mid X_{km} = i)
-  \;=\; \bigl(P^k\bigr)_{ij}.
+  \;=\; \bigl(P^k\bigr)_{ij}
 \]
-Hence the transition matrix of $\{Y_n\}$ is exactly $P^k$, and the $m$-step transition probabilities in $\{Y_n\}$ are given by $(P^k)^m = P^{km}$.
-\item Therefore, the period of state~$i$ as a state of the chain $\{Y_n\}$ is
+Hence the transition matrix of $\{Y_n\}$ is exactly $P^k$, and the $m$-step transition probabilities in $\{Y_n\}$ are given by $(P^k)^m = P^{km}$. \\ \\
+Therefore, the period of state~$i$ as a state of the chain $\{Y_n\}$ is
 \[
-   d_Y(i) \;=\; \gcd\!\Bigl\{\, m \ge 1 : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}.
+   d_Y(i) \;=\; \gcd\!\Bigl\{\, m \ge 1 : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}
 \]
-We must show that $d_Y(i) = 1$ whenever $d(i) = 1$ in the original chain.
-\end{itemize}
-\bigskip
-\noindent
-\textbf{Key idea: Aperiodicity implies eventually-positive returns in all large times.}
-A standard characterization of aperiodicity is that for each state $i$, there exists some integer $N$ (possibly depending on~$i$) such that 
+A standard characterization of aperiodicity is that for each state $i$, there exists some integer $N$ st 
 \[
-  (P^n)_{ii} \;>\; 0 \quad \text{for all } n \ge N.
+  (P^n)_{ii} \;>\; 0 \quad \forall n \ge N
 \]
-(Equivalently, the set $\{\,n : (P^n)_{ii} > 0\}$ is \emph{co‐finite}, i.e.\ it contains all sufficiently large~$n$.)
-We use this fact to see what happens when we look only at $k$-step transitions, i.e.\ the set 
-\[
-   \Bigl\{\, m : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}.
-\]
+In other words, $\{\,n : (P^n)_{ii} > 0\}$ is co‐finite, or contains all sufficiently large~$n$. \\ \\
 If $(P^n)_{ii} > 0$ for all $n\ge N$, then in particular $(P^{km})_{ii} > 0$ whenever $km \ge N$.  Hence for all integers
-\[
-   m \;\ge\; \bigl\lceil N/k \bigr\rceil,
-\]
-we have $(P^{km})_{ii} > 0.$  Thus 
-\[
-   \Bigl\{\, m : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}
-\]
-contains \emph{all} sufficiently large integers $m$.
-\bigskip
+   $m \;\ge\; \bigl\lceil N/k \bigr\rceil$,
+$(P^{km})_{ii} > 0.$  \\ \\ 
+Thus,
+   $\Bigl\{\, m : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}$
+contains the tail set $\{\lceil N/k\rceil, \lceil N/k\rceil +1, \lceil N/k\rceil+2, \dots\}$ of all sufficiently large integers $m$. \\ \\
 \noindent
-\textbf{Period calculation for the chain $\{Y_n\}$.}
 For the chain $\{Y_n\}$, the period of $i$ is 
 \[
   d_Y(i) 
-  \;=\; \gcd\!\Bigl\{\, m \ge 1 : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}.
+  \;=\; \gcd\!\Bigl\{\, m \ge 1 : \bigl(P^{km}\bigr)_{ii} > 0 \Bigr\}
 \]
-Since this set includes \emph{all} sufficiently large integers $m$, its greatest common divisor must be~$1$.  Indeed, any infinite set of consecutive integers has $\gcd$ equal to~$1$.  Formally:
-\begin{itemize}
-\item Because $\{X_n\}$ is aperiodic at $i$, there is an $N$ such that $(P^n)_{ii}>0$ for every $n \ge N$.
-\item Consequently, for every integer $m \ge \lceil N/k \rceil$, we have 
-\[
-  (P^{km})_{ii} > 0.
-\]
-\item Hence $\{ m : (P^{km})_{ii}>0\}$ contains the tail set $\{\lceil N/k\rceil, \lceil N/k\rceil +1, \lceil N/k\rceil+2, \dots\}$ of \emph{all} sufficiently large integers.
-\item The greatest common divisor of any infinite set of consecutive integers is~$1$.
-\item Therefore $d_Y(i) = 1$.
-\end{itemize}
-Since $d_Y(i)=1$ for every state $i$, the subsampled chain $\{Y_n\}$ is indeed aperiodic.
+As this set includes all sufficiently large integers $m$, the gcd of any infinite set must be~$1$. \\ \\ 
+Since $d_Y(i)=1$ for every state $i$, $\{Y_n\}$ is aperiodic.
 }
         
         \item[(d)] (10 points) Suppose that the original chain $\{X_n\}$ is transient. Is $\{Y_n\}$ transient? If so, prove it; if not, provide a counterexample.
 
-%             \textcolor{blue}{
+%             \textcolor{red}{
 %                 Recall that a Markov chain $\{X_n\}$ is said to be \emph{transient} if for every state $i$ in its state space,
 % \[
 % \mathbb{P}\bigl(\text{the chain visits state $i$ infinitely many times}\bigr) = 0.
@@ -243,20 +219,19 @@ Since $d_Y(i)=1$ for every state $i$, the subsampled chain $\{Y_n\}$ is indeed a
 % \]
 % Thus, the expected number of visits to state $i$ for $\{Y_n\}$ is finite. Since this holds for all states $i \in S$, the chain $\{Y_n\}$ is transient.
 % }
-            \textcolor{blue}{We first recall the definition of transience for a Markov chain:
-A Markov chain $\{X_n\}$ on a state space $S$ is \emph{transient} if there exists at least one state $i \in S$ such that 
+            \textcolor{blue}{
+Recall that a Markov chain $\{X_n\}$ on $S$ is transient if there exists at least one state $i \in S$ st 
 \[
-\mathbb{P}_i\bigl(\text{the chain ever returns to } i\bigr) < 1.
+\mathbb{P}_i\bigl(\text{the chain ever returns to } i\bigr) < 1
 \]
-Equivalently, a state $i$ is called \emph{transient} if 
+Equivalently,
 \[
-\mathbb{P}_i\bigl(\exists n \ge 1: X_n = i\bigr) < 1.
+\mathbb{P}_i\bigl(\exists n \ge 1: X_n = i\bigr) < 1
 \]
-We want to show that if $X_n$ is transient, then the new process $Y_n = X_{kn}$ is also transient.  \\
-Consider a state $i \in S$ and suppose we start from $X_0 = i$. 
-By transience of $\{X_n\}$, we have
+Consider state $i \in S$ and suppose we start from $X_0 = i$. \\  
+By transience of $\{X_n\}$, 
 \[
-\mathbb{P}_i\bigl(\exists m \ge 1 : X_m = i\bigr) < 1.
+\mathbb{P}_i\bigl(\exists m \ge 1 : X_m = i\bigr) < 1
 \]
 Define the event 
 \[
@@ -264,24 +239,18 @@ A = \{\exists m \ge 1 : X_m = i\}
 \]
 and the event 
 \[
-B = \{\exists n \ge 1 : Y_n = i\} = \{\exists n \ge 1 : X_{kn} = i\}.
+B = \{\exists n \ge 1 : Y_n = i\} = \{\exists n \ge 1 : X_{kn} = i\}
 \]
-Note that $B \subseteq A$ since if $X_{kn} = i$ for some $n$, it is in particular true that $X_m = i$ for $m = kn$. Hence,
+Note that if $X_{kn} = i$ for some $n$, $X_m = i$ for $m = kn$, i.e. $B \subseteq A$. Hence,
 \[
-\mathbb{P}_i(B) \;\le\; \mathbb{P}_i(A).
+\mathbb{P}_i(B) \;\le\; \mathbb{P}_i(A)
 \]
-Since $A$ has probability strictly less than 1 (by the transience of $X_n$), it follows that 
+Since $A$ has probability strictly less than 1,
 \[
-\mathbb{P}_i\bigl(\exists n \ge 1 : Y_n = i\bigr) \;=\; \mathbb{P}_i(B) \;<\; 1.
+\mathbb{P}_i\bigl(\exists n \ge 1 : Y_n = i\bigr) \;=\; \mathbb{P}_i(B) \;<\; 1
 \]
-But this is precisely the statement that from state $i$, the chain $\{Y_n\}$ returns to $i$ with probability strictly less than 1. Therefore, $i$ is transient for the chain $\{Y_n\}$ as well. \\ 
-Because this argument applies to every state $i \in S$ that is transient in $\{X_n\}$, it shows that no state $i$ can become ``recurrent'' under the $k$‐step sampling. Indeed, the probability that $\{Y_n\}$ returns to $i$ is bounded above by the probability that $\{X_n\}$ returns to $i$, and the latter is less than 1 for transient states. \\ 
-Since transience is preserved under $k$‐step sampling (because the event of returning at multiples of $k$ steps is a subset of returning at any step), we conclude that if the original Markov chain $\{X_n\}$ is transient, then the sampled chain $\{Y_n\} = \{X_{kn}\}$ is also transient. \\ 
-An intuitive way to see why $\{Y_n\}$ cannot suddenly become recurrent if $\{X_n\}$ is transient is:
-\begin{itemize}
-    \item If the original chain rarely returns to a state $i$ (with probability $<1$), then restricting our view to every $k$‐th step only makes returns even less likely, not more.
-    \item Formally, the event of ``returning to $i$ at a multiple of $k$'' is a strict subset of the event ``returning to $i$ at least once at any time.''
-\end{itemize}}
+Therefore, $i$ is transient for the chain $\{Y_n\}$ as well. Since this applies to every state $i \in S$ that is transient in $\{X_n\}$, it shows that no state $i$ can become recurrent under the $k$‐step sampling. The probability that $\{Y_n\}$ returns to $i$ is bounded above by the probability that $\{X_n\}$ returns to $i$, and the latter is less than 1 for transient states. 
+}
 
         
         \item[(e)] (15 points) Suppose that the original chain $\{X_n\}$ is recurrent. Is $\{Y_n\}$ recurrent? If so, prove it; if not, provide a counterexample.
@@ -322,57 +291,54 @@ An intuitive way to see why $\{Y_n\}$ cannot suddenly become recurrent if $\{X_n
 % \noindent \textbf{Step 5: Conclusion for $\{Y_n\}$} \\
 % Since $\sum_{n=0}^\infty P_Y^n(i,i) = \infty$ for all $i \in S$, every state $i$ is recurrent for $\{Y_n\}$. Thus, $\{Y_n\}$ is recurrent.}
 %
-\textcolor{blue}{Let $\{X_n\}_{n\ge 0}$ be a Markov chain on a state space $\mathcal{S}$ with transition matrix $P$, and assume that $\{X_n\}$ is recurrent. Fix a state $i\in\mathcal{S}$ that is recurrent, meaning that
+\textcolor{blue}{Let $\{X_n\}_{n\ge 0}$ be a Markov chain on a state space $\mathcal{S}$ with transition matrix $P$, and assume that $\{X_n\}$ is recurrent. Fix state $i\in\mathcal{S}$ that is recurrent, st
 \[
-\mathbb{P}_i\Bigl(\{n\ge 1 : X_n = i\} \text{ is infinite}\Bigr)=1.
+\mathbb{P}_i\Bigl(\{n\ge 1 : X_n = i\} =\infty \Bigr)=1
 \]
-For a fixed integer $k\ge 1$, define the $k$--skeleton (or subsequence) chain $\{Y_n\}_{n\ge 0}$ by
+For $k\ge 1$, define the chain $\{Y_n\}_{n\ge 0}$ by
 \[
-Y_n=X_{kn},\quad n=0,1,2,\dots.
+Y_n=X_{kn},\quad n=0,1,2,\dots
 \]
-We wish to show that the state $i$ is also recurrent for $\{Y_n\}$; that is,
+Since $i$ is recurrent for $\{X_n\}$, define the set $A$ as
 \[
-\mathbb{P}_i\Bigl(\{n\ge 1 : Y_n=i\} \text{ is infinite}\Bigr)=1.
+A=\{n\ge 1 : X_n=i\}=\infty
 \]
-Since $i$ is recurrent for $\{X_n\}$, the set
+Now, note that every positive integer belongs to one of the $k$ residue classes modulo $k$, or
 \[
-A=\{n\ge 1 : X_n=i\}
+\mathbb{N}=\bigcup_{r=0}^{k-1}\{n\in\mathbb{N} : n\equiv r\pmod{k}\}
 \]
-is almost surely infinite. Now, note that every positive integer belongs to one of the $k$ residue classes modulo $k$, i.e.,
+Thus, the return times can be partitioned as
 \[
-\mathbb{N}=\bigcup_{r=0}^{k-1}\{n\in\mathbb{N} : n\equiv r\pmod{k}\}.
+A=\bigcup_{r=0}^{k-1}A_r,\quad \text{where } A_r=\{n\in A : n\equiv r\pmod{k}\}
 \]
-Thus, we can partition the return times as
+Because $A$ is countably infinite, by the pigeonhole principle at least one of the sets $A_r$ must be coutably infinite. As such, there exists an $r_0\in\{0,1,\dots,k-1\}$ st
 \[
-A=\bigcup_{r=0}^{k-1}A_r,\quad \text{where } A_r=\{n\in A : n\equiv r\pmod{k}\}.
+\mathbb{P}_i\Bigl( A_{r_0} =\infty \Bigr)=1
 \]
-Because $A$ is infinite almost surely, by the pigeonhole principle at least one of the sets $A_r$ must be infinite (almost surely). That is, there exists an $r_0\in\{0,1,\dots,k-1\}$ such that
-\[
-\mathbb{P}_i\Bigl( A_{r_0} \text{ is infinite}\Bigr)=1.
-\]
-There are now two cases to consider:
+Consider the two cases, \\ \\ 
 \medskip
-\textbf{Case 1.} If $r_0=0$, then infinitely many returns to $i$ occur at times that are multiples of $k$. In other words,
+Case 1: If $r_0=0$, then infinitely many returns to $i$ occur at times that are multiples of $k$. In other words,
 \[
-A_0=\{n\ge 1 : X_n=i \text{ and } n\equiv 0\pmod{k}\}
+A_0=\{n\ge 1 : X_n=i \text{ and } n\equiv 0\pmod{k}\}=\infty
 \]
-is infinite almost surely. But note that
+% \[
+% \{n\ge 1 : Y_n=i\}=\{n\ge 1 : X_{kn}=i\}
+% \]
+% which is exactly $A_0$. 
+Hence, $i$ is visited infinitely often by the chain $\{Y_n\}$ and is therefore recurrent. \\ \\ 
+% \medskip
+Case 2: If $r_0\neq 0$, define a time-shifted chain
 \[
-\{n\ge 1 : Y_n=i\}=\{n\ge 1 : X_{kn}=i\}
+\widetilde{Y}_n=X_{kn+r_0} % ,\quad n=0,1,2,\dots.
 \]
-which is exactly $A_0$. Hence, $i$ is visited infinitely often by the chain $\{Y_n\}$ and is therefore recurrent.
-\medskip
-\textbf{Case 2.} If $r_0\neq 0$, define a time-shifted chain
+Since $\widetilde{Y}_n$ is merely a shifted version of the $k$-chain, it is also a Markov chain, with the same state space and transition matrix $P^k$, and has the same recurrence properties, as recurrence is invariant under a finite time shift. Since $A_{r_0}$ is infinite, 
 \[
-\widetilde{Y}_n=X_{kn+r_0},\quad n=0,1,2,\dots.
+\{n\ge 0 : \widetilde{Y}_n=i\}=\{n\ge 0 : X_{kn+r_0}=i\}=\infty
 \]
-Since $\widetilde{Y}_n$ is merely a shifted version of the $k$--skeleton chain, it is also a Markov chain (with the same state space and transition matrix $P^k$) and has the same recurrence properties (recurrence is invariant under a finite time shift). The fact that $A_{r_0}$ is infinite means that
-\[
-\{n\ge 0 : \widetilde{Y}_n=i\}=\{n\ge 0 : X_{kn+r_0}=i\}
-\]
-is infinite almost surely. Therefore, $i$ is recurrent for the chain $\{\widetilde{Y}_n\}$. But since $\widetilde{Y}_n$ and $Y_n$ differ only by a fixed time shift, it follows that the recurrence properties are the same for both chains. (In more detail, the state space of $\{Y_n\}$ decomposes into cyclic classes corresponding to the residue classes modulo $k$, and recurrence is a class property.) Hence, $i$ is recurrent for $\{Y_n\}$ as well.
-\medskip
-In either case, we conclude that if $i$ is recurrent for $\{X_n\}$, then it is also recurrent for the chain $\{Y_n\}$ defined by $Y_n=X_{kn}$. Since the choice of $i\in\mathcal{S}$ was arbitrary (or, more precisely, since recurrence is a class property), we deduce that the entire chain $\{Y_n\}$ is recurrent.
+Therefore, $i$ is recurrent for the chain $\{\widetilde{Y}_n\}$. Since $\widetilde{Y}_n$ and $Y_n$ differ only by a fixed time shift, it follows that recurrence holds for both chains. \\ \\ 
+Hence, $i$ is recurrent for $\{Y_n\}$ as well.
+In either case, if $i$ is recurrent for $\{X_n\}$, then it is also recurrent for $\{Y_n\}$. \\ \\ 
+Since recurrence is a class property, the entire chain $\{Y_n\}$ must be recurrent.
 }
 
         
@@ -380,7 +346,7 @@ In either case, we conclude that if $i$ is recurrent for $\{X_n\}$, then it is a
 
            \textcolor{blue}{Since the original chain is irreducible with period~$d$, for each state~$i$,
 \[
-    (P^d_X)_{ii} \;>\; 0 \quad \text{and} \quad (P^{d-b}_X)_{ii} \;=\; 0, \quad \forall b = 1, 2, \dots, d-1.
+    (P^d_X)_{ii} \;>\; 0 \quad \text{and} \quad (P^{d-b}_X)_{ii} \;=\; 0, \quad \forall b = 1, 2, \dots, d-1
 \]
 Therefore, for any multiple of $d$, $a\in \mathbb{Z}$ such that $a \geq 1$, $$(P^d_X)^a_{ii} > 0$$
 As such, all returns to $i$ can occur only at multiples of~$d$ steps.   \\ \\ 
@@ -401,7 +367,7 @@ Defining the period of $i$ in $Y$,
 \[
   d_Y(i)
   \;=\;
-  \gcd\,\bigl\{\, m \;\ge\; 1 : (P^{d\,m})_{ii} > 0 \bigr\}.
+  \gcd\,\bigl\{\, m \;\ge\; 1 : (P^{d\,m})_{ii} > 0 \bigr\}
 \]
 Note that $(P^d)_{ii} > 0$, so at $m=1$, $(P^{d\cdot 1})_{ii} = (P^d)_{ii} > 0$. Since the chain is irreducible, raising $P^d$ to a higher power trivially cannot change its positivity:
 \[
@@ -415,7 +381,7 @@ Thus,
 \[
   \bigl\{\,m : (P^{d\,m})_{ii} > 0 \bigr\}
   \;=\;
-  \{1, 2, 3, \dots\},
+  \{1, 2, 3, \dots\}
 \]
 with a trivial gcd of 1. Note that since the $d$ period was a state property in the original chain, $\{X_n\}$, it holds for all states in the old chain, and thus all states in the new chain. \\ \\ 
 As such, the period of each state in the new chain $\{Y_n\}$ is $1$. In other words, the chain $\{Y_n\}$ is aperiodic.
@@ -436,22 +402,19 @@ Starting from \(X_0 = 0\), the random walk is at state \(0\) again at \(t=n\) on
   \;=\;
   \binom{2k}{k}\, p^k\, (1-p)^k
 \]
-\[
-    \text{Note that }\mathbb{P}(X_n = 0 \,\big\vert\, X_0 = 0) \;=\; 0
-  \ \ \text{if $n$ is odd}
-\]
-Hence the series of return probabilities at \(0\) is
+Note that $\mathbb{P}(X_n = 0 \,\big\vert\, X_0 = 0) \;=\; 0$ if $n$ is odd. \\ \\
+So the series of return probabilities at \(0\) is
 \[
   \sum_{n=0}^\infty \mathbb{P}(X_n = 0 \,\big\vert\, X_0 = 0)
   \;=\;
-  1 \;+\; \sum_{k=1}^\infty \binom{2k}{k}\, p^k\, (1-p)^k,
+  1 \;+\; \sum_{k=1}^\infty \binom{2k}{k}\, p^k\, (1-p)^k
 \]
 accounting for the initial state of 0. \\ Using Stirling's approximation,
 \medskip
 \noindent
 \[
   n! \;\sim\; \Bigl(\tfrac{n}{e}\Bigr)^{n}\sqrt{2\pi n}
-  \quad\text{as }n \to \infty,
+  \quad\text{as }n \to \infty
 \]
 applying to this case,
 \[
@@ -469,7 +432,7 @@ Therefore,
   \;\approx\;
   \frac{4^k}{\sqrt{\pi k}} \,\bigl[p(1-p)\bigr]^k
   \;=\;
-  \frac{\bigl[4\,p(1-p)\bigr]^k}{\sqrt{\pi k}}.
+  \frac{\bigl[4\,p(1-p)\bigr]^k}{\sqrt{\pi k}}
 \]
 \medskip
 \noindent
@@ -483,7 +446,7 @@ Note, that as \(k \to \infty\), \(\bigl[4\,p(1-p)\bigr]^k\) decays exponentially
   \text{and}
   \quad
   \sum_{k=1}^{\infty} \binom{2k}{k}\,p^k\,(1-p)^k
-  \;<\;\infty.
+  \;<\;\infty
 \]
 Thus,
 \[
@@ -493,7 +456,7 @@ Thus,
   \sum_{k=1}^{\infty}
   \binom{2k}{k}\, p^k\,(1-p)^k
   \;<\;
-  \infty.
+  \infty
 \]
 which defines a transient state. \\ \\ 
 \medskip
@@ -504,13 +467,13 @@ However, when \(p = \frac{1}{2}\),
   \;\approx\;
     \frac{\bigl[4\cdot 0.5(1-0.5)\bigr]^k}{\sqrt{\pi k}}
   \;=\;
-  \frac{1}{\sqrt{\pi k}},
+  \frac{1}{\sqrt{\pi k}}
 \]
 so
 \[
   \sum_{k=1}^\infty \frac{1}{\sqrt{k}}
   \;=\;
-  \infty.
+  \infty
 \]
 which defines a recurrent state when $p=\frac12$. }
 
@@ -531,84 +494,84 @@ This is a chain with infinitely many states, but it has a sort of probabilistic 
 Denote the stationary distribution by $\{\pi_i\}_{i\in\mathbb{Z}}$
 \[
 \sum_{j \in \mathbb{Z}} \pi_j P(j,i) \;=\; \pi_i
-\quad \text{for all } i \in \mathbb{Z},
+\quad \forall i \in \mathbb{Z}
 \]
 and $\sum_{i \in \mathbb{Z}} \pi_i = 1$.
 As this is a two-sided birth-death chain,
 \[
-\pi_i \, P(i, i+1) \;=\; \pi_{i+1} \, P(i+1, i).
+\pi_i \, P(i, i+1) \;=\; \pi_{i+1} \, P(i+1, i)
 \]
-For $i \ge 1$:
+For $i \ge 1$,
 \[
 \pi_i \times 0.4 \;=\; \pi_{i+1} \times 0.6
 \quad \Longrightarrow \quad 
-\frac{\pi_{i+1}}{\pi_i} = \frac{0.4}{0.6} = \frac{2}{3}.
+\frac{\pi_{i+1}}{\pi_i} = \frac{0.4}{0.6} = \frac{2}{3}
 \]
-For $i \le -1$:
+For $i \le -1$,
 \[
     \pi_{i-1} \times 0.6 \;=\; \pi_{i} \times 0.4
 \quad \Longrightarrow \quad 
-\frac{\pi_{i-1}}{\pi_i} = \frac{0.4}{0.6} = \frac{2}{3}.
+\frac{\pi_{i-1}}{\pi_i} = \frac{0.4}{0.6} = \frac{2}{3}
 \]
 When $i=0$,
 \[
 \pi_0 \times 0.5 \;=\; \pi_1 \times 0.6
 \quad \Longrightarrow \quad
-\frac{\pi_1}{\pi_0} = \frac{0.5}{0.6} = \frac{5}{6}.
+\frac{\pi_1}{\pi_0} = \frac{0.5}{0.6} = \frac{5}{6}
 \]
 \[
 \pi_{-1} \times 0.6 = \pi_0 \times 0.5
 \quad \Longrightarrow \quad 
-\frac{\pi_{-1}}{\pi_{0}} = \frac{0.5}{0.6} = \frac{5}{6},
+\frac{\pi_{-1}}{\pi_{0}} = \frac{0.5}{0.6} = \frac{5}{6}
 \]
 Hence,
 \[
 \pi_1 = \frac{5}{6}\,\pi_0, 
 \quad
-\pi_{-1} = \frac{5}{6}\,\pi_0.
+\pi_{-1} = \frac{5}{6}\,\pi_0
 \]
 As the probabilities of a jump remain the same, generalizing for all $i\geq1$,
 \[
 \pi_{i+1} = \frac{2}{3} \pi_{i}
 \quad\Longrightarrow\quad 
 \pi_i = \left(\frac{2}{3}\right)^{\,i-1} \,\pi_1
-\quad \text{for } i \ge 1.
+\quad \text{for } i \ge 1
 \]
 \[
 \pi_i 
 \;=\; 
 \left(\frac{2}{3}\right)^{\,i-1} \cdot \frac{5}{6}\,\pi_0
-\quad \forall i \ge 1.
+\quad \forall i \ge 1
 \]
 Generalizing for all $i\leq-1$,
 \[
     \pi_{i-1} = \frac{2}{3} \pi_{i}
 \quad\Longrightarrow\quad
 \pi_{i} = \frac{2}{3}^{-i-1}\,\pi_{-1}
-\quad \forall i\leq -1,
+\quad \forall i\leq -1
 \]
 \[
     \pi_{i} 
 \;=\; 
 \left(\frac{2}{3}\right)^{\,-i-1} \cdot \frac{5}{6}\,\pi_0
-\quad \forall i \leq -1.
+\quad \forall i \leq -1
 \]
 Combining the two cases,
 \[
 \pi_i 
 \;=\;
-\frac{5}{6}\,\left(\frac{2}{3}\right)^{\,|i|-1}\,\pi_0, \quad \forall i \neq 0.
+\frac{5}{6}\,\left(\frac{2}{3}\right)^{\,|i|-1}\,\pi_0, \quad \forall i \neq 0
 \]
 Solving for $\pi_0$, first recall that,
 \[
-\sum_{i=-\infty}^{\infty} \pi_i \;=\; 1.
+\sum_{i=-\infty}^{\infty} \pi_i \;=\; 1
 \]
 Hence,
 \[
 \pi_0 
 \;+\;
 \sum_{i\neq 0} \frac{5}{6} \,\biggl(\tfrac{2}{3}\biggr)^{|i|-1}\,\pi_0
-\;=\; 1.
+\;=\; 1
 \]
 \[
 \pi_0 
@@ -617,7 +580,7 @@ Hence,
 \;+\; 
 \frac{5}{6}\sum_{i\neq 0}\bigl(\tfrac{2}{3}\bigr)^{|i|-1}
 \biggr]
-\;=\; 1.
+\;=\; 1
 \]
 Exploiting the symmetry of the chain,
 \[
@@ -631,7 +594,7 @@ Exploiting the symmetry of the chain,
 \;=\;
 2 \cdot 3
 \;=\;
-6.
+6
 \]
 Thus
 \[
@@ -643,7 +606,7 @@ Thus
 \quad\Longrightarrow\quad
 \pi_0 
 \;=\; 
-\frac{1}{6}.
+\frac{1}{6}
 \]
 Therefore,
 \[
@@ -665,44 +628,44 @@ is aperiodic. Also show by example that this sufficient condition is not necessa
 \textcolor{blue}{
 Let $\{X_n\}$ be an irreducible Markov chain on a countable state space $S$. Suppose there is a state $i \in S$ such that
 \[
-    P(i,i) > 0.
+    P(i,i) > 0
 \]
 The period of state $i$ is defined as
 \[
-    d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \},
+    d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \}
 \]
 Since $P(i,i) = P^1(i,i)> 0$, there is a positive probability of returning to $i$ in exactly 1 step. As such, $1 \in \{n: P^n(i,i) > 0\}$, so any common divisor of all $n$ must trivially divide 1. \\ \\ Therefore,
 \[
-    d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \} \;=\; 1.
+    d(i) \;=\; \gcd \{ n \ge 1 : P^n(i,i) > 0 \} \;=\; 1
 \]
 Thus, $i$ is an aperiodic state. \\ \\ 
 By irreducibility, for any other state $j \in S$, $\exists m,k \in \mathbb{Z}$ such that $ m,k\ge 1$, $P^m(j,i) > 0$, and $P^k(i,j) > 0$. Therefore as proven in lecture, for any $n \ge 1$,
 \[
     P^{m+n+k}(j,j) 
-    \;\ge\; P^m(j,i) \, P^n(i,i) \, P^k(i,j).
+    \;\ge\; P^m(j,i) \, P^n(i,i) \, P^k(i,j)
 \]
 Since $P^n(i,i) > 0$ for all $n \ge 1$, for arbitrarily many $n$, the probability $P^{m+n+k}(j,j)$ is strictly positive. As such,
 \[
-    d(j) \;=\; \gcd\{ n \ge 1 : P^n(j,j) > 0 \} \;=\; 1.
+    d(j) \;=\; \gcd\{ n \ge 1 : P^n(j,j) > 0 \} \;=\; 1
 \]
 Thus, every state in an irreducible chain with a self-loop, i.e. $P(i,i) > 0$, is aperiodic. \\ \\ 
 To show that this sufficient condition is not necessary, consider a chain on three states $\{1,2,3\}$ with transition matrix:
 \[
-    P(1,1)=0, \quad P(1,2)=1, \quad P(1,3)=0, 
+    P(1,1)=0, \quad P(1,2)=1, \quad P(1,3)=0 
 \]
 \[
-    P(2,1)=\tfrac{1}{2}, \quad P(2,2)=0, \quad P(2,3)=\tfrac{1}{2},
+    P(2,1)=\tfrac{1}{2}, \quad P(2,2)=0, \quad P(2,3)=\tfrac{1}{2}
 \]
 \[
-    P(3,1)=\tfrac{1}{2}, \quad P(3,2)=\tfrac{1}{2}, \quad P(3,3)=0.
+    P(3,1)=\tfrac{1}{2}, \quad P(3,2)=\tfrac{1}{2}, \quad P(3,3)=0
 \]
 Note that the chain is irreducible, but does not contain any self-loops, i.e. $P(i,i)=0$ for $i=1,2,3$. \\ \\ 
 \[
-    P^2(1,1) = P(1,2)P(2,1) = (1)\left(\tfrac{1}{2}\right) = \tfrac{1}{2} > 0,
+    P^2(1,1) = P(1,2)P(2,1) = (1)\left(\tfrac{1}{2}\right) = \tfrac{1}{2} > 0
 \]
 \[
     P^3(1,1) = P(1,2)P(2,3)P(3,1) = 1 \cdot \tfrac{1}{2} \cdot \tfrac{1}{2}
-    = \tfrac{1}{4} > 0.
+    = \tfrac{1}{4} > 0
 \]
 Therefore, state $1$ can return to itself in both $2$ steps and $3$ steps, which comprises a subset of the set of all possible return times back to state 1. The gcd of $2$ and $3$ is $1$, or a period of $1$. 
 Note that $P^2(2,2)>0$, $P^2(3,3)>0$, and $P^3(2,2)>0$, $P^3(3,3)>0$, so every state also has period $1$, making the entire chain aperiodic.
