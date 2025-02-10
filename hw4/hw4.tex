@@ -771,26 +771,24 @@ Since part (b) shows \(j\) is accessible from \(i\) and (c) shows \(i\) is acces
 \begin{enumerate}[label=(\alph*)]
     \item (10 points) Prove that for some constant $C > 0$ and some $p \in (0,1)$ it holds for all $t \geq 1$
 \[
-\mathbb{P}(N_j \geq t | X_0 = i) = 1 \leq C p^t.
+\mathbb{P}(N_j \geq t | X_0 = i) = 1 \leq C p^t
 \]
 
-\textcolor{blue}{Define the \emph{first hitting time} of $j$ as
+\textcolor{blue}{
+    Define the time that the chain first reaches $j$ as
 \[
-T_j \;:=\; \inf\{n \ge 0 : X_n = j\}.
+T_j \;:=\; \inf\{n \ge 0 : X_n = j\}
 \]
-(We may set $T_j = \infty$ if the chain never visits $j$.) \\
-Since $j$ is transient, there is a probability strictly less than 1 of ever making a \textit{return} to $j$ starting from $j$. More concretely, let
+Note that $T_j = \infty$ if the chain never visits $j$. \\
+Since $j$ is transient, there is a probability strictly less than 1 of of the chain ever returning to $j$ starting from $j$. Let us denote this probability as 
 \[
 r \;:=\; \mathbb{P}_j\bigl(T_j < \infty\text{ for a second time}\bigr),
 \]
-i.e.\ $r$ is the probability that the chain, starting in $j$, returns to $j$ at least once more in the future. If $j$ is transient, we must have
+Since $j$ is transient,
 \[
-r \;<\; 1.
+r \;<\; 1
 \]
-(A recurrent state $j$ would have $r=1$, but we know $j$ is transient.)\\
-\medskip
-\noindent \textbf{Step 2. The event $\{N_j \ge t\}$ implies $t-1$ returns to $j$.} \\
-Let us define the successive hitting times of $j$:
+Let us define the successive times the chian reaches $j$ as
 \[
 T_j^{(1)} 
 \;:=\; T_j,
@@ -798,48 +796,45 @@ T_j^{(1)}
 T_j^{(k+1)}
 \;:=\; \inf\{ n > T_j^{(k)} : X_n = j \}.
 \]
-We say $T_j^{(k)} = \infty$ if the chain does not visit $j$ for the $k$-th time. Then
+Note that $T_j^{(k)} = \infty$ if the chain does not visit $j$ for the $k$-th time. \\
+Therefore,
 \[
 \{N_j \;\ge\; t\}
 \quad\Leftrightarrow\quad
 \{ T_j^{(t)} \;<\;\infty \}.
 \]
-Hence, to have at least $t$ visits to $j$, the chain must:
-\begin{itemize}
-    \item First, hit $j$ once (for time $T_j^{(1)}$).
-    \item Then, starting from that first visit $j$, \emph{return} to $j$ at least $(t-1)$ additional times.
-\end{itemize}
-\medskip
-\noindent \textbf{Step 3. Bounding $\mathbb{P}_i(N_j \ge t)$.} \\
-We now use a decomposition over the time of the \emph{first} visit to $j$. From an arbitrary state $i$, let $a := \mathbb{P}_i\bigl(T_j < \infty\bigr)$. (Note $a$ could be zero if it's impossible or very unlikely to reach $j$, or it might be positive. We do \emph{not} need $a>0$ for the final statements to hold, but usually $a>0$ is typical if $j$ communicates with $i$.) \\
-Once the chain has arrived in $j$, the probability of returning $j$ an additional $(t-1)$ times is at most $r^{\,t-1}$ by the Markov property (each new return from $j$ to $j$ has probability at most $r$).  \\
+Hence, to have at least $t$ visits to $j$, the chain must first reach $j$ once at  time $T_j^{(1)}$, and then 
+starting from that first visit $j$, return to $j$ at least $(t-1)$ additional times. 
+Concisely, $\{N_j \ge t\}$ implies $t-1$ returns to $j$. \\ \\
+Decomposing over the time of the first visit to $j$: \\
+From an arbitrary state $i$, let $a := \mathbb{P}_i\bigl(T_j < \infty\bigr)$.
+Once the chain reaches in $j$, the probability of returning $j$ additional $(t-1)$ times is trivially at most $r^{\,t-1}$ by the Markov property, as each new return from $j$ to $j$ has probability at most $r$.  \\
 Hence, we can bound
 \[
-\mathbb{P}_i\bigl(N_j \;\ge\; t\bigr)
+\mathbb{P}\bigl(N_j \;\ge\; t\bigr | X_0 = i)
 \;=\;
-\mathbb{P}_i\bigl(T_j^{(t)} < \infty\bigr)
+\mathbb{P}\bigl(T_j^{(t)} < \infty\bigr | X_0 = i)
 \;\;\le\;\;
-\mathbb{P}_i\bigl(T_j^{(1)} < \infty\bigr)
-\;\times\;
-(\text{max prob of $(t-1)$ further returns to $j$}).
+\mathbb{P}\bigl(T_j^{(1)} < \infty\bigr | X_0 = i)
+\;\times\; \mathbb{P}_{\text{max}}(t-1\text{ returns to } j)
 \]
-But 
+But recall that 
 \[
-\mathbb{P}_i\bigl(T_j^{(1)} < \infty\bigr) = a,
+\mathbb{P}\bigl(T_j^{(1)} < \infty\bigr | X_0 = i) = a,
 \quad\text{and}\quad
-(\text{max prob of $(t-1)$ returns})
+\mathbb{P}_{\text{max}}(t-1\text{ returns to } j)
 \;\le\;
 r^{\,t-1}.
 \]
-Therefore
+Therefore,
 \[
-\mathbb{P}_i\bigl(N_j \;\ge\; t\bigr)
+\mathbb{P}\bigl(N_j \;\ge\; t\bigr | X_0 = i)
 \;\;\le\;\;
 a \, r^{\,t-1}.
 \]
-Setting $p = r < 1$ and $C = a \, r^{-1}$, we get
+Redefining $C = ar^{-1}$ and $p = r$ yields
 \[
-\mathbb{P}_i\bigl(N_j \;\ge\; t\bigr)
+\mathbb{P}\bigl(N_j \;\ge\; t\bigr | X_0 = i)
 \;\;\le\;\;
 a \, r^{\,t-1}
 \;=\;
@@ -847,10 +842,9 @@ a\,r^{-1}\,r^t
 \;=\;
 C\,p^t,
 \quad
-\text{where } C = a\,r^{-1},\; p = r \in (0,1).
+\text{for some } p = r \in (0,1)
 \]
-That completes the exponential bound. \\
-\emph{(If $a=0$, this inequality trivially holds for all $t$, picking any $C>0$ and $p \in (0,1)$, since the LHS is always zero.)}
+Note that since $p > 0$, $C>0$ and if $a=0$, this inequality trivially holds for all $t$, regardless of the choice in $C>0$ and $p \in (0,1)$, as the left hand side is trivially 0. 
 }
 
 \item (5 points) Conclude that 
@@ -862,25 +856,27 @@ That completes the exponential bound. \\
     Given the exponential bound
 \[
 \mathbb{P}_i\bigl(N_j \;\ge\; t\bigr) \;\le\; C\,p^t
-\quad (\text{for some }C>0, p<1),
+\quad \text{for some }C>0, p\in (0,1)
 \]
-observe that
+note that
 \[
 \{X_n = j\}
 \;\subseteq\;
-\{N_j \;\ge\; 1\}.
+\{N_j \;\ge\; 1\}
 \]
-But more precisely, if $X_n = j$, then necessarily $N_j \ge 1$. Even if $n=0$, we interpret it similarly ($X_0 = i$ assumed in $P^n(i,j)$, so $n>0$). So
+More precisely, if $X_n = j$, then necessarily $N_j \ge 1$. 
+As such,
 \[
 P^n(i,j) 
 \;=\;
-\mathbb{P}_i\bigl(X_n = j\bigr)
+\mathbb{P}\bigl(X_n = j\bigr | X_0=i)
 \;\;\le\;\;
-\mathbb{P}_i\bigl(N_j \;\ge\; 1\bigr).
+\mathbb{P}\bigl(N_j \;\ge\; 1 | X_0=i\bigr)
 \]
-In fact, we can be more refined: to be in $j$ at time $n$, the chain must visit $j$ at least $\lceil n/\tau\rceil$ times for some threshold $\tau$, etc. But the simpler inclusion above suffices to deduce a limit of zero. Specifically, from part (a) with $t=1$, we know 
+% In fact, we can be more refined: to be in $j$ at time $n$, the chain must visit $j$ at least $\lceil n/\tau\rceil$ times for some threshold $\tau$, etc. But the simpler inclusion above suffices to deduce a limit of zero. 
+From part (a) we can upper bound $Cp^t$ for any $t\geq 1$ for some $C>0$ and $p\in(0,1)$ with $t=1$,
 \[
-\mathbb{P}_i(N_j \ge 1) 
+\mathbb{P}(N_j \ge 1 | X_0=i) 
 \;\;\le\;\;
 C \, p^1 
 \;=\;
@@ -888,14 +884,17 @@ C\,p
 \;<\; 
 1
 \]
-and indeed for any $t \ge 1$.  \\
-Actually, to conclude 
+Therefore, $$P^n(i,j) < 1$$ for some arbitrary $n$. \\
+Thus,
 \[
 \lim_{n\to\infty} P^n(i,j) 
-\;=\; 0,
+\;=\; 0
 \]
-we can use a common argument: if $\{P^n(i,j)\}_{n\ge1}$ did \emph{not} tend to $0$, there would exist some $\epsilon>0$ and an infinite subsequence $n_k$ such that $P^{n_k}(i,j) > \epsilon$ for all $k$. That would imply that with probability at least $\epsilon$ (from state $i$), we hit $j$ at times $n_k$. But that would mean $N_j$ is arbitrarily large with probability at least $\epsilon$, contradicting the exponential bound on $\mathbb{P}_i(N_j \ge t)$ for large $t$. \\
-Hence the only possibility is $P^n(i,j) \to 0$ as $n \to \infty$. This completes the proof of part (b).
+For the sake of contradiction, consider the scenario if $\{P^n(i,j)\}_{n\ge1}$ did not approach $0$. If so,
+there would exist some $\epsilon>0$ and an infinite subsequence $n_k$ such that $P^{n_k}(i,j) > \epsilon$, $\forall k$. 
+That would imply that with probability at least $\epsilon$ that starting from state $i$ the chain reaches state $j$ at times $n_k$. 
+However, that would force $N_j$ to be arbitrarily large with probability at least $\epsilon$, contradicting the exponential bound on $\mathbb{P}_i(N_j \ge t)$ for a large $t$. \\
+Thus, $\lim_{n\to\infty} P^n(i,j) =0$.
 }
 
 \end{enumerate}
@@ -907,41 +906,37 @@ The total variation distance $\|\lambda - \mu\|$ may also be expressed in the al
 \|\lambda - \mu\| = \sup_{A \subseteq S} |\lambda(A) - \mu(A)| = \frac{1}{2} \sum_{i \in S} |\lambda(i) - \mu(i)| = 1 - \sum_{i \in S} \min\{\lambda(i), \mu(i)\}.
 \]
 \textcolor{blue}{
-textbf{1. Showing} \(\displaystyle \|\lambda - \mu\| = \frac{1}{2}\sum_{i}|\lambda(i) - \mu(i)|\).
-\medskip
-\noindent
-\textbf{(a) Upper bound:} For any set \(A \subseteq S\), we have
+For any set \(A \subseteq S\), 
 \[
 \lambda(A) - \mu(A) 
 \;=\; \sum_{i \in A} \lambda(i) \;-\; \sum_{i \in A} \mu(i)
-\;=\; \sum_{i \in A} (\lambda(i) - \mu(i)).
+\;=\; \sum_{i \in A} (\lambda(i) - \mu(i))
 \]
-Hence
+As such, 
 \[
 |\lambda(A) - \mu(A)|
 \;\le\; \sum_{i \in A} |\lambda(i) - \mu(i)|
-\;\le\; \sum_{i \in S} |\lambda(i) - \mu(i)|.
+\;\le\; \sum_{i \in S} |\lambda(i) - \mu(i)|
 \]
-It follows that
+From the proofs in lecture, it follows that
 \[
 \|\lambda - \mu\| 
 \;=\; \sup_{A \subseteq S} |\lambda(A) - \mu(A)|
-\;\le\; \sum_{i \in S} |\lambda(i) - \mu(i)|.
+\;\le\; \sum_{i \in S} |\lambda(i) - \mu(i)|
 \]
-However, we will refine this to show it is exactly \(\tfrac12\sum_i|\lambda(i)-\mu(i)|\).
-\medskip
-\noindent
-\textbf{(b) Constructing a maximizing set:} Observe that
+Let us first define $(x)_+ = \max\{x,0\}$. Constructing a maximizing set, observe that 
 \[
 \sum_{i \in S} |\lambda(i) - \mu(i)|
 \;=\; \sum_{i \in S} \Bigl(\lambda(i) - \mu(i)\Bigr)_+ 
-\;+\; \sum_{i \in S} \Bigl(\mu(i) - \lambda(i)\Bigr)_+,
+\;+\; \sum_{i \in S} \Bigl(\mu(i) - \lambda(i)\Bigr)_+
 \]
-where $(x)_+ := \max\{x,0\}$. Note that exactly one of \(\bigl(\lambda(i)-\mu(i)\bigr)_+\) or \(\bigl(\mu(i)-\lambda(i)\bigr)_+\) is nonzero for each \(i\). This means
+Note that exactly one of \(\bigl(\lambda(i)-\mu(i)\bigr)_+\) or \(\bigl(\mu(i)-\lambda(i)\bigr)_+\) is nonzero for each \(i\). \\
+Since the total positive and negative differences must be the same, the sum naturally splits evenly. As such,
+$$\sum_{i\in S}\bigl(\lambda(i)-\mu(i)\bigr)_+=\sum_{i \in S}\bigl(\mu(i)-\lambda(i)\bigr)_+$$
 \[
 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|
 \;=\; 2 \sum_{i \in S} \bigl(\lambda(i) - \mu(i)\bigr)_+ 
-\;=\; 2 \sum_{i \in S} \bigl(\mu(i) - \lambda(i)\bigr)_+.
+\;=\; 2 \sum_{i \in S} \bigl(\mu(i) - \lambda(i)\bigr)_+
 \]
 Hence,
 \[
@@ -949,17 +944,17 @@ Hence,
 \;=\;
 \sum_{i \in S} (\mu(i)-\lambda(i))_+
 \;=\;
-\tfrac12 \sum_{i \in S} |\lambda(i) - \mu(i)|.
+\tfrac12 \sum_{i \in S} |\lambda(i) - \mu(i)|
 \]
-Define the set
+Defining the set
 \[
-A^* \;=\; \{\,i \in S : \lambda(i) \,\ge\, \mu(i)\}.
+A^* \;=\; \{\,i \in S : \lambda(i) \,\ge\, \mu(i)\}
 \]
-Then
+Using the definitions above,
 \[
 \lambda(A^*) - \mu(A^*)
 \;=\; \sum_{i \in A^*} \bigl(\lambda(i) - \mu(i)\bigr)
-\;=\; \sum_{i \in S} \bigl(\lambda(i)-\mu(i)\bigr)_+,
+\;=\; \sum_{i \in S} \bigl(\lambda(i)-\mu(i)\bigr)_+
 \]
 because \(\lambda(i)-\mu(i)\) is nonnegative for $i \in A^*$ and nonpositive for $i\notin A^*$. Therefore,
 \[
@@ -967,57 +962,50 @@ because \(\lambda(i)-\mu(i)\) is nonnegative for $i \in A^*$ and nonpositive for
 \;=\;
 \sum_{i \in S} \bigl(\lambda(i)-\mu(i)\bigr)_+
 \;=\;
-\tfrac12 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|.
+\tfrac12 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|
 \]
-Since $\|\lambda-\mu\| \ge |\lambda(A^*) - \mu(A^*)|$, we conclude
+Since $\|\lambda-\mu\| \ge |\lambda(A^*) - \mu(A^*)|$, 
 \[
 \|\lambda - \mu\|
 \;\ge\;
-\tfrac12 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|.
+\tfrac12 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|
 \]
-Combined with the earlier upper bound, this proves
+Combined with the earlier upper bound,
 \[
 \|\lambda - \mu\|
 \;=\;
-\tfrac12 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|.
+\tfrac12 \sum_{i \in S} \bigl|\lambda(i) - \mu(i)\bigr|
 \]
 \medskip
 \noindent
-\textbf{2. Showing} \(\displaystyle \|\lambda - \mu\| = 1 \;-\;\sum_{i} \min\{\lambda(i), \mu(i)\}\).
-\medskip
-\noindent
-From the expression
+To prove \(\displaystyle \|\lambda - \mu\| = 1 \;-\;\sum_{i} \min\{\lambda(i), \mu(i)\}\), first observe that trivially
 \[
 \sum_{i \in S} |\lambda(i) - \mu(i)|
 \;=\;
 \sum_{i \in S} \bigl(\lambda(i) + \mu(i)\bigr)
 \;-\; 2 \sum_{i \in S} \min\{\lambda(i), \mu(i)\},
 \]
-we see that 
+Since $\lambda$ and $\mu$ are probability measures, \ $\sum_{i \in S}\lambda(i)=\sum_{i \in S}\mu(i)=1$. As such,
 \[
 \sum_{i \in S} |\lambda(i) - \mu(i)|
 \;=\;
-(\underbrace{1+1}_{=2}) - 2\sum_{i \in S} \min\{\lambda(i), \mu(i)\}
+(1+1) - 2\sum_{i \in S} \min\{\lambda(i), \mu(i)\}
 \;=\;
-2 \Bigl[\,1 - \sum_{i \in S} \min\{\lambda(i), \mu(i)\}\Bigr],
+2 \Bigl[\,1 - \sum_{i \in S} \min\{\lambda(i), \mu(i)\}\Bigr]
 \]
-because $\lambda$ and $\mu$ are probability measures, i.e.\ $\sum_{i \in S}\lambda(i)=\sum_{i \in S}\mu(i)=1$. Dividing both sides by 2, and recalling from step (1) that $\|\lambda-\mu\| = \frac12 \sum_{i \in S}|\lambda(i)-\mu(i)|$, we obtain:
+Substituting back into $||\lambda - \mu||$,
+$$\|\lambda-\mu\| = \frac12 \sum_{i \in S}|\lambda(i)-\mu(i)| = \frac12 \cdot 2 \left[1 - \sum_{i\in S}\text{min}\{\lambda (i), \mu (i)\}\right]$$
 \[
 \|\lambda - \mu\|
 \;=\;
-1 \;-\; \sum_{i \in S} \min\{\lambda(i), \mu(i)\}.
+1 \;-\; \sum_{i \in S} \min\{\lambda(i), \mu(i)\}
 \]
-\medskip
-\noindent
-\textbf{Conclusion.} The three expressions
+As such,
 \[
-\sup_{A \subseteq S} \bigl|\lambda(A) - \mu(A)\bigr|,
-\quad
-\tfrac12 \sum_{i \in S} |\lambda(i) - \mu(i)|,
-\quad
+\|\lambda - \mu\| = \sup_{A \subseteq S} \bigl|\lambda(A) - \mu(A)\bigr| = 
+\tfrac12 \sum_{i \in S} |\lambda(i) - \mu(i)|  =
 1 - \sum_{i \in S} \min\{\lambda(i), \mu(i)\}
 \]
-are all equal. This completes the proof of the proposition.
 }
 
 \end{document}
