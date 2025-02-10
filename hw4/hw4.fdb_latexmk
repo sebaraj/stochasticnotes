@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1739153236.36706 "hw4.tex" "hw4.pdf" "hw4" 1739153236.85817 0
+["pdflatex"] 1739176207.58077 "hw4.tex" "hw4.pdf" "hw4" 1739176208.07791 0
   "/Users/bryansebaraj/Desktop/Screenshot 2025-02-09 at 2.26.54 PM.png" 1739129220.1479 44609 d2b51334f6c806a8612b1e07b6fd182a ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -11,6 +11,8 @@
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1246382020 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm" 1136768653 1332 f817c21a1ba54560425663374f1b651a ""
+  "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1136768653 1336 3125ccb448c1a09074e3aa4a9832f130 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -75,8 +77,8 @@
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk" 1736964384.48706 11524 1c2dd27d9692fd1eab599f04e7aa4fb2 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1724987687 6829296 8721aa43ee9a14915d884e1568411a02 ""
   "/Users/bryansebaraj/Library/TinyTeX/texmf.cnf" 1725035431.1561 708 85fd07691b6294ba94c59dbc62380410 ""
-  "hw4.aux" 1739153236.76843 32 f852561997c05a7d986acd1deeb530ec "pdflatex"
-  "hw4.tex" 1739153235.92613 18893 8425f9ced61a345bb22de0485398292c ""
+  "hw4.aux" 1739176207.98728 33 e6d77a6cc1977d88a849501f83258f9d "pdflatex"
+  "hw4.tex" 1739176205.19452 32069 3444f534262193c4fc7a0287038fd525 ""
   (generated)
   "hw4.aux"
   "hw4.log"
