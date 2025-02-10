@@ -34,6 +34,53 @@ u_{2m} = \frac{1}{4^{2m}} \sum_{k=0}^{m} \frac{(2m)!}{\{k!(m-k)!\}^2}
 
 (Hint: the walk either moves horizontally or vertically. If $2k$ steps are horizontal, then $2(m-k)$ steps are vertical.)
 
+\textcolor{blue}{
+   Observe that a return to the origin in an odd number of steps is trivially impossible, since each step changes one coordinate by $\pm 1$. In order to reach the origin again, the vertical and horizontal displacements must both be 0; as such, the number of steps to the left must equal the number of steps to the right, and the number of steps up must equal the number of steps down. This is impossible in a scenario with an odd number of steps. Therefore,
+\[
+u_{2m+1} \;=\; 0 
+\quad
+\text{for all integer } m \ge 0
+\]
+Computing $u_{2m}$: Since each step is equally likely to be horizontal or vertical, we may break down the $2m$ steps into $2k$ horizontal steps $2(m-k)$ vertical steps
+for some $k$ with $0 \le k \le m$. \\
+Within those $2k$ horizontal steps, there must be $k$ steps to the right and left each to end at $a=0$. The number of ways to arrange those $2k$ steps is 
+\[
+\binom{2k}{k}
+\]
+Similarly, for the $2(m-k)$ vertical steps, $(m-k)$ must be up and $(m-k)$ must be down. The number of ways to arrange $2(m-k)$ steps is 
+\[
+\binom{2(m-k)}{m-k}
+\]
+Note that we also need to consider $k$ in choosing which $2k$ steps are horizontal. The number of ways to choose which $2k$ steps (out of $2m$) are horizontal is 
+\[
+\binom{2m}{2k}
+\]
+Therefore, for a fixed $k$, the total number of configurations which lead back to the origin is
+\[
+\binom{2m}{2k} \; \binom{2k}{k} \; \binom{2(m-k)}{m-k}
+\]
+Since each of the $2m$ steps is one of four equally likely moves (left, right, up, down), each distinct path occurs with probability $4^{-2m}$. Summing over all $k$ from $0$ to $m$ yields
+\[
+u_{2m}
+\;=\;
+4^{-2m}
+\sum_{k=0}^{m}
+\binom{2m}{2k}\,\binom{2k}{k}\,\binom{2(m-k)}{m-k}
+\]
+Simplying the binomial terms,
+$$\binom{2m}{2k}\,\binom{2k}{k}\,\binom{2(m-k)}{m-k}=\left( \frac{(2m)!}{(2k)!(2m-2k)!}\right) \left(\frac{(2k)!}{k!k!} \right) \left( \frac{(2(m-k))!}{(m-k)!(m-k)!}\right)=$$
+$$\frac{(2m)!}{k!k!(m-k)!(m-k)!}=\frac{(2m)!}{\bigl[k! \,(m-k)!\bigr]^2}
+$$
+Thus,
+\[
+u_{2m}
+\;=\;
+\frac{1}{4^{2m}}
+\sum_{k=0}^{m}
+\frac{(2m)!}{[k!(m-k)!]^2}
+\]
+}
+
 \item (5 points) Use the fact that 
 $\sum_{k=0}^{m} \binom{m}{k}^2 = \binom{2m}{m}$
 to arrive at the simple expression
@@ -42,9 +89,102 @@ to arrive at the simple expression
 u_{2m} = \frac{1}{4^{2m}} \binom{2m}{m}^2.
 \]
 
+\textcolor{blue}{
+   Rearranging the sum,
+$$
+\sum_{k=0}^{m} \frac{(2m)!}{[k!(m-k)!]^2}
+= 
+\sum_{k=0}^{m} (2m)! \left(\frac{m!}{k!(m-k)!}\right)^2 \cdot \frac{1}{(m!)^2}=$$
+$$
+\sum_{k=0}^{m} \frac{(2m)!}{(m!)^2} \cdot (m!)^2 \binom{m}{k}^2 
+\frac{1}{(m!)^2}= \sum_{k=0}^{m} \binom{2m}{m} \binom{m}{k}^2=\binom{2m}{m} \sum_{k=0}^{m} \binom{m}{k}^2
+\;=\;
+\binom{2m}{m}^2.
+$$
+Thus,
+\[
+u_{2m} 
+\;=\;
+\frac{1}{4^{2m}} \binom{2m}{m}^2.
+\]}
+
+
 \item (10 points) As we did in class, use Stirling’s approximation $n! \sim \left(\frac{n}{e}\right)^n \sqrt{2\pi n}$ as $n \to \infty$ to conclude that $\sum_{n \geq 0} u_n = \infty$. (Hint: recall the fact mentioned in class: $\sum_{m \geq 1} m^{-\alpha} = \infty$ if $\alpha \leq 1$ and $< \infty$ if $\alpha > 1$.)
 
+\textcolor{blue}{Since $u_{2m+1} = 0$,
+\[
+    \sum_{m=0}^{\infty}u_m=\sum_{m=0}^{\infty} u_{2m}.
+\]
+Using the closed-form expression,
+\[
+u_{2m} 
+\;=\;
+\frac{1}{4^{2m}} \binom{2m}{m}^2,
+\]
+\[
+m! \;\sim\; \left(\frac{m}{e}\right)^m \sqrt{2\pi m}
+\]
+For our binomial,
+\[
+\binom{2m}{m}
+\;=\;
+\frac{(2m)!}{(m!)^2}
+\;\sim\;
+\frac{\sqrt{4\pi m}\,\bigl(\frac{2m}{e}\bigr)^{2m}}{(\sqrt{2\pi m}\,\bigl(\frac{m}{e}\bigr)^{m})^2}
+\;=\;
+\frac{\sqrt{4\pi m}\,(2m)^{2m} e^{-2m}}{2\pi m \, m^{2m} e^{-2m}}
+\;=\;
+\frac{4^m}{\sqrt{\pi m}}.
+\]
+Therefore,
+\[
+\binom{2m}{m}^2 
+\;\sim\;
+\frac{(4^m)^2}{\pi m}.
+\]
+Therefore, the full equation is
+\[
+u_{2m}
+\;=\;
+\frac{1}{4^{2m}} \binom{2m}{m}^2
+\;\sim\;
+\frac{1}{4^{2m}}\frac{(4^m)^2}{\pi m}\,
+\;=\;
+\frac{1}{\pi m}.
+\]
+So for any large $m$,
+\[
+u_{2m} \approx \frac{1}{\pi m}.
+\]
+Recall that the following harmonic series diverges:
+\[
+\sum_{m=1}^{\infty} \frac{1}{m}
+\]
+\[
+    \sum_{m=1}^{\infty} u_{2m}=\frac{1}{\pi} \sum_{m=1}^{\infty} \frac{1}{m}
+\]
+must also diverge. Therefore,
+\[
+\sum_{n=0}^{\infty} u_n
+\;=\;
+\sum_{m=0}^{\infty} u_{2m}
+\;=\;
+\infty.
+\]
+}
+
 \item (2 points) Use the classification criterion to conclude that the chain is \textit{recurrent}.
+
+\textcolor{blue}{By the standard classification criterion for Markov chains, if 
+\[
+    \mathbb{P}_i\{T_i = \infty\}=1
+\]
+then the state is recurrent. 
+Since $\sum_{n=0}^{\infty} u_n =
+\infty$, $$\mathbb{P}_0\{T_0 = \infty\}=1$$
+As such, the 2D nearest-neighbor random walk from the origin is recurrent on the origin. Note that recurrence holds, starting from any point on the plane and ending on the same point eventually, as the original assumptions in part (a) must trivially still hold for every point on the plane. 
+}
+
 \end{enumerate}
 
 2. (Nearest-neighbor walk in three dimensions)
@@ -59,12 +199,183 @@ u_{2m} = \frac{1}{6^{2m}} \sum_{k=0}^{m} \sum_{j=0}^{m-k} \frac{(2m)!}{\{j! k! (
 
 (Hint: Mimic the reasoning from part (a) in Problem 1, this time in three dimensions.)
 
+\textcolor{blue}{Note that in each step, one of the three coordinates changes by $\pm 1$. After an odd number of steps, the parity of the sum of coordinates will trivially be odd. Thus, it is impossible to be at $(0,0,0)$, with a sum with an even parity, after an odd number of steps. Therefore,
+\[
+u_{2m+1} = 0
+\quad \text{for all } m \ge 0
+\]
+Computing $u_{2m}$: \\
+Note that in order to return to $(0,0,0)$ after $2m$ steps, the total net displacement in each of the three directions must to be zero.  \\
+\begin{itemize}
+    \item Define the total number of steps that change the $x$-coordinate be $2j$ (so there are $j$ $+1$ and $j$ $-1$ jumps). 
+    \item Define the total number of steps that change the $y$-coordinate be $2k$ (so there are $k$ $+1$ and $k$ $-1$ jumps). 
+    \item Define the total number of steps that change the $z$-coordinate be $2(m-j-k)$ (so there are $m-j-k$ $+1$ and $m-j-k$ $-1$ jumps).
+\end{itemize}
+Since there is $2m$ steps in total,
+\[
+2j + 2k + 2(m-j-k) \;=\; 2m
+\]
+Given $j,k \geq 0$ such that $j + k \leq m$, the number of ways to choose which $2j$ of the $2m$ steps affect the $x$-coordinate is given by the binomial terms
+\[
+\binom{2m}{2j} \binom{2j}{j}
+\]
+Of the remaining $2m - 2j$ steps, the $2k$ that affect the $y$-coordinate is chosen using the binomial,
+\[
+\binom{2m - 2j}{2k} \binom{2k}{k}.
+\]
+The remaining $2(m-j-k)$ steps must affect the $z$-coordinate, with a corresponding binomial $\binom{2(m-j-k)}{m-j-k}$ to consider the $+1$ and $-1$ on the $z$-coordinate.  \\
+Hence, for a given pair of $j,k$, the number of paths returning to the origin is given by 
+\[
+\binom{2m}{2j} \binom{2j}{j}\;
+\binom{2m-2j}{2k} \binom{2k}{k}\;
+\binom{2(m-j-k)}{m-j-k}.
+\]
+Note that trivially, each path has probability $(1/6)^{2m}$ because at each of the $2m$ steps, there are 6 equally likely moves \\
+Summing over all valid pairs $(j,k)$ with $0 \le j \le m$ and $0 \le k \le m-j,$
+\[
+u_{2m}
+\;=\;
+\frac{1}{6^{2m}}
+\sum_{k=0}^{m}
+\sum_{j=0}^{m-k}
+\binom{2m}{2j}\binom{2j}{j}\;
+\binom{2m-2j}{2k}\binom{2k}{k}\;
+\binom{2(m-j-k)}{m-j-k}.
+\]
+Rewriting the combinatorial coefficients as factorials,
+\[
+\binom{2m}{2j}\binom{2j}{j}\;\binom{2m-2j}{2k}\binom{2k}{k}\;\binom{2(m-j-k)}{m-j-k}
+\;=\; 
+\]
+\[
+\frac{(2m)!}{(2j)!(2m-2j)!}
+\;\times\;
+\frac{(2j)!}{j!j!}
+\;\times\;
+\frac{(2m-2j)!}{(2k)!(2m-2j-2k)!}
+\;\times\;
+\frac{(2k)!}{k!k!}
+\;\times\;
+\frac{(2(m-j-k))!}{(m-j-k)!(m-j-k)!}=
+\]
+\[
+\frac{(2m)!}{\{j!k!(m-j-k)!\}^2}.
+\]
+Thus,
+\[
+u_{2m} 
+\;=\;
+\frac{1}{6^{2m}}
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\frac{(2m)!}{\{j!\,k!\,(m-j-k)!\}^2}.
+\]
+}
+
 \item (5 points) Simplify the above expression as
 
 $$u_{2m} = \frac{1}{2^{2m}} \binom{2m}{m} \sum_{k=0}^{m} \sum_{j=0}^{m-k} p_{k,j}, 
 \text{ where }
 p_{k,j} = \frac{1}{3^m} \binom{m}{k} \binom{m-k}{j}.
 $$
+
+\textcolor{blue}{
+Note that $\binom{2m}{m} = \frac{(2m)!}{(m!)^2}$. Therefore, the inner sum can be rewritten as 
+\[
+\frac{(2m)!}{\{j!\,k!\,(m-j-k)!\}^2}
+\;=\;
+\binom{2m}{m}
+\;\frac{(m!)^2}{\{j!\,k!\,(m-j-k)!\}^2}.
+\]
+Hence,
+\[
+u_{2m}
+=
+\frac{1}{6^{2m}}
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\binom{2m}{m}
+\;\frac{(m!)^2}{\{j!\,k!\,(m-j-k)!\}^2}
+=
+\binom{2m}{m}
+\;
+\frac{1}{6^{2m}}
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\frac{(m!)^2}{\{j!\,k!\,(m-j-k)!\}^2}.
+\]
+\noindent
+Notice the multinomial cofficient,
+\[
+\frac{(m!)^2}{\{j!\,k!\,(m-j-k)!\}^2}
+\;=\;
+\left[
+\binom{m}{j,k,m-j-k}
+\right]^2
+\]
+This suggests we factor the sum as
+\[
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\binom{m}{j,k,m-j-k}^2
+\;=\;
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\left( \binom{j}{j}\binom{m-j-k+j}{j}\binom{m-j-k+j+k}{k} \right)^2=
+\]
+\[
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\left(\binom{m}{k}\binom{m-k}{j}\right)^2
+\]
+Splitting up the leading term from $u_{2m}$,
+\[
+\frac{1}{6^{2m}}
+= 
+\frac{1}{(2 \cdot 3)^{2m}}
+= 
+\frac{1}{2^{2m}}\;\frac{1}{3^{2m}}
+\]
+Moving $\frac{1}{3^{2m}}$ into the sum,
+\[
+u_{2m}
+=
+\binom{2m}{m}
+\;
+\frac{1}{2^{2m}}
+\sum_{k=0}^m
+\sum_{j=0}^{m-k}
+\frac{1}{3^{2m}}
+\left(\binom{m}{k}\binom{m-k}{j}\right)^2
+\]
+% We can group $\frac{1}{3^m}$ out of the sum for each ``part'' of the multinomial in a convenient way.  In particular, define 
+% \[
+% p_{k,j} 
+% \;=\; 
+% \frac{1}{3^m}\,\binom{m}{k}\,\binom{m-k}{j}.
+% \]
+% Then
+% \[
+% \sum_{k=0}^m
+% \sum_{j=0}^{m-k}
+% p_{k,j}
+% =
+% \sum_{k=0}^m
+% \sum_{j=0}^{m-k}
+% \frac{1}{3^m}
+% \binom{m}{k}\binom{m-k}{j},
+% \]
+% and we expect a factor of $\frac{1}{2^{2m}}\,\binom{2m}{m}$ in front. \\
+Using the definition of $p_{k,j}$, the sum can be rewritten as 
+$$u_{2m}=\frac{1}{2^{2m}}\binom{2m}{m}\sum_{k=0}^{m}\sum_{j=0}^{m-k}(p_{k,j})^2$$
+% Rearranging details and performing consistent factoring (some combinatorial manipulations can be made more explicit, but the main idea is to note that $(m!)^2 / [j!\,k!\,(m-j-k)!]^2$ can be turned into product forms of binomial coefficients times $1/3^m$ etc.), one arrives at
+% \[
+% u_{2m} 
+% \;=\; 
+% \frac{1}{2^{2m}} \binom{2m}{m} \sum_{k=0}^{m} \sum_{j=0}^{m-k} p_{k,j}.
+% \]
+% This is precisely the desired simplification.
+}
 
 \item (10 points) Show that
 
@@ -74,6 +385,46 @@ $$
 
 (Hint: how many ways to distribute $m$ balls into 3 urns?)
 
+\textcolor{blue}{Reversing the steps used in the previous part, we see that 
+\[
+\binom{m}{k} \binom{m-k}{j}
+\;=\;
+\frac{m!}{k!\,(m-k)!}
+\;\times\;
+\frac{(m-k)!}{j!\,(m-k-j)!}
+\;=\;
+\frac{m!}{k!\,j!\,(m-k-j)!}
+\]
+Therefore,
+\[
+\sum_{k=0}^{m} \sum_{j=0}^{m-k} 
+\binom{m}{k}\,\binom{m-k}{j}
+\;=\;
+\sum_{k=0}^m \sum_{j=0}^{m-k} \frac{m!}{k!\,j!\,(m-k-j)!}
+\]
+This is the standard multinomial expansion of $(1+1+1)^m = 3^m$. 
+This can be can interpreted $k,j,m-k-j$ as a partition of $m$ balls into 3 disjoint urns, with one urn for each axis ($x$-urn, $y$-urn, $z$-urn), and the total number of ways is exactly $3^m$. \\  Therefore,
+\[
+\sum_{k=0}^{m} \sum_{j=0}^{m-k}
+\binom{m}{k}\binom{m-k}{j}
+\;=\;
+3^m
+\]
+Dividing both sides by $3^m$,
+\[
+\sum_{k=0}^{m} \sum_{j=0}^{m-k} 
+\frac{1}{3^m} \binom{m}{k}\,\binom{m-k}{j}
+\;=\;
+1
+\]
+By the definition of $p_{k,j}$,
+\[
+\sum_{k=0}^{m} \sum_{j=0}^{m-k} p_{k,j} 
+\;=\;
+1
+\]
+}
+
 \item (Bonus, 5 points) Using Stirling’s approximation, one can show that
 
 \[
@@ -82,11 +433,172 @@ $$
 
 for some positive constant $C$, where the maximum is over all $k,j \geq 0$ such that $k+j \leq m$.
 
+\textcolor{blue}{
+    Expanding the definition of $p_{k,j}$,
+    $$\binom{m}{k}=\frac{m!}{k!(m-k)!}$$
+    Taking the natural logarithm,
+    $$\ln \binom{m}{k}=\ln m!-\ln k!-\ln (m-k)!$$
+    Using Stirling's approximation,
+    $$\ln(k!) \approx k \ln(k) - k \text{ and } \ln(m-k)! \approx (m-k)\ln(m-k) - (m-k)$$
+    Differentiating with respect to $k$ and setting to zero,
+    $$-(\ln(m-k)+1)+(\ln(k)+1)=0$$
+    $$\ln(k)=\ln(m-k)$$
+    $$k=m-k$$
+    $$k=\frac{m}{2}$$
+    Similarly for $\binom{m-k}{j}$,
+    $$\binom{m-k}{j}=\frac{(m-k)!}{j!(m-k-j)!}$$
+    Taking the natural logarithm,
+    $$\ln \binom{m-k}{j}=\ln (m-k)!-\ln j!-\ln (m-k-j)!$$
+    Using Stirling's approximation,
+    $$ln(j!) \approx j \ln(j) - j \text{ and } \ln(m-k-j)! \approx (m-k-j)\ln(m-k-j) - (m-k-j)$$
+    Differentiating with respect to $j$ and setting to zero,
+    $$-(\ln(m-k-j)+1)+(\ln(j)+1)=0$$
+    $$\ln(j)=\ln(m-k-j)$$
+    $$2j=m-k$$
+    $$j=\frac{m-k}{2}$$
+    Therefore, $\binom{m}{k}$ is maximized around $k \approx m/2$, and $\binom{m-k}{j}$ is maximized around $j \approx (m-k)/2$. 
+    Approximating $\binom{m}{k}$ when $k \approx m/2$,
+\[
+\binom{m}{m/2} \approx \frac{2^m}{\sqrt{\pi m}}
+\]
+Similarly, for \(\binom{m-k}{j}\) at \(j \approx (m-k)/2\):
+\[
+\binom{m-k}{(m-k)/2} \approx \frac{2^{m-k}}{\sqrt{\pi (m-k)}}
+\]
+Thus, at the maximum,
+\[
+p_{k,j} \approx \frac{1}{3^m} \cdot \frac{2^m}{\sqrt{\pi m}} \cdot \frac{2^{m-k}}{\sqrt{\pi (m-k)}}
+\]
+Setting \(k \approx m/2\),
+\[
+p_{k,j} \approx \frac{1}{3^m} \cdot \frac{2^m}{\sqrt{\pi m}} \cdot \frac{2^{m/2}}{\sqrt{\pi (m/2)}}
+= \frac{2^{3m/2}}{3^m \pi \sqrt{m} \sqrt{m/2}}
+= \frac{2^{3m/2}}{3^m \pi m \sqrt{2}}
+\]
+Given that $\frac{(2^{3m/2}}{3^m\pi m\sqrt{2}}\leq 1$, $\forall m \geq 0$,
+\[
+    \text{max}_{k,j}p_{k,j} \leq \frac{C}{m}
+\]
+for some constant \(C\).
+}
+
 \item (5 points) Combine parts (b), (c), (d) and use Stirling’s approximation to show that 
 $u_{2m} \leq \frac{C'}{m^{3/2}}$
 for some constant $C'$ and $\sum_{n \geq 0} u_n < \infty$.
 
+\textcolor{blue}{Recall that
+\[
+u_{2m} 
+\;=\; 
+\frac{1}{2^{2m}} \binom{2m}{m} 
+\;\sum_{k=0}^m \sum_{j=0}^{m-k} p_{k,j}^2
+\]
+Using the bound from part (d),
+\[
+p_{k,j} \;\le\; \frac{C}{m}
+\]
+so
+\[
+p_{k,j} \;=\; \frac{1}{3^m}\binom{m}{k}\binom{m-k}{j} \;\le\; \frac{C}{m}
+\]
+% Note the number of terms in $\sum_{k=0}^m \sum_{j=0}^{m-k}$ is on the order of $m^2$, but each term is at most $\frac{C}{m}$, hence 
+% \[
+% \sum_{k=0}^m \sum_{j=0}^{m-k} p_{k,j}
+% \;\le\;
+% (m^2)\cdot \frac{C}{m} 
+% \;=\; 
+% C\,m
+% \]
+Therefore,
+\[
+u_{2m}
+\;\le\;
+\frac{C}{m} 
+\;\frac{1}{2^{2m}} \binom{2m}{m}.
+\]
+Using Stirling's approximation for $\binom{2m}{m}$,
+\[
+\binom{2m}{m} 
+\;=\; 
+\frac{(2m)!}{(m!)^2}
+\;\sim\;
+\frac{\sqrt{4\pi m}\,\left(\frac{2m}{e}\right)^{2m}}{\left(\sqrt{2\pi m}\,\left(\frac{m}{e}\right)^m\right)^2}
+\;=\;
+\frac{4^m}{\sqrt{\pi m}}
+\]
+Thus,
+\[
+\frac{1}{2^{2m}} \binom{2m}{m}
+\;\sim\;
+\frac{4^m}{2^{2m}\sqrt{\pi m}}
+\;=\;
+\frac{4^m}{4^m\sqrt{\pi m}}
+\;=\;
+\frac{1}{\sqrt{\pi m}}
+\]
+Therefore,
+\[
+u_{2m}
+\;\le\;
+\frac{C}{m}
+\frac{1}{2^{2m}} \binom{2m}{m}
+\;\sim\;
+\frac{C}{m}
+\frac{1}{\sqrt{\pi m}}
+\;=\;
+\frac{C}{\sqrt{\pi}m^{3/2}} 
+\]
+Define $C' = \frac{C}{\sqrt{\pi}}$ to get
+$$u_{2m}\leq \frac{C'}{m^{3/2}}$$
+% But this is a bit too crude in the sense that we want to show an \emph{even smaller} power law. Indeed, a more refined version (or an even more precise counting argument with the bonus part) can show that $u_{2m}$ behaves like 
+% \[
+% \frac{\mathrm{const}}{m^{3/2}}.
+% \]
+% A classical result for the 3D simple random walk states that 
+% \[
+% u_{2m} \;\sim\; \frac{\mathrm{const}}{m^{3/2}}.
+% \]
+% For the purpose of summation, it is enough that there is a constant $C'$ such that
+% \[
+% u_{2m} 
+% \;\le\; 
+% \frac{C'}{m^{3/2}},
+% \]
+% for sufficiently large $m$.  
+Note that $\sum_{m=0}^{\infty}\frac{C'}{m^{3/2}} < \infty$ and converges, as $d = 3$ in $\sum_{m=0}^{\infty}\frac{1}{m^{d/2}}$ (from lecture).
+Since $u_{2m} \leq \frac{C'}{m^{3/2}}$ for all $m \geq 0$,
+\[
+\sum_{m=0}^{\infty} u_{2m} \ \ 
+\text{converges} 
+\]
+As such,
+\[
+\sum_{n=0}^{\infty} u_n 
+\;=\;
+\sum_{m=0}^{\infty} u_{2m}
+\;<\;
+\infty.
+\]
+}
+
+
 \item (2 points) Use the classification criterion to conclude that the chain is \textit{transient}.
+
+ \textcolor{blue}{By the standard classification criterion for Markov chains, a state is transient if 
+\[
+\sum_{n=0}^{\infty} u_n 
+\;<\;
+\infty
+\]
+Since we have shown 
+\[
+\sum_{n=0}^\infty u_n
+\;<\;
+\infty
+\]
+it follows that the origin is transient. Since the underlying assumptions from part (a) are required for the return to the initial state for all states in the 3D state space, all points in $S$ are also transient. Thus, the 3D nearest-neighbor random walk is transient.
+}
+
 \end{enumerate}
 
 3. Let $i$ be a recurrent state of a Markov Chain. Assume another state $j$ is accessible from $i$.
