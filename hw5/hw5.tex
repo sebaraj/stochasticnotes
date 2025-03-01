@@ -20,7 +20,69 @@
 
 \noindent 1. (20 points) Let $G = (V, E)$ be a connected simple graph. Let $d(i)$ denote the degree of vertex $i$, which varies for different vertices. Let $\pi$ be the uniform distribution on the vertex set $V$. Let the base chain be the random walk on $G$. Apply the Metropolis method to modify the chain so that the stationary distribution is the uniform distribution $\pi$. Find the resulting transition matrix.
 
-\bigskip
+\textcolor{blue}{
+    Denote by \( d(i) \) the degree of vertex \( i \) and by \( N(i) \) the set of its neighbors. Consider the base chain corresponding to the simple random walk on \( G \). Its transition probabilities are given by
+\[
+Q(i,j) =
+\begin{cases}
+\frac{1}{d(i)} & \text{if } (i,j) \in E, \\
+0 & \text{otherwise.}
+\end{cases}
+\]
+The goal is to transform the stationary distribution of the chain into a uniform distribution \(\pi\) on \(V\), where
+\[
+\pi(i)=\frac{1}{|V|}, \quad \forall\, i\in V
+\]
+The Metropolis algorithm adjusts the proposal \( Q(i,j) \) by accepting moves with probability
+\[
+\alpha(i,j) = \min\left\{ 1, \frac{\pi(j) Q(j,i)}{\pi(i) Q(i,j)} \right\}
+\]
+For \( i,j \) such that \( (i,j) \in E \),
+\[
+Q(i,j) = \frac{1}{d(i)} \quad \text{and} \quad Q(j,i) = \frac{1}{d(j)}
+\]
+Since \(\pi(i)=\pi(j)=\frac{1}{|V|}\), the acceptance probability becomes
+\[
+\alpha(i,j) = \min\left\{ 1, \frac{(1/|V|)(1/d(j))}{(1/|V|)(1/d(i))} \right\} 
+= \min\left\{ 1, \frac{d(i)}{d(j)} \right\}
+\]
+The self-transition probability is defined to ensure that the rows of the transition matrix sum to 1,
+\[
+P(i,i) = 1 - \sum_{k \in N(i)} P(i,k)
+% = 1 - \sum_{j \in N(i)} \frac{1}{d(i)} \min\left\{ 1, \frac{d(i)}{d(j)} \right\}.
+\]
+Thus, every value in the transition matrix is given by
+\[
+P(i,j) = Q(i,j)\,\alpha(i,j) =
+\begin{cases}
+\frac{1}{d(i)} \min\left\{ 1, \frac{d(i)}{d(j)} \right\} & \text{if } (i,j)\in E \\
+1 - \sum_{k \in N(i)} P(i,k) & \text{if } i=j \\
+% 1 - \sum_{j \in N(i)} \frac{1}{d(i)} \min\left\{ 1, \frac{d(i)}{d(j)} \right\} & \text{if } i=j \\
+0 & \text{otherwise}
+\end{cases}
+\]
+\medskip
+To confirm that \(\pi\) is the stationary distribution of the modified chain, we verify the detailed balance condition. For any \( i,j \in V \) with \( (i,j) \in E \),
+\[
+    \pi(i) P(i,j) = \frac{1}{|V|} \frac{1}{d(i)} \min\left\{ 1, \frac{d(i)}{d(j)} \right\} \quad \text{ and } \quad
+\pi(j) P(j,i) = \frac{1}{|V|} \frac{1}{d(j)} \min\left\{ 1, \frac{d(j)}{d(i)} \right\}
+\]
+Observe that
+\[
+\min\left\{ 1, \frac{d(i)}{d(j)} \right\} = \frac{d(i)}{d(j)} \min\left\{ 1, \frac{d(j)}{d(i)} \right\}
+\]
+Therefore,
+\[
+\pi(i) P(i,j) = \frac{1}{|V|} \frac{1}{d(i)} \min\left\{ 1, \frac{d(i)}{d(j)} \right\} 
+= \frac{1}{|V|} \frac{1}{d(j)} \min\left\{ 1, \frac{d(j)}{d(i)} \right\} 
+= \pi(j) P(j,i)
+\]
+Thus, the detailed balance condition,
+\[
+\pi(i)P(i,j) = \pi(j)P(j,i)
+\]
+holds for all \( i,j \) with \( (i,j) \in E \) (and this chain is a time-reversible MC). Therefore, \(\pi\) is the stationary distribution of the modified chain.
+}
 
 \noindent 2. (Metropolis for optimization) Consider the knapsack problem: Given $m$ items with weights $w_1, \dots, w_m$ and values $v_1, \dots, v_m$, and a total weight budget $W$, the goal is to find the subset of items with maximal value subject to a weight constraint. This can be formulated as a constrained optimization problem:
 
@@ -40,32 +102,164 @@ Here the maximization is over the decision variable $x = (x_1, \dots, x_m) \in \
 
 \begin{itemize}
     \item[(a)] (5 points) Consider the following Markov chain. Starting from the initial state $(0,0, \dots, 0)$ (an empty knapsack), if the current state is $x = (x_1, \dots, x_m)$, in the next step update it as follows: Choose an item $J$ uniformly at random and replace $x_J$ by $1 - x_J$. If this satisfies the constraint, update $x$ accordingly; otherwise, do not update $x$. Identify the state space of this Markov chain and its transition rule.
+
+        \textcolor{blue}{
+            Define the set of \emph{feasible} solutions by
+\[
+C = \{\, x = (x_1, x_2, \dots, x_m) \in \{0,1\}^m : \sum_{i=1}^m w_i x_i \le W \,\}.
+\]
+Thus, the state space of the chain is the set \( C \). \\ 
+The chain is initialized at the empty knapsack \( x = (0,0,\dots,0) \). Given the current state \( x \in C \), the chain evolves as follows:
+\begin{enumerate}
+    \item Choose an index \( J \) uniformly at random from \( \{1,2,\dots, m\} \) (with probability \(1/m\)).
+    \item Let \( x^J \) be the state obtained from \( x \) by flipping the \( J \)th coordinate; that is, 
+    \[
+    x^J_i = 
+    \begin{cases}
+    1-x_i, & \text{if } i=J, \\
+    x_i, & \text{if } i\neq J.
+    \end{cases}
+    \]
+    \item If \( x^J \in C \) (i.e., the weight constraint is still satisfied), then update \( x \) to \( x^J \); otherwise, leave \( x \) unchanged.
+\end{enumerate}
+Formally, if we define
+\[
+A(x) = \{\, J \in \{1,\dots, m\} : x^J \in C \,\} \quad \text{and} \quad B(x) = \{\, J \in \{1,\dots, m\} : x^J \notin C \,\},
+\]
+then the one-step transition probability \( P(x,y) \) is given by
+\[
+P(x,y) =
+\begin{cases}
+\displaystyle \frac{1}{m}, & \text{if } y = x^J \text{ for some } J \in A(x), \\[2mm]
+\displaystyle \frac{|B(x)|}{m}, & \text{if } y = x, \\[2mm]
+0, & \text{otherwise.}
+\end{cases}
+\]
+        }
     
     \item[(b)] (5 points) Show that the stationary distribution of this chain is the uniform distribution over the feasible set 
     \[
     C = \{(x_1, \dots, x_m) : \sum_{i=1}^{m} x_i w_i \leq W, x_i \in \{0,1\}\}.
     \]
+
+    \textcolor{blue}{
+        We claim that the stationary distribution of the chain is the uniform distribution over \( C \), i.e.,
+\[
+\pi(x) = \frac{1}{|C|} \quad \text{for all } x \in C.
+\]
+To see this, note that if \( x,y \in C \) differ in exactly one coordinate (say, \( y = x^J \) for some \( J \)), then by the definition of the chain,
+\[
+P(x,y) = \frac{1}{m} \quad \text{and} \quad P(y,x) = \frac{1}{m},
+\]
+since the move \( x \to y \) (or \( y \to x \)) is accepted if feasible. Thus, for such neighboring states we have
+\[
+\pi(x)P(x,y) = \frac{1}{|C|} \cdot \frac{1}{m} = \frac{1}{|C|} \cdot \frac{1}{m} = \pi(y)P(y,x).
+\]
+For moves in which the chain stays in the same state (either because the proposed move is infeasible or because it is rejected by construction), the balance is trivial. Hence, the detailed balance condition holds for all transitions, and the uniform distribution over \( C \) is indeed stationary.
+    }
     
     \item[(c)] (5 points) Recall the goal is to maximize the value of the selected items. Fix some parameter $\beta > 0$. Define a distribution $\pi$ over the feasible set $C$ such that
     \[
     \pi(x) \propto \exp(\beta f(x)), \quad x \in C
     \]
-    where $f(x) = \sum_{i=1}^{m} x_i v_i$ is the objective function. If we choose a large $\beta$, $\pi$ is close to the uniform distribution over the maximizers. Use the chain in part (a) as the base chain and apply Metropolis method to produce a modified chain with stationary distribution $\pi$. Find the transition rule.
+where $f(x) = \sum_{i=1}^{m} x_i v_i$ is the objective function. If we choose a large $\beta$, $\pi$ is close to the uniform distribution over the maximizers. Use the chain in part (a) as the base chain and apply Metropolis method to produce a modified chain with stationary distribution $\pi$. Find the transition rule.
+
+    \textcolor{blue}{
+%     Our goal is to favor states with higher total value. Define the objective function
+% \[
+% f(x) = \sum_{i=1}^m x_i v_i,
+% \]
+% and for a fixed parameter \(\beta > 0\) define the target distribution on \( C \) by
+% \[
+% \pi(x) \propto \exp(\beta f(x)), \quad x \in C.
+% \]
+When \(\beta\) is large, \(\pi\) concentrates most of its mass on the maximizers of \( f \). \\
+We now modify the base chain (from part (a)) using the Metropolis algorithm. Starting from a current state \( x \in C \), we proceed as follows:
+\begin{enumerate}
+    \item Propose a candidate \( y \) by choosing an index \( J \in \{1,\dots, m\} \) uniformly at random and setting \( y = x^J \) (with the stipulation that if \( x^J \notin C \), then we set \( y = x \)).
+    \item If \( y \neq x \) (i.e., if the proposed flip yields a feasible new state), accept the move with probability
+    \[
+    \alpha(x,y) = \min\Bigl\{ 1, \frac{\pi(y)}{\pi(x)} \Bigr\} 
+    = \min\Bigl\{ 1, \exp\bigl(\beta (f(y)-f(x))\bigr) \Bigr\}.
+    \]
+    If the move is rejected, remain at \( x \).
+\end{enumerate}
+Thus, for any \( x\in C \) and for any \( J\in \{1,\dots,m\} \), let \( x^J \) denote the state obtained by flipping the \(J\)th coordinate. Then the modified transition probability is given by:
+\[
+P(x,y)=
+\begin{cases}
+\displaystyle \frac{1}{m}\min\Bigl\{1, \exp\bigl(\beta (f(y)-f(x))\bigr)\Bigr\}, & \text{if } y = x^J \in C \text{ for some } J \text{ and } y \neq x,\\[2mm]
+\displaystyle 1 - \sum_{J:\, x^J \in C,\, x^J \neq x} \frac{1}{m}\min\Bigl\{1, \exp\bigl(\beta (f(x^J)-f(x))\bigr)\Bigr\} - \sum_{J:\, x^J \notin C} \frac{1}{m}, & \text{if } y = x,\\[2mm]
+0, & \text{otherwise.}
+\end{cases}
+\]
+It is easy to verify that with this transition rule, the detailed balance condition
+\[
+\pi(x)P(x,y) = \pi(y)P(y,x)
+\]
+is satisfied for all \( x,y\in C \), and hence \(\pi(x) \propto \exp(\beta f(x))\) is the stationary distribution.
+    }
+
 \end{itemize}
 
 \textbf{Chang Problems}
 
 \noindent 1.26. (15 points) Let $\pi_0$ and $\rho_0$ be probability mass
 functions on $\mathcal{S}$, and define $\pi_1 = \pi_0 P$ and $\rho_1 = \rho_0
-P$, where $P$ is a probability transition matrix. Show that $|\pi_1 - \rho_1|
-\leq |\pi_0 - \rho_0|$. That is, in terms of total variation distance, $\pi_1$
+P$, where $P$ is a probability transition matrix. Show that $||\pi_1 - \rho_1||
+\leq ||\pi_0 - \rho_0||$. That is, in terms of total variation distance, $\pi_1$
 and $\rho_1$ are closer to each other than $\pi_0$ and $\rho_0$ were.
+
+\textcolor{blue}{
+    An alternative (dual) characterization of the total variation distance is
+\[
+\|\mu-\nu\|_{TV} = \sup_{\|f\|_\infty \le 1} \left| \sum_{x\in \mathcal{S}} f(x)(\mu(x)-\nu(x)) \right|,
+\]
+where the supremum is taken over all functions \(f:\mathcal{S}\to\mathbb{R}\) with \(\|f\|_\infty \le 1\) (that is, \(|f(x)| \le 1\) for all \(x\in \mathcal{S}\)).
+\medskip
+\noindent \textbf{Step 2. Expressing \(\pi_1-\rho_1\):} 
+For any function \(f\) with \(\|f\|_\infty \le 1\), we have
+\[
+\sum_{y\in\mathcal{S}} f(y)\left(\pi_1(y)-\rho_1(y)\right) 
+=\sum_{y\in\mathcal{S}} f(y) \left( \sum_{x\in\mathcal{S}} (\pi_0(x)-\rho_0(x)) P(x,y) \right).
+\]
+Interchanging the sums, we obtain
+\[
+\sum_{y\in\mathcal{S}} f(y)\left(\pi_1(y)-\rho_1(y)\right) 
+=\sum_{x\in\mathcal{S}} (\pi_0(x)-\rho_0(x)) \left( \sum_{y\in\mathcal{S}} f(y)P(x,y) \right).
+\]
+Define
+\[
+g(x) = \sum_{y\in\mathcal{S}} f(y)P(x,y).
+\]
+\medskip
+\noindent \textbf{Step 3. Bounding \(g(x)\):}
+Since \(P(x,\cdot)\) is a probability mass function and \(|f(y)| \le 1\) for all \(y\), it follows that
+\[
+|g(x)| \le \sum_{y\in\mathcal{S}} |f(y)| P(x,y) \le \sum_{y\in\mathcal{S}} P(x,y) = 1.
+\]
+Thus, \(\|g\|_\infty \le 1\).
+\medskip
+\noindent \textbf{Step 4. Applying the Dual Representation:}
+Using the definition of total variation distance for the pair \((\pi_0, \rho_0)\), we have
+\[
+\left|\sum_{x\in\mathcal{S}} (\pi_0(x)-\rho_0(x))g(x)\right| \le \|\pi_0-\rho_0\|_{TV}.
+\]
+Since this inequality holds for every function \(f\) with \(\|f\|_\infty \le 1\) (and the corresponding function \(g\) defined above also satisfies \(\|g\|_\infty \le 1\)), we obtain
+\[
+\sup_{\|f\|_\infty \le 1} \left|\sum_{y\in\mathcal{S}} f(y)\left(\pi_1(y)-\rho_1(y)\right)\right| \le \|\pi_0-\rho_0\|_{TV}.
+\]
+By the dual representation, the left-hand side is exactly \(\|\pi_1-\rho_1\|_{TV}\). Hence,
+\[
+\|\pi_1-\rho_1\|_{TV} \le \|\pi_0-\rho_0\|_{TV}.
+\]
+}
 
 \noindent 2.1. (5 points) For a branching process $\{G_t\}$ with $G_0 = 1$, define the probability generating function of $G_t$ to be $\psi_t$, that is,
 \[
 \psi_t(z) = \mathbb{E}[z^{G_t}] = \sum_{k=0}^{\infty} z^k P(G_t = k).
 \]
-With $\psi$ defined as in (2.1), show that $\psi_1(z) = \psi(z)$, $\psi_2(z) = \psi(\psi(z))$, $\psi_3(z) = \psi(\psi(\psi(z)))$, and so on.
+With $\psi$ defined as $\rho = \sum_{k=0}^{\infty}f(k)\rho^k =: \psi(\rho)$, show that $\psi_1(z) = \psi(z)$, $\psi_2(z) = \psi(\psi(z))$, $\psi_3(z) = \psi(\psi(\psi(z)))$, and so on.
 
 \bigskip
 
