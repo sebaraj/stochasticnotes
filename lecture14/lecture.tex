@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\usepackage[a4paper, margin=0.5in]{geometry}
+
+
+
+\title{S\&DS 351 - Stochastic Processes - Lecture 14 Notes}
+\author{Bryan SebaRaj}
+\date{March 3, 2025}
+
+\begin{document}
+
+\maketitle
+
+\includegraphics[scale=0.7]{/Users/bryansebaraj/Downloads/IMG_0653.jpg}
+
+\includegraphics[scale=0.7]{/Users/bryansebaraj/Downloads/IMG_0654.jpg}
+
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0655.jpg}
+
+
+\section*{Martingales}
+
+Remember that Markov chains are memoryless. 
+Martingales take advantage of fairness (some can have memory), used for gamblind, stock markets, etc.
+
+Notation: Given a stochastic process, $W_k, k \geq 0$, 
+Let $W_{m:n}=\{W_m,...W_n \}$ for $m < n$. 
+
+Definition: a process $M_n, n \geq 0$ is a martingale (MG) if $\forall n \in \mathbb{N}$, $E[M_{n+1}|M_{0:n}]=M_n$.
+In words, a markov chain conditional on the process until now on the expectation in the future you stay you are here.
+
+Remark: What is ``fairness" here?
+$M_n =$ running fortune at time $n$. The gambling game is fair if whatever is your running fortune until now, at the next step, your expected fortune is the same.
+
+
+Recall that $\mathbb{E}[f(X)|X]=f(X)$ and if $Y$ is independent of $X$, then $\mathbb{E}[Y|X]=\mathbb{E}[Y]$.
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0658.jpg}
+
+\includegraphics[scale=0.6]{/Users/bryansebaraj/Downloads/IMG_0659.jpg}
+
+Recall that $\mathbb{E}[f(X)|X]=f(X)$ and if $Y$ is independent of $X$, then $\mathbb{E}[Y|X]=\mathbb{E}[Y]$.
+
+\includegraphics[width=0.9\textwidth]{../images/IMG_0659 3.jpg}
+
+\includegraphics[width=0.9\textwidth]{../images/IMG_0660 2.jpg}
+
+
+
+
+
+\end{document}
+
+
