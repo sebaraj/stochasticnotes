@@ -261,9 +261,148 @@ By the dual representation, the left-hand side is exactly \(\|\pi_1-\rho_1\|_{TV
 \]
 With $\psi$ defined as $\rho = \sum_{k=0}^{\infty}f(k)\rho^k =: \psi(\rho)$, show that $\psi_1(z) = \psi(z)$, $\psi_2(z) = \psi(\psi(z))$, $\psi_3(z) = \psi(\psi(\psi(z)))$, and so on.
 
-\bigskip
+\textcolor{blue}{
+    We prove by induction on the generation number \( t \) that
+\[
+\psi_t(z) = \underbrace{\psi(\psi(\cdots \psi(z) \cdots))}_{t \text{ times}}.
+\]
+\textbf{Base Case:} For \( t = 1 \), the process starts with one individual, i.e., \( G_0 = 1 \). By definition, the number of offspring produced by this single individual is distributed with probability generating function
+\[
+\psi(z) = \sum_{k=0}^{\infty} f(k)z^k.
+\]
+Since \( G_1 \) is exactly the number of offspring of the initial individual, we have
+\[
+\psi_1(z) = \mathbb{E}[z^{G_1}] = \psi(z).
+\]
+\textbf{Inductive Step:} Assume that for some \( t \ge 1 \),
+\[
+\psi_t(z) = \underbrace{\psi(\psi(\cdots \psi(z) \cdots))}_{t \text{ times}}.
+\]
+We now show that
+\[
+\psi_{t+1}(z) = \psi(\psi_t(z)).
+\]
+Each individual in generation \( t \) produces offspring independently according to the generating function \( \psi(z) \). Conditioning on the number of individuals \( G_t \) in generation \( t \), the generating function for generation \( t+1 \) is given by
+\[
+\psi_{t+1}(z) = \mathbb{E}[z^{G_{t+1}}] = \mathbb{E}\left[z^{\sum_{i=1}^{G_t} X_i}\right],
+\]
+where \( \{X_i\} \) are i.i.d. random variables representing the number of offspring of each individual in generation \( t \). Since the \( X_i \)'s are independent and each has generating function \( \psi(z) \), we have
+\[
+\mathbb{E}\left[z^{\sum_{i=1}^{G_t} X_i}\right] = \mathbb{E}\left[\prod_{i=1}^{G_t} z^{X_i}\right] = \mathbb{E}\left[\prod_{i=1}^{G_t} \psi(z)\right] = \mathbb{E}\left[\psi(z)^{G_t}\right].
+\]
+But by the definition of the generating function for \( G_t \),
+\[
+\mathbb{E}\left[\psi(z)^{G_t}\right] = \psi_t(\psi(z)).
+\]
+Thus,
+\[
+\psi_{t+1}(z) = \psi_t(\psi(z)).
+\]
+By the inductive hypothesis, \( \psi_t(z) \) is the \( t \)-fold composition of \( \psi \) with itself, so we conclude that
+\[
+\psi_{t+1}(z) = \underbrace{\psi(\psi(\cdots \psi(z) \cdots))}_{t+1 \text{ times}}.
+\]
+Therefore, by induction, for all \( t \geq 1 \),
+\[
+\psi_t(z) = \underbrace{\psi(\psi(\cdots \psi(z) \cdots))}_{t \text{ times}},
+\]
+which implies in particular that
+\[
+\psi_1(z) = \psi(z), \quad \psi_2(z) = \psi(\psi(z)), \quad \psi_3(z) = \psi(\psi(\psi(z))),
+\]
+and so on.
+}
+
 
 \noindent 2.3. (5 points) Consider a branching process with offspring distribution $\text{Poisson}(2)$, that is, Poisson with mean 2. Calculate the extinction probability $p$ to four decimal places.
+
+\textcolor{blue}{
+    \emph{Step 1. Determine the probability generating function (PGF).} \\
+The offspring distribution is $\mathrm{Poisson}(2)$, whose PGF is given by
+\[
+f(s) \;=\; \mathbb{E}[s^X] \;=\; \exp\bigl(\lambda (s - 1)\bigr)
+\]
+where $\lambda = 2$ in our case. Hence
+\[
+f(s) \;=\; \exp\bigl(2(s - 1)\bigr).
+\]
+\noindent \emph{Step 2. Find the fixed-point equation for the extinction probability.} \\
+By standard branching process theory, the extinction probability $p$ is the smallest nonnegative root of the equation
+\[
+p \;=\; f(p).
+\]
+Substituting the PGF, we obtain
+\[
+p \;=\; \exp\bigl(2(p - 1)\bigr).
+\]
+\noindent \emph{Step 3. Solve for $p$.} \\
+Rewriting:
+\[
+p = e^{2p - 2}
+\quad\Longleftrightarrow\quad
+\ln p = 2p \;-\; 2
+\quad\Longleftrightarrow\quad
+2p \;-\; \ln p = 2.
+\]
+Since $\lambda = 2 > 1$, there exists a unique solution to this equation in the interval $(0,1)$. This solution can be obtained either via iterative methods or direct numerical algorithms (e.g., the \texttt{nsolve} routine in a computer algebra system).
+\noindent \emph{Step 4. Numerical approximation.} \\
+A simple numerical method shows that
+\[
+p \;\approx\; 0.2032.
+\]
+Thus, to four decimal places, the extinction probability is
+\[
+p \approx 0.2032.
+\]
+}
+%
+% \textcolor{blue}{
+%     Let \( p \) denote the extinction probability of the branching process. By definition, \( p \) is the smallest nonnegative solution of
+% \[
+% p = \psi(p),
+% \]
+% where \(\psi(s)\) is the probability generating function (pgf) of the offspring distribution. For a \(\text{Poisson}(2)\) random variable, the pgf is given by
+% \[
+%     \psi(s) = e^{\lambda(s-1)} = e^{2(s-1)}.
+% \]
+% Thus, the fixed point equation for the extinction probability becomes
+% \[
+% p = e^{2(p-1)}.
+% \]
+% To solve for \(p\), rewrite the equation as
+% \[
+% p = e^{2p-2} \quad \Longrightarrow \quad p\, e^{-2p} = e^{-2}.
+% \]
+% Multiplying both sides by \(-2\) yields
+% \[
+% -2p\, e^{-2p} = -2e^{-2}.
+% \]
+% Introduce the substitution \( x = -2p \). Then the equation becomes
+% \[
+% x\, e^{x} = -2e^{-2}.
+% \]
+% By the definition of the Lambert \(W\) function, which satisfies
+% \[
+% W(z)e^{W(z)} = z,
+% \]
+% we have
+% \[
+% x = W(-2e^{-2}).
+% \]
+% Thus,
+% \[
+% p = -\frac{x}{2} = -\frac{1}{2}W(-2e^{-2}).
+% \]
+% Since \(-2e^{-2} \in [-1/e,0)\), there are two real branches of the Lambert \(W\) function. However, the extinction probability is the unique solution in the interval \([0,1)\), which corresponds to the principal branch \(W_0\). Therefore,
+% \[
+% p = -\frac{1}{2}W_0(-2e^{-2}).
+% \]
+% A numerical evaluation of the above expression yields
+% \[
+% p \approx 0.2032,
+% \]
+% to four decimal places.
+% }
 
 \bigskip
 
@@ -279,16 +418,193 @@ Define the diagonal elements $Q(i,i)$ so that the rows of $Q$ sum to 1.
 \begin{itemize}
     \item[(a)] (8 points) What is the stationary distribution of $\{Y_t\}$, in terms of $\pi$ and $\alpha$?
 
-    \textcolor{blue}{}
+    \textcolor{blue}{\emph{Step 1: Detailed balance in separate ``blocks''.} 
+Consider three main cases of transitions from $i$ to $j$:
+\begin{itemize}
+\item \underline{Case 1:} $i,j \in A$. Then $Q(i,j) = P(i,j)$ (for $i\neq j$). By reversibility of $P$ w.r.t.\ $\pi$, we have
+\[
+  \pi(i)\,P(i,j) = \pi(j)\,P(j,i).
+\]
+Hence, to satisfy time-reversal in this block, we want 
+\[
+  \mu(i)\,P(i,j)\;=\;\mu(j)\,P(j,i).
+\]
+If we assume $\mu(i)=c_A\,\pi(i)$ for $i\in A$, then
+\[
+  c_A\,\pi(i)\,P(i,j) 
+  \;=\;
+  c_A\,\pi(j)\,P(j,i),
+\]
+which holds if and only if $\pi(i)\,P(i,j)=\pi(j)\,P(j,i)$. 
+But that is true by hypothesis. 
+Hence any constant factor $c_A$ works for transitions strictly within $A$.
+\item \underline{Case 2:} $i,j \notin A$. The transition again is $Q(i,j)=P(i,j)$. 
+A similar argument shows that setting $\mu(i) = c_B\,\pi(i)$ for $i\notin A$ works for these transitions, as long as $\{X_t\}$ is reversible w.r.t.\ $\pi$. 
+Indeed:
+\[
+  c_B\,\pi(i)\,P(i,j)\;=\;c_B\,\pi(j)\,P(j,i)
+  \quad\Longleftrightarrow\quad
+  \pi(i)\,P(i,j)\;=\;\pi(j)\,P(j,i),
+\]
+which is again valid by $\pi$'s detailed balance with $P$.
+\item \underline{Case 3:} $i\in A$, $j\notin A$. Here $Q(i,j)=\alpha\,P(i,j)$ and $Q(j,i)=P(j,i)$ (since $j\notin A$). 
+We want
+\[
+  \mu(i)\,\alpha\,P(i,j)\;=\;\mu(j)\,P(j,i).
+\]
+Since $\mu(i)=c_A\,\pi(i)$ for $i\in A$ and $\mu(j)=c_B\,\pi(j)$ for $j\notin A$, the above becomes
+\[
+  c_A\,\pi(i)\,\alpha\,P(i,j) 
+  \;=\;
+  c_B\,\pi(j)\,P(j,i).
+\]
+But by the original chain's time-reversibility, 
+\(
+  \pi(i)\,P(i,j) \;=\; \pi(j)\,P(j,i).
+\)
+Thus the left side is $c_A\,\alpha\,\pi(j)\,P(j,i)$, and matching both sides yields
+\[
+  c_A\,\alpha\,\pi(j)\,P(j,i)
+  \;=\;
+  c_B\,\pi(j)\,P(j,i)
+  \quad\Longrightarrow\quad
+  c_A\,\alpha = c_B
+  \quad
+  \bigl(\text{assuming } \pi(j)\,P(j,i)\neq 0\bigr).
+\]
+Hence we get a single equation connecting $c_A$ and $c_B$.
+\item \underline{Case 4:} $i\notin A$, $j\in A$. By symmetry, $Q(i,j)=P(i,j)$ and $Q(j,i)=\alpha\,P(j,i)$. 
+We similarly obtain $c_B = \alpha\,c_A$. 
+\end{itemize}
+\medskip
+\noindent
+\emph{Step 2: Normalization.} 
+From Case~3 (and 4) we have 
+\[
+  c_B \;=\;\alpha\,c_A.
+\]
+We also need $\sum_{i\in \mathcal{S}} \mu(i)=1$, which gives
+\[
+  1 
+  \;=\;
+  \sum_{i\in A}\mu(i)\;+\;\sum_{j\notin A}\mu(j)
+  \;=\;
+  c_A \sum_{i\in A}\pi(i)\;+\;
+  c_B \sum_{j\notin A}\pi(j).
+\]
+Let $s_A=\sum_{i\in A}\pi(i)$ and $s_B=\sum_{j\notin A}\pi(j)$. Note $s_A + s_B = \sum_{i\in \mathcal{S}} \pi(i) = 1$. 
+Hence 
+\[
+  1 
+  \;=\;
+  c_A\,s_A \;+\; (\alpha\,c_A)\,s_B
+  \;=\;
+  c_A\,\bigl[s_A + \alpha\,s_B\bigr],
+\]
+so
+\[
+  c_A 
+  \;=\;
+  \frac{1}{\,s_A + \alpha\,s_B\,},
+  \qquad
+  c_B
+  \;=\;
+  \frac{\alpha}{\,s_A + \alpha\,s_B\,}.
+\]
+Thus the stationary distribution for the chain $\{Y_t\}$ is 
+\[
+  \mu(i) 
+  \;=\;
+  \begin{cases}
+    \displaystyle 
+    \frac{\pi(i)}{\,s_A + \alpha\,s_B\,}, 
+    & i\in A,\\[7pt]
+    \displaystyle
+    \frac{\alpha\,\pi(i)}{\,s_A + \alpha\,s_B\,}, 
+    & i\notin A.
+  \end{cases}
+\]
+Since $s_A = \sum_{i\in A}\pi(i)$ and $s_B = 1-s_A$, we can rewrite the denominator if desired. 
+Either way, the answer is an explicit function of $(\pi,\alpha)$:
+\[
+  \boxed{
+  \mu(i) 
+  \;=\;
+  \begin{cases}
+    \dfrac{\pi(i)}{\,\sum_{k\in A}\pi(k) \;+\; \alpha\,\sum_{\ell\notin A}\pi(\ell)\,}, & i \in A,\\[10pt]
+    \dfrac{\alpha \,\pi(i)}{\,\sum_{k\in A}\pi(k) \;+\; \alpha\,\sum_{\ell\notin A}\pi(\ell)\,}, & i \notin A.
+  \end{cases}
+  }
+\]}
 
     \item[(b)] (2 points) Show that the chain $\{Y_t\}$ is also time-reversible.
 
-    \textcolor{blue}{}
+    \textcolor{blue}{To prove $\{Y_t\}$ is time-reversible, it suffices to show that $\mu$ (just derived) satisfies the detailed balance condition 
+\[
+  \mu(i)\,Q(i,j) \;=\; \mu(j)\,Q(j,i)
+  \quad\text{for all } i,j.
+\]
+But we have actually verified this already in the course of deriving $\mu$. 
+\begin{itemize}
+\item 
+Inside $A$ or inside $\mathcal{S}\setminus A$, $Q$ is identical to $P$ and $\mu$ is proportional to $\pi$. So detailed balance holds by the original reversibility of $\pi$ and $P$.
+\item 
+Across the boundary between $A$ and $\mathcal{S}\setminus A$, the factor $\alpha$ appears on one side but not the other. This mismatch is corrected by the relation $c_B=\alpha\,c_A$ in $\mu$. Hence it maintains the equal product form $\mu(i)\,Q(i,j)=\mu(j)\,Q(j,i)$ in those cross transitions as well.
+\end{itemize}
+Therefore,
+\[
+  \mu(i)\,Q(i,j) 
+  \;=\;
+  \mu(j)\,Q(j,i)
+  \quad
+  \forall i,j
+  \quad\Longrightarrow\quad
+  \text{$\{Y_t\}$ is time-reversible w.r.t.\ $\mu$.}
+\]
+Since time-reversibility implies stationarity as well, $\mu$ is indeed the stationary distribution.
+}
 
 
     \item[(c)] (5 points) Show by example that the simple relationship of part (1) need not hold if we drop the assumption that $X$ is reversible.
 
-    \textcolor{blue}{}
+    \textcolor{blue}{Consider a 3-state Markov chain with states $\{1,2,3\}$ and transition matrix $P$ given by
+\[
+  P \;=\;
+  \begin{pmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+  \end{pmatrix}.
+\]
+This chain is a directed cycle $1 \to 2 \to 3 \to 1$. 
+Its unique stationary distribution is $\pi = (1/3,\,1/3,\,1/3)$. 
+But the chain is not reversible because for instance, $\pi(1)\,P(1,2) = \tfrac13\cdot 1 = \tfrac13$ while $\pi(2)\,P(2,1)=\tfrac13 \cdot 0=0$, which are not equal.
+\smallskip
+Let $A=\{1\}$ and $\alpha\in(0,1)$. Define a modified chain $Q$ by
+\[
+  Q(1,2) \;=\; \alpha,\quad Q(1,3)=0,\quad Q(1,1)=1-\alpha,
+  \quad
+  \text{and}
+  \quad
+  Q(i,j)=P(i,j) \text{ for }i\neq 1.
+\]
+If we try to ``guess'' a stationary distribution of the simple form
+\(\mu(1)= c_A\,\pi(1),\,\mu(2)=c_B\,\pi(2),\,\mu(3)=c_B\,\pi(3)\)
+as if the chain were reversible, we would end up imposing relations akin to
+\[
+  \mu(1)\,\alpha
+  \;=\;
+  \mu(2)\,P(2,1),
+  \quad
+  \mu(1)\,\alpha\,P(1,2)
+  \;=\;
+  \mu(2)\,P(2,1), 
+  \quad
+  \ldots
+\]
+but $P(2,1)=0$, so these quickly lead to contradictions (or trivialize $\alpha=0$). 
+Hence, the neat factorization from part~(a) breaks down in the nonreversible case.
+}
 
 \end{itemize}
 
@@ -304,11 +620,113 @@ and of course define $P(i,i) = 1 - \sum_{j \neq i} P(i,j)$.
 
     \item[(a)] (5 points) Show that the probability transition matrix $P$ has stationary distribution $\pi$. 
 
-    \textcolor{blue}{}
+    \textcolor{blue}{Fix two distinct states $i \neq j$. By the definition of $P$, we have
+\[
+  P(i,j)
+  \;=\;
+  Q(i,j)\;\min\!\Bigl(1,\frac{\pi(j)\,Q(j,i)}{\pi(i)\,Q(i,j)}\Bigr),
+  \quad
+  P(j,i)
+  \;=\;
+  Q(j,i)\;\min\!\Bigl(1,\frac{\pi(i)\,Q(i,j)}{\pi(j)\,Q(j,i)}\Bigr).
+\]
+Consider the product $\pi(i)\,P(i,j)$. Substituting from above,
+\[
+  \pi(i)\,P(i,j)
+  \;=\;
+  \pi(i)\,Q(i,j)\,\min\!\Bigl(1,\frac{\pi(j)\,Q(j,i)}{\pi(i)\,Q(i,j)}\Bigr).
+\]
+We analyze the ratio
+\[
+  \frac{\pi(j)\,Q(j,i)}{\pi(i)\,Q(i,j)}.
+\]
+Let us denote this ratio by $r > 0$ (since $\pi$ and $Q$ are strictly positive). 
+Note that
+\[
+  \min(1,r) \;=\;
+  \begin{cases}
+  r, & r \le 1,\\
+  1, & r \ge 1.
+  \end{cases}
+\]
+Hence,
+\[
+  \pi(i)\,P(i,j)
+  \;=\;
+  \begin{cases}
+  \pi(i)\,Q(i,j)\,r, & \text{if } r \le 1,\\[3pt]
+  \pi(i)\,Q(i,j), & \text{if } r \ge 1.
+  \end{cases}
+  \;=\;
+  \begin{cases}
+  \pi(j)\,Q(j,i), & \text{if } r \le 1,\\[3pt]
+  \pi(i)\,Q(i,j), & \text{if } r \ge 1.
+  \end{cases}
+\]
+But precisely the same reasoning applies to $\pi(j)\,P(j,i)$, with the roles of $i$ and $j$ reversed. In particular,
+\[
+  \pi(j)\,P(j,i)
+  \;=\;
+  \begin{cases}
+  \pi(j)\,Q(j,i), & \text{if } r \ge 1,\\[3pt]
+  \pi(i)\,Q(i,j), & \text{if } r \le 1.
+  \end{cases}
+\]
+Hence, in either case ($r\le 1$ or $r\ge 1$), the two products $\pi(i)\,P(i,j)$ and $\pi(j)\,P(j,i)$ coincide. Therefore
+\[
+  \pi(i)\,P(i,j) \;=\; \pi(j)\,P(j,i),
+  \quad\text{for each }i\neq j.
+\]
+Since this holds for all $i \neq j$, the detailed balance condition is satisfied. 
+It follows that $\pi$ is indeed a stationary (and actually \emph{reversible}) distribution for $P$:
+\[
+  \sum_{i}\pi(i)\,P(i,j) 
+  \;=\; \sum_{i}\pi(j)\,P(j,i)
+  \;=\;
+  \pi(j)\sum_{i}P(j,i)
+  \;=\;
+  \pi(j).
+\]}
 
     \item[(b)] (5 points) Show how the Metropolis method we have discussed is a special case of this Metropolis-Hastings method.
 
-    \textcolor{blue}{}
+    \textcolor{blue}{In the \emph{Metropolis} algorithm (sometimes called the \emph{independence sampler}), we typically choose a symmetric proposal distribution $Q(i,j)$, i.e.\ 
+\[
+  Q(i,j)\;=\;Q(j,i)\quad \forall i,j.
+\]
+In the simplest classic setting, $Q(i,j)$ might be 
+\[
+  Q(i,j) 
+  \;=\;
+  \begin{cases}
+    \frac{1}{\text{(degree of $i$)}}, & \text{if $j$ is a neighbor of $i$},\\[3pt]
+    0, & \text{otherwise}.
+  \end{cases}
+\]
+In any case, if $Q$ is symmetric then
+\[
+  \frac{\pi(j)\,Q(j,i)}{\pi(i)\,Q(i,j)}
+  \;=\;
+  \frac{\pi(j)}{\pi(i)}.
+\]
+Thus the Metropolis--Hastings update rule
+\[
+  P(i,j) \;=\; Q(i,j)\,\min\!\Bigl(1,\frac{\pi(j)\,Q(j,i)}{\pi(i)\,Q(i,j)}\Bigr)
+\]
+becomes
+\[
+  P(i,j) \;=\; Q(i,j)\,\min\!\Bigl(1,\frac{\pi(j)}{\pi(i)}\Bigr).
+\]
+This is exactly the classical Metropolis acceptance probability
+\[
+  a(i,j) 
+  \;=\; 
+  \min\bigl(1,\tfrac{\pi(j)}{\pi(i)}\bigr),
+\]
+multiplied by $Q(i,j)$ to decide how often we propose a move from $i$ to $j$ in the first place. \\ 
+Hence, when $Q$ is symmetric, the Metropolis--Hastings chain reduces to the usual Metropolis algorithm. 
+Therefore, the Metropolis method is indeed a \emph{special case} of Metropolis--Hastings.
+}
 
 \end{itemize}
 
@@ -333,7 +751,103 @@ for the “backward” probabilities. Show that it is appropriate to start the c
 % \beta_{t-1}(x_{t-1}) = \sum_{x_t} A(x_{t-1}, x_t) B(x_t, y_t) \beta_t(x_t).
 % \]
 
-\textcolor{blue}{}
+\textcolor{blue}{\textbf{1. Definition of backward probabilities.}
+Backward probability: \\ 
+For $t = 1, 2, \ldots, n$, define
+\[
+\beta_t(x_t) 
+\;:=\; 
+p\bigl(y_{t+1}, y_{t+2}, \dots, y_n \,\mid\, x_t\bigr),
+\]
+where $\{x_t\}$ denotes the underlying (hidden) state sequence and $\{y_t\}$ the observed emission sequence. 
+Thus $\beta_t(x_t)$ is the conditional probability of ``all future observations'' $y_{t+1},\dots,y_n$ given that the hidden chain is in state $x_t$ at time $t$.
+\bigskip
+\noindent
+\textbf{2. Derivation of the backward recursion.}
+\noindent
+To derive the recursion for $\beta_{t-1}(x_{t-1})$, we write:
+\[
+\beta_{t-1}(x_{t-1}) 
+\;=\; 
+p\bigl(y_t, y_{t+1}, \dots, y_n \,\mid\, x_{t-1}\bigr).
+\]
+We note that
+\[
+p(y_t, y_{t+1}, \dots, y_n \mid x_{t-1})
+\;=\;
+\sum_{x_t \in \mathcal{X}}
+p\bigl(y_t, y_{t+1}, \dots, y_n, x_t \,\mid\, x_{t-1}\bigr),
+\]
+where we sum over all possible states $x_t$ that the chain might occupy at time $t$. Next, we factor the joint probability inside the sum as
+\[
+p\bigl(y_t, y_{t+1}, \dots, y_n, x_t \,\mid\, x_{t-1}\bigr)
+\;=\;
+p\bigl(x_t \,\mid\, x_{t-1}\bigr)\; p\bigl(y_t, y_{t+1}, \dots, y_n \,\mid\, x_{t-1}, x_t\bigr).
+\]
+Since the transition from $x_{t-1}$ to $x_t$ is given by $A(x_{t-1}, x_t)$ under the Markov property, we identify
+\[
+p\bigl(x_t \,\mid\, x_{t-1}\bigr)
+\;=\;
+A(x_{t-1}, x_t).
+\]
+Furthermore, the probability of the future observations $y_t, y_{t+1}, \dots, y_n$ given $x_{t-1}, x_t$ can be split, by conditional independence assumptions of the HMM, as follows:
+\[
+p\bigl(y_t, y_{t+1}, \dots, y_n \,\mid\, x_{t-1}, x_t \bigr)
+\;=\;
+p\bigl(y_t \,\mid\, x_t \bigr)\;p\bigl(y_{t+1}, \dots, y_n \,\mid\, x_t \bigr).
+\]
+By the definition of the emission probabilities, we have
+\[
+p(y_t \,\mid\, x_t)
+\;=\;
+B(x_t, y_t),
+\]
+and by the definition of $\beta_t(x_t)$ as the probability of all future observations given the current state $x_t$, we identify
+\[
+p\bigl(y_{t+1}, \dots, y_n \,\mid\, x_t \bigr)
+\;=\;
+\beta_t(x_t).
+\]
+Putting all these pieces together, we get
+\[
+p\bigl(y_t, y_{t+1}, \dots, y_n \mid x_{t-1}\bigr)
+\;=\;
+\sum_{x_t \in \mathcal{X}} 
+A(x_{t-1}, x_t)\;
+B(x_t, y_t)\;
+\beta_t(x_t).
+\]
+Hence,
+\[
+\beta_{t-1}(x_{t-1})
+\;=\;
+\sum_{x_t \in \mathcal{X}} 
+A(x_{t-1}, x_t)\;
+B(x_t, y_t)\;
+\beta_t(x_t).
+\]
+This proves the backward recursion.
+\bigskip
+\noindent
+\textbf{3. Initial condition for backward probabilities.}
+\noindent
+Finally, we justify why we set $\beta_n(x_n) = 1$ for all $x_n$. By the definition, 
+\[
+\beta_n(x_n)
+\;=\;
+p\bigl(y_{n+1}, \dots, y_n \,\mid\, x_n\bigr).
+\]
+However, for $t=n$, the expression $y_{n+1}, \dots, y_n$ corresponds to an \emph{empty set} of observations (i.e.\ there are no future observations after time $n$). The probability of observing an empty set of future outcomes is conventionally 1, since we have
+\[
+p\bigl(\varnothing \mid x_n\bigr)
+\;=\;
+1.
+\]
+Therefore, we set 
+\[
+\beta_n(x_n) = 1,
+\]
+which initializes our backward recursion.}
 
 \bigskip
 
