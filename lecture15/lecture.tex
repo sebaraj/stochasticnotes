@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\usepackage[a4paper, margin=0.5in]{geometry}
+
+
+
+\title{S\&DS 351 - Stochastic Processes - Lecture 15 Notes}
+\author{Bryan SebaRaj}
+\date{March 5, 2025}
+
+\begin{document}
+
+\maketitle
+
+% \includegraphics[scale=0.6]{../images/}
+
+\subsection*{Submartingales and Supermartingales}
+Definition: a process $X_n, n \geq 0$ is a submartingale (subMG) w.r.t. to a
+process $W_n, n\geq0$, if $\forall n \in N, X_n \leq
+\mathbb{E}[X_{n+1}|W_{0:n}]$ 
+
+Definition: a process $X_n, n \geq 0$ is a supermartingale (superMG) w.r.t. to
+a process $W_n, n\geq0$, if $\forall n \in N, X_n \geq
+\mathbb{E}[X_{n+1}|W_{0:n}]$ 
+
+Example: Random walk on $\mathbb{Z}$, biased (w.p. $p\in [0,1]$),
+
+\includegraphics[width=0.4\textwidth]{../images/IMG_0668.jpg}
+\includegraphics[width=0.5\textwidth]{../images/IMG_0669.jpg}
+
+
+\subsection*{Optional Stopping Theorem (OST)}
+Simple tower property:
+
+For $M_n$ in a martingale, 
+
+$$\mathbb{E}[M_{n+1}|W_{0:n}]=M_n$$
+
+$$\mathbb{E}[\mathbb{E}[M_{n+1}|W_{0:n}]]=\mathbb{E}[M_n]$$
+
+$$\mathbb{E}[M_{n+1}]=\mathbb{E}[M_n] = ... = \mathbb{E}[M_0]$$
+
+$$\forall n \geq 0, \mathbb{E}[M_n]=\mathbb{E}[M_0]$$
+
+Martingale is in fact fiar in a much stronger sense than (*) is T is a random time (some assumptions), then 
+$$\mathbb{E}[M_T]=\mathbb{E}[M_0]$$
+
+
+\includegraphics[width=0.8\textwidth]{../images/IMG_0670.jpg}
+
+\subsection*{Remarks}
+
+\begin{enumerate} 
+    \item From MCs, we have seen stopping times, e.g. for a
+stochastic random walk $S_n, n\geq 0$, $T_1 = inf\{n\geq 0 | S_n = 1\}$ or $T_2
+= inf\{n\geq 0 | S_n = 1000 or S_n = -3\}$ are stoppign times \\
+Note: $T_1 = \infty$ if $S_n \neq 1, \forall n \in \mathbb{N}$ \\
+$\forall k = 0, 1, 2, ...$, $$1(T_1=k) = 1(S_0 \neq 1, S_1\neq 1, ..., S_{k-1}\neq 1, S_k =1$$ a function of $S_0, S_1, ..., S_k$ \\
+\item not a stopping time? $S_n$ is a stochastic random walk $T_3 = \sup\{n\leq 3 | S_n  =\max_{0\leq k \leq 3} S_k\}$
+
+    \includegraphics[width=0.8\textwidth]{../images/IMG_0671.jpg}
+
+    In other words, cannot stop early, need to know the future to determine if $S_n$ is a stopping time.
+\item Stopping times make sense as strategies of a gambler. At time $k$, a gambler wants to either stop and leave or continue playing.
+    The information until time $n$ is $W_{0:n}$, $\{T=k\}, \forall k$ should be a function of $W_{0:k}$.
+
+\end{enumerate}
+
+\subsection*{OST}
+For $T$ stopping time, $\mathbb{E}(M_T)= \mathbb{E}(M_0)$. But need $\mathbb{P}(T < +\infty)=1$
+
+\subsection*{Example}
+
+    \includegraphics[width=0.8\textwidth]{../images/IMG_0672.jpg}
+
+    \includegraphics[width=0.8\textwidth]{../images/IMG_0673.jpg}
+            
+    \includegraphics[width=0.8\textwidth]{../images/IMG_0674.jpg}
+
+\subsection*{Theorem}
+
+\includegraphics[width=0.8\textwidth]{../images/IMG_0675.jpg}
+
+\includegraphics[width=0.8\textwidth]{../images/IMG_0677.jpg}
+
+
+    
+
+
+
+
+\end{document}
+
+
