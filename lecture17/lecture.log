@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  26 MAR 2025 12:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.30)  26 MAR 2025 14:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -227,44 +227,92 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
  (/Users/bryansebaraj/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+<../images/IMG_0730.jpg, id=1, 3850.385pt x 2346.7675pt>
+File: ../images/IMG_0730.jpg Graphic file (type jpg)
+<use ../images/IMG_0730.jpg>
+Package pdftex.def Info: ../images/IMG_0730.jpg  used on input line 23.
+(pdftex.def)             Requested size: 472.71088pt x 288.08133pt.
+<../images/IMG_0731.jpg, id=2, 2106.87125pt x 1748.5325pt>
+File: ../images/IMG_0731.jpg Graphic file (type jpg)
+<use ../images/IMG_0731.jpg>
+Package pdftex.def Info: ../images/IMG_0731.jpg  used on input line 25.
+(pdftex.def)             Requested size: 315.14594pt x 261.54819pt.
+<../images/IMG_0732.jpg, id=3, 2163.08125pt x 2403.98125pt>
+File: ../images/IMG_0732.jpg Graphic file (type jpg)
+<use ../images/IMG_0732.jpg>
+Package pdftex.def Info: ../images/IMG_0732.jpg  used on input line 26.
+(pdftex.def)             Requested size: 210.09193pt x 233.47935pt.
 
-LaTeX Warning: File `../images/IMG_07120.jpg' not found on input line 23.
+Overfull \hbox (17.2222pt too wide) in paragraph at lines 25--27
+[][] [] 
+ []
 
+<../images/IMG_0733.jpg, id=4, 3141.7375pt x 2263.45625pt>
+File: ../images/IMG_0733.jpg Graphic file (type jpg)
+<use ../images/IMG_0733.jpg>
+Package pdftex.def Info: ../images/IMG_0733.jpg  used on input line 28.
+(pdftex.def)             Requested size: 315.14594pt x 227.01509pt.
+<../images/IMG_0734.jpg, id=5, 2182.1525pt x 2843.62375pt>
+File: ../images/IMG_0734.jpg Graphic file (type jpg)
+<use ../images/IMG_0734.jpg>
+Package pdftex.def Info: ../images/IMG_0734.jpg  used on input line 29.
+(pdftex.def)             Requested size: 210.09193pt x 273.74844pt.
 
-./lecture.tex:23: Package pdftex.def Error: File `../images/IMG_07120.jpg' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.23 ...th=0.9\textwidth]{../images/IMG_07120.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+Overfull \hbox (17.2222pt too wide) in paragraph at lines 28--30
+[][] [] 
+ []
 
 
 
 [1
 
-{/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./lecture.aux)
+{/Users/bryansebaraj/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../images/IMG_0730.jpg> <../images/IMG_0731.jpg> <../images/IMG_0732.jpg>]
+<../images/IMG_0735.jpg, id=14, 4047.12pt x 3035.34pt>
+File: ../images/IMG_0735.jpg Graphic file (type jpg)
+<use ../images/IMG_0735.jpg>
+Package pdftex.def Info: ../images/IMG_0735.jpg  used on input line 43.
+(pdftex.def)             Requested size: 367.6649pt x 275.71617pt.
+<../images/IMG_0736.jpg, id=15, 3256.165pt x 2104.86375pt>
+File: ../images/IMG_0736.jpg Graphic file (type jpg)
+<use ../images/IMG_0736.jpg>
+Package pdftex.def Info: ../images/IMG_0736.jpg  used on input line 45.
+(pdftex.def)             Requested size: 472.71088pt x 305.56679pt.
+
+
+[2 <../images/IMG_0733.jpg> <../images/IMG_0734.jpg> <../images/IMG_0735.jpg>]
+<../images/IMG_0737.jpg, id=25, 3141.7375pt x 2525.435pt>
+File: ../images/IMG_0737.jpg Graphic file (type jpg)
+<use ../images/IMG_0737.jpg>
+Package pdftex.def Info: ../images/IMG_0737.jpg  used on input line 47.
+(pdftex.def)             Requested size: 367.6649pt x 295.5248pt.
+<../images/IMG_0738.jpg, id=26, 3581.38pt x 2686.035pt>
+File: ../images/IMG_0738.jpg Graphic file (type jpg)
+<use ../images/IMG_0738.jpg>
+Package pdftex.def Info: ../images/IMG_0738.jpg  used on input line 49.
+(pdftex.def)             Requested size: 367.6649pt x 275.75072pt.
+
+
+[3 <../images/IMG_0736.jpg> <../images/IMG_0737.jpg>]
+
+[4 <../images/IMG_0738.jpg>] (./lecture.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-16>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3626 strings out of 475539
- 54964 string characters out of 5776665
- 1926957 words of memory out of 5000000
- 26252 multiletter control sequences out of 15000+600000
- 563181 words of font info for 56 fonts, out of 8000000 for 9000
+ 3668 strings out of 475539
+ 55885 string characters out of 5776665
+ 1928957 words of memory out of 5000000
+ 26292 multiletter control sequences out of 15000+600000
+ 565019 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  57i,6n,65p,223b,223s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on lecture.pdf (1 page, 44612 bytes).
+</Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/bryansebaraj/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on lecture.pdf (4 pages, 12002339 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
