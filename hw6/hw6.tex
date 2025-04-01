@@ -1,0 +1,273 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{S\&DS 351: Stochastic Processes - Homework 6}
+\author{Bryan SebaRaj \\[0.8em] Professor Ilias Zadik}
+\date{April 4, 2025}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Problem 4.6}
+\textbf{[Wright-Fisher process]} This is a famous urn model from genetics. An urn contains $d$ balls, some black and some white. (These might represent two forms of a gene. We might ask questions like: as genes are sampled randomly to form successive generations, what is the probability that the “white” gene will take over and completely replace the other form?) Here is a way to form the next “generation.” Sample a ball at random from the urn $d$ times, \textit{with replacement}. We get a new, random set of $d$ balls, containing $0, 1, \ldots, d$ white balls, with various probabilities. Call the resulting sample generation 1. Then we sample in the same way from generation 1 to form generation 2, and so on. Let $X_t$ denote the number of white balls in generation $t$. After many generations, the population will have become “fixed”, that is, it will consist of just one color. Suppose that $X_0 = x_0$, some number between $0$ and $d$.
+
+\begin{enumerate}
+    \item[(a)] (2 points) Show that the process $\{X_t\}$ is a martingale.
+
+        \textcolor{blue}{Suppose that in generation $t$ the urn contains $X_t = x$ white balls (with $0\le x\le d$). To form generation $t+1$, we sample $d$ times with replacement from the urn. Thus, each ball in generation $t+1$ is white with probability
+\[
+p = \frac{x}{d}.
+\]
+It follows that, conditioned on $X_t=x$, the number of white balls in generation $t+1$, denoted by $X_{t+1}$, follows a binomial distribution:
+\[
+X_{t+1}\mid \{X_t=x\} \sim \operatorname{Binomial}\left(d, \frac{x}{d}\right).
+\]
+Hence, the conditional expectation is
+\[
+\mathbb{E}[X_{t+1}\mid X_t=x] = d\cdot \frac{x}{d} = x.
+\]
+Since this holds for all $x$, we have
+\[
+\mathbb{E}[X_{t+1}\mid \mathcal{F}_t] = X_t,
+\]
+where $\mathcal{F}_t$ is the natural filtration. Thus, $\{X_t\}$ is a martingale.
+}
+
+
+    \item[(b)] (2 points) Prove (and not assume like the Problem 4.6 statement says) that $X_t$ will eventually become fixed, that is, it will consist of one color, with probability 1.
+
+    \textcolor{blue}{
+        The state space for $\{X_t\}$ is finite, namely $\{0,1,2,\ldots,d\}$. Notice that the states $0$ and $d$ are absorbing because once $X_t=0$ (all black) or $X_t=d$ (all white), every subsequent generation will remain in that state. \\
+For any state $x$ with $0 < x < d$, the probability that all $d$ balls sampled are white is
+\[
+\left(\frac{x}{d}\right)^d > 0,
+\]
+and the probability that all $d$ balls sampled are black is
+\[
+\left(\frac{d-x}{d}\right)^d > 0.
+\]
+Thus, from any nonabsorbing state there is a strictly positive probability that the next generation will be absorbed into either state $0$ or $d$. \\ 
+Moreover, because $\{X_t\}$ is a bounded martingale (since $0\le X_t\le d$ for all $t$), the Martingale Convergence Theorem implies that $X_t$ converges almost surely to a limit, say $X_\infty$. Given the dynamics of the process, the only possible limit values are $0$ and $d$. Hence,
+\[
+\mathbb{P}(X_\infty\in\{0,d\})=1,
+\]
+which means the process eventually becomes fixed (i.e., the population becomes all one color) with probability 1.
+}
+
+    \item[(c)] (3 points) Use the martingale to show that the probability that the population eventually becomes all white is $x_0 / d$.
+
+    \textcolor{blue}{Let
+\[
+p = \mathbb{P}(X_\infty = d)
+\]
+be the probability that the process eventually fixes at state $d$ (all white). Since $\{X_t\}$ is a martingale and converges almost surely to $X_\infty$, we have
+\[
+\mathbb{E}[X_\infty] = \lim_{t\to\infty}\mathbb{E}[X_t] = x_0,
+\]
+where $x_0$ is the initial number of white balls. \\
+Since $X_\infty$ takes only the values $0$ and $d$, we can write
+\[
+\mathbb{E}[X_\infty] = 0\cdot \mathbb{P}(X_\infty = 0) + d\cdot \mathbb{P}(X_\infty = d) = d\,p.
+\]
+Thus,
+\[
+d\,p = x_0 \quad \Longrightarrow \quad p = \frac{x_0}{d}.
+\]
+Therefore, the probability that the population eventually becomes all white is $\frac{x_0}{d}$.
+}
+
+\end{enumerate}
+
+\subsection*{Problem 4.10 (3 points)}
+[Doob’s inequality for submartingales] Let $X_0, X_1, \ldots$ be a nonnegative submartingale, and let $b$ be a positive number. Prove that
+\[
+\mathbb{P}(\max(X_0, \ldots, X_n) \geq b) \leq \frac{\mathbb{E}(X_n)}{b},
+\]
+using the following steps as hints:
+
+\begin{enumerate}
+    \item[(a)] Define $\tau$ to be the first time $t$ such that $X_t \geq b$, or $n$, whichever comes first; that is, $\tau = \inf\{t : X_t \geq b\} \wedge n$. Argue that $\{\max(X_0, \ldots, X_n) \geq b\} = \{X_\tau \geq b\}$.
+
+        \textcolor{blue}{Let $\{X_t\}_{t\ge0}$ be a nonnegative submartingale and let $b>0$. Define the stopping time
+\[
+\tau = \inf\{t \ge 0 : X_t \ge b\} \wedge n.
+\]
+We first show that 
+\[
+\left\{\max_{0\le t \le n} X_t \ge b\right\} = \{X_\tau \ge b\}.
+\]
+\textbf{(a)} If $\max_{0\le t\le n} X_t \ge b$, then there exists a time $t \le n$ such that $X_t \ge b$. By the definition of $\tau$, it follows that $\tau \le t$ and hence $X_\tau \ge b$. Conversely, if $X_\tau \ge b$, then clearly
+\[
+\max_{0\le t\le n} X_t \ge X_\tau \ge b.
+\]
+Thus, the events are identical. }
+
+    \item[(b)] Apply Markov’s inequality, and use an Optional Sampling theorem.
+
+        \textcolor{blue}{By Markov's inequality,
+\[
+\mathbb{P}(X_\tau \ge b) \le \frac{\mathbb{E}[X_\tau]}{b}.
+\]
+Since $\tau$ is bounded by $n$, the Optional Sampling Theorem applies to the submartingale $\{X_t\}$ and gives
+\[
+\mathbb{E}[X_\tau] \le \mathbb{E}[X_n].
+\]
+Therefore, combining the above estimates we obtain
+\[
+\mathbb{P}\left(\max_{0\le t\le n} X_t \ge b\right) = \mathbb{P}(X_\tau \ge b) \le \frac{\mathbb{E}[X_\tau]}{b} \le \frac{\mathbb{E}[X_n]}{b}.
+\]}
+\end{enumerate}
+
+
+\subsection*{Problem 4.13 (5 points)}
+In Theorem (4.38) there is nothing special about assuming nonnegativity, that is, a lower bound of zero. Show that if $\{X_t\}$ is a supermartingale and there is a random variable $X$ with $\mathbb{E}[|X|] < \infty$ and $X_t \geq X$ for all $t$, then $X_t$ converges with probability 1 as $t \to \infty$.
+
+\textbf{Theorem (4.38)}: A nonnegative supermartingale converges with probability 1.
+
+\textcolor{blue}{Let $\{X_t\}_{t\ge0}$ be a supermartingale and suppose there exists a random variable $X$ with $\mathbb{E}[|X|] < \infty$ such that
+\[
+X_t \ge X \quad \text{for all } t \ge 0.
+\]
+Define the process
+\[
+Y_t = X_t - X, \quad t \ge 0.
+\]
+Since $X_t \ge X$, we have $Y_t \ge 0$ for all $t$, so $\{Y_t\}$ is a nonnegative process. Next, we check the supermartingale property for $\{Y_t\}$:
+\[
+\mathbb{E}[Y_{t+1}\mid \mathcal{F}_t] = \mathbb{E}[X_{t+1} - X \mid \mathcal{F}_t] 
+= \mathbb{E}[X_{t+1}\mid \mathcal{F}_t] - X.
+\]
+Since $\{X_t\}$ is a supermartingale, we have
+\[
+\mathbb{E}[X_{t+1}\mid \mathcal{F}_t] \le X_t.
+\]
+Thus,
+\[
+\mathbb{E}[Y_{t+1}\mid \mathcal{F}_t] \le X_t - X = Y_t.
+\]
+Therefore, $\{Y_t\}$ is a nonnegative supermartingale. \\
+By Theorem (4.38), every nonnegative supermartingale converges almost surely. That is, there exists a random variable $Y_\infty$ such that
+\[
+Y_t \to Y_\infty \quad \text{almost surely as } t \to \infty.
+\]
+Since
+\[
+X_t = Y_t + X,
+\]
+it follows that
+\[
+X_t \to Y_\infty + X \quad \text{almost surely as } t \to \infty.
+\]
+Thus, $\{X_t\}$ converges with probability 1.
+}
+
+% \textit{Why?} A sequence of nonnegative numbers $x_0, x_1, \ldots$ has only 3 possible behaviors: (1) it can converge to a finite number, (2) it can converge to $\infty$, or (3) it can “oscillate,” with $\liminf x_t < \limsup x_t$. We want to see that with probability 1, our sample path $X_0(\omega), X_1(\omega), \ldots$ will not exhibit either behavior (2) or behavior (3). Convergence to $\infty$ is ruled out by the supermartingale property. That is, if $X_t \to \infty$ on a set of positive probability, we would have $\mathbb{E}(X_t) \to \infty$. (Note that since the random variables are nonnegative, we cannot have $X_t \to -\infty$ on some other set of positive probability to compensate and keep the expectation bounded). But since $\mathbb{E}(X_t) \leq \mathbb{E}(X_0)$ for all $t$, it cannot be the case that $\mathbb{E}(X_t) \to \infty$. So (2) is ruled out.
+
+% For (3), let $a$ and $b$ be arbitrary nonnegative numbers, with $a < b$, say. We want to see that the path cannot oscillate infinitely many times, being below $a$ infinitely many times and also above $b$ infinitely many times. But we know that whenever the process gets below $a$, the probability that it ever goes above $b$ after that is only $a/b$ at most. So each time the process gets below $a$, there is a probability at least $1 - a/b$ that it will never again attain the level $b$. So with probability 1, eventually the process must stop making “upcrossings” from below $a$ to above $b$, so that with probability 1, the process does not oscillate as in case (3).
+
+
+\subsection*{Problem 4.16 (10 points)}
+Let $\{M_t\}$ be a likelihood ratio martingale as discussed in Example 4.9.
+
+% Example 4.9: Suppose random variables $X_1, X_2, \ldots$ are independent with probability density function $f$, but they are \textit{really} distributed according to the density $g$. For simplicity (to eliminate worries related to dividing by 0) suppose that $\{x : f(x) > 0\} = \{x : g(x) > 0\}$. Define the likelihood ratio process $\{M_t\}$ by $M_0 = 1$ and
+% \[
+% M_t = \frac{g(X_1)}{f(X_1)} \cdots \frac{g(X_t)}{f(X_t)}.
+% \]
+%
+% Then since $M_{t+1} = M_t \cdot \frac{g(X_{t+1})}{f(X_{t+1})}$, we have:
+% \[
+% \mathbb{E}(M_{t+1} \mid X_1, \ldots, X_t) = M_t \cdot \int \frac{g(x)}{f(x)} f(x) dx = M_t.
+% \]
+% So $\{M_t\}$ is a martingale.
+
+\begin{enumerate}
+    \item[(a)] Show that $\mathbb{E}M_t = 1$ for all $t$.
+    \item[(b)] Show that as $t \to \infty$, we have $M_t \to 0$ with probability 1.
+\end{enumerate}
+
+
+\subsection*{Problem 4.19 (5 points)}
+Suppose $T$ is a stopping time and $\{X_t\}$ is a submartingale. Define $Y_t = X_{t \wedge T}$. Show that $\{Y_t\}$ is a submartingale.
+
+
+
+\subsection*{1. (Snell’s Envelope (Optimal Stopping))}
+
+This problem will review the optimal employee (in expected value) selection problem. Suppose that we have $N$ candidates that come in for an interview, one at a time. We can model the fit of every candidate to the position of interest as a stochastic process $X_n \in \mathbb{R}_{\geq 0}$ for $0 \leq n \leq N$ and we assume that we know the joint distribution of the $X_n$.
+
+\textbf{Assumption:} We assume that if we pass on a candidate, we cannot ask them to return.
+
+\textit{Note:} The selection procedure must follow a stopping time because we cannot ``look into the future''. In contrast, if we could ask a candidate to return, then our choice would clearly be to select $\max_{1 \leq n \leq N} X_n$.
+
+Therefore, our goal in this problem is to find which stopping time $T$ maximizes $\mathbb{E}X_T$, i.e., it satisfies that for any other stopping time $S$, $\mathbb{E}X_T \geq \mathbb{E}X_S$.
+
+We will construct a supermartingale called Snell’s envelope $Y_n$ recursively (downwards) as follows:
+
+\[
+Y_N = X_N
+\]
+\[
+Y_n = \max(X_n, \mathbb{E}[Y_{n+1} | X_0, \ldots, X_n]), \quad 1 \leq n \leq N-1.
+\]
+
+Turns out the optimal stopping time is given by $T = \inf\{n \geq 0 \mid X_n = Y_n\}$. Let’s prove it!
+
+\begin{enumerate}
+    \item[(a)] (2 points) Prove that $Y_n \geq X_n$ for all $n$.
+    
+    \item[(b)] (3 points) Prove that $Y_n$, $n \geq 0$ is a supermartingale with respect to $X_n, n \geq 0$.
+    
+    \item[(c)] (10 points) Use the proof of the optional stopping theorem for supermartingales to conclude $Y_{n \wedge T}$ is a supermartingale with respect to $X_n, n \geq 0$. Here $n \wedge T := \min\{n, T\}$.
+    
+    \item[(d)] (10 points) Improve your argument to show that $Y_{n \wedge T}$ is in fact a \textit{martingale} with respect to $X_n, n \geq 0$.
+    
+    \item[(e)] (2 points) Use the above to conclude that $\mathbb{E}X_T = \mathbb{E}Y_0$.
+    
+    \item[(f)] (3 points) Suppose that we are given an alternative stopping rule $S$. Prove that $\mathbb{E}Y_S \geq \mathbb{E}X_S$.
+    
+    \item[(g)] (10 points) Now prove that $\mathbb{E}Y_S \leq \mathbb{E}Y_0$. Put the pieces together to prove that $\mathbb{E}X_T \geq \mathbb{E}X_S$.
+    
+    \item[(h)] (Bonus, 5 points) Can you intuitively explain why $T$ is the optimal stopping time?
+
+    \textit{Note:} there is no ``correct'' answer to this, but curious to read your thoughts.
+
+    \item[(i)] Suppose that the data $X_n, n \geq 0$ are drawn uniformly from $[0, 1]$ and are i.i.d.
+    \begin{enumerate}
+        \item[(i)] (2 points) What is $\mathbb{E}Y_0$ for $N = 2$?
+        \item[(ii)] (3 points) What about $N = 3$?
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{2. (The “ABRACADABRA” problem)}
+
+A monkey is sitting next to a typewriter. We assume that the typewriter has exactly 26 keys corresponding to the 26 letters of the English alphabet.
+
+We also assume the following action is taking place: at each time the monkey hits one out of the 26 keys chosen with equal probability and independently from everything else.
+
+\begin{enumerate}
+    \item[(a)] (2 points) Prove that the expected number of hits until the letter A is typed is 26.
+    
+    \item[(b)] Now let’s prove part (a) with martingale theory. Let us assume that a gambling game takes place at a casino based on the keys the monkey hits.
+    
+    \textbf{Gambling game:} Before each new hit of a key from the monkey, \textit{a new gambler} appears and bets one dollar that the key the monkey is about to hit is going to be the letter A. If the monkey hits A the casino pays 26 dollars to the gambler, otherwise the gambler leaves the game and the casino wins the gambler’s one dollar.
+    \begin{itemize}
+        \item (3 points) Prove that the ``game is fair'', i.e., the total budget of the casino before every new hit is a martingale.
+        \item (5 points) Provide an alternative proof of part (a) using the Optional Stopping Theorem.
+    \end{itemize}
+    
+    \item[(c)] (15 points) You may be thinking that part (b) is a very complicated way to prove part (a) which is simple. That is true, but this proof idea is in fact very clever and can give other much harder results, like the following.
+
+    Build upon the proof technique of part (b), and prove that the expected number of hits until the monkey types \texttt{ABRACADABRA} is $26^{11} + 26^4 + 26$.
+\end{enumerate}
+
+\end{document}
