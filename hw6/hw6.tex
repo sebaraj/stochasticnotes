@@ -24,66 +24,63 @@
 \begin{enumerate}
     \item[(a)] (2 points) Show that the process $\{X_t\}$ is a martingale.
 
-        \textcolor{blue}{Suppose that in generation $t$ the urn contains $X_t = x$ white balls (with $0\le x\le d$). To form generation $t+1$, we sample $d$ times with replacement from the urn. Thus, each ball in generation $t+1$ is white with probability
-\[
-p = \frac{x}{d}.
-\]
-It follows that, conditioned on $X_t=x$, the number of white balls in generation $t+1$, denoted by $X_{t+1}$, follows a binomial distribution:
-\[
-X_{t+1}\mid \{X_t=x\} \sim \operatorname{Binomial}\left(d, \frac{x}{d}\right).
-\]
-Hence, the conditional expectation is
-\[
-\mathbb{E}[X_{t+1}\mid X_t=x] = d\cdot \frac{x}{d} = x.
-\]
-Since this holds for all $x$, we have
-\[
-\mathbb{E}[X_{t+1}\mid \mathcal{F}_t] = X_t,
-\]
-where $\mathcal{F}_t$ is the natural filtration. Thus, $\{X_t\}$ is a martingale.
-}
+        \textcolor{blue}{Suppose in generation $t$, the urn contains $X_t =
+            x$ white balls (with $0\le x\le d$). To step into generation $t+1$, a ball from the urn 
+            is sampled $d$ times with replacement. Thus, each ball in
+            generation $t+1$ is white with probability \[ p = \frac{x}{d}. \]
+            Therefore, conditioned on $X_t=x$, the number of white balls
+            in generation $t+1$, follows a binomial
+            distribution \[ X_{t+1}\mid \{X_t=x\} \sim
+                \operatorname{Binomial}\left(d, \frac{x}{d}\right) \] Therefore,
+                the conditional expectation is \[ \mathbb{E}[X_{t+1}\mid X_t=x]
+                    = d\cdot \frac{x}{d} = x \] As this holds for all $x$,
+                    \[ \mathbb{E}[X_{t+1}\mid \mathcal{F}_t] = X_t, \]
+                where $\mathcal{F}_t$ is the natural filtration. Thus,
+            $\{X_t\}$ is a martingale. }
 
 
     \item[(b)] (2 points) Prove (and not assume like the Problem 4.6 statement says) that $X_t$ will eventually become fixed, that is, it will consist of one color, with probability 1.
 
     \textcolor{blue}{
-        The state space for $\{X_t\}$ is finite, namely $\{0,1,2,\ldots,d\}$. Notice that the states $0$ and $d$ are absorbing because once $X_t=0$ (all black) or $X_t=d$ (all white), every subsequent generation will remain in that state. \\
-For any state $x$ with $0 < x < d$, the probability that all $d$ balls sampled are white is
+        The state space for $\{X_t\}$, $\{0,1,2,\ldots,d\}$, is observably finite. See that the states $0$ and $d$ are absorbing because once $X_t=0$, i.e. all the balls are black, or $X_t=d$, i.e. all the balls are white, every subsequent generation will remain in that state. \\
+For any state $x$ with $0 < x < d$, the probability that all $d$ balls sampled are white is given by
 \[
-\left(\frac{x}{d}\right)^d > 0,
+\left(\frac{x}{d}\right)^d > 0
 \]
 and the probability that all $d$ balls sampled are black is
 \[
-\left(\frac{d-x}{d}\right)^d > 0.
+\left(\frac{d-x}{d}\right)^d > 0
 \]
-Thus, from any nonabsorbing state there is a strictly positive probability that the next generation will be absorbed into either state $0$ or $d$. \\ 
-Moreover, because $\{X_t\}$ is a bounded martingale (since $0\le X_t\le d$ for all $t$), the Martingale Convergence Theorem implies that $X_t$ converges almost surely to a limit, say $X_\infty$. Given the dynamics of the process, the only possible limit values are $0$ and $d$. Hence,
+Therefore, from any nonabsorbing state there is a strictly positive probability that the next state will be absorbed into either state $0$ or $d$. \\ 
+Moreover, because $\{X_t\}$ is a bounded martingale (since $0\le X_t\le d$ for all $t$), the Martingale Convergence Theorem implies that $X_t$ converges almost surely. Given that the only possible limit values are $0$ and $d$,
 \[
-\mathbb{P}(X_\infty\in\{0,d\})=1,
+\mathbb{P}(X_\infty\in\{0,d\})=1
 \]
-which means the process eventually becomes fixed (i.e., the population becomes all one color) with probability 1.
+Thus, the process eventually becomes fixed at state 0 or $s$ with probability 1.
 }
 
     \item[(c)] (3 points) Use the martingale to show that the probability that the population eventually becomes all white is $x_0 / d$.
 
-    \textcolor{blue}{Let
+    \textcolor{blue}{Let $p$ be the probabilty that the population eventually becomes all white, i.e. state $d$. 
 \[
 p = \mathbb{P}(X_\infty = d)
 \]
-be the probability that the process eventually fixes at state $d$ (all white). Since $\{X_t\}$ is a martingale and converges almost surely to $X_\infty$, we have
+Since $\{X_t\}$ is a martingale and converges almost surely to $X_\infty$,
 \[
-\mathbb{E}[X_\infty] = \lim_{t\to\infty}\mathbb{E}[X_t] = x_0,
+\mathbb{E}[X_\infty] = \lim_{t\to\infty}\mathbb{E}[X_t] = x_0
 \]
 where $x_0$ is the initial number of white balls. \\
-Since $X_\infty$ takes only the values $0$ and $d$, we can write
+Rewriting,
 \[
 \mathbb{E}[X_\infty] = 0\cdot \mathbb{P}(X_\infty = 0) + d\cdot \mathbb{P}(X_\infty = d) = d\,p.
 \]
 Thus,
 \[
-d\,p = x_0 \quad \Longrightarrow \quad p = \frac{x_0}{d}.
+    d\,p = \mathbb{E}[X_\infty]= x_0 
 \]
-Therefore, the probability that the population eventually becomes all white is $\frac{x_0}{d}$.
+\[
+    p = \frac{x_0}{d}
+\]
 }
 
 \end{enumerate}
@@ -98,33 +95,34 @@ using the following steps as hints:
 \begin{enumerate}
     \item[(a)] Define $\tau$ to be the first time $t$ such that $X_t \geq b$, or $n$, whichever comes first; that is, $\tau = \inf\{t : X_t \geq b\} \wedge n$. Argue that $\{\max(X_0, \ldots, X_n) \geq b\} = \{X_\tau \geq b\}$.
 
-        \textcolor{blue}{Let $\{X_t\}_{t\ge0}$ be a nonnegative submartingale and let $b>0$. Define the stopping time
+        \textcolor{blue}{Let $\{X_t\}_{t\ge0}$ be a nonnegative submartingale and let $b>0$. Let the stopping time be
 \[
-\tau = \inf\{t \ge 0 : X_t \ge b\} \wedge n.
+\tau = \inf\{t \ge 0 : X_t \ge b\} \wedge n
 \]
-We first show that 
+% We first show that 
+% \[
+% \left\{\max_{0\le t \le n} X_t \ge b\right\} = \{X_\tau \ge b\}.
+% \]
+% \textbf{(a)} 
+If $\max_{0\le t\le n} X_t \ge b$, then by definition, there exists a time $t \le n$ such that $X_t \ge b$. By the definition of $\tau$, it follows that $\tau \le t$ and $X_\tau \ge b$. Conversely, if $X_\tau \ge b$, then
 \[
-\left\{\max_{0\le t \le n} X_t \ge b\right\} = \{X_\tau \ge b\}.
+\max_{0\le t\le n} X_t \ge X_\tau \ge b
 \]
-\textbf{(a)} If $\max_{0\le t\le n} X_t \ge b$, then there exists a time $t \le n$ such that $X_t \ge b$. By the definition of $\tau$, it follows that $\tau \le t$ and hence $X_\tau \ge b$. Conversely, if $X_\tau \ge b$, then clearly
-\[
-\max_{0\le t\le n} X_t \ge X_\tau \ge b.
-\]
-Thus, the events are identical. }
+Thus, $\{\max(X_0, \ldots, X_n) \geq b\} = \{X_\tau \geq b\}$. }
 
     \item[(b)] Apply Markov’s inequality, and use an Optional Sampling theorem.
 
         \textcolor{blue}{By Markov's inequality,
 \[
-\mathbb{P}(X_\tau \ge b) \le \frac{\mathbb{E}[X_\tau]}{b}.
+\mathbb{P}(X_\tau \ge b) \le \frac{\mathbb{E}[X_\tau]}{b}
 \]
-Since $\tau$ is bounded by $n$, the Optional Sampling Theorem applies to the submartingale $\{X_t\}$ and gives
+Since $\tau$ is bounded by $n$, the Optional Sampling Theorem applies to the submartingale $\{X_t\}$, yielding
 \[
-\mathbb{E}[X_\tau] \le \mathbb{E}[X_n].
+\mathbb{E}[X_\tau] \le \mathbb{E}[X_n]
 \]
-Therefore, combining the above estimates we obtain
+Therefore, 
 \[
-\mathbb{P}\left(\max_{0\le t\le n} X_t \ge b\right) = \mathbb{P}(X_\tau \ge b) \le \frac{\mathbb{E}[X_\tau]}{b} \le \frac{\mathbb{E}[X_n]}{b}.
+\mathbb{P}\left(\max(X_0, \ldots, X_n) \geq b\right) = \mathbb{P}(X_\tau \ge b) \le \frac{\mathbb{E}[X_\tau]}{b} \le \frac{\mathbb{E}[X_n]}{b}
 \]}
 \end{enumerate}
 
@@ -134,39 +132,39 @@ In Theorem (4.38) there is nothing special about assuming nonnegativity, that is
 
 \textbf{Theorem (4.38)}: A nonnegative supermartingale converges with probability 1.
 
-\textcolor{blue}{Let $\{X_t\}_{t\ge0}$ be a supermartingale and suppose there exists a random variable $X$ with $\mathbb{E}[|X|] < \infty$ such that
+\textcolor{blue}{Let $\{X_t\}_{t\ge0}$ be a supermartingale. Suppose there exists some random variable $X$ with $\mathbb{E}[|X|] < \infty$ s.t.
 \[
-X_t \ge X \quad \text{for all } t \ge 0.
+X_t \ge X, \quad \forall t \ge 0
 \]
 Define the process
 \[
-Y_t = X_t - X, \quad t \ge 0.
+Y_t = X_t - X, \quad t \ge 0
 \]
-Since $X_t \ge X$, we have $Y_t \ge 0$ for all $t$, so $\{Y_t\}$ is a nonnegative process. Next, we check the supermartingale property for $\{Y_t\}$:
+Since $X_t \ge X$, $Y_t \ge 0$, $\forall t$. Therefore, without assuming nonnegativity in $\{X_t\}$, $\{Y_t\}$ is a nonnegative process. Confirming the supermartingale property for $\{Y_t\}$,
 \[
 \mathbb{E}[Y_{t+1}\mid \mathcal{F}_t] = \mathbb{E}[X_{t+1} - X \mid \mathcal{F}_t] 
-= \mathbb{E}[X_{t+1}\mid \mathcal{F}_t] - X.
+= \mathbb{E}[X_{t+1}\mid \mathcal{F}_t] - X
 \]
-Since $\{X_t\}$ is a supermartingale, we have
+Since $\{X_t\}$ is a supermartingale,
 \[
-\mathbb{E}[X_{t+1}\mid \mathcal{F}_t] \le X_t.
+\mathbb{E}[X_{t+1}\mid \mathcal{F}_t] \le X_t
 \]
 Thus,
 \[
-\mathbb{E}[Y_{t+1}\mid \mathcal{F}_t] \le X_t - X = Y_t.
+\mathbb{E}[Y_{t+1}\mid \mathcal{F}_t] \le X_t - X = Y_t
 \]
 Therefore, $\{Y_t\}$ is a nonnegative supermartingale. \\
-By Theorem (4.38), every nonnegative supermartingale converges almost surely. That is, there exists a random variable $Y_\infty$ such that
+By Theorem (4.38), every nonnegative supermartingale converges w.p. 1. That is, there exists a random variable $Y_\infty$ such that
 \[
-Y_t \to Y_\infty \quad \text{almost surely as } t \to \infty.
+Y_t \to Y_\infty \quad \text{almost surely as } t \to \infty
 \]
 Since
 \[
-X_t = Y_t + X,
+X_t = Y_t + X
 \]
 it follows that
 \[
-X_t \to Y_\infty + X \quad \text{almost surely as } t \to \infty.
+X_t \to Y_\infty + X \quad \text{almost surely as } t \to \infty
 \]
 Thus, $\{X_t\}$ converges with probability 1.
 }
@@ -193,50 +191,48 @@ Let $\{M_t\}$ be a likelihood ratio martingale as discussed in Example 4.9.
 \begin{enumerate}
     \item[(a)] Show that $\mathbb{E}M_t = 1$ for all $t$.
 
-    \textcolor{blue}{e are given that $M_0 = 1$ and, for each $t \ge 0$, 
+    \textcolor{blue}{Suppose $M_0 = 1$ and $\forall t \ge 0$, 
 \[
-M_{t+1} = M_t \cdot \frac{g(X_{t+1})}{f(X_{t+1})}.
+M_{t+1} = M_t \cdot \frac{g(X_{t+1})}{f(X_{t+1})}
 \]
-Since the random variables $X_1, X_2, \ldots$ are independent and $M_t$ is $\mathcal{F}_t$-measurable (where $\mathcal{F}_t=\sigma(X_1,\ldots,X_t)$), we have
+Since the random variables $X_1, X_2, \ldots$ are independent and $M_t$ is $\mathcal{F}_t$-measurable, where $\mathcal{F}_t=\sigma(X_1,\ldots,X_t)$,
 \[
 \mathbb{E}\bigl(M_{t+1}\mid\mathcal{F}_t\bigr) 
 = M_t \cdot \int \frac{g(x)}{f(x)}\, f(x) \,dx 
-= M_t.
+= M_t
 \]
-Taking expectations on both sides yields
+Taking expectations on both sides,
 \[
-\mathbb{E}[M_{t+1}] = \mathbb{E}\bigl(\mathbb{E}(M_{t+1}\mid\mathcal{F}_t)\bigr) = \mathbb{E}[M_t].
+\mathbb{E}[M_{t+1}] = \mathbb{E}\bigl(\mathbb{E}(M_{t+1}\mid\mathcal{F}_t)\bigr) = \mathbb{E}[M_t]
 \]
-Since $\mathbb{E}[M_0]=1$, by induction we conclude that
-\[
-\mathbb{E}[M_t]=1 \quad \text{for all } t\ge0.
-\]}
+Since $\mathbb{E}[M_0]=1$, induction trivially shows that 
+$\mathbb{E}[M_t]=1, \quad \forall t\ge0$
+}
 
     \item[(b)] Show that as $t \to \infty$, we have $M_t \to 0$ with probability 1.
 
     \textcolor{blue}{
-        Assume that $g \neq f$, so that the likelihood ratio $\frac{g(x)}{f(x)}$ is not identically equal to 1. Note that under the measure corresponding to the density $f$, by Jensen's inequality we have
+        Suppose $g \neq f$, s.t. $\frac{g(x)}{f(x)}$ is not identically equal to 1. See that under the measure corresponding to the density $f$, by Jensen's inequality shows
 \[
 \mathbb{E}_f\!\left[\log\frac{g(X_1)}{f(X_1)}\right] 
 \le \log\mathbb{E}_f\!\left[\frac{g(X_1)}{f(X_1)}\right] 
-=\log 1 = 0,
+=\log 1 = 0, \text{ if } g \neq f 
 \]
-with strict inequality if $g\neq f$. Hence, defining
+Therefore, $\mu$ can be defined as 
 \[
-\mu := \mathbb{E}_f\!\left[\log\frac{g(X_1)}{f(X_1)}\right],
+    \mu = \mathbb{E}_f\!\left[\log\frac{g(X_1)}{f(X_1)}\right], \text{ where } \mu < 0
 \]
-we have $\mu < 0$. \\
 Since $X_1, X_2, \ldots$ are i.i.d. with density $f$, by the Strong Law of Large Numbers,
 \[
-\frac{1}{t}\sum_{i=1}^t \log\frac{g(X_i)}{f(X_i)} \to \mu \quad \text{almost surely}.
+    \frac{1}{t}\sum_{i=1}^t \log\frac{g(X_i)}{f(X_i)} \to \mu \quad \text{ w.p. 1}
 \]
 That is,
 \[
-\frac{1}{t}\log M_t \to \mu < 0 \quad \text{almost surely}.
+\frac{1}{t}\log M_t \to \mu < 0 \quad \text{ w.p. 1}
 \]
-Thus, $\log M_t \to -\infty$ almost surely, which implies
+Thus, $\log M_t \to -\infty$ w.p. 1, so
 \[
-M_t \to 0 \quad \text{almost surely, i.e. with probability 1}.
+M_t \to 0 \quad \text{ w.p. 1}
 \]}
 
 \end{enumerate}
@@ -246,46 +242,46 @@ M_t \to 0 \quad \text{almost surely, i.e. with probability 1}.
 Suppose $T$ is a stopping time and $\{X_t\}$ is a submartingale. Define $Y_t = X_{t \wedge T}$. Show that $\{Y_t\}$ is a submartingale.
 
 \textcolor{blue}{
-    Let $\{X_t\}_{t\ge 0}$ be a submartingale with respect to the filtration $\{\mathcal{F}_t\}_{t\ge 0}$, and let $T$ be a stopping time. Define the stopped process $\{Y_t\}$ by
+    Let $\{X_t\}_{t\ge 0}$ be a submartingale w.r.t. the filtration $\{\mathcal{F}_t\}_{t\ge 0}$. Let $T$ be a stopping time. Define the stopped process $\{Y_t\}$ as
 \[
-Y_t = X_{t\wedge T}, \quad t\ge 0.
+Y_t = X_{t\wedge T}, \quad t\ge 0
 \]
-We wish to show that $\{Y_t\}$ is a submartingale, i.e., that for all $0\le s < t$,
+% We wish to show that $\{Y_t\}$ is a submartingale, i.e., that for all $0\le s < t$,
+% \[
+% \mathbb{E}\bigl[Y_t \mid \mathcal{F}_s\bigr] \ge Y_s \quad \text{a.s.}
+% \]
+First fix $0\le s < t$. Consider the event $\{T \le s\}$ and its complement $\{T > s\}$ partition the probability space. \\ 
+Case 1: When $\{T\le s\}$,
 \[
-\mathbb{E}\bigl[Y_t \mid \mathcal{F}_s\bigr] \ge Y_s \quad \text{a.s.}
+s\wedge T = T \quad \text{and} \quad t\wedge T = T
 \]
-Fix $0\le s < t$. Note that the event $\{T \le s\}$ and its complement $\{T > s\}$ partition the probability space. \\ 
-\textbf{Case 1:} On the event $\{T\le s\}$, we have
+As such,
 \[
-s\wedge T = T \quad \text{and} \quad t\wedge T = T,
-\]
-so that
-\[
-Y_s = X_T \quad \text{and} \quad Y_t = X_T.
+Y_s = X_T \quad \text{and} \quad Y_t = X_T
 \]
 Thus,
 \[
-\mathbb{E}\bigl[Y_t \mid \mathcal{F}_s\bigr] = X_T = Y_s \quad \text{on } \{T\le s\}.
+    \mathbb{E}\bigl[Y_t \mid \mathcal{F}_s\bigr] = X_T = Y_s \quad \text{ when } \{T\le s\}
 \]
-\textbf{Case 2:} On the event $\{T > s\}$, we have $s\wedge T = s$, and
+Case 2: When $\{T > s\}$, $s\wedge T = s$ and
 \[
 t\wedge T =
 \begin{cases}
-t, & \text{if } T > t, \\
-T, & \text{if } s < T \le t.
+t, & \text{if } T > t \\
+T, & \text{if } s < T \le t
 \end{cases}
 \]
-In either subcase, using the submartingale property of $\{X_t\}$ and the Optional Sampling Theorem (which applies because $t\wedge T$ is bounded by $t$), we obtain
+First see that the Optimal Samplying Theorem applies as $t\wedge T$ is bounded by $t$. \\
+In either case of $t \wedge T$, the submartingale property of $\{X_t\}$ and the Optional Sampling Theorem can be used to obtain
 \[
-\mathbb{E}\bigl[X_{t\wedge T}\mid\mathcal{F}_s\bigr] \ge X_s.
+\mathbb{E}\bigl[X_{t\wedge T}\mid\mathcal{F}_s\bigr] \ge X_s
 \]
-That is,
 \[
-\mathbb{E}\bigl[Y_t\mid\mathcal{F}_s\bigr] \ge X_s = Y_s \quad \text{on } \{T > s\}.
+\mathbb{E}\bigl[Y_t\mid\mathcal{F}_s\bigr] \ge X_s = Y_s \quad \text{when } \{T > s\}
 \]
-Combining the two cases, we conclude that
+Combining the two original cases,
 \[
-\mathbb{E}\bigl[Y_t\mid\mathcal{F}_s\bigr] \ge Y_s \quad \text{almost surely for all } 0\le s < t.
+\mathbb{E}\bigl[Y_t\mid\mathcal{F}_s\bigr] \ge Y_s \quad \text{w.p. 1, } \forall 0\le s < t
 \]
 Thus, $\{Y_t\}$ is a submartingale.
 }
@@ -314,91 +310,92 @@ Turns out the optimal stopping time is given by $T = \inf\{n \geq 0 \mid X_n = Y
 \begin{enumerate}
     \item[(a)] (2 points) Prove that $Y_n \geq X_n$ for all $n$.
 
-        \textcolor{blue}{We use backward induction. \\
+        \textcolor{blue}{
 \noindent
-\textbf{Base case:} At time $N$,
+Using backwards induction, consider the base case at time $N$,
 \[
-Y_N \;=\; X_N,
+Y_N \;=\; X_N
 \]
 so $Y_N \geq X_N$ trivially. \\
 \noindent
-\textbf{Inductive step:} Suppose for some $n+1\le N$ we already know $Y_{n+1}\ge X_{n+1}$. Then by the definition of $Y_n$,
+Inductive step: Suppose for some $n+1\le N$, $Y_{n+1}\ge X_{n+1}$. Then by the definition of $Y_n$,
 \[
 Y_n
 \;=\;
-\max\bigl(X_n,\;\mathbb{E}[Y_{n+1}\mid X_0,\ldots,X_n]\bigr).
+\max\bigl(X_n,\;\mathbb{E}[Y_{n+1}\mid X_0,\ldots,X_n]\bigr)
 \]
-Clearly
+By the definition of a maximum,
 \[
 Y_n \;\geq\; X_n
 \quad\text{and}\quad
-Y_n \;\geq\; \mathbb{E}[Y_{n+1}\mid X_0,\ldots,X_n].
+Y_n \;\geq\; \mathbb{E}[Y_{n+1}\mid X_0,\ldots,X_n]
 \]
-Hence $Y_n \ge X_n$. By induction, $Y_n \geq X_n$ for all $n$.
+Hence $Y_n \ge X_n$ and by induction, $Y_n \geq X_n$, $\forall n$.
 }
     
     \item[(b)] (3 points) Prove that $Y_n$, $n \geq 0$ is a supermartingale with respect to $X_n, n \geq 0$.
     
         \textcolor{blue}{
-            To show $(Y_n)$ is a supermartingale, we must check
-\[
-\mathbb{E}[\,Y_{n+1} \;\mid\; X_0,\ldots,X_n\,] \;\le\; Y_n
-\quad
-\text{for each } n.
-\]
+%             To show $(Y_n)$ is a supermartingale, we must check
+% \[
+% \mathbb{E}[\,Y_{n+1} \;\mid\; X_0,\ldots,X_n\,] \;\le\; Y_n
+% \quad
+% \text{for each } n.
+% \]
 From the recursive definition,
 \[
 Y_n
 \;=\;
 \max\bigl(X_n,\;\mathbb{E}[\,Y_{n+1}\mid X_0,\ldots,X_n]\bigr)
 \;\geq\;
-\mathbb{E}\bigl[\,Y_{n+1}\mid X_0,\ldots,X_n\bigr].
+\mathbb{E}\bigl[\,Y_{n+1}\mid X_0,\ldots,X_n\bigr]
 \]
-Taking the conditional expectation on both sides of $Y_{n+1}$ and noting that $Y_n$ is $\sigma(X_0,\ldots,X_n)$-measurable, we immediately obtain
+Taking the conditional expectation on both sides of $Y_{n+1}$ and noting that $Y_n$ is $\sigma(X_0,\ldots,X_n)$-measurable yields
 \[
 \mathbb{E}\bigl[Y_{n+1}\mid X_0,\ldots,X_n\bigr]
 \;\le\;
-Y_n,
+Y_n
 \]
-which is precisely the supermartingale property.
+This is precisely the supermartingale property. 
         }
 
     \item[(c)] (10 points) Use the proof of the optional stopping theorem for supermartingales to conclude $Y_{n \wedge T}$ is a supermartingale with respect to $X_n, n \geq 0$. Here $n \wedge T := \min\{n, T\}$.
 
         \textcolor{blue}{
-            Since $(Y_n)_{n=0}^N$ is a supermartingale and $T$ is a stopping time (with respect to the natural filtration generated by $X_0,\ldots,X_n$), the Optional Stopping Theorem (valid under suitable integrability or boundedness conditions, which hold here since $N$ is finite and $X_n \ge0$) ensures that the stopped process $Y_{n \wedge T}$ is also a supermartingale. \\
+            First note that since $N$ is finite and $X_n \geq 0$, the Optional Stopping Theorem can be applied as its integrability and boundedness conditions are met. 
+            Since $(Y_n)_{n=0}^N$ is a supermartingale and $T$ is a stopping time, with respect to the natural filtration generated by $X_0,\ldots,X_n$, the Optional Stopping Theorem 
+            ensures that the stopped process $Y_{n \wedge T}$ is also a supermartingale. \\
 Concretely, for $n \ge 0$,
 \[
 \mathbb{E}\bigl[Y_{(n+1)\wedge T} \,\big\vert\, X_0,\ldots,X_n\bigr]
 \;\le\;
-Y_{n \wedge T}.
+Y_{n \wedge T}
 \]
-Thus $Y_{n\wedge T}$ is a supermartingale with respect to $(X_n)$.
+Thus, $Y_{n\wedge T}$ is a supermartingale with respect to $X_n, n \geq 0$
         }
     
     \item[(d)] (10 points) Improve your argument to show that $Y_{n \wedge T}$ is in fact a \textit{martingale} with respect to $X_n, n \geq 0$.
 
         \textcolor{blue}{
-            We strengthen the supermartingale property to a martingale property. We must show
+%             We strengthen the supermartingale property to a martingale property. We must show
+% \[
+% \mathbb{E}\bigl[Y_{(n+1)\wedge T} \,\big\vert\, X_0,\ldots,X_n\bigr]
+% \;=\;
+% Y_{n \wedge T}
+% \quad
+% \text{for each } n.
+% \]
+Notice by definition,
 \[
-\mathbb{E}\bigl[Y_{(n+1)\wedge T} \,\big\vert\, X_0,\ldots,X_n\bigr]
-\;=\;
-Y_{n \wedge T}
-\quad
-\text{for each } n.
+T \;=\;\inf\{\; n \ge 0 : X_n = Y_n \}
 \]
-Notice by definition
+Hence $\forall n < T$, 
+$X_n < Y_n$. As such, 
 \[
-T \;=\;\inf\{\; n \ge 0 : X_n = Y_n \}.
+Y_n \;=\;\mathbb{E}[Y_{n+1}\mid X_0,\ldots,X_n]
 \]
-Hence \emph{before} $T$ occurs (i.e.\ for all $n < T$), we have 
-\[
-X_n < Y_n
-\quad\Longrightarrow\quad
-Y_n \;=\;\mathbb{E}[Y_{n+1}\mid X_0,\ldots,X_n].
-\]
-At such $n<T$, the process is in the ``continuation region'' where $Y_n = \mathbb{E}[\,Y_{n+1}\mid \mathcal{F}_n]$.  \\ 
-\textbf{Case 1:} If $n < T$, then $n\wedge T = n$. We claim
+At such $n<T$, the process can be considered to be in a continuation region where $Y_n = \mathbb{E}[\,Y_{n+1}\mid \mathcal{F}_n]$. Now consider the two cases, where $n < T$ and $n\geq T$. \\ 
+If $n < T$, then $n\wedge T = n$. As such,
 \[
 \mathbb{E}[\,Y_{(n+1)\wedge T}\,\mid X_0,\ldots,X_n]
 \;=\;
@@ -406,110 +403,107 @@ At such $n<T$, the process is in the ``continuation region'' where $Y_n = \mathb
 \;=\;
 Y_n
 \;=\;
-Y_{n\wedge T}.
+Y_{n\wedge T}
 \]
-The first equality holds because $(n+1)\wedge T = n+1$ on $\{n < T\}$. The second equality follows from $Y_n = \mathbb{E}[\,Y_{n+1}\mid \mathcal{F}_n]$ in the continuation region. \\ 
-\textbf{Case 2:} If $n \ge T$, then $n\wedge T = T$ and $(n+1)\wedge T = T$, so both sides are just $Y_T$, making the conditional expectation identity trivial. \\ 
-Hence, for \emph{all} $n\ge 0$, we have the martingale property
+Note that the first equality holds as $(n+1)\wedge T = n+1$ on $\{n < T\}$. The second equality follows from $Y_n = \mathbb{E}[\,Y_{n+1}\mid \mathcal{F}_n]$ in the continuation region. \\ 
+If $n \ge T$, then $n\wedge T = T$ and $(n+1)\wedge T = T$, both sides are simply $Y_T$. This makes the conditional expectation identity trivial. \\ 
+Hence, $\forall n\ge 0$, the martingale property holds.
 \[
 \mathbb{E}[\,Y_{(n+1)\wedge T}\,\mid X_0,\ldots,X_n]
 \;=\;
-Y_{n\wedge T}.
+Y_{n\wedge T}
 \]
-Thus, $Y_{n\wedge T}$ is a true martingale (again, using boundedness ensures no pathologies with optional stopping).
+Thus, $Y_{n\wedge T}$ is a martingale.
         }
     
     \item[(e)] (2 points) Use the above to conclude that $\mathbb{E}X_T = \mathbb{E}Y_0$.
 
         \textcolor{blue}{
-            From part (d), $(Y_{n\wedge T})$ is a martingale. In particular,
+            Given that $(Y_{n\wedge T})$ is a martingale, see that 
 \[
 \mathbb{E}[Y_{n\wedge T}] 
 \;=\;
 \mathbb{E}[Y_0] 
 \quad
-\text{for all } n.
+\forall n
 \]
-Since $T \le N$ (the process length is finite), if we choose $n = N$, we have
+Since $T \le N$, as the process length is finite, if $n = N$,
 \[
-Y_{N\wedge T} \;=\; Y_T.
+Y_{N\wedge T} \;=\; Y_T
 \]
-But by definition of $T$, on the event $\{T < N\}$ we have $Y_T = X_T$. Also at $T=N$ obviously $Y_T = X_T$. So
+However, by definition of $T$ when $\{T < N\}$, $Y_T = X_T$. Also see that when $T=N$, $Y_T = X_T$. 
 \[
 Y_{N\wedge T} = Y_T = X_T
-\quad\Longrightarrow\quad
-\mathbb{E}[Y_T] = \mathbb{E}[X_T].
+\]
+As such,
+\[
+    \mathbb{E}[Y_{N\wedge T}] = \mathbb{E}[Y_T] = \mathbb{E}[X_T]
 \]
 Hence
 \[
 \mathbb{E}[X_T]
 \;=\;
-\mathbb{E}[Y_T]
-\;=\;
-\mathbb{E}[Y_{N \wedge T}]
-\;=\;
-\mathbb{E}[Y_0].
+\mathbb{E}[Y_0]
 \]
         }
     
     \item[(f)] (3 points) Suppose that we are given an alternative stopping rule $S$. Prove that $\mathbb{E}Y_S \geq \mathbb{E}X_S$.
 
     \textcolor{blue}{
-        Since we proved in part (a) that $Y_n \ge X_n$ for every $n$, it follows for any stopping time $S$ that
+        Recall from part (a) that $Y_n \ge X_n$ for every $n$. It follows for any stopping time $S$ that
 \[
 Y_S \;\ge\; X_S
 \quad
-\text{pointwise.}
+\text{pointwise}
 \]
-Taking expectations preserves the inequality:
+Note that taking expectations of both sides will preserve the inequality. As such, 
 \[
 \mathbb{E}[Y_S]
 \;\ge\;
-\mathbb{E}[X_S].
+\mathbb{E}[X_S]
 \]
     }
     
     \item[(g)] (10 points) Now prove that $\mathbb{E}Y_S \leq \mathbb{E}Y_0$. Put the pieces together to prove that $\mathbb{E}X_T \geq \mathbb{E}X_S$.
 
         \textcolor{blue}{
-            Since $(Y_n)$ is a supermartingale, for the stopped process $(Y_{n\wedge S})$ the Optional Stopping Theorem implies
+            Since $(Y_n)$ is a supermartingale, for the stopped process $(Y_{n\wedge S})$, the Optional Stopping Theorem implies that 
 \[
-\mathbb{E}[\,Y_{n\wedge S}\,] \;\le\; \mathbb{E}[\,Y_0\,]
+\mathbb{E}[\,Y_{n\wedge S}\,] \;\le\; \mathbb{E}[\,Y_0\,],
 \quad
-\text{for all }n.
+\forall n
 \]
-By choosing $n=N$ (which exceeds or meets all possible values of $S$), we get
+Note that by choosing $n=N$, which exceeds or meets all possible values of $S$,
 \[
 \mathbb{E}[\,Y_S\,]
 \;\le\;
-\mathbb{E}[\,Y_0\,].
+\mathbb{E}[\,Y_0\,]
 \]
-Putting this together with part (f), 
+Combining with the results from part (f), 
 \[
-\mathbb{E}[\,X_S\,] \;\le\; \mathbb{E}[\,Y_S\,] \;\le\; \mathbb{E}[\,Y_0\,] \;=\; \mathbb{E}[\,X_T\,].
+\mathbb{E}[\,X_S\,] \;\le\; \mathbb{E}[\,Y_S\,] \;\le\; \mathbb{E}[\,Y_0\,] \;=\; \mathbb{E}[\,X_T\,]
 \]
-Hence
+Thus,
 \[
 \mathbb{E}[X_T]
 \;\ge\;
-\mathbb{E}[X_S],
+\mathbb{E}[X_S]
 \]
-showing $T$ is indeed an optimal stopping time.
         }
     
     \item[(h)] (Bonus, 5 points) Can you intuitively explain why $T$ is the optimal stopping time?
 
     \textit{Note:} there is no ``correct'' answer to this, but curious to read your thoughts.
 
-    \textcolor{blue}{ (Bonus) Intuitive explanation of why $T$ is optimal. \\
-        The time $T$ is defined as the first time the observed value $X_n$
-        meets (or exceeds) the ``continuation value'' $\mathbb{E}[Y_{n+1}\mid
-        \mathcal{F}_n]$. This continuation value is exactly the expected payoff
-        if we choose \emph{not} to stop now. Therefore, if $X_n$ is already
-        larger than the expected value of continuing, it makes sense to stop
+    \textcolor{blue}{ 
+        The time $T$ is defined as the first time $X_n$
+        meets or exceeds the continuation value, $\mathbb{E}[Y_{n+1}\mid
+        \mathcal{F}_n]$. Note that this continuation value is the expected payoff
+        if we choose not to stop now. Therefore, if $X_n$ is already
+        larger than the expected value of continuing, we should stop
         immediately. Conversely, if the current $X_n$ is smaller than that
-        future expectation, one gains in expectation by waiting. This procedure
-        encodes the best tradeoff between stopping now vs.\ continuing, hence
+        future expectation, we gain in expectation by waiting, i.e. not stopping. This should yield
+        the best tradeoff between stopping now and continuing, hence
         yields the best expected payoff among all stopping rules. }
 
     \item[(i)] Suppose that the data $X_n, n \geq 0$ are drawn uniformly from $[0, 1]$ and are i.i.d.
@@ -517,32 +511,27 @@ showing $T$ is indeed an optimal stopping time.
         \item[(i)] (2 points) What is $\mathbb{E}Y_0$ for $N = 2$?
 
         \textcolor{blue}{
-            Finally, suppose $X_0, X_1, \ldots, X_N$ are i.i.d.\ uniform$(0,1)$ random variables. We compute $\mathbb{E}[Y_0]$ for small $N$. \\
-\medskip
 \noindent
-\textbf{(i)}~\underline{$N=2$ case.} 
-Here we have three random variables $X_0, X_1, X_2$, each uniform$(0,1)$. By definition:
+Note the three random variables $X_0, X_1, X_2$, each uniform$[0,1]$. By definition,
 \[
 Y_2 = X_2,
 \quad
 Y_1 = \max\bigl(X_1,\; \mathbb{E}[Y_2 \mid X_1]\bigr)
      = \max\bigl(X_1,\; \mathbb{E}[X_2]\bigr)
-     = \max\bigl(X_1,\; 1/2\bigr),
+     = \max\bigl(X_1,\; 1/2\bigr)
 \]
-since $X_2$ is independent of $X_1$ and has mean $1/2$. Next,
 \[
 Y_0 
 \;=\; 
 \max\bigl(X_0,\; \mathbb{E}[\,Y_1 \mid X_0]\bigr)
 \;=\;
-\max\bigl(X_0,\; \mathbb{E}[\,Y_1\,]\bigr),
+\max\bigl(X_0,\; \mathbb{E}[\,Y_1\,]\bigr)
 \]
-because $Y_1$ is also independent of $X_0$. So we need $\mathbb{E}[Y_1]$.  \\
-Compute 
+since $Y_1$ is also independent of $X_0$. 
+Solving for $\mathbb{E}[Y_1]$,
 \[
-Y_1 = \max(X_1,\,1/2).
+Y_1 = \max(X_1,\,1/2)
 \]
-Hence
 \[
 \mathbb{E}[\,Y_1\,]
 \;=\;
@@ -554,13 +543,12 @@ Hence
 \;=\;
 \tfrac{1}{4} \;+\;\Bigl(\tfrac12 - \tfrac{1}{8}\Bigr)
 \;=\;
-\tfrac{5}{8}.
+\tfrac{5}{8}
 \]
 Therefore
 \[
-Y_0 = \max\bigl(X_0,\; 5/8\bigr).
+Y_0 = \max\bigl(X_0,\; 5/8\bigr)
 \]
-Taking expectation again,
 \[
 \mathbb{E}[\,Y_0\,]
 \;=\;
@@ -572,22 +560,22 @@ Taking expectation again,
 \;=\;
 \tfrac{5}{8}\cdot \tfrac{5}{8}
 \;+\;
-\Bigl[\tfrac{x^2}{2}\Bigr]_{5/8}^1.
+\tfrac{x^2}{2}\Bigr|_{5/8}^1
 \]
-First part: $5/8 \times 5/8 = 25/64$. Second part:
-\[
-\Bigl[\tfrac{x^2}{2}\Bigr]_{5/8}^1
-\;=\;
-\tfrac12 - \tfrac{(5/8)^2}{2}
-\;=\;
-\tfrac12 - \tfrac{25}{64}\cdot\tfrac12
-\;=\;
-\tfrac12 - \tfrac{25}{128}
-\;=\;
-\tfrac{64}{128} - \tfrac{25}{128}
-\;=\;
-\tfrac{39}{128}.
-\]
+% First part: $5/8 \times 5/8 = 25/64$. Second part:
+% \[
+% \Bigl[\tfrac{x^2}{2}\Bigr]_{5/8}^1
+% \;=\;
+% \tfrac12 - \tfrac{(5/8)^2}{2}
+% \;=\;
+% \tfrac12 - \tfrac{25}{64}\cdot\tfrac12
+% \;=\;
+% \tfrac12 - \tfrac{25}{128}
+% \;=\;
+% \tfrac{64}{128} - \tfrac{25}{128}
+% \;=\;
+% \tfrac{39}{128}.
+% \]
 Hence
 \[
 \mathbb{E}[\,Y_0\,]
@@ -597,79 +585,72 @@ Hence
 \tfrac{50}{128} + \tfrac{39}{128}
 \;=\;
 \tfrac{89}{128}
-\;\approx\; 0.6953.
 \]
 Thus for $N=2$, $\mathbb{E}[\,Y_0\,] = 89/128$.
         }
 
-
         \item[(ii)] (3 points) What about $N = 3$?
 
         \textcolor{blue}{
-         We have $X_0, X_1, X_2, X_3$. Then
+         First note the 4 variables, $X_0, X_1, X_2, X_3$
 \[
 Y_3 = X_3,\quad
-Y_2 = \max\bigl(X_2,\;1/2\bigr),
+Y_2 = \max\bigl(X_2,\;1/2\bigr)
 \]
-and 
 \[
 Y_1
 = \max\bigl(X_1,\;\mathbb{E}[\,Y_2\,]\bigr)
-= \max\bigl(X_1,\;\mathbb{E}[\max(X_2,1/2)]\bigr).
+= \max\bigl(X_1,\;\mathbb{E}[\max(X_2,1/2)]\bigr)
 \]
-We already computed 
+Using the pre-computed values,
 \[
 \mathbb{E}[\max(X_2,1/2)]
-= \frac{5}{8}.
+= \frac{5}{8}
 \]
 Hence 
 \[
-Y_1 = \max\bigl(X_1,\,5/8\bigr).
+Y_1 = \max\bigl(X_1,\,5/8\bigr)
 \]
-Next,
 \[
 Y_0 = \max\bigl(X_0,\;\mathbb{E}[Y_1]\bigr)
-= \max\bigl(X_0,\;\mathbb{E}[\max(X_1,5/8)]\bigr).
+= \max\bigl(X_0,\;\mathbb{E}[\max(X_1,5/8)]\bigr)
 \]
-We just adapt the same integral for $c=5/8$ again. As before,
 \[
 \mathbb{E}\bigl[\max(X_1,5/8)\bigr]
 = \int_0^1 \max(x,5/8)\,dx
 = \frac{5}{8}\cdot\frac{5}{8} + \int_{5/8}^1 x\,dx
 = \frac{25}{64} + \left(\frac{1}{2} - \frac{25}{128}\right)
 = \frac{25}{64} + \frac{39}{128}
-= \frac{89}{128}.
+= \frac{89}{128}
 \]
-Thus
+Therefore,
 \[
-Y_0 = \max\bigl(X_0,\; 89/128\bigr).
+Y_0 = \max\bigl(X_0,\; 89/128\bigr)
 \]
-Finally,
 \[
 \mathbb{E}[Y_0]
 = \int_0^1 \max\bigl(x,\,89/128\bigr)\,dx
 = \int_0^{89/128} \frac{89}{128}\,dx + \int_{89/128}^1 x\,dx
 = \frac{89}{128}\cdot\frac{89}{128} 
-  + \left[\frac{x^2}{2}\right]_{89/128}^1.
+  + \frac{x^2}{2}\big|_{89/128}^1
 \]
-The first part is 
-\(\frac{89}{128}\times \frac{89}{128} = \frac{7921}{16384}.\)
-For the second part,
-\[
-\left[\tfrac{x^2}{2}\right]_{89/128}^1
-= \tfrac12 - \tfrac{(89/128)^2}{2}
-= \tfrac12 - \tfrac{7921}{16384}\cdot \tfrac12
-= \tfrac12 - \tfrac{7921}{32768}
-= \frac{16384}{32768} - \frac{7921}{32768}
-= \frac{8463}{32768}.
-\]
-Hence
+% The first part is 
+% \(\frac{89}{128}\times \frac{89}{128} = \frac{7921}{16384}.\)
+% For the second part,
+% \[
+% \left[\tfrac{x^2}{2}\right]_{89/128}^1
+% = \tfrac12 - \tfrac{(89/128)^2}{2}
+% = \tfrac12 - \tfrac{7921}{16384}\cdot \tfrac12
+% = \tfrac12 - \tfrac{7921}{32768}
+% = \frac{16384}{32768} - \frac{7921}{32768}
+% = \frac{8463}{32768}.
+% \]
+Therefore,
 \[
 \mathbb{E}[Y_0]
 = \frac{7921}{16384} \;+\; \frac{8463}{32768}
 = \frac{15842}{32768} \;+\; \frac{8463}{32768}
 = \frac{24305}{32768}
-\;\approx\; 0.742.
 \]
 So for $N=3$, $\mathbb{E}[Y_0] = 24305/32768 \approx 0.742.$
         }
@@ -687,18 +668,18 @@ We also assume the following action is taking place: at each time the monkey hit
     \item[(a)] (2 points) Prove that the expected number of hits until the letter A is typed is 26.
 
         \textcolor{blue}{
-            Let $T := \min\{\,n \ge 1:\, \text{the }n\text{-th typed letter is }A\}$. Then $T$ is a geometric random variable with success probability $p=\tfrac{1}{26}$. Indeed,
+            Let $T = \min\{\,n \ge 1:\, \text{the }n\text{-th letter that is typed is }A\}$. This makes $T$ a geometric random variable with success probability $p=\tfrac{1}{26}$. As such,
 \[
-\mathbb{P}(T > n) \;=\; \left(\frac{25}{26}\right)^n,
-\quad
-\mathbb{P}(T=n) \;=\; \left(\frac{25}{26}\right)^{n-1}\,\frac{1}{26}.
-\]
-The expectation of such a geometric$(p=\tfrac{1}{26})$ random variable is
+\mathbb{P}(T > n) \;=\; \left(\frac{25}{26}\right)^n
+\quad \text{and} \quad
+\mathbb{P}(T=n) \;=\; \frac{1}{26}
+\left(\frac{25}{26}\right)^{n-1}\,\]
+Note that the expectation of such a geometric random variable is
 \[
 \mathbb{E}[T] \;=\; \frac{1}{p} 
-\;=\; 26.
+\;=\; 26
 \]
-Thus the expected number of keystrokes to see the first \texttt{A} is 26.
+Thus the expected number of keystrokes to see the first A is 26.
         }
     
     \item[(b)] Now let’s prove part (a) with martingale theory. Let us assume that a gambling game takes place at a casino based on the keys the monkey hits.
@@ -708,63 +689,65 @@ Thus the expected number of keystrokes to see the first \texttt{A} is 26.
         \item (3 points) Prove that the ``game is fair'', i.e., the total budget of the casino before every new hit is a martingale.
 
     \textcolor{blue}{
-        Let $M_n$ be the total budget of the casino \emph{prior} to the $n$-th keystroke (so $M_0=0$ initially). Just before the $n$-th letter appears:
-\[
-\text{The new gambler pays \$1, so the casino's budget increases by 1.}
-\]
-Then, when the $n$-th letter is realized:
-\[
-\begin{cases}
-\text{If it is A, the casino pays \$26 back, for a net } -25 \text{ (relative to +1)},\\
-\text{If it is not A, the gambler loses \$1, and the casino keeps that \$1.}
-\end{cases}
-\]
-Hence the increment from $M_{n-1}$ to $M_n$ is:
+        Let $M_n$ be the total budget of the casino prior to the $n$-th keystroke. As such, $M_0=0$. Just before the $n$-th letter appears,
+        the new gambler pays \$1, so the casino's budget increases by 1.
+Then, when the $n$-th letter is realized, there are two scenarios:
+if it is A, the casino pays \$26 back, for a net  -25, relative to +1.
+If it is not A, the gambler loses \$1, and the casino keeps the \$1.
+Hence the change from $M_{n-1}$ to $M_n$ is
 \[
 M_n - M_{n-1} \;=\;
 \begin{cases}
-+1 - 26 = -25, & \text{with probability } 1/26,\\
-+1, & \text{with probability } 25/26.
+-25, & \text{w.p. } 1/26\\
++1, & \text{w.p. } 25/26
 \end{cases}
 \]
-Therefore
+Therefore,
 \[
 \mathbb{E}[\,M_n - M_{n-1}\,\mid M_{n-1},\dots]
 \;=\;
 \frac{1}{26}\times(-25) \;+\; \frac{25}{26}\times (+1)
-\;=\; 0.
+\;=\; 0
 \]
-So 
+As such,
 \[
-\mathbb{E}[\,M_n \,\mid\, M_{n-1},\ldots]\;=\;M_{n-1}.
+\mathbb{E}[\,M_n \,\mid\, M_{n-1},\ldots]\;=\;M_{n-1}
 \]
-This means $(M_n)_{n\ge0}$ is indeed a (discrete-time) martingale with respect to its natural filtration.
+Therefore, this game is fair as it is a discrete-time martingale with respect to its natural filtration.
+% This means $(M_n)_{n\ge0}$ is indeed a (discrete-time) martingale with respect to its natural filtration.
     }
 
         \item (5 points) Provide an alternative proof of part (a) using the Optional Stopping Theorem.
 
-    \textcolor{blue}{
-Let $T$ be the \emph{first time the letter A appears}, exactly as in part~(a). By construction, $T$ is a stopping time with respect to $(M_n)$. Because $M_n$ is bounded below (in fact $M_n\ge -25n$) and $T$ cannot exceed the time we first see A---or we may simply note $T$ has a finite expectation for a geometric distribution---we can apply the Optional Stopping Theorem (OST) safely under standard conditions for nonnegative or bounded increments. 
-\smallskip
+    \textcolor{blue}{ 
+        Let $T$ be the first time that the letter A appears. By
+        its definition, $T$ is a stopping time with respect to $(M_n)$. Since 
+        $M_n$ is bounded below as $M_n\ge -25n$, and $T$ cannot exceed
+        the time we first see A
+        we can apply the Optional
+        Stopping Theorem (OST) safely under standard conditions for nonnegative
+        or bounded increments. \\
 \noindent
-\emph{Step 1: Calculate }$M_T$. Observe that up to time $T$ (the first A), we have had exactly $T$ gamblers, each paying \$1, so the casino collects \$\(T\). But at time $T$, the letter is indeed A, and the gambler at time $T$ wins \$26, so the casino must pay \$26 to that gambler. The net is:
+First, observe that up to time $T$, i.e. the first A, we have had exactly $T$ gamblers, each paying \$1, so the casino collects \$\(T\). But at time $T$, the letter is A, and the gambler at time $T$ wins \$26, so the casino must pay \$26 to that gambler. As such, the net is now 
 \[
 M_T \;=\; \underbrace{(+1) + \cdots + (+1)}_{T\text{ times}} \;-\; 26
 \;=\;
-T \;-\; 26.
+T \;-\; 26
 \]
-\emph{Step 2: Apply OST.} Since $M_n$ is a martingale and $T$ a bounded stopping time (geometric implies finite expectation, so the standard version of OST applies):
+Since $M_n$ is a martingale and $T$ a bounded stopping time, and a geometric series implies finite expectation, we can apply the OST, 
 \[
 \mathbb{E}[\,M_T\,] \;=\;\mathbb{E}[\,M_0\,]
-\;=\;0.
+\;=\;0
 \]
-Hence
+Hence,
 \[
-\mathbb{E}[\,T - 26\,] \;=\; 0,
-\quad\Longrightarrow\quad
-\mathbb{E}[\,T\,] \;=\; 26.
+\mathbb{E}[\,T - 26\,] \;=\; 0
 \]
-Thus the expected number of keystrokes before the letter A appears is 26, matching the direct calculation in part (a).
+Therefore,
+\[
+\mathbb{E}[\,T\,] \;=\; 26
+\]
+Thus, the expected number of keystrokes before the letter A appears is 26, matching the direct calculation in part (a).
     }
 
     \end{itemize}
@@ -774,56 +757,64 @@ Thus the expected number of keystrokes before the letter A appears is 26, matchi
     Build upon the proof technique of part (b), and prove that the expected number of hits until the monkey types \texttt{ABRACADABRA} is $26^{11} + 26^4 + 26$.
 
     \textcolor{blue}{
-        We define a process $(M_n)$, the casino's capital at time $n$, that places side-bets on whether the next typed letters complete any partial progress toward \texttt{ABRACADABRA}. Each time we transition from one ``partial match state'' to another, an appropriate net amount is paid in or out so that the increments of $M_n$ have zero expectation. The process is carefully designed so that once \texttt{ABRACADABRA} first appears, $M_\tau$ can be expressed (almost surely) in a way that reveals $\tau$ in the formula. The OST then concludes with the desired $\mathbb{E}[\tau]$.
-\bigskip
-Step 1: Label the prefix-matching states. \\
-Define the states $s=0,1,2,\ldots,10$ to represent ``how many initial letters of \texttt{ABRACADABRA} have been matched so far (most recent)''. 
+%         Define a process $(M_n)$, the casino's capital at time $n$, that places side-bets on whether the next typed letters complete any partial progress toward \texttt{ABRACADABRA}. Each time we transition from one ``partial match state'' to another, an appropriate net amount is paid in or out so that the increments of $M_n$ have zero expectation. The process is carefully designed so that once \texttt{ABRACADABRA} first appears, $M_\tau$ can be expressed (almost surely) in a way that reveals $\tau$ in the formula. The OST then concludes with the desired $\mathbb{E}[\tau]$.
+% \bigskip
+% Step 1: Label the prefix-matching states. \\
+Define the states $s=0,1,2,\ldots,10$ to represent the number of initial letters of \texttt{ABRACADABRA} that have been matched so far. 
 \[
 \text{\tt ABRACADABRA} = 
-\text{\tt A (0) B (1) R (2) A (3) C (4) A (5) D (6) A (7) B (8) R (9) A (10)},
+\text{\tt A (0) B (1) R (2) A (3) C (4) A (5) D (6) A (7) B (8) R (9) A (10)}
 \]
-where $s=0$ means ``currently matched 0 letters (no partial match),'' $s=1$ means ``the most recent letter typed was \texttt{A}, matching 1 letter of the pattern so far,'' and so on, up to $s=10$ meaning we have matched all but one final letter \texttt{A} so that if the next letter is \texttt{A}, we complete the entire pattern \texttt{ABRACADABRA}. \\
-\bigskip
-Step 2: Overlap function. \\
-Crucially, note that \texttt{ABRACADABRA} has a length-$4$ prefix \texttt{ABRA} that is also a suffix of that word. In effect:
-\[
-\underbrace{\text{\tt ABRACADABRA}}_{\text{length 11}}
-\quad\text{ has suffix \texttt{ABRA} of length 4 (and that suffix is also the first 4 letters).}
-\]
-Hence if we are in state $s=10$ (i.e., we have matched \texttt{ABRACADABR}), and the next letter typed is \texttt{A}, then we enter the success state $s=11$ (meaning we've matched the entire word \texttt{ABRACADABRA} for the first time). But if the next letter typed is \texttt{B}---which might partially match a new pattern---then we effectively jump to a state that reflects how many letters of \texttt{ABRACADABRA} (from the beginning) are matched by the overlap. For \texttt{ABRACADABR} + \texttt{B}, the new situation is $s=2$ (since the last two letters typed are now \texttt{AB}, which is the first 2-letter prefix of \texttt{ABRACADABRA}). There is a systematic way to define these transitions for each possible letter from any state $s$. We won't write out all transitions in detail here, but only highlight that:
-\[
-\text{Next letter typed} 
-\quad\longmapsto\quad
-\text{(jump to new state reflecting the new overlap).} 
-\]
-\bigskip
-Step 3: Define the casino's payoff structure / side-bets. \\
-We construct a capital process $M_n$ (the casino's profit at time $n$) as follows: \\
-- At every step $n$, depending on the \emph{current} state $s_n \in \{0,1,\dots,10\}$ (the number of matched letters so far) and the letter typed, the casino either \emph{wins or loses a precisely defined amount} so that
+So when $s=0$, 0 letters are currently matched, i.e. (no partial match), when $s=1$, the recent letter typed was \texttt{A}, matching 1 letter of the pattern so far, etc. \\
+Note that \texttt{ABRACADABRA} has a prefix \texttt{ABRA} that is also a suffix of that word. 
+% In effect:
+% \[
+% \underbrace{\text{\tt ABRACADABRA}}_{\text{length 11}}
+% \quad\text{ has suffix \texttt{ABRA} of length 4 (and that suffix is also the first 4 letters).}
+% \]
+Hence if we are in state $s=10$ (i.e., we have matched \texttt{ABRACADABR}),
+and the next letter typed is \texttt{A}, then we enter the success state $s=11$
+(matching the entire word \texttt{ABRACADABRA} for the first
+time). But if the next letter typed is \texttt{B}
+then we jump to a state that reflects how many
+letters of \texttt{ABRACADABRA} (from the beginning) are matched by the
+overlap. For \texttt{ABRACADABR} + \texttt{B}, the new state is $s=2$. \\
+% There is a systematic way to define
+% these transitions for each possible letter from any state $s$. We won't write
+% out all transitions in detail here, but only highlight that:
+% \[
+% \text{Next letter typed} 
+% \quad\longmapsto\quad
+% \text{(jump to new state reflecting the new overlap).} 
+% \]
+% Step 3: Define the casino's payoff structure / side-bets. \\
+In order to define the casino's payoff structure, we construct $M_n$, representing the casino's profit at time $n$, by the following \\
+\begin{itemize}
+\item At every step $n$, depending on the current state $s_n \in \{0,1,\dots,10\}$ and the letter typed, the casino either wins or loses a defined amount such that
   \[
-  \mathbb{E}[\Delta M_n \mid \text{previous info}] = 0.
+  \mathbb{E}[\Delta M_n \mid \text{previous info}] = 0
   \]
-- Concretely, from each state $s$, if the next letter is the correct letter to advance to $s+1$ (or $s=10$ to $s=11$, i.e.\ success), a certain payoff is made to the gambler. Otherwise, the gambler pays the casino. The size of the bets is chosen so that each step is a fair bet from the viewpoint of the casino.  \\
-One explicit (though slightly tedious) construction is:
+\item Concretely, from each state $s$, if the next letter is the correct letter to advance to $s+1$, a certain payoff is made to the gambler. Otherwise, the gambler pays the casino. The size of the bets is chosen so that each step is a fair bet from the viewpoint of the casino.  \\
+\end{itemize}
+% One explicit (though slightly tedious) construction is:
 \[
-\text{At each step, a new gambler invests an amount }X_{s}\text{ if we are in state }s.
+\text{At each step, a new gambler invests an amount }X_{s}\text{ if in state }s.
 \]
-If the typed letter transitions $s\to t$, the gambler is paid $X_{t}$ and leaves. The net effect on the casino is
+If the typed letter transitions $s$ to $t$, the gambler is paid $X_{t}$ and leaves. Therefore, the net effect on the casino is
 \[
-\Delta M = - X_{t} + X_{s}.
+\Delta M = - X_{t} + X_{s}
 \]
-We want 
+With a goal of 
 \(\mathbb{E}[\Delta M \mid s] = 0\),
-thus
 \[
-X_{s} \;=\; \sum_{\ell= \text{all letters}} \Bigl[\tfrac{1}{26} \bigl(-X_{\text{nextState}(s,\ell)} + X_s\bigr)\Bigr].
+X_{s} \;=\; \sum_{\ell= \text{all letters}} \Bigl[\tfrac{1}{26} \bigl(-X_{\text{nextState}(s,\ell)} + X_s\bigr)\Bigr]
 \]
-Solving this system, plus specifying boundary conditions $X_{11}=0$ at the absorbing success state, yields unique solutions
+Solving this system and specifying boundary conditions $X_{11}=0$ as the absorbing success state, yields
 \[
-\{X_0, X_1,\dots, X_{10}, X_{11}=0\}.
+\{X_0, X_1,\dots, X_{10}, X_{11}=0\}
 \]
-(Here $X_{11}=0$ because once the pattern is fully matched, that gambler’s bet is over.) \\
-A standard result (or by direct algebra) shows:
+% (Here $X_{11}=0$ because once the pattern is fully matched, that gambler’s bet is over.) \\
+This yields the results:
 \[
 X_0 \;=\; 26^{11} + 26^{4} + 26,
 \quad
@@ -835,57 +826,56 @@ X_{11}=0,
 \quad
 \text{and similarly for the other }X_s.
 \]
-(The powers $26^{11}, 26^4, 26$ directly reflect how partial overlaps restart the pattern matching.) \\
+where the powers $26^{11}, 26^4, 26$ directly reflect how partial overlaps restart the pattern matching. \\
 \bigskip
-Step 4: The process $M_n$ is a martingale and at time $\tau$ we can solve for $\tau$. \\
+Since, $M_n$ is a martingale, we can solve for $\tau$. \\
 Thus $M_n$ is built so that each jump 
 \(\Delta M_n = M_n - M_{n-1}\) 
-has zero conditional expectation given the state $s_{n-1}$. Hence $(M_n)$ is a martingale. Let $\tau$ be the time we first reach state $s=11$ (i.e., \texttt{ABRACADABRA} is fully matched). By the Optional Stopping Theorem,
+has zero conditional expectation given the state $s_{n-1}$. Hence $(M_n)$ is a martingale. Let $\tau$ be the time we first reach state $s=11$. By the Optional Stopping Theorem,
 \[
 \mathbb{E}[\,M_{\tau}\,] 
-\;=\; \mathbb{E}[\,M_0\,].
+\;=\; \mathbb{E}[\,M_0\,]
 \]
 But $M_0 = X_0$ since we start in state $s=0$ with that gambler's stake, i.e.\ $M_0 = X_0 = 26^{11} + 26^4 + 26.$ \\
-Meanwhile, once $\tau$ is reached, the gambler in state 10 receives $X_{11}=0$ but had invested $X_{10}=26$. So the net effect for the casino from that final transition is $-X_{11}+X_{10}=+26$ minus any prior partial reimbursements. Collecting all partial contributions, one can check carefully that
+Meanwhile, once $\tau$ is reached, the gambler in state 10 receives $X_{11}=0$ but had invested $X_{10}=26$. So the net effect for the casino from that final transition is $-X_{11}+X_{10}=+26$ minus any prior partial reimbursements. Collecting all partial contributions,
 \[
 M_{\tau} \;=\; \tau - (26^{11} + 26^4 + 26)
 \]
-(a direct analogy to the single-letter case). More precisely: \\
-- Summed across all steps from $1$ to $\tau$, gamblers have collectively contributed $\tau$ dollars into the casino (1 dollar each time). \\
-- At times the pattern partially matches, the casino pays out intermediate amounts, culminating in a final payoff at time $\tau$ that ensures the gambler in state 10 (or some partial overlap sequence) is compensated. \\
-A more direct or carefully enumerated argument obtains
+% (a direct analogy to the single-letter case). 
+More precisely, when summed across all steps from $1$ to $\tau$, gamblers have collectively contributed $\tau$ dollars into the casino. 
+At times when the pattern partially matches, the casino pays out intermediate amounts, culminating in a final payoff at time $\tau$ that ensures the gambler in state 10 is compensated. \\
+% A more direct or carefully enumerated argument obtains
+As such,
 \[
 M_{\tau} 
 = 
 \tau \;-\; \bigl(X_0 - X_{11}\bigr)
 = 
-\tau \;-\; \bigl(\,(26^{11} + 26^4 + 26) - 0\bigr).
+\tau \;-\; \bigl(\,(26^{11} + 26^4 + 26) - 0\bigr)
 \]
 Hence
 \[
 M_{\tau}
 \;=\;
-\tau - \bigl(26^{11} + 26^4 + 26\bigr).
+\tau - \bigl(26^{11} + 26^4 + 26\bigr)
 \]
 Using $\mathbb{E}[\,M_{\tau}\,] = M_0 = 26^{11}+26^4+26$,
 \[
 \mathbb{E}\Bigl[\tau - \bigl(26^{11} + 26^4 + 26\bigr)\Bigr]
 \;=\;
-26^{11} + 26^4 + 26,
+26^{11} + 26^4 + 26
 \]
-which immediately gives
+which yields 
 \[
 \mathbb{E}[\tau]
 \;=\;
 (26^{11} + 26^4 + 26) \;+\; (26^{11} + 26^4 + 26)
 \;-\; 0
 \;=\;
-26^{11} + 26^4 + 26.
+26^{11} + 26^4 + 26
 \]
-Therefore the expected time to see the entire \texttt{ABRACADABRA} is 
-\[
-\boxed{\,26^{11} + 26^4 + 26.}
-\]
+Therefore the expected number of hits to see the entire \texttt{ABRACADABRA} is 
+$26^{11} + 26^4 + 26$.
     }
 
 \end{enumerate}
