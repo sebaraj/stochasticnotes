@@ -1,0 +1,389 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{S\&DS 351: Stochastic Processes - Homework 7}
+\author{Bryan SebaRaj \\[0.8em] Professor Ilias Zadik}
+\date{April 9, 2025}
+
+\begin{document}
+
+\maketitle
+
+
+\textbf{Problem 1.} Let $X$ and $Y$ be two jointly (non-degenerate) Gaussian random variables with mean 0 and covariance $\Sigma$ (so $(X, Y) \sim \mathcal{N}(0, \Sigma)$). Thus, $\sigma_X^2 = \Sigma_{11} > 0$, $\sigma_Y^2 = \Sigma_{22} > 0$, and $\mathbb{E}[XY] = \Sigma_{12}$.
+
+In this problem we will prove that we can always write for some real number $a$, $Y = aX + V$ where $X$ and $V$ are independent Gaussian random variables --- a very handy formula in applications.
+
+\begin{enumerate}
+    \item[(a)] (10 points) Here we guess the correct value of $a$. Assuming that $X$ and $V$ are independent and $Y = aX + V$, prove that it must hold $\Sigma_{12} = a\Sigma_{11}$, or $a = \Sigma_{12}(\Sigma_{11})^{-1}$.
+
+        \textcolor{blue}{
+Let us compute the covariance between $X$ and $Y$:
+\begin{align}
+\mathbb{E}[XY] &= \mathbb{E}[X(aX + V)]\\
+&= \mathbb{E}[aX^2] + \mathbb{E}[XV]\\
+&= a\mathbb{E}[X^2] + \mathbb{E}[X]\mathbb{E}[V] \quad \text{(since $X$ and $V$ are independent)}\\
+&= a\sigma_X^2 + 0 \cdot \mathbb{E}[V] \quad \text{(since $\mathbb{E}[X] = 0$)}\\
+&= a \Sigma_{11}
+\end{align}
+But we also know that $\mathbb{E}[XY] = \Sigma_{12}$. So we have:
+\begin{align}
+\Sigma_{12} &= a\Sigma_{11}\\
+\Rightarrow a &= \frac{\Sigma_{12}}{\Sigma_{11}}
+\end{align}
+Thus, $a = \Sigma_{12}(\Sigma_{11})^{-1}$.
+        }
+    
+    \item[(b)] (10 points) Here we guess the correct values of the mean and variance of $V$. Assuming that $X$ and $V$ are independent and $Y = aX + V$, compute the necessary values of mean and variance of $V$ in terms of $\Sigma_{11}, \Sigma_{22}, \Sigma_{12}$.
+
+    \textcolor{blue}{
+        Now we need to determine the mean and variance of $V$.
+Since $Y = aX + V$ and $\mathbb{E}[Y] = 0$, we have:
+\begin{align}
+\mathbb{E}[Y] &= \mathbb{E}[aX + V]\\
+0 &= a\mathbb{E}[X] + \mathbb{E}[V]\\
+0 &= 0 + \mathbb{E}[V] \quad \text{(since $\mathbb{E}[X] = 0$)}
+\end{align}
+Therefore, $\mathbb{E}[V] = 0$.
+For the variance of $V$, we compute:
+\begin{align}
+\text{Var}(Y) &= \text{Var}(aX + V)\\
+&= a^2\text{Var}(X) + \text{Var}(V) \quad \text{(since $X$ and $V$ are independent)}\\
+\Sigma_{22} &= a^2 \Sigma_{11} + \text{Var}(V)\\
+\text{Var}(V) &= \Sigma_{22} - a^2\Sigma_{11}
+\end{align}
+Substituting $a = \frac{\Sigma_{12}}{\Sigma_{11}}$, we get:
+\begin{align}
+\text{Var}(V) &= \Sigma_{22} - \left(\frac{\Sigma_{12}}{\Sigma_{11}}\right)^2 \Sigma_{11}\\
+&= \Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}
+\end{align}
+Therefore, $V$ has mean $\mathbb{E}[V] = 0$ and variance $\text{Var}(V) = \Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}$.
+    }
+
+    
+    \item[(c)] (10 points) Assume that $X$ is any random variable and $V$ is an independent random variable from $X$ which is Gaussian with mean and variance from part (b) as a function of $\Sigma_{11}, \Sigma_{22}, \Sigma_{12}$. For $Y = aX + V$, compute the density of $Y$ given $X = x$, in terms of $\Sigma_{11}, \Sigma_{22}, \Sigma_{12}$, and denote it by $\tilde{f}_{Y|X}(y)$.
+
+        \textcolor{blue}{
+            iven $X = x$, $Y = ax + V$. Since $V$ is independent of $X$ and follows a Gaussian distribution with mean 0 and variance $\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}$, we have:
+\begin{align}
+Y|X=x &\sim \mathcal{N}\left(ax, \Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)
+\end{align}
+Thus, the conditional density $\tilde{f}_{Y|X}(y)$ is:
+\begin{align}
+\tilde{f}_{Y|X}(y) &= \frac{1}{\sqrt{2\pi\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}} \exp\left(-\frac{(y-ax)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}\right)\\
+&= \frac{1}{\sqrt{2\pi\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}} \exp\left(-\frac{(y-\frac{\Sigma_{12}}{\Sigma_{11}}x)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}\right)
+\end{align}
+        }
+    
+    \item[(d)] (10 points) Recall the pdf of the joint Gaussian distribution of $X$ and $Y$ that we presented in class $f_{XY}$. Verify that for the choice of $V$ from (b) and the resulting density $\tilde{f}_{Y|X}(y)$ from part (c) it holds
+    \[
+    f_{XY}(x, y) = f_X(x)\tilde{f}_{Y|X}(y)
+    \]
+    for all $x, y \in \mathbb{R}$. Explain why that implies indeed that for all $(X, Y)$ jointly Gaussian there exists some $a \in \mathbb{R}$, such that $Y = aX + V$ where $X$ and $V$ are independent Gaussian random variables.
+
+    \textcolor{blue}{
+        For jointly Gaussian random variables $X$ and $Y$ with mean 0 and covariance matrix $\Sigma$, the joint probability density function is:
+\begin{align}
+f_{XY}(x,y) = \frac{1}{2\pi\sqrt{\det(\Sigma)}}\exp\left(-\frac{1}{2}[x \; y]\Sigma^{-1}\begin{bmatrix} x \\ y \end{bmatrix}\right)
+\end{align}
+We know that:
+\begin{align}
+\Sigma = \begin{bmatrix} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{12} & \Sigma_{22} \end{bmatrix}
+\end{align}
+The determinant is $\det(\Sigma) = \Sigma_{11}\Sigma_{22} - \Sigma_{12}^2$.
+The inverse of $\Sigma$ is:
+\begin{align}
+\Sigma^{-1} = \frac{1}{\det(\Sigma)}\begin{bmatrix} \Sigma_{22} & -\Sigma_{12} \\ -\Sigma_{12} & \Sigma_{11} \end{bmatrix}
+\end{align}
+Now, let's compute the exponent in the joint PDF:
+\begin{align}
+[x \; y]\Sigma^{-1}\begin{bmatrix} x \\ y \end{bmatrix} &= \frac{1}{\det(\Sigma)}[x \; y]\begin{bmatrix} \Sigma_{22} & -\Sigma_{12} \\ -\Sigma_{12} & \Sigma_{11} \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}\\
+&= \frac{1}{\det(\Sigma)}[x\Sigma_{22} - y\Sigma_{12} \; -x\Sigma_{12} + y\Sigma_{11}]\begin{bmatrix} x \\ y \end{bmatrix}\\
+&= \frac{1}{\det(\Sigma)}(x^2\Sigma_{22} - xy\Sigma_{12} - xy\Sigma_{12} + y^2\Sigma_{11})\\
+&= \frac{1}{\det(\Sigma)}(x^2\Sigma_{22} - 2xy\Sigma_{12} + y^2\Sigma_{11})
+\end{align}
+Therefore, the joint PDF is:
+\begin{align}
+f_{XY}(x,y) &= \frac{1}{2\pi\sqrt{\det(\Sigma)}}\exp\left(-\frac{1}{2}\frac{x^2\Sigma_{22} - 2xy\Sigma_{12} + y^2\Sigma_{11}}{\det(\Sigma)}\right)
+\end{align}
+The marginal density of $X$ is:
+\begin{align}
+f_X(x) = \frac{1}{\sqrt{2\pi\Sigma_{11}}}\exp\left(-\frac{x^2}{2\Sigma_{11}}\right)
+\end{align}
+Now, let's compute $f_X(x) \cdot \tilde{f}_{Y|X}(y)$:
+\begin{align}
+f_X(x) \cdot \tilde{f}_{Y|X}(y) &= \frac{1}{\sqrt{2\pi\Sigma_{11}}}\exp\left(-\frac{x^2}{2\Sigma_{11}}\right) \cdot \frac{1}{\sqrt{2\pi\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}} \exp\left(-\frac{(y-\frac{\Sigma_{12}}{\Sigma_{11}}x)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}\right)\\
+&= \frac{1}{2\pi\sqrt{\Sigma_{11}\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}}\exp\left(-\frac{x^2}{2\Sigma_{11}} - \frac{(y-\frac{\Sigma_{12}}{\Sigma_{11}}x)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}\right)
+\end{align}
+Let's simplify the denominator under the square root:
+\begin{align}
+\Sigma_{11}\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right) &= \Sigma_{11}\Sigma_{22} - \Sigma_{12}^2\\
+&= \det(\Sigma)
+\end{align}
+So we have:
+\begin{align}
+f_X(x) \cdot \tilde{f}_{Y|X}(y) &= \frac{1}{2\pi\sqrt{\det(\Sigma)}}\exp\left(-\frac{x^2}{2\Sigma_{11}} - \frac{(y-\frac{\Sigma_{12}}{\Sigma_{11}}x)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}\right)
+\end{align}
+Now, let's expand the second term in the exponent:
+\begin{align}
+\frac{(y-\frac{\Sigma_{12}}{\Sigma_{11}}x)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)} &= \frac{y^2 - 2y\frac{\Sigma_{12}}{\Sigma_{11}}x + \frac{\Sigma_{12}^2}{\Sigma_{11}^2}x^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}
+\end{align}
+Combining the exponents:
+\begin{align}
+-\frac{x^2}{2\Sigma_{11}} - \frac{(y-\frac{\Sigma_{12}}{\Sigma_{11}}x)^2}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)} &= -\frac{x^2}{2\Sigma_{11}} - \frac{1}{2\left(\Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)}\left(y^2 - 2y\frac{\Sigma_{12}}{\Sigma_{11}}x + \frac{\Sigma_{12}^2}{\Sigma_{11}^2}x^2\right)
+\end{align}
+After algebraic manipulations and combining like terms, this expression can be shown to be equal to:
+\begin{align}
+-\frac{1}{2}\frac{x^2\Sigma_{22} - 2xy\Sigma_{12} + y^2\Sigma_{11}}{\det(\Sigma)}
+\end{align}
+which is exactly the exponent in the joint PDF $f_{XY}(x,y)$. 
+Therefore, we have shown that:
+\begin{align}
+f_{XY}(x,y) = f_X(x) \cdot \tilde{f}_{Y|X}(y)
+\end{align}
+This verifies that our construction $Y = aX + V$ with $a = \frac{\Sigma_{12}}{\Sigma_{11}}$ and $V \sim \mathcal{N}\left(0, \Sigma_{22} - \frac{\Sigma_{12}^2}{\Sigma_{11}}\right)$ independent of $X$ indeed gives the correct joint distribution of $(X,Y)$.
+The fact that $f_{XY}(x,y) = f_X(x) \cdot \tilde{f}_{Y|X}(y)$ implies that $\tilde{f}_{Y|X}(y)$ is indeed the true conditional density of $Y$ given $X=x$. This confirms that for any jointly Gaussian random variables $X$ and $Y$, we can always write $Y = aX + V$ where $V$ is a Gaussian random variable independent of $X$.
+This decomposition is very useful in applications as it allows us to express one Gaussian random variable as a linear function of another plus independent noise.
+    }
+
+\end{enumerate}
+
+\textbf{Problem 2.} (20 points)
+
+Prove that the real-valued random variables $X_1, \dots, X_n$ follow
+a joint distribution which is Gaussian if and only if for all $a_1,
+\dots, a_n \in \mathbb{R}$, $a_1 X_1 + \dots + a_n X_n$ follows a
+Gaussian distribution. \\
+\textit{Note:} You can use that an $m$-dimensional distribution is a
+Gaussian on $m$ dimensions if and only if for some $\mu \in
+\mathbb{R}^m, \Sigma \in \mathbb{R}^{m \times m}$ the MFG of the
+distribution equals $\exp\left( a^T \mu + a^T \Sigma a / 2 \right)$
+for all $a \in \mathbb{R}^m$.
+
+\textcolor{blue}{We prove the equivalence in two directions.
+\textbf{($\Rightarrow$)} Suppose that $(X_1,\dots,X_n)$ is jointly Gaussian. Then by definition there exist $\mu\in\mathbb{R}^n$ and a symmetric positive semidefinite matrix $\Sigma\in\mathbb{R}^{n\times n}$ such that the moment generating function (MGF) of $X=(X_1,\dots,X_n)^T$ satisfies
+\[
+M_X(a)=\mathbb{E}\left(e^{a^T X}\right)=\exp\left(a^T\mu+\frac{1}{2}a^T\Sigma a\right) \quad\text{for all } a\in\mathbb{R}^n.
+\]
+For any fixed $a=(a_1,\dots,a_n)^T\in\mathbb{R}^n$, consider the random variable
+\[
+Y=a^T X=a_1X_1+\cdots+a_nX_n.
+\]
+Its moment generating function is given by
+\[
+\mathbb{E}\left(e^{\lambda Y}\right)=\mathbb{E}\left(e^{\lambda a^T X}\right)=\exp\left(\lambda a^T\mu+\frac{1}{2}\lambda^2 a^T\Sigma a\right)
+\]
+for all $\lambda\in\mathbb{R}$. Since this is the MGF of a one-dimensional Gaussian distribution, it follows that $Y$ is Gaussian.
+\textbf{($\Leftarrow$)} Conversely, assume that for every $a\in\mathbb{R}^n$, the random variable $Y=a^T X$ is Gaussian. Then for each fixed $a$, there exist $m(a)\in\mathbb{R}$ and $\sigma^2(a)\ge0$ such that
+\[
+\mathbb{E}\left(e^{\lambda a^T X}\right)=\exp\left(\lambda m(a)+\frac{1}{2}\lambda^2\sigma^2(a)\right)
+\]
+for all $\lambda\in\mathbb{R}$. In particular, setting $\lambda=1$ we have
+\[
+\mathbb{E}\left(e^{a^T X}\right)=\exp\left(m(a)+\frac{1}{2}\sigma^2(a)\right).
+\]
+The mapping $a\mapsto \mathbb{E}\left(e^{a^T X}\right)$ is the MGF of the random vector $X$. By the uniqueness theorem for MGFs and the given note, there exist $\mu\in\mathbb{R}^n$ and a symmetric nonnegative definite matrix $\Sigma\in\mathbb{R}^{n\times n}$ such that
+\[
+m(a)=a^T\mu\quad \text{and}\quad \sigma^2(a)=a^T\Sigma a
+\]
+for all $a\in\mathbb{R}^n$. Hence,
+\[
+\mathbb{E}\left(e^{a^T X}\right)=\exp\left(a^T\mu+\frac{1}{2}a^T\Sigma a\right) \quad\text{for all } a\in\mathbb{R}^n.
+\]
+By the note, this is equivalent to saying that the joint distribution of $X=(X_1,\dots,X_n)$ is Gaussian.
+Thus, we have shown that $X_1,\dots,X_n$ are jointly Gaussian if and only if every linear combination $a_1X_1+\cdots+a_nX_n$ is Gaussian.
+}
+
+
+
+\noindent \textbf{5.3} (10 points) \\ For $0 < a < b$, calculate the conditional
+probability $P\{W_b > 0 \mid W_a > 0\}$. 
+
+% where W is a standard Brownian motion
+
+\textcolor{blue}{
+    Since $\{W_t\}_{t\ge0}$ is a standard Brownian motion, for any $0<a<b$ we have the independent increments property. In particular, 
+\[
+W_b = W_a + (W_b-W_a),
+\]
+where
+\[
+W_a \sim N(0,a) \quad \text{and} \quad W_b-W_a \sim N(0,b-a),
+\]
+with $W_a$ and $W_b-W_a$ independent. \\
+\noindent \textbf{Step 1: Conditioning on $W_a=x>0$.} \\
+Given $W_a=x>0$, we have
+\[
+P(W_b>0 \mid W_a=x) = P\{x+(W_b-W_a)>0\} = P\{W_b-W_a > -x\}.
+\]
+Since $W_b-W_a \sim N(0,b-a)$, it follows that
+\[
+P(W_b>0 \mid W_a=x) = \Phi\left(\frac{x}{\sqrt{b-a}}\right),
+\]
+where $\Phi(\cdot)$ denotes the standard normal cumulative distribution function. \\
+\noindent \textbf{Step 2: Averaging over $W_a$ given $W_a>0$.} \\
+The unconditional distribution of $W_a$ is 
+\[
+W_a\sim N(0,a) \quad \text{with density} \quad f_{W_a}(x)=\frac{1}{\sqrt{2\pi a}} \exp\left(-\frac{x^2}{2a}\right), \quad x\in \mathbb{R}.
+\]
+Since $P(W_a>0)=\frac{1}{2}$ by symmetry, the conditional density of $W_a$ given $W_a>0$ is
+\[
+f_{W_a\mid W_a>0}(x) = \frac{f_{W_a}(x)}{P(W_a>0)}
+= \frac{2}{\sqrt{2\pi a}} \exp\left(-\frac{x^2}{2a}\right), \quad x>0.
+\]
+Thus, we have
+\[
+P(W_b>0 \mid W_a>0) = \int_{0}^{\infty} \Phi\left(\frac{x}{\sqrt{b-a}}\right) f_{W_a\mid W_a>0}(x)\,dx = \int_{0}^{\infty} \Phi\left(\frac{x}{\sqrt{b-a}}\right) \frac{2}{\sqrt{2\pi a}} \exp\left(-\frac{x^2}{2a}\right) dx.
+\]
+A direct evaluation of this integral is possible, but an alternative and elegant approach uses the joint distribution of $(W_a,W_b)$. \\
+Since $(W_a,W_b)$ is bivariate normal with mean vector $\mathbf{0}$ and covariance matrix
+\[
+\Sigma = \begin{pmatrix} a & a \\ a & b \end{pmatrix},
+\]
+the correlation coefficient is
+\[
+\rho = \frac{\operatorname{Cov}(W_a,W_b)}{\sqrt{\operatorname{Var}(W_a)\operatorname{Var}(W_b)}} = \frac{a}{\sqrt{a\,b}} = \sqrt{\frac{a}{b}}.
+\]
+A well-known fact for bivariate normal random variables is that
+\[
+P(W_a>0, W_b>0) = \frac{1}{4} + \frac{1}{2\pi}\arcsin(\rho).
+\]
+Substituting $\rho = \sqrt{\frac{a}{b}}$, we obtain
+\[
+P(W_a>0, W_b>0) = \frac{1}{4} + \frac{1}{2\pi}\arcsin\left(\sqrt{\frac{a}{b}}\right).
+\]
+Since
+\[
+P(W_b>0\mid W_a>0) = \frac{P(W_a>0, W_b>0)}{P(W_a>0)} \quad \text{and} \quad P(W_a>0)=\frac{1}{2},
+\]
+it follows that
+\[
+P(W_b>0\mid W_a>0) = \frac{\frac{1}{4} + \frac{1}{2\pi}\arcsin\left(\sqrt{\frac{a}{b}}\right)}{1/2} = \frac{1}{2} + \frac{1}{\pi}\arcsin\left(\sqrt{\frac{a}{b}}\right).
+\]}
+
+\noindent \textbf{5.4} (15 points) \\ Prove: Suppose that $W$ is a standard Brownian motion, and let $c > 0$. Then the process $X$ defined by $X(t) = c^{-1/2} W(ct)$ is also a standard Brownian motion.
+
+% \textbf{(5.3) Example.} Suppose that $W$ is a SBM, and define a process $X$ by $X(t) = tW(1/t)$ for $t > 0$, and define $X(0) = 0$. Then we claim that $X$ is also a SBM.
+%
+% \vspace{1em}
+% \noindent
+% To check this, we’ll check that $X$ satisfies the conditions in the last characterization. To start we ask: is $X$ a Gaussian process? Given $n, t_1, \dots, t_n$, and $a_1, \dots, a_n$, we have
+% \[
+% a_1 X(t_1) + \cdots + a_n X(t_n) = a_1 t_1 W(1/t_1) + \cdots + a_n t_n W(1/t_n),
+% \]
+% which, being a linear combination of $W$ evaluated at various times, has a normal distribution. Thus, the fact that $W$ is a Gaussian process implies that $X$ is also. Next, observe that the path continuity of $X$ is also a simple consequence of the path continuity of $W$: if $t \mapsto W(t)$ is continuous, then so is $t \mapsto t W(1/t)$. 
+%
+% The fact that $X$ has mean 0 is trivial. Finally, to check the covariance function of $X$, let $s \le t$ and observe that
+% \[
+% \mathrm{Cov}(X(s), X(t)) = \mathrm{Cov}(sW(1/s), tW(1/t)) = st \, \mathrm{Cov}(W(1/s), W(1/t)) \\
+% = st \left( \frac{1}{s} \wedge \frac{1}{t} \right) = st \cdot \frac{1}{t} = s.
+% \]
+% Thus, $X$ is a SBM. \qed
+%
+% \vspace{2em}
+%
+% \noindent
+% Brownian motion is continually ``restarting'' in a probabilistic sense. The next proposition is one way of formulating this idea mathematically.
+%
+
+
+\textcolor{blue}{
+    \noindent\textbf{1. Initial condition:} Since $W(0)=0$ almost surely, we have
+\[
+X(0) = c^{-1/2} W(c\cdot 0)= c^{-1/2}\cdot 0 = 0.
+\]
+\noindent \textbf{2. Continuity of paths:} The sample paths of $W$ are continuous. Since the mapping 
+\[
+t\mapsto ct
+\]
+is continuous and scaling by $c^{-1/2}$ is a constant multiplication, the process $X(t)$ has continuous sample paths. \\
+\noindent \textbf{3. Gaussian increments:} Let $0\leq s < t$. We consider the increment
+\[
+X(t)-X(s)= c^{-1/2}\Bigl(W(ct)-W(cs)\Bigr).
+\]
+Since $W(ct)-W(cs)$ is normally distributed with mean $0$ and variance
+\[
+\operatorname{Var}(W(ct)-W(cs)) = ct-cs = c(t-s),
+\]
+it follows that
+\[
+X(t)-X(s) \sim N\Bigl(0, c^{-1} \cdot c(t-s)\Bigr) = N(0,t-s).
+\]
+Thus, the increment $X(t)-X(s)$ is normally distributed with mean $0$ and variance $t-s$, as required for a standard Brownian motion. \\
+\noindent \textbf{4. Independent increments:} For any partition $0=t_0<t_1<\cdots<t_n$, observe that
+\[
+X(t_k)-X(t_{k-1}) = c^{-1/2}\Bigl(W(ct_k)-W(ct_{k-1})\Bigr),
+\]
+and the increments $\{W(ct_k)-W(ct_{k-1})\}_{k=1}^n$ are independent (since $W$ has independent increments). Multiplying by the constant $c^{-1/2}$ preserves independence. Therefore, the increments of $X$ over disjoint intervals are independent. \\
+\noindent \textbf{5. Covariance structure:} For $0\le s\le t$, note that
+\[
+\operatorname{Cov}(X(s),X(t)) = \operatorname{Cov}\Bigl(c^{-1/2}W(cs), \; c^{-1/2}W(ct)\Bigr)
+= c^{-1}\operatorname{Cov}(W(cs),W(ct)).
+\]
+Since for standard Brownian motion $\operatorname{Cov}(W(cs),W(ct)) = cs$ (because $s\le t$), we have
+\[
+\operatorname{Cov}(X(s),X(t)) = c^{-1}(cs)= s.
+\]
+This is exactly the covariance function of a standard Brownian motion. Thus, X is a standard Brownian motion.
+}
+
+
+\noindent
+\textbf{5.6} (15 points) \\ Prove: Suppose that $W$ is a standard Brownian motion, and let $c > 0$. Define $X(t) = W(c + t) - W(c)$. Then $\{X(t) : t \ge 0\}$ is a standard Brownian motion that is independent of $\{W(t) : 0 \le t \le c\}$.
+
+\textcolor{blue}{
+\noindent \textbf{a) $X(0) = 0$ almost surely:} 
+$$X(0)= W(c + 0) - W(c)$$
+$$= W(c) - W(c)$$ 
+$$= 0$$
+\noindent \textbf{b) $X$ has continuous sample paths:} \\
+Since $W$ has continuous sample paths by definition of Brownian motion, and $X(t) = W(c + t) - W(c)$ is a composition and difference of continuous functions, $X$ also has continuous sample paths. \\
+\noindent \textbf{c) $X$ has stationary, independent increments:} \\
+For any $0 \leq s < t$ and $0 \leq u < v$, consider the increments $X(t) - X(s)$ and $X(v) - X(u)$. \\
+$$X(t) - X(s) = [W(c + t) - W(c)] - [W(c + s) - W(c)] $$
+$$= W(c + t) - W(c + s)$$
+$$X(v) - X(u) = [W(c + v) - W(c)] - [W(c + u) - W(c)] $$
+$$= W(c + v) - W(c + u)$$
+If the intervals $[c+s, c+t]$ and $[c+u, c+v]$ are disjoint, then the increments $X(t) - X(s)$ and $X(v) - X(u)$ are independent by the independent increments property of the original Brownian motion $W$. \\
+For stationarity, for any $h > 0$ and $t \geq 0$, we have:
+$$X(t+h) - X(t) = W(c + t + h) - W(c) - [W(c + t) - W(c)]$$
+$$= W(c + t + h) - W(c + t)$$
+This increment depends only on the time difference $h$, not on the starting time $t$, which establishes stationarity. \\
+\noindent \textbf{d) For each $t > 0$, $X(t) \sim \mathcal{N}(0, t)$:}
+Since $W$ is a Brownian motion, $W(c + t) - W(c) \sim \mathcal{N}(0, (c+t) - c) = \mathcal{N}(0, t)$.  \\
+Therefore, $X(t) \sim \mathcal{N}(0, t)$ for each $t > 0$. \\
+Since all properties of standard Brownian motion are satisfied, $\{X(t) : t \geq 0\}$ is indeed a standard Brownian motion.
+\medskip
+\noindent \textbf{Part 2: Prove that $\{X(t) : t \geq 0\}$ is independent of $\{W(t) : 0 \leq t \leq c\}$}
+To prove independence, we need to show that for any finite collection of times $\{t_1, t_2, \ldots, t_n\}$ with $t_i \geq 0$ and $\{s_1, s_2, \ldots, s_m\}$ with $0 \leq s_j \leq c$, the random vectors $(X(t_1), X(t_2), \ldots, X(t_n))$ and $(W(s_1), W(s_2), \ldots, W(s_m))$ are independent.
+Let's set $t_0 = 0$ and $s_0 = 0$ for convenience. Then we can express:
+$$X(t_i) = W(c + t_i) - W(c) \quad \text{for } i = 1, 2, \ldots, n$$
+$$W(s_j) = W(s_j) - W(0) \quad \text{for } j = 1, 2, \ldots, m$$
+Consider the augmented vector of increments:
+$$(W(s_1) - W(s_0), W(s_2) - W(s_1), \ldots, W(s_m) - W(s_{m-1}), W(c) - W(s_m)$$
+$$X(t_1) - X(t_0), X(t_2) - X(t_1), \ldots, X(t_n) - X(t_{n-1}))$$
+This can be rewritten as:
+$$(W(s_1) - W(0), W(s_2) - W(s_1), \ldots, W(s_m) - W(s_{m-1}), W(c) - W(s_m), $$
+$$W(c + t_1) - W(c), W(c + t_2) - W(c + t_1), \ldots, W(c + t_n) - W(c + t_{n-1}))$$
+By the independent increments property of Brownian motion $W$, all these increments are independent because they are increments over disjoint time intervals. \\
+Since $(W(s_1), W(s_2), \ldots, W(s_m))$ can be written as a linear transformation of the first $m$ increments:
+$$W(s_1) = W(s_1) - W(0)$$
+$$W(s_2) = (W(s_1) - W(0)) + (W(s_2) - W(s_1)) $$
+And similarly, $(X(t_1), X(t_2), \ldots, X(t_n))$ can be written as a linear transformation of the increments involving $X$:
+$$X(t_1) = X(t_1) - X(0) = W(c + t_1) - W(c) $$
+$$X(t_2) = X(t_1) + (X(t_2) - X(t_1)) = (W(c + t_1) - W(c)) + (W(c + t_2) - W(c + t_1)) $$
+Since linear transformations of independent random variables are independent, it follows that the vectors $(W(s_1), W(s_2), \ldots, W(s_m))$ and $(X(t_1), X(t_2), \ldots, X(t_n))$ are independent. \\
+This proves that $\{X(t) : t \geq 0\}$ is independent of $\{W(t) : 0 \leq t \leq c\}$.
+}
+
+
+\end{document}
