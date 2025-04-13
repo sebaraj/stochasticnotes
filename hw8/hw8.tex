@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{S\&DS 351: Stochastic Processes - Homework 8}
+\author{Bryan SebaRaj \\[0.8em] Professor Ilias Zadik}
+\date{April 18, 2025}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Chang Problems:}
+
+\textbf{[5.8]} \textit{The strong Markov property} is an extension of
+the restarting property of Proposition \textbf{5.5} from fixed times
+$c$ to random \textit{stopping times} $\gamma$: For a stopping time
+$\gamma$, the process $x$ defined by $X(t) = W(\gamma + t) -
+W(\gamma)$ is a Brownian motion, independent of the path of $W$ up to
+time $\gamma$. Explain the role of the stopping time requirement by
+explaining how the restarting property can fail for a random time
+that isn’t a stopping time. For example, let $M = \max\{B_t : 0 \leq
+t \leq 1\}$ and let $\beta = \inf\{t : B_t = M\}$; this is the first
+time at which $B$ achieves its maximum height over the time interval
+$[0,1]$. Clearly $\beta$ is not a stopping time, since we must look
+at the whole path $\{B_t : 0 \leq t \leq 1\}$ to determine when the
+maximum is attained. Argue that the restarted process $X(t) = W(\beta
++ t) - W(\beta)$ is not a standard Brownian motion.
+
+% (answer in one sentence)
+
+
+
+\textbf{[5.9]} \textbf{[Ornstein-Uhlenbeck process]} Define a process $X$ by
+\[
+X(t) = e^{-t}W(e^{2t})
+\]
+for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \textit{Ornstein-Uhlenbeck process}.
+
+\begin{enumerate}
+    \item[(a)] Find the covariance function of $X$.
+    \item[(b)] Evaluate the functions $\mu$ and $\sigma^2$, defined by
+    \[
+    \mu(x,t) = \lim_{h \downarrow 0} \frac{1}{h} \mathbb{E}[X(t+h) - X(t) \mid X(t) = x]
+    \]
+    \[
+    \sigma^2(x,t) = \lim_{h \downarrow 0} \frac{1}{h} \mathrm{Var}[X(t+h) - X(t) \mid X(t) = x].
+    \]
+\end{enumerate}
+
+
+
+\textbf{[5.10]} Let $W$ be a standard Brownian motion.
+
+\begin{enumerate}
+    \item[(i)] Defining $\tau_b = \inf\{t : W(t) = b\}$ for $b > 0$ as above, show that $\tau_b$ has probability density function
+    \[
+    f_{\tau_b}(t) = \frac{b}{\sqrt{2\pi}} t^{-3/2} e^{-b^2/(2t)}
+    \]
+    for $t > 0$.
+    
+    \item[(ii)] Show that for $0 < t_0 < t_1$,
+    \[
+    P\{W(t) = 0 \text{ for some } t \in (t_0, t_1)\} = \frac{2}{\pi} \tan^{-1} \left( \sqrt{\frac{t_1}{t_0} - 1} \right) = \frac{2}{\pi} \cos^{-1} \left( \sqrt{\frac{t_0}{t_1}} \right).
+    \]
+    
+    \textit{[Hint: The last equality is simple trigonometry. For the previous equality, condition on the value of $W(t_0)$, use part (i), and Fubini (or perhaps integration by parts).]}
+\end{enumerate}
+
+\hfill \textit{J. Chang, February 2, 2007}
+
+
+
+
+\textbf{[5.13]} Let $(X(t), Y(t))$ be a two-dimensional standard Brownian motion; that is, let $\{X(t)\}$ and $\{Y(t)\}$ be standard Brownian motion processes that are independent of each other. Let $b > 0$, and define $\tau = \inf\{t : X(t) = b\}$. Find the probability density function of $Y(\tau)$. That is, find the probability density of the height at which the two-dimensional Brownian motion first hits the vertical line $x = b$.
+
+\textit{[Hint: The answer is a Cauchy distribution.]}
+
+
+
+
+\textbf{[5.15]} Let $0 < s < t < u$.
+
+\begin{enumerate}
+    \item[(a)] Show that $\mathbb{E}(W_s W_t \mid W_u) = \frac{s}{t} \mathbb{E}(W_t^2 \mid W_u)$.
+    \item[(b)] Find $\mathbb{E}(W_t^2 \mid W_u)$ [you know $\mathrm{Var}(W_t \mid W_u)$ and $\mathbb{E}(W_t \mid W_u)$!] and use this to show that
+    \[
+    \mathrm{Cov}(W_s, W_t \mid W_u) = \frac{s(u-t)}{u}.
+    \]
+\end{enumerate}
+
+
+
+
+
+
+\textbf{[5.17]} Verify that the definitions (\textbf{5.13}) and (\textbf{5.14}) give Brownian bridges.
+
+% Here is an easy way to manufacture a Brownian bridge from a
+% standard Brownian motion: define
+
+\[
+\text{(5.13)} \quad X(t) = W(t) - tW(1) \quad \text{for } 0 \leq t \leq 1.
+\]
+
+% It is easy and pleasant to verify that the process $X$ defined this
+% way satisfies the definition of a Brownian bridge; I wouldn’t dream
+% of denying you the pleasure of checking it for yourself! Notice
+% that, given the construction of standard Brownian motion $W$, now
+% we do not have to worry about the existence or construction of the
+% Brownian bridge. Another curious but sometimes useful fact is that
+% the definition
+
+\[
+\text{(5.14)} \quad Y(t) = (1 - t)W\left( \frac{t}{1 - t} \right) \quad \text{for } 0 \leq t < 1, \quad Y(1) = 0
+\]
+
+% also gives a Brownian bridge.
+
+
+
+
+
+
+
+\textbf{Problem 1.} (15 points) 
+Let $W(t), t \geq 0$ be a standard
+Brownian motion. Prove that it is a Gaussian process, i.e., for all
+$n \in \mathbb{N}, t_1, \dots, t_n \geq 0$ and $a_1, \dots, a_n \in
+\mathbb{R}$, the distribution of $\sum_{i=1}^{n} a_i W(t_i)$ is
+Gaussian.
+
+\end{document}
