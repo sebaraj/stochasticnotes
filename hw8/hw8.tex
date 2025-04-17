@@ -37,7 +37,12 @@ maximum is attained. Argue that the restarted process $X(t) = W(\beta
 
 % (answer in one sentence)
 
-
+\textcolor{blue}{ Because $B_{\beta+t}\le B_\beta$ for every $0\le
+    t\le 1-\beta,$ we get $X(1-\beta)=B_1-B_\beta\le 0$ almost
+    surely, contradicting the symmetry of a $N(0,1-\beta)$ law and
+    hence proving that $X$ cannot be a standard Brownian motion,
+    which shows why the strong Markov property demands $\beta$ to be
+    a stopping time. }
 
 \textbf{[5.9]} \textbf{[Ornstein-Uhlenbeck process]} Define a process $X$ by
 \[
@@ -47,6 +52,33 @@ for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \texti
 
 \begin{enumerate}
     \item[(a)] Find the covariance function of $X$.
+
+    \textcolor{blue}{
+The process $X$ is obtained from a standard Brownian motion $W$ by the deterministic space–time change  
+$$
+X(t)=e^{-t}W\!\bigl(e^{2t}\bigr),\qquad t\ge 0.
+$$
+Because $W$ is Gaussian with mean $0$, $X$ is also Gaussian with mean $0$, so its second‑order behaviour is completely described by its covariance function.  Fix $s,t\ge 0$ and—without loss of generality—assume $s\le t$; then  
+$$
+\mathbb{E}\bigl[X(s)X(t)\bigr]
+=\mathbb{E}\!\Bigl[e^{-s}W(e^{2s})\;e^{-t}W(e^{2t})\Bigr]
+=e^{-(s+t)}\,
+\mathbb{E}\!\Bigl[W(e^{2s})\,W(e^{2t})\Bigr].
+$$
+Brownian motion has the covariance $\mathbb{E}[W(u)W(v)]=\min\{u,v\}$, so  
+$$
+\mathbb{E}\bigl[X(s)X(t)\bigr]
+=e^{-(s+t)}\min\!\bigl\{e^{2s},e^{2t}\bigr\}
+=e^{-(s+t)}e^{2s}
+=e^{-(t-s)}.
+$$
+By symmetry in $(s,t)$ this extends to all $s,t\ge 0$ and gives  
+$$
+\boxed{\;\operatorname{Cov}\bigl(X(s),X(t)\bigr)=e^{-|t-s|},\qquad s,t\ge 0.\;}
+$$
+Hence $X$ is a \emph{stationary} centered Gaussian process with exponentially decaying covariance, the hallmark of the Ornstein–Uhlenbeck family.
+    }
+
     \item[(b)] Evaluate the functions $\mu$ and $\sigma^2$, defined by
     \[
     \mu(x,t) = \lim_{h \downarrow 0} \frac{1}{h} \mathbb{E}[X(t+h) - X(t) \mid X(t) = x]
@@ -54,6 +86,73 @@ for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \texti
     \[
     \sigma^2(x,t) = \lim_{h \downarrow 0} \frac{1}{h} \mathrm{Var}[X(t+h) - X(t) \mid X(t) = x].
     \]
+
+    \textcolor{blue}{
+To identify the “infinitesimal” drift and diffusion of $X$, expand $X(t+h)$ around $t$.  Write  
+$$
+\Delta_h:=W\!\bigl(e^{2(t+h)}\bigr)-W(e^{2t}),
+\qquad\text{so that}\quad
+X(t+h)=e^{-(t+h)}\bigl[W(e^{2t})+\Delta_h\bigr].
+$$
+\textbf{Conditional distribution of $\Delta_h$.}  Since $W$ has independent increments, $\Delta_h$ is independent of $W(e^{2t})$ and is Gaussian with mean $0$ and variance  
+$$
+\mathrm{Var}(\Delta_h)=e^{2(t+h)}-e^{2t}=e^{2t}\bigl(e^{2h}-1\bigr).
+$$
+\textbf{Conditioning on $X(t)=x$.}  The event $\{X(t)=x\}$ pins down the value of $W(e^{2t})$:  
+$$
+X(t)=x
+\;\Longrightarrow\;
+e^{-t}W(e^{2t})=x
+\;\Longrightarrow\;
+W(e^{2t})=e^{t}x.
+$$
+Therefore, under this conditioning,
+$$
+\mathbb{E}[\Delta_h\,|\,X(t)=x]=0,
+\quad
+\mathrm{Var}[\Delta_h\,|\,X(t)=x]=e^{2t}\bigl(e^{2h}-1\bigr).
+$$
+\textbf{First conditional moment.}  
+\[
+\begin{aligned}
+\mathbb{E}\bigl[X(t+h)-X(t)\,\big|\,X(t)=x\bigr]
+&=\mathbb{E}\Bigl[e^{-(t+h)}W(e^{2t})-e^{-t}W(e^{2t})
+                 +e^{-(t+h)}\Delta_h\;\Big|\;X(t)=x\Bigr]\\
+&=(e^{-(t+h)}-e^{-t})\,e^{t}x+e^{-(t+h)}\mathbb{E}[\Delta_h\,|\,X(t)=x]\\
+&=(e^{-h}-1)x.
+\end{aligned}
+\]
+Hence  
+$$
+\mu(x,t)
+=\lim_{h\downarrow 0}\frac{1}{h}\,\mathbb{E}\bigl[X(t+h)-X(t)\,|\,X(t)=x\bigr]
+=\lim_{h\downarrow 0}\frac{e^{-h}-1}{h}\,x
+=-x.
+$$
+\textbf{Second conditional moment.}  
+\[
+\begin{aligned}
+\mathrm{Var}\bigl[X(t+h)-X(t)\,\big|\,X(t)=x\bigr]
+&=\mathrm{Var}\Bigl[e^{-(t+h)}\Delta_h\Bigr]\\
+&=e^{-2(t+h)}\,\mathrm{Var}[\Delta_h\,|\,X(t)=x]\\
+&=e^{-2h}\bigl(e^{2h}-1\bigr)\\
+&=2h+o(h)\quad(h\downarrow 0).
+\end{aligned}
+\]
+Consequently  
+$$
+\sigma^{2}(x,t)
+=\lim_{h\downarrow 0}\frac{1}{h}\,
+\mathrm{Var}\bigl[X(t+h)-X(t)\,|\,X(t)=x\bigr]
+=2.
+$$
+\textbf{Interpretation.}  The limits $\mu(x,t)=-x$ and $\sigma^{2}(x,t)=2$ coincide with the drift and twice the diffusion coefficient in the stochastic differential equation  
+$$
+dX_t=-X_t\,dt+\sqrt{2}\,dW_t^{\phantom{.}},
+$$
+whose unique stationary solution is precisely the Ornstein–Uhlenbeck process we constructed by the time–space transform of Brownian motion.
+    }
+
 \end{enumerate}
 
 
@@ -66,6 +165,34 @@ for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \texti
     f_{\tau_b}(t) = \frac{b}{\sqrt{2\pi}} t^{-3/2} e^{-b^2/(2t)}
     \]
     for $t > 0$.
+
+    \textcolor{blue}{
+\textbf{(i) Density of the hitting time $\tau_b$. \\}
+For $b>0$ let  
+$$
+\tau_b=\inf\{t>0:W(t)=b\}.
+$$
+By the reflection principle
+$$
+P\{\tau_b\le t\}=P\Bigl\{\sup_{0\le s\le t}W(s)\ge b\Bigr\}=2P\{W(t)\ge b\}.
+$$
+Because $W(t)\sim\mathcal N(0,t)$ we have  
+$$
+P\{W(t)\ge b\}=1-\Phi\!\Bigl(\frac{b}{\sqrt t}\Bigr),
+$$
+where $\Phi$ is the standard normal distribution function and $\varphi(z)=\frac1{\sqrt{2\pi}}e^{-z^{2}/2}$ its density.  Hence  
+$$
+F_{\tau_b}(t)=2\Bigl[1-\Phi\!\Bigl(\frac{b}{\sqrt t}\Bigr)\Bigr]
+\qquad(t>0).
+$$
+Differentiate to obtain the density:
+$$
+f_{\tau_b}(t)=2\varphi\!\Bigl(\frac{b}{\sqrt t}\Bigr)\Bigl(-\frac{b}{2}t^{-3/2}\Bigr)(-1)
+              =\frac{b}{\sqrt{2\pi}}\,t^{-3/2}\exp\!\Bigl(-\frac{b^{2}}{2t}\Bigr),
+\qquad t>0.
+$$
+Thus $\tau_b$ has the inverse–Gaussian density claimed.
+    }
     
     \item[(ii)] Show that for $0 < t_0 < t_1$,
     \[
@@ -73,10 +200,73 @@ for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \texti
     \]
     
     \textit{[Hint: The last equality is simple trigonometry. For the previous equality, condition on the value of $W(t_0)$, use part (i), and Fubini (or perhaps integration by parts).]}
+
+        \textcolor{blue}{
+Fix $0<t_0<t_1$ and write $\Delta=t_1-t_0$.  By the Markov property, conditioning on $W(t_0)=x$ and letting  
+$$
+\tau_{|x|}=\inf\{s>0:W_{x}(s)=0\}\quad\bigl(W_{x}(0)=x\bigr),
+$$
+we obtain  
+$$
+P\{W(t)=0\text{ for some }t\in(t_0,t_1)\}
+  =\int_{\mathbb R}P\{\tau_{|x|}\le\Delta\}\,
+           \frac{e^{-x^{2}/(2t_0)}}{\sqrt{2\pi t_0}}\;dx .
+$$
+Because $\tau_{|x|}$ has the density from part (i) with $b=|x|$,
+$$
+P\{\tau_{|x|}\le\Delta\}=\int_{0}^{\Delta}\frac{|x|}{\sqrt{2\pi}}s^{-3/2}
+                                   \exp\!\Bigl(-\frac{x^{2}}{2s}\Bigr)ds .
+$$
+Insert this and use symmetry to restrict to $x>0$:
+$$
+P = 2\int_{0}^{\infty}\frac{e^{-x^{2}/(2t_0)}}{\sqrt{2\pi t_0}}
+         \int_{0}^{\Delta}\frac{x}{\sqrt{2\pi}}s^{-3/2}
+               e^{-x^{2}/(2s)}\,ds\,dx .
+$$
+Fubini’s theorem allows us to swap the integrals:
+$$
+P=\frac{2}{2\pi\sqrt{t_0}}
+    \int_{0}^{\Delta}s^{-3/2}\!
+      \int_{0}^{\infty}x\exp\!\Bigl(-x^{2}\Bigl(\frac1{2t_0}+\frac1{2s}\Bigr)\Bigr)\,dx\,ds .
+$$
+For $\alpha>0$, $\int_{0}^{\infty}x e^{-\alpha x^{2}}dx=\frac1{2\alpha}$; here  
+$$
+\alpha=\frac1{2t_0}+\frac1{2s}=\frac{s+t_0}{2st_0},
+\quad
+\frac1{2\alpha}=\frac{st_0}{s+t_0}.
+$$
+Therefore  
+$$
+P=\frac1{2\pi\sqrt{t_0}}
+      \int_{0}^{\Delta}\frac{2t_0\,s^{-1/2}}{s+t_0}\,ds
+  =\frac{\sqrt{t_0}}{\pi}\int_{0}^{\Delta}\!\frac{s^{-1/2}}{s+t_0}\,ds .
+$$
+Set $s=t_0u^{2}$ $(u\ge0)$; then $ds=2t_0u\,du$ and the upper limit becomes  
+$$
+u_{\max}=\sqrt{\frac{\Delta}{t_0}}=\sqrt{\frac{t_1}{t_0}-1}.
+$$
+Substituting gives
+$$
+P=\frac{\sqrt{t_0}}{\pi}\int_{0}^{u_{\max}}
+       \frac{1}{\sqrt{t_0}u}\,\frac{2t_0u}{t_0(1+u^{2})}\,du
+  =\frac{2}{\pi}\int_{0}^{u_{\max}}\frac{du}{1+u^{2}}
+  =\frac{2}{\pi}\tan^{-1}(u_{\max}).
+$$
+Finally
+$$
+u_{\max}=\sqrt{\frac{t_1}{t_0}-1},
+\quad
+\text{so}\quad
+P=\frac{2}{\pi}\tan^{-1}\!\Bigl(\sqrt{\frac{t_1}{t_0}-1}\Bigr)
+  =\frac{2}{\pi}\cos^{-1}\!\Bigl(\sqrt{\frac{t_0}{t_1}}\Bigr),
+$$
+the last equality being the elementary identity
+$$
+\tan^{-1}\!\bigl(\sqrt{z-1}\bigr)=\cos^{-1}\!\bigl(z^{-1/2}\bigr)\qquad(z>1).
+$$
+        }
+
 \end{enumerate}
-
-\hfill \textit{J. Chang, February 2, 2007}
-
 
 
 
@@ -84,17 +274,160 @@ for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \texti
 
 \textit{[Hint: The answer is a Cauchy distribution.]}
 
-
+\textcolor{blue}{
+Let  
+$$
+\tau=\inf\{t>0:X(t)=b\},\qquad b>0,
+$$  
+so that $(X(\tau),Y(\tau))=(b,Y(\tau))$ is the first point where the planar Brownian motion hits the vertical line $x=b$.  
+Because $X$ and $Y$ are independent one–dimensional Brownian motions started at $0$, the law of $Y(\tau)$ can be obtained in three steps.
+\medskip
+\textbf{1.  Density of the hitting time $\tau$.}  
+From the reflection principle (see Problem 5.10 (i))  
+$$
+f_\tau(t)\;=\;\frac{b}{\sqrt{2\pi}}\;t^{-3/2}\,e^{-b^{2}/(2t)},\qquad t>0.
+$$  
+\medskip
+\textbf{2.  Conditional law of $Y(\tau)$ given $\tau=t$.}  
+For fixed $t$ the increment $Y(t)$ is independent of $X$ and satisfies  
+$$
+Y(\tau)\mid\{\tau=t\}\;\sim\;\mathcal N\!\bigl(0,t\bigr),
+\quad\text{i.e.}\quad
+g_t(y)\;=\;\frac{1}{\sqrt{2\pi t}}\;e^{-y^{2}/(2t)},\qquad y\in\mathbb R.
+$$  
+\medskip
+\textbf{3.  Unconditional density of $Y(\tau)$.}  Using the law–of–total–probability and Fubini,
+$$
+\begin{aligned}
+f_{Y(\tau)}(y)
+&=\int_{0}^{\infty}g_t(y)\,f_\tau(t)\,dt\\[6pt]
+&=\int_{0}^{\infty}
+      \frac{1}{\sqrt{2\pi t}}\;e^{-y^{2}/(2t)}
+      \;\frac{b}{\sqrt{2\pi}}\;t^{-3/2}\,e^{-b^{2}/(2t)}\,dt\\[6pt]
+&=\frac{b}{2\pi}\int_{0}^{\infty}t^{-2}\,
+      \exp\!\Bigl(-\frac{b^{2}+y^{2}}{2t}\Bigr)\,dt.
+\end{aligned}
+$$
+Evaluate the integral by the substitution $u=(b^{2}+y^{2})/(2t)$, so that  
+$t=(b^{2}+y^{2})/(2u)$ and $dt=-\tfrac{b^{2}+y^{2}}{2u^{2}}\,du$:
+$$
+\begin{aligned}
+\int_{0}^{\infty}t^{-2}e^{-(b^{2}+y^{2})/(2t)}\,dt
+&=\int_{\infty}^{0}\Bigl(\frac{2u}{b^{2}+y^{2}}\Bigr)^{2}
+      e^{-u}\;\Bigl(-\frac{b^{2}+y^{2}}{2u^{2}}\Bigr)\,du\\[6pt]
+&=\frac{1}{\tfrac{1}{2}(b^{2}+y^{2})}\int_{0}^{\infty}e^{-u}\,du
+      =\frac{2}{b^{2}+y^{2}}.
+\end{aligned}
+$$
+Substituting back,
+$$
+f_{Y(\tau)}(y)=\frac{b}{2\pi}\;\frac{2}{b^{2}+y^{2}}
+              =\frac{b}{\pi\bigl(b^{2}+y^{2}\bigr)},\qquad y\in\mathbb R.
+$$  
+\medskip
+\textbf{4.  Identification with the Cauchy distribution.}  
+The density
+$$
+y\;\longmapsto\;\frac{b}{\pi\bigl(b^{2}+y^{2}\bigr)}
+$$
+is the centered Cauchy density with scale parameter $b$.  Hence  
+$$
+Y(\tau)\;\sim\;\text{Cauchy}(0,b),
+$$
+confirming the hint and completing the proof.  
+}
 
 
 \textbf{[5.15]} Let $0 < s < t < u$.
 
 \begin{enumerate}
     \item[(a)] Show that $\mathbb{E}(W_s W_t \mid W_u) = \frac{s}{t} \mathbb{E}(W_t^2 \mid W_u)$.
+
+    \textcolor{blue}{
+Fix $0<s<t<u$ and recall that $\{W_r\}_{r\ge 0}$ is a centred Gaussian process with independent increments.  
+Because $W_u$ is non--degenerate, any finite‑dimensional vector built from the path is jointly Gaussian, so conditional expectations are obtained by linear regression.  A convenient way to organise the calculation is to decompose the \emph{Brownian bridge}
+$$
+W_r=\frac{r}{u}\,W_u+B_r,\qquad 0\le r\le u,
+$$
+where $\{B_r\}_{0\le r\le u}$ is a (mean–$0$) Gaussian bridge independent of $W_u$ with covariance  
+$$
+\mathbb{E}[B_rB_{r'}]=\frac{r(u-r')}{u},\qquad r\le r'.
+$$
+\medskip
+\textbf{Step 1:  Conditional second moment of $W_t$.}
+$$
+W_t^2=\Bigl(\frac{t}{u}\,W_u\Bigr)^2+2\frac{t}{u}\,W_uB_t+B_t^2.
+$$
+Taking conditional expectation given $W_u$ (noting that $B_t$ is independent of $W_u$ and has mean $0$):
+$$
+\mathbb{E}(W_t^2\mid W_u)=\frac{t^2}{u^2}\,W_u^2+\mathbb{E}(B_t^2)
+                           =\frac{t^2}{u^2}\,W_u^2+\frac{t(u-t)}{u}.
+$$
+\medskip
+\textbf{Step 2:  Conditional mixed moment $\mathbb{E}(W_sW_t\mid W_u)$.}
+Using the same decomposition,
+$$
+\begin{aligned}
+W_sW_t&=\Bigl(\frac{s}{u}W_u+B_s\Bigr)\Bigl(\frac{t}{u}W_u+B_t\Bigr)\\
+      &=\frac{st}{u^2}W_u^2+\frac{s}{u}W_uB_t+\frac{t}{u}W_uB_s+B_sB_t.
+\end{aligned}
+$$
+Conditioning on $W_u$ kills the linear terms in $B_s,B_t$ and replaces $B_sB_t$ by its covariance:
+$$
+\mathbb{E}(W_sW_t\mid W_u)=\frac{st}{u^2}W_u^2+\mathbb{E}(B_sB_t)
+                           =\frac{st}{u^2}W_u^2+\frac{s(u-t)}{u}.
+$$
+\medskip
+\textbf{Step 3:  Relation asserted in part (a).}
+Multiply the result of Step 1 by $\tfrac{s}{t}$:
+$$
+\frac{s}{t}\,\mathbb{E}(W_t^2\mid W_u)
+       =\frac{s}{t}\Bigl(\frac{t^2}{u^2}W_u^2+\frac{t(u-t)}{u}\Bigr)
+       =\frac{st}{u^2}W_u^2+\frac{s(u-t)}{u}
+       =\mathbb{E}(W_sW_t\mid W_u),
+$$
+which establishes
+$$
+\boxed{\;
+\mathbb{E}(W_sW_t\mid W_u)=\frac{s}{t}\,\mathbb{E}(W_t^2\mid W_u).
+\;}
+$$
+    }
+
+
+
     \item[(b)] Find $\mathbb{E}(W_t^2 \mid W_u)$ [you know $\mathrm{Var}(W_t \mid W_u)$ and $\mathbb{E}(W_t \mid W_u)$!] and use this to show that
     \[
     \mathrm{Cov}(W_s, W_t \mid W_u) = \frac{s(u-t)}{u}.
     \]
+
+    \textcolor{blue}{
+We already have
+$$
+\boxed{\;
+\mathbb{E}(W_t^2\mid W_u)=\frac{t(u-t)}{u}+\frac{t^2}{u^2}W_u^2.
+\;}
+$$
+For the conditional covariance,
+$$
+\mathrm{Cov}(W_s,W_t\mid W_u)
+=\mathbb{E}(W_sW_t\mid W_u)-\mathbb{E}(W_s\mid W_u)\,\mathbb{E}(W_t\mid W_u).
+$$
+Since $\{W_r\}$ is a martingale,
+$$
+\mathbb{E}(W_r\mid W_u)=\frac{r}{u}\,W_u\qquad(0\le r\le u),
+$$
+so that
+$$
+\mathbb{E}(W_s\mid W_u)\,\mathbb{E}(W_t\mid W_u)=\frac{st}{u^2}W_u^2.
+$$
+Subtracting this from the expression in Step 2 yields
+$$
+\boxed{\;
+\mathrm{Cov}(W_s,W_t\mid W_u)=\frac{s(u-t)}{u}.
+\;}
+$$
+    }
 \end{enumerate}
 
 
@@ -126,7 +459,102 @@ for $t \geq 0$, where $W$ is a standard Brownian motion. $X$ is called an \texti
 % also gives a Brownian bridge.
 
 
-
+\textcolor{blue}{
+\[
+\textbf{Solution.  Definition of a Brownian bridge on }[0,1].
+\]
+A centred, continuous Gaussian process $\{B(t)\}_{0\le t\le 1}$ is called a \emph{Brownian bridge} provided  
+\[
+B(0)=B(1)=0,\qquad 
+\operatorname{Cov}\bigl(B(s),B(t)\bigr)=\min\{s,t\}-st,\;0\le s,t\le 1.
+\]
+The covariance formula is often written, when $s\le t$, as $s(1-t)$.
+\[
+\textbf{(5.13)}\;X(t)=W(t)-tW(1),\;0\le t\le 1.
+\]
+\[
+\textit{Claim : }X\text{ is a Brownian bridge.}
+\]
+\[
+\textit{(1)  End points.}\quad 
+X(0)=W(0)=0,\;\;X(1)=W(1)-W(1)=0.
+\]
+\textit{(2)  Gaussianity.}\quad 
+$X(t)$ is a fixed linear combination of $\{W(r)\}_{0\le r\le 1}$, 
+ so every finite‐dimensional distribution is multivariate normal.
+\[
+\textit{(3)  Mean.}\quad 
+\mathbb E[X(t)]=\mathbb E[W(t)]-t\mathbb E[W(1)]=0.
+\]
+\[
+\textit{(4)  Covariance.  For }0\le s\le t\le 1,
+\]
+\[
+\begin{aligned}
+\operatorname{Cov}(X(s),X(t))
+&=\mathbb E[(W(s)-sW(1))(W(t)-tW(1))] \\[2mm]
+&=\min\{s,t\}-t s-s(1)+st \\[1mm]
+&=s(1-t).
+\end{aligned}
+\]
+This is $\min\{s,t\}-st$ in general.  
+\[
+\textit{(5)  Continuity.}\quad 
+X\text{ inherits almost–sure continuity from }W.
+\]
+All axioms being satisfied, $X$ is a Brownian bridge.
+\bigskip
+\[
+\textbf{(5.14)}\;
+Y(t)=
+\begin{cases}
+(1-t)\,W\!\bigl(\dfrac{t}{1-t}\bigr), & 0\le t<1,\\[2mm]
+0, & t=1.
+\end{cases}
+\]
+\[
+\textit{Claim : }Y\text{ is a Brownian bridge.}
+\]
+Let $\theta(t)=\dfrac{t}{1-t}$, so that $\theta:[0,1)\to[0,\infty)$ is strictly increasing.
+\[
+\textit{(1)  End points.}\quad 
+Y(0)=(1-0)W(0)=0,\qquad 
+Y(1)=0\text{ by definition.}
+\]
+\textit{(2)  Gaussianity.}\quad 
+For $t<1$, $Y(t)$ is a scalar multiple of $W(\theta(t))$; any finite vector $(Y(t_1),\dots,Y(t_k))$
+is therefore a linear image of $(W(\theta(t_1)),\dots,W(\theta(t_k)))$, hence Gaussian.
+\[
+\textit{(3)  Mean.}\quad 
+\mathbb E[Y(t)]=0.
+\]
+\[
+\textit{(4)  Covariance.  Fix }0\le s\le t<1.\;
+\theta(s)\le\theta(t)\;\Longrightarrow\;
+\min\{\theta(s),\theta(t)\}=\theta(s).
+\]
+\[
+\begin{aligned}
+\operatorname{Cov}(Y(s),Y(t))
+&=(1-s)(1-t)\,
+      \mathbb E\!\Bigl[W\!\bigl(\theta(s)\bigr)\,W\!\bigl(\theta(t)\bigr)\Bigr]\\[2mm]
+&=(1-s)(1-t)\,\theta(s)\\[2mm]
+&=(1-s)(1-t)\,\frac{s}{1-s}=s(1-t).
+\end{aligned}
+\]
+Thus $\operatorname{Cov}(Y(s),Y(t))=\min\{s,t\}-st$ for all $s,t\le1$.
+\[
+\textit{(5)  Continuity and the value at }t=1.
+\]
+First compute the variance: $\operatorname{Var}[Y(t)]=t(1-t)\xrightarrow[t\to1^-]{}0$.  
+Hence $Y(t)\to0$ in $L^2$ and therefore in probability as $t\to1^-$.  
+Because $W$ admits a continuous modification, one may choose that modification and verify that $t\mapsto Y(t)$ is almost surely continuous on $[0,1)$ and converges to $0$ at $t=1$; redefining $Y(1)=0$ yields an a.s. continuous version on $[0,1]$. \\
+\bigskip
+\[
+\boxed{\; X\text{ and }Y\text{ both satisfy the defining properties of a Brownian bridge on }[0,1].\;}
+\]
+Consequently, (5.13) and (5.14) indeed “manufacture’’ Brownian bridges from a single standard Brownian motion.
+}
 
 
 
@@ -137,5 +565,82 @@ Brownian motion. Prove that it is a Gaussian process, i.e., for all
 $n \in \mathbb{N}, t_1, \dots, t_n \geq 0$ and $a_1, \dots, a_n \in
 \mathbb{R}$, the distribution of $\sum_{i=1}^{n} a_i W(t_i)$ is
 Gaussian.
+
+\textcolor{blue}{
+We recall the usual definition of a \emph{standard Brownian motion} $\{W(t)\}_{t\ge0}$:
+$$
+W(0)=0,\qquad
+\text{for }0\le s<t\;,\;W(t)-W(s)\sim N(0,t-s),\qquad
+\{W(t)-W(s)\}_{0\le s<t}\text{ are independent}.
+$$
+In what follows let  
+$$
+n\in\mathbb N,\qquad
+t_1,\dots,t_n\ge0,\qquad
+a_1,\dots,a_n\in\mathbb R,
+$$  
+and set  
+$$
+S:=\sum_{i=1}^{n}a_iW(t_i).
+$$  
+Our task is to prove that $S$ is (univariate) Gaussian.
+\bigskip
+\textbf{Step 1.  Reduction to strictly increasing times.}  
+If some of the $t_i$ are equal we can merge coefficients; if they are merely unordered we may relabel indices so that
+$$
+0\le t_{(1)}<t_{(2)}<\dots<t_{(m)},\qquad
+b_j:=\sum_{i:\,t_i=t_{(j)}}a_i,\quad 1\le j\le m\le n,
+$$
+and write $S=\sum_{j=1}^{m}b_jW(t_{(j)})$.  
+Hence \emph{without loss of generality we assume $0<t_1<\dots<t_n$.}
+\bigskip
+\textbf{Step 2.  Express $S$ in terms of increments.}  
+Define the independent Gaussian increments
+$$
+\Delta_1:=W(t_1)-W(0)=W(t_1),\qquad
+\Delta_k:=W(t_k)-W(t_{k-1}),\;2\le k\le n.
+$$
+Then $S$ can be rewritten as
+$$
+\begin{aligned}
+S
+&=\sum_{i=1}^{n}a_i\Bigl(\Delta_1+\cdots+\Delta_i\Bigr)
+ =\sum_{k=1}^{n}\Bigl(\sum_{i=k}^{n}a_i\Bigr)\Delta_k
+ =:\sum_{k=1}^{n}c_k\Delta_k,
+\end{aligned}
+$$
+where we set $c_k:=\sum_{i=k}^{n}a_i$.
+\bigskip
+\textbf{Step 3.  Use closure of the Gaussian family under linear combinations.}  
+Each increment $\Delta_k$ is Gaussian:
+$$
+\Delta_k\sim N\bigl(0,t_k-t_{k-1}\bigr)\quad(\text{put }t_0:=0),
+$$
+and the vector $(\Delta_1,\dots,\Delta_n)$ has \emph{independent} components by definition of Brownian motion.  
+Because independent Gaussian variables are also jointly Gaussian, any \emph{deterministic} linear combination of them is again Gaussian.  Concretely,
+$$
+S=\sum_{k=1}^{n}c_k\Delta_k
+$$
+is a sum of independent $N(0,\sigma_k^2)$ variables multiplied by deterministic scalars $c_k$, hence
+$$
+S\sim N\!\Bigl(0,\;\sum_{k=1}^{n}c_k^{\,2}(t_k-t_{k-1})\Bigr),
+$$
+i.e.\ $S$ is Gaussian.
+\bigskip
+\textbf{Step 4.  Characteristic–function verification (optional but instructive).}
+For completeness, compute the characteristic function of $S$:
+$$
+\begin{aligned}
+\varphi_S(\lambda)
+&=\mathbb E\,e^{i\lambda S}
+ =\prod_{k=1}^{n}\mathbb E\exp\!\bigl(i\lambda c_k\Delta_k\bigr)\\
+&=\prod_{k=1}^{n}\exp\!\Bigl(-\tfrac12\lambda^{2}c_k^{2}(t_k-t_{k-1})\Bigr)
+ =\exp\!\Bigl(-\tfrac12\lambda^{2}\sum_{k=1}^{n}c_k^{\,2}(t_k-t_{k-1})\Bigr),
+\end{aligned}
+$$
+the characteristic function of a centred normal distribution, confirming the previous step.
+\bigskip
+\textbf{Conclusion.}  For arbitrary $n$, times $t_1,\dots,t_n\ge0$ and coefficients $a_1,\dots,a_n\in\mathbb R$, the linear form $S=\sum_{i=1}^{n}a_iW(t_i)$ is Gaussian.  Therefore the finite–dimensional distributions of $\{W(t)\}$ are multivariate normal, so $W$ is indeed a \emph{Gaussian process}.
+}
 
 \end{document}
