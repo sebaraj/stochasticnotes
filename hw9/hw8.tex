@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{S\&DS 351: Stochastic Processes - Homework 9}
+\author{Bryan SebaRaj \\[0.8em] Professor Ilias Zadik}
+\date{April 25, 2025}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1}   (10 points) Calculate using the definitions (6.2) and (6.3) in Chang’s notes, the drift and variance function of the geometric Brownian motion 
+$X(t) = \exp(\mu t + \sigma W(t)),$
+$t \geq 0$ where $W(t)$ is a standard Brownian motion, $\mu \in \mathbb{R}$ and $\sigma > 0$.
+
+% For reference, the definitions are:
+% Thus, in the interior $(l, r)$ of the state space, the probability transition structure of a time-homogeneous diffusion is specified by two functions $\mu = \mu(x)$ and $\sigma^2 = \sigma^2(x)$, which satisfy the relations
+%
+\begin{equation*}
+\text{(6.2)} \quad \mathbb{E}[X(t+h) - X(t) \mid X(t) = x] = \mu(x)h + o(h)
+\end{equation*}
+
+\begin{equation*}
+    \text{(6.3)} \quad \text{Var}[X(t+h) - X(t) \mid X(t) = x] = \sigma^2(x)h + o(h) \text{ as } h \downarrow 0.
+\end{equation*}
+
+\textcolor{blue}{
+}
+
+
+\textbf{Problem 2}   (15 points) Prove that the standard Gaussian density given by 
+$p(t, x) = \frac{1}{\sqrt{2\pi t}} e^{-x^2/(2t)}$
+where $t \geq 0, x \in \mathbb{R}$ satisfies the “heat” equation:
+$$\frac{\partial}{\partial t}p(t, x) = \frac{1}{2} \frac{\partial^2}{\partial x^2} p(t, x),$$
+for all $t \geq 0, x \in \mathbb{R}$.
+
+
+\textcolor{blue}{
+}
+
+
+
+\textbf{Problem 3}   (20 points) In class we unfortunately had to skip section 6.7 on the quadratic variation of the standard Brownian motion. This section is quite important because it explains why one may expect the “rule” 
+$(d(W(t))^2 = dt.$
+Read the section and solve Exercise (6.28).
+
+(6.28) Let $X(t) = \mu t + \sigma W(t)$ be a $(\mu, \sigma^2)$-Brownian motion. Show that, with probability 1, the quadratic variation of $X$ on $[0, t]$ is $\sigma^2 t$.
+
+\textcolor{blue}{
+}
+
+
+
+\textbf{Problem 4}   (10 points) Prove that for all diffusions $X(t), t \geq 0$ with differentials $dX(t)$ and deterministic differentiable function $f(t), t \geq 0$ (hence, with differential $df(t) = f'(t)dt$) it holds
+$$d(f(t)X(t)) = X(t)df(t) + f(t)dX(t).$$
+
+
+\textcolor{blue}{
+}
+
+
+\textbf{Problem 5}   Let $W(t), t \geq 0$ be a standard Brownian motion. For any $N > 0$ consider the sum
+$Z_N = N^{-1} \sum_{k=0}^{N-1} W(k/N).$
+
+\textbf{a)}   (10 points) Prove that $Z_N$ is a Gaussian random variable and find its mean and variance.
+
+\textcolor{blue}{
+}
+
+
+\textbf{b)}   (10 points) Recall that for any continuous function 
+$f : \mathbb{R} \rightarrow \mathbb{R}$, the Riemann sums it holds
+$$\lim_{N \rightarrow \infty} N^{-1} \sum_{k=0}^{N-1} f(k/N) = \int_0^1 f(s)ds.$$
+Prove that 
+$\int_0^1 W(t)dt$ 
+follows a normal distribution and find its mean and variance.
+
+(Hint: You may use without proof that if a sequence of normal random variables $X_n \sim \mathcal{N}(\mu_n, \sigma_n^2), n \in \mathbb{N}$ converges almost surely to a random variable $X$ then 
+$X \sim \mathcal{N}(\lim_n \mu_n, \lim_n \sigma_n^2).$
+
+
+\textcolor{blue}{
+}
+
+
+\textbf{Problem 6}   Consider the OU process $X(t), t \geq 0$ satisfying 
+$dX(t) = -X(t)dt + \sqrt{2}dW(t),   X(0) = 0.$
+
+\textbf{a)}   (15 points) Prove that 
+$$d(e^t X(t)) = \sqrt{2}e^t dW(t).$$
+In integral notation, this means for any $t \geq 0$,
+$$X(t) = \sqrt{2}e^{-t} \int_0^t e^s dW(s).$$
+
+
+\textcolor{blue}{
+}
+
+
+
+\textbf{b)}   (10 points) For any $N > 0$ consider the sum
+$$Z_N = \sum_{k=0}^{N-1} e^{k/N}(W(((k+1)/N)) - W(tk/N)).$$
+Prove that $Z_N$ is Gaussian and find its mean and a formula for its variance. Where does the mean and variance converge as $N \rightarrow +\infty$?
+
+
+\textcolor{blue}{
+}
+
+
+\textbf{c)}   (Bonus, 5 points) Based on the intuition from Problem 5 (b), can you guess the distribution of 
+$\int_0^t e^{-s} dW(s)?$ 
+What about the distribution of $X(t)$ as $t \rightarrow +\infty$?
+
+\textcolor{blue}{
+}
+
+
+\end{document}
