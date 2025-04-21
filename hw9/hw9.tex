@@ -33,7 +33,36 @@ $t \geq 0$ where $W(t)$ is a standard Brownian motion, $\mu \in \mathbb{R}$ and 
     \text{(6.3)} \quad \text{Var}[X(t+h) - X(t) \mid X(t) = x] = \sigma^2(x)h + o(h) \text{ as } h \downarrow 0.
 \end{equation*}
 
-\textcolor{blue}{\textbf{Solution.} We recall the definitions (6.2)–(6.3): for a time‑homogeneous diffusion started at the interior point $x$, its \emph{drift} $\mu(x)$ and \emph{variance function} $\sigma^{2}(x)$ satisfy $$\mathbb{E}[X(t+h)-X(t)\mid X(t)=x]=\mu(x)\,h+o(h),\qquad h\downarrow0,$$ $$\operatorname{Var}[X(t+h)-X(t)\mid X(t)=x]=\sigma^{2}(x)\,h+o(h),\qquad h\downarrow0.$$ Let the process be the geometric Brownian motion $$X(t)=\exp\!\bigl(\mu t+\sigma W(t)\bigr),\qquad t\ge0,$$ where $W(t)$ is a standard Brownian motion, $\mu\in\mathbb{R}$ and $\sigma>0$. Fix $t\ge0$ and condition on $X(t)=x$. Because $W(t+h)-W(t)\sim\mathcal N(0,h)$ and is independent of $\mathcal F_{t}$, we may write $$X(t+h)=x\exp\!\bigl(\mu h+\sigma\,(W(t+h)-W(t))\bigr).$$ Denote $\Delta W:=W(t+h)-W(t)$.\\\textbf{Step 1: Drift.} We compute $$\mathbb{E}[X(t+h)-X(t)\mid X(t)=x]=x\Bigl(\mathbb{E}\bigl[e^{\mu h+\sigma\Delta W}\bigr]-1\Bigr).$$ Using the moment generating function of a normal variable, $$\mathbb{E}\bigl[e^{\sigma\Delta W}\bigr]=e^{\tfrac12\sigma^{2}h},$$ so $$\mathbb{E}\bigl[e^{\mu h+\sigma\Delta W}\bigr]=e^{\mu h+\tfrac12\sigma^{2}h}=1+\!\bigl(\mu+\tfrac12\sigma^{2}\bigr)h+o(h).$$ Hence $$\mathbb{E}[X(t+h)-X(t)\mid X(t)=x]=x\Bigl(\bigl(\mu+\tfrac12\sigma^{2}\bigr)h+o(h)\Bigr).$$ Comparing with (6.2) yields $$\boxed{\mu(x)=\bigl(\mu+\tfrac12\sigma^{2}\bigr)x.}$$ \textbf{Step 2: Variance function.} Write $\Delta X:=X(t+h)-X(t)=x\bigl(e^{\mu h+\sigma\Delta W}-1\bigr)$. Then $$\operatorname{Var}[\Delta X\mid X(t)=x]=x^{2}\operatorname{Var}\!\bigl[e^{\mu h+\sigma\Delta W}\bigr].$$ Compute the second moment: $$\mathbb{E}\bigl[e^{2(\mu h+\sigma\Delta W)}\bigr]=e^{2\mu h+2\sigma^{2}h}=1+(2\mu+2\sigma^{2})h+o(h).$$ Therefore $$\operatorname{Var}\!\bigl[e^{\mu h+\sigma\Delta W}\bigr]=e^{2\mu h+2\sigma^{2}h}-e^{2\mu h+\sigma^{2}h}=e^{2\mu h}\bigl(e^{2\sigma^{2}h}-e^{\sigma^{2}h}\bigr)=\sigma^{2}h+o(h).$$ Consequently $$\operatorname{Var}[X(t+h)-X(t)\mid X(t)=x]=x^{2}\bigl(\sigma^{2}h+o(h)\bigr).$$ Matching with (6.3) we obtain $$\boxed{\sigma^{2}(x)=\sigma^{2}x^{2}.}$$ \textbf{Conclusion.} The geometric Brownian motion has state‑dependent drift and variance function $$\mu(x)=\bigl(\mu+\tfrac12\sigma^{2}\bigr)x,\qquad \sigma^{2}(x)=\sigma^{2}x^{2},\qquad x>0.$$ These satisfy the required $o(h)$ error terms in (6.2) and (6.3), completing the proof.}
+\textcolor{blue}{Recall the definitions (6.2) and (6.3) above.
+Let $W(t)$ be a standard Brownian motion, $\mu\in\mathbb{R}$ and $\sigma>0$, and the process be the geometric Brownian motion
+$$X(t)=\exp\bigl(\mu t+\sigma W(t)\bigr),\quad \text{s.t. } t\ge0$$
+Consider the scenario where we fix $t\ge0$ and
+condition on $X(t)=x$. 
+Since $W(t+h)-W(t)\sim\mathcal N(0,h)$ and is
+independent of $\mathcal F_{t}$, $$X(t+h)=x\exp\!\bigl(\mu
+h+\sigma\,(W(t+h)-W(t))\bigr).$$ Define $\Delta W=W(t+h)-W(t)$.
+In order to compute drift, we can first compute $$\mathbb{E}[X(t+h)-X(t)\mid
+X(t)=x]=x\Bigl(\mathbb{E}\bigl[e^{\mu h+\sigma\Delta W}\bigr]-1\Bigr)$$ Using
+the moment generating function of a normal variable,
+$$\mathbb{E}\bigl[e^{\sigma\Delta W}\bigr]=e^{\tfrac12\sigma^{2}h}$$ As such,
+$$\mathbb{E}\bigl[e^{\mu h+\sigma\Delta W}\bigr]=e^{\mu
+h+\tfrac12\sigma^{2}h}=1+\!\bigl(\mu+\tfrac12\sigma^{2}\bigr)h+o(h)$$ Therefore,
+$$\mathbb{E}[X(t+h)-X(t)\mid
+X(t)=x]=x\Bigl(\bigl(\mu+\tfrac12\sigma^{2}\bigr)h+o(h)\Bigr)$$ 
+Using 
+(6.2) yeilds the drift $$\mu(x)=\bigl(\mu+\tfrac12\sigma^{2}\bigr)x$$
+Calculating the variance function, we can write $\Delta X=X(t+h)-X(t)=x\bigl(e^{\mu
+h+\sigma\Delta W}-1\bigr)$. Then $$\operatorname{Var}[\Delta X\mid
+X(t)=x]=x^{2}\operatorname{Var}\!\bigl[e^{\mu h+\sigma\Delta W}\bigr]$$
+Computing the second moment yields $$\mathbb{E}\bigl[e^{2(\mu h+\sigma\Delta
+W)}\bigr]=e^{2\mu h+2\sigma^{2}h}=1+(2\mu+2\sigma^{2})h+o(h)$$ Therefore,
+$$\operatorname{Var}\!\bigl[e^{\mu h+\sigma\Delta W}\bigr]=e^{2\mu
+h+2\sigma^{2}h}-e^{2\mu h+\sigma^{2}h}=e^{2\mu
+h}\bigl(e^{2\sigma^{2}h}-e^{\sigma^{2}h}\bigr)=\sigma^{2}h+o(h)$$ As such, 
+$$\operatorname{Var}[X(t+h)-X(t)\mid
+X(t)=x]=x^{2}\bigl(\sigma^{2}h+o(h)\bigr)$$ 
+Using (6.3) yields the variance function,
+$$\sigma^{2}(x)=\sigma^{2}x^{2}$$ }
 
 
 \textbf{Problem 2}   (15 points) Prove that the standard Gaussian density given by 
@@ -44,69 +73,66 @@ for all $t \geq 0, x \in \mathbb{R}$.
 
 
 \textcolor{blue}{
-\textbf{Solution.} We verify directly that the standard Gaussian density
+% \textbf{Solution.} We verify directly that the standard Gaussian density
+% $$
+% p(t,x)=\frac{1}{\sqrt{2\pi t}}\,e^{-x^{2}/(2t)},\qquad t>0,\;x\in\mathbb{R},
+% $$
+% solves the one–dimensional heat equation
+% $$
+% \frac{\partial}{\partial t}p(t,x)=\frac12\frac{\partial^{2}}{\partial x^{2}}p(t,x).
+% $$
+When proving that the standard Gaussian density satisfies the ``heat'' equation, we can need to validate its smoothess, time derivative, spatial derivatives, equality, and behavior at $t=0$. \\
+First, confirming smoothness, see that
+for every fixed \(t>0\), \(x\mapsto p(t,x)\) is the product of a smooth function and the rapidly decreasing Gaussian. As such, it is \(C^{\infty}\) in \(x\).
+Likewise, for every fixed \(x\in\mathbb{R}\), \(t\mapsto p(t,x)\) is \(C^{\infty}\) on \((0,\infty)\) since it is a composition of smooth functions of \(t\) with powers and exponentials.
+Therefore, all derivatives appearing below exist and can be obtained by term–wise differentiation. \\
+Next, solving for the time derivative, see that
 $$
-p(t,x)=\frac{1}{\sqrt{2\pi t}}\,e^{-x^{2}/(2t)},\qquad t>0,\;x\in\mathbb{R},
+p(t,x)=\bigl(2\pi t\bigr)^{-1/2}\exp\!\Bigl(-\frac{x^{2}}{2t}\Bigr)
 $$
-solves the one–dimensional heat equation
-$$
-\frac{\partial}{\partial t}p(t,x)=\frac12\frac{\partial^{2}}{\partial x^{2}}p(t,x).
-$$
-\textbf{1.\;Smoothness.}
-For every fixed \(t>0\) the mapping \(x\mapsto p(t,x)\) is the product of a smooth function and the rapidly decreasing Gaussian, hence is \(C^{\infty}\) in \(x\).
-Likewise, for each fixed \(x\in\mathbb{R}\) the mapping \(t\mapsto p(t,x)\) is \(C^{\infty}\) on \((0,\infty)\) because it is a composition of smooth functions of \(t\) with powers and exponentials.
-Thus all derivatives appearing below exist and can be obtained by term–wise differentiation. \\
-\textbf{2.\;The time derivative.}
-Write \(p(t,x)\) as
-$$
-p(t,x)=\bigl(2\pi t\bigr)^{-1/2}\exp\!\Bigl(-\frac{x^{2}}{2t}\Bigr).
-$$
-Differentiating with respect to \(t\) yields
+Differentiating with respect to \(t\),
 $$
 \frac{\partial}{\partial t}p(t,x)
 =
 -\frac12\,(2\pi)^{-1/2}t^{-3/2}\exp\!\Bigl(-\frac{x^{2}}{2t}\Bigr)
-+\bigl(2\pi t\bigr)^{-1/2}\exp\!\Bigl(-\frac{x^{2}}{2t}\Bigr)\frac{x^{2}}{2t^{2}}.
++\bigl(2\pi t\bigr)^{-1/2}\exp\!\Bigl(-\frac{x^{2}}{2t}\Bigr)\frac{x^{2}}{2t^{2}}
 $$
-Recognising the common factor \(p(t,x)\) we obtain
+From the standard Gaussian density, see that
 $$
-\frac{\partial}{\partial t}p(t,x)=p(t,x)\Bigl(-\frac1{2t}+\frac{x^{2}}{2t^{2}}\Bigr).
+\frac{\partial}{\partial t}p(t,x)=p(t,x)\Bigl(-\frac1{2t}+\frac{x^{2}}{2t^{2}}\Bigr)
 $$
-\textbf{3.\;The spatial derivatives.}
-First derivative:
+Now solving for the spatial derivatives, see that the
+first derivative is
 $$
 \frac{\partial}{\partial x}p(t,x)
 =
 \bigl(2\pi t\bigr)^{-1/2}\exp\!\Bigl(-\frac{x^{2}}{2t}\Bigr)\Bigl(-\frac{x}{t}\Bigr)
 =
--\frac{x}{t}\,p(t,x).
+-\frac{x}{t}\,p(t,x)
 $$
-Second derivative:
+and the second derivative is
 $$
 \frac{\partial^{2}}{\partial x^{2}}p(t,x)
 =
 -\frac1{t}\,p(t,x)+\frac{x^{2}}{t^{2}}\,p(t,x)
 =
-p(t,x)\Bigl(-\frac1{t}+\frac{x^{2}}{t^{2}}\Bigr).
+p(t,x)\Bigl(-\frac1{t}+\frac{x^{2}}{t^{2}}\Bigr)
 $$
-Multiplying by \(1/2\) gives
+Multiplying the second derivative by \(1/2\),
 $$
 \frac12\frac{\partial^{2}}{\partial x^{2}}p(t,x)
 =
-p(t,x)\Bigl(-\frac1{2t}+\frac{x^{2}}{2t^{2}}\Bigr).
+p(t,x)\Bigl(-\frac1{2t}+\frac{x^{2}}{2t^{2}}\Bigr)
 $$
-\textbf{4.\;Equality of both sides.}
-Comparing the expressions obtained in Steps 2 and 3 we see
+Comparing the time derivative and second spacial derivates,
 $$
-\frac{\partial}{\partial t}p(t,x)=\frac12\frac{\partial^{2}}{\partial x^{2}}p(t,x),
+\frac{\partial}{\partial t}p(t,x)=\frac12\frac{\partial^{2}}{\partial x^{2}}p(t,x), \quad \forall t > 0, x \in \mathbb{R}
 $$
-for every \(t>0\) and \(x\in\mathbb{R}\). \\
-\textbf{5.\;Behaviour at \(t=0\).}
-Although \(p(t,x)\) is singular at \(t=0\), for each fixed \(x\) we have
+Also note that although \(p(t,x)\) is singular at \(t=0\), 
+for each \(x\),
 \(p(t,x)\to0\) as \(t\downarrow0\), while the total mass
-\(\int_{\mathbb{R}}p(t,x)\,dx=1\) for every \(t>0\); hence \(p(t,\cdot)\) converges in the sense of distributions to the Dirac delta at \(0\),
-the classical initial condition for the heat kernel. \\
-\textbf{Conclusion.} The standard Gaussian density \(p(t,x)\) is \(C^{\infty}\) on \((0,\infty)\times\mathbb{R}\) and satisfies the heat equation with the delta initial condition, completing the proof.
+\(\int_{\mathbb{R}}p(t,x)\,dx=1\) for every \(t>0\). As such, \(p(t,\cdot)\) converges to the Dirac delta of 0.
+As such, the standard Gaussian density \(p(t,x)\) is \(C^{\infty}\) on \((0,\infty)\times\mathbb{R}\) and satisfies the heat equation.
 }
 
 
@@ -117,87 +143,84 @@ Read the section and solve Exercise (6.28).
 (6.28) Let $X(t) = \mu t + \sigma W(t)$ be a $(\mu, \sigma^2)$-Brownian motion. Show that, with probability 1, the quadratic variation of $X$ on $[0, t]$ is $\sigma^2 t$.
 
 \textcolor{blue}{
-\textbf{Solution.}
-Fix $t>0$ and let $\bigl\{0=t_0^{(n)}<t_1^{(n)}<\dots<t_{k(n)}^{(n)}=t\bigr\}_{n\ge1}$ be a sequence of deterministic partitions whose mesh
+% \textbf{Solution.}
+% Fix $t>0$ and let $\bigl\{0=t_0^{(n)}<t_1^{(n)}<\dots<t_{k(n)}^{(n)}=t\bigr\}_{n\ge1}$ be a sequence of deterministic partitions whose mesh
+% $$
+% |P_n|=\max_{0\le i<k(n)}\bigl(t_{i+1}^{(n)}-t_i^{(n)}\bigr)\xrightarrow[n\to\infty]{}0.
+% $$
+% For a càdlàg process $X$ the \emph{quadratic variation} on $[0,t]$ along $\{P_n\}$ is
+% $$
+% [X]_t\;:=\;\lim_{n\to\infty}\sum_{i=0}^{k(n)-1}\bigl(X(t_{i+1}^{(n)})-X(t_i^{(n)})\bigr)^2,
+% $$
+% whenever the limit exists (in probability or almost surely) and is independent of the chosen sequence of partitions. \\
+% \medskip
+First, let's decompose the increments.
+For $X(t)=\mu t+\sigma W(t)$, see that
 $$
-|P_n|=\max_{0\le i<k(n)}\bigl(t_{i+1}^{(n)}-t_i^{(n)}\bigr)\xrightarrow[n\to\infty]{}0.
+\Delta_i^{(n)}X=X(t_{i+1}^{(n)})-X(t_i^{(n)})=\mu\,\Delta_i^{(n)}t+\sigma\,\Delta_i^{(n)}W
 $$
-For a càdlàg process $X$ the \emph{quadratic variation} on $[0,t]$ along $\{P_n\}$ is
+where $\Delta_i^{(n)}t=t_{i+1}^{(n)}-t_i^{(n)}$ and $\Delta_i^{(n)}W=W(t_{i+1}^{(n)})-W(t_i^{(n)})\sim\mathcal N\bigl(0,\Delta_i^{(n)}t\bigr)$, independent for distinct $i$. \\
+Expanding the quadratic sum, we can write the partial quadratic variant as
 $$
-[X]_t\;:=\;\lim_{n\to\infty}\sum_{i=0}^{k(n)-1}\bigl(X(t_{i+1}^{(n)})-X(t_i^{(n)})\bigr)^2,
-$$
-whenever the limit exists (in probability or almost surely) and is independent of the chosen sequence of partitions. \\
-\medskip
-\textbf{1.\;Decomposition of the increments.}
-For $X(t)=\mu t+\sigma W(t)$ we have
-$$
-\Delta_i^{(n)}X:=X(t_{i+1}^{(n)})-X(t_i^{(n)})=\mu\,\Delta_i^{(n)}t+\sigma\,\Delta_i^{(n)}W,
-$$
-where $\Delta_i^{(n)}t:=t_{i+1}^{(n)}-t_i^{(n)}$ and $\Delta_i^{(n)}W:=W(t_{i+1}^{(n)})-W(t_i^{(n)})\sim\mathcal N\bigl(0,\Delta_i^{(n)}t\bigr)$, independent for distinct $i$. \\
-\medskip
-\textbf{2.\;Expanding the quadratic sum.}
-Write the partial quadratic variation
-$$
-Q_n\;:=\;\sum_{i}\bigl(\Delta_i^{(n)}X\bigr)^2
+Q_n\;=\;\sum_{i}\bigl(\Delta_i^{(n)}X\bigr)^2
        =\mu^{2}\sum_{i}\bigl(\Delta_i^{(n)}t\bigr)^2
         +2\mu\sigma\sum_{i}\Delta_i^{(n)}t\,\Delta_i^{(n)}W
-        +\sigma^{2}\sum_{i}\bigl(\Delta_i^{(n)}W\bigr)^2.
+        +\sigma^{2}\sum_{i}\bigl(\Delta_i^{(n)}W\bigr)^2
 $$
-We treat the three terms separately. \\
-\medskip
-\textbf{3.\;The deterministic term vanishes.}
-Because $\sum_{i}\bigl(\Delta_i^{(n)}t\bigr)=t$,
+Now, let us consider each of the three terms in the sum. \\
+% \textbf{3.\;The deterministic term vanishes.}
+First the first term, see that since $\sum_{i}\bigl(\Delta_i^{(n)}t\bigr)=t$,
 $$
 \sum_{i}\bigl(\Delta_i^{(n)}t\bigr)^2\;\le\;|P_n|\sum_{i}\Delta_i^{(n)}t
-           \;=\;|P_n|\,t\xrightarrow[n\to\infty]{}0.
+           \;=\;|P_n|\,t\xrightarrow[n\to\infty]{}0
 $$
-Hence $\mu^{2}\sum(\Delta_i^{(n)}t)^2\to0$ deterministically. \\
-\medskip
-\textbf{4.\;The mixed term vanishes in $L^{2}$.}
-Set $M_n:=\sum_{i}\Delta_i^{(n)}t\,\Delta_i^{(n)}W$. 
-Because $\mathbb E[\Delta_i^{(n)}W]=0$ and the increments are independent,
+Hence $\mu^{2}\sum(\Delta_i^{(n)}t)^2$ deterministically approaches 0. \\
+% \textbf{4.\;The mixed term vanishes in $L^{2}$.}
+Now consider the middle term. For simplicity, denote 
+$M_n=\sum_{i}\Delta_i^{(n)}t\,\Delta_i^{(n)}W$. 
+Since $\mathbb E[\Delta_i^{(n)}W]=0$ and the increments are independent,
 $$
-\mathbb E[M_n]=0,\qquad
+\mathbb E[M_n]=0\quad \text{and} \quad
 \mathbb E[M_n^{2}]=\sum_{i}\bigl(\Delta_i^{(n)}t\bigr)^{2}\operatorname{Var}\!\bigl[\Delta_i^{(n)}W\bigr]
-               =\sum_{i}\bigl(\Delta_i^{(n)}t\bigr)^{3}.
+               =\sum_{i}\bigl(\Delta_i^{(n)}t\bigr)^{3}
 $$
-As before $\sum_{i}(\Delta_i^{(n)}t)^{3}\le|P_n|\sum_{i}(\Delta_i^{(n)}t)^{2}\le|P_n|^{2}t\to0$,
-so $\mathbb E[M_n^{2}]\to0$.
-Thus $M_n\xrightarrow[n\to\infty]{}0$ in $L^{2}$, hence also in probability.  Consequently
+Similarly to the first term, see that $\sum_{i}(\Delta_i^{(n)}t)^{3}\le|P_n|\sum_{i}(\Delta_i^{(n)}t)^{2}\le|P_n|^{2}t\to0$.
+As such, $\mathbb E[M_n^{2}]\to0$.
+Thus, $M_n$ approaches 0 as $n\rightarrow \infty$ in $L^{2}$. 
+Consequently
 $2\mu\sigma M_n\to0$ in probability. \\
-\medskip
-\textbf{5.\;Quadratic variation of Brownian motion.}
-It is a classical fact (proved in Section~6.7) that
+% \textbf{5.\;Quadratic variation of Brownian motion.}
+Finally considering the last term, recall that 
+% It is a classical fact (proved in Section~6.7) that
 $$
-[W]_t\;=\;\lim_{n\to\infty}\sum_{i}\bigl(\Delta_i^{(n)}W\bigr)^2=t
-\quad\text{almost surely}.
+[W]_t\;=\;\lim_{n\to\infty}\sum_{i}\bigl(\Delta_i^{(n)}W\bigr)^2=t \quad \text{ w.p. 1}
 $$
-Multiplying by $\sigma^{2}$ yields
+Multiplying by $\sigma^{2}$,
 $$
-\sigma^{2}\sum_{i}\bigl(\Delta_i^{(n)}W\bigr)^2\xrightarrow[n\to\infty]{a.s.}\sigma^{2}t.
+\sigma^{2}\sum_{i}\bigl(\Delta_i^{(n)}W\bigr)^2\xrightarrow[n\to\infty]\sigma^{2}t
 $$
-\medskip
-\textbf{6.\;Putting the pieces together.}
-We have shown
-$$
-Q_n
-\;=\;\underbrace{\mu^{2}\sum_{i}(\Delta_i^{(n)}t)^{2}}_{\longrightarrow0}
-   +\underbrace{2\mu\sigma M_n}_{\xrightarrow[]{\mathbb P}0}
-   +\underbrace{\sigma^{2}\sum_{i}(\Delta_i^{(n)}W)^{2}}_{\xrightarrow[]{a.s.}\sigma^{2}t}.
-$$
-Since the first term is deterministic and the second vanishes in probability, we may extract a subsequence (still indexed by $n$) such that $M_n\to0$ almost surely; along this subsequence the entire sum converges almost surely to $\sigma^{2}t$. \\
-\medskip
-\textbf{7.\;Conclusion.}
+% \medskip
+% \textbf{6.\;Putting the pieces together.}
+% We have shown
+% $$
+% Q_n
+% \;=\;\underbrace{\mu^{2}\sum_{i}(\Delta_i^{(n)}t)^{2}}_{\longrightarrow0}
+%    +\underbrace{2\mu\sigma M_n}_{\xrightarrow[]{\mathbb P}0}
+%    +\underbrace{\sigma^{2}\sum_{i}(\Delta_i^{(n)}W)^{2}}_{\xrightarrow[]{a.s.}\sigma^{2}t}.
+% $$
+Since the first term is deterministic and the second approaches 0, the entire sum converges w.p. 1 to $\sigma^{2}t$. \\
+% \medskip
+% \textbf{7.\;Conclusion.}
 Hence, for any sequence of partitions whose mesh tends to $0$,
 $$
 [X]_t=\lim_{n\to\infty}\sum_{i}\bigl(X(t_{i+1}^{(n)})-X(t_i^{(n)})\bigr)^{2}
-      =\sigma^{2}t \quad\text{with probability }1.
+      =\sigma^{2}t \quad\text{w.p. }1.
 $$
-Therefore the $(\mu,\sigma^{2})$–Brownian motion $X(t)=\mu t+\sigma W(t)$ possesses quadratic variation
-$$
-\boxed{[X]_t=\sigma^{2}t\qquad\text{a.s.}}
-$$
-for every $t\ge0$, completing the proof.
+% Therefore the $(\mu,\sigma^{2})$–Brownian motion $X(t)=\mu t+\sigma W(t)$ possesses quadratic variation
+% $$
+% \boxed{[X]_t=\sigma^{2}t\qquad\text{a.s.}}
+% $$
+% for every $t\ge0$, completing the proof.
 }
 
 
@@ -207,43 +230,44 @@ $$d(f(t)X(t)) = X(t)df(t) + f(t)dX(t).$$
 
 
     \textcolor{blue}{
-\textbf{Proof.}\;%
-Let $f:[0,\infty)\!\to\!\mathbb R$ be continuously differentiable, so
+% \textbf{Proof.}\;%
+Let $f:[0,\infty)\!\to\!\mathbb R$ be continuously differentiable, s.t.
 $$
-df(t)=f'(t)\,dt.
+df(t)=f'(t)\,dt
 $$
-Let $X$ be any \emph{continuous diffusion} (hence a continuous semimartingale); in differential form one may write
+Let $X$ be any continuous diffusion, i.e. a continuous semimartingale. In differential form,
 $$
-dX(t)=\mu(t)\,dt+\sigma(t)\,dW(t),
+dX(t)=\mu(t)\,dt+\sigma(t)\,dW(t)
 $$
 where $W$ is a standard Brownian motion and $\mu,\sigma$ are adapted processes. \\
-\medskip
-\textbf{1.\;Ito product rule.}  
-For two continuous semimartingales $U,V$,
+% \textbf{1.\;Ito product rule.}  
+Using Ito's product rule, see that for two continuous semimartingales $U,V$,
 $$
-d(UV)=U\,dV+V\,dU+d[U,V],
+d(UV)=U\,dV+V\,dU+d[U,V]
 $$
-with $[U,V]$ the quadratic covariation. \\
-\medskip
-\textbf{2.\;Quadratic covariation term vanishes.}  
-A \emph{deterministic finite–variation} process such as $f$ satisfies $[f,X]\equiv0$ because its increments are $O(dt)$, while those of $X$ are $O(dt^{1/2})$; the product is $O(dt^{3/2})$, negligible compared with $dt$.
-\medskip
-\textbf{3.\;Apply (3) with $U=X,\,V=f$.}  
-Using $[f,X]=0$ and (1)–(2),
+with $[U,V]$ denoting the quadratic covariation. \\
+% \textbf{2.\;Quadratic covariation term vanishes.}  
+First see that a deterministic, finite–variation process such as $f$ satisfies $[f,X]=0$ since its increments are $O(dt)$, while those of $X$ are $O(dt^{1/2})$. As such, the product is $O(dt^{3/2})$. As such, the quadratic covariation term vanishes. \\
+% \textbf{3.\;Apply (3) with $U=X,\,V=f$.}  
+When $U=X$ and $V=f$ and using $[f,X]=0$,
 $$
-d(f(t)X(t))=X(t)\,df(t)+f(t)\,dX(t).
+d(f(t)X(t))=X(t)\,df(t)+f(t)\,dX(t)
 $$
-Substituting $df(t)=f'(t)\,dt$ if desired gives
-$$
-d(f(t)X(t))=X(t)f'(t)\,dt+f(t)\bigl[\mu(t)\,dt+\sigma(t)\,dW(t)\bigr].
-$$
-\medskip
-\textbf{4.\;Interpretation.}  
-Equation (4) is a direct analogue of the classical product rule.  The only extra term in Ito’s general product formula—$d[f,X]$—drops out because $f$ has no stochastic (quadratic‑variation) component.  Thus \emph{whenever one factor is deterministic and $C^{1}$, the stochastic differential behaves exactly like the ordinary differential}.
+% Substituting $df(t)=f'(t)\,dt$,
+% $$
+% d(f(t)X(t))=X(t)f'(t)\,dt+f(t)\bigl[\mu(t)\,dt+\sigma(t)\,dW(t)\bigr]
+% $$
+% \medskip
+% \textbf{4.\;Interpretation.}  
+% Equation (4) is a direct analogue of the classical product rule.  The only
+% extra term in Ito’s general product formula—$d[f,X]$—drops out because $f$ has
+% no stochastic (quadratic‑variation) component.  
+Thus whenever one factor
+is deterministic and $C^{1}$, the stochastic differential behaves exactly like
+the ordinary differential.
 \[
-\boxed{\,d\!\bigl(f(t)X(t)\bigr)=X(t)\,df(t)+f(t)\,dX(t)\,}
+\,d\!\bigl(f(t)X(t)\bigr)=X(t)\,df(t)+f(t)\,dX(t)\,
 \]
-\hfill$\square$
 }
 
 
@@ -254,46 +278,46 @@ $Z_N = N^{-1} \sum_{k=0}^{N-1} W(k/N).$
 \textbf{a)}   (10 points) Prove that $Z_N$ is a Gaussian random variable and find its mean and variance.
 
 \textcolor{blue}{
-    \textbf{Solution to Problem 5}  
-\textbf{a) $Z_N$ is Gaussian and computation of its mean and variance.}  
-Because a standard Brownian motion $W(t)$ is a centred Gaussian process, every finite vector  
+    % \textbf{Solution to Problem 5}  
+% \textbf{a) $Z_N$ is Gaussian and computation of its mean and variance.}  
+Since a standard Brownian motion $W(t)$ is a centred Gaussian process, note that every finite vector  
 $$
 \bigl(W(0),W(1/N),\dots,W((N-1)/N)\bigr)
 $$
-is jointly Gaussian.  A linear combination of jointly Gaussian random variables is again Gaussian, and  
+is jointly Gaussian. A linear combination of jointly Gaussian random variables is again Gaussian, and  
 $$
 Z_N=\frac1N\sum_{k=0}^{N-1}W(k/N)
 $$
-is such a linear combination, hence $Z_N$ itself is Gaussian. \\
-Its mean is easily found: for all $k$ one has $\mathbb{E}[W(k/N)]=0$, so  
+is such a linear combination. Thus, $Z_N$ is Gaussian. \\
+Computing its mean, see that $\forall k$, $\mathbb{E}[W(k/N)]=0$. So,
 $$
-\mathbb{E}[Z_N]=\frac1N\sum_{k=0}^{N-1}0=0.
+\mathbb{E}[Z_N]=\frac1N\sum_{k=0}^{N-1}0=0
 $$
-To compute the variance, write  
+Computing the variance,
 $$
-\operatorname{Var}(Z_N)=\mathbb{E}[Z_N^2]=\frac1{N^{2}}\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}\mathbb{E}\!\bigl[W(i/N)\,W(j/N)\bigr].
+\operatorname{Var}(Z_N)=\mathbb{E}[Z_N^2]=\frac1{N^{2}}\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}\mathbb{E}\!\bigl[W(i/N)\,W(j/N)\bigr]
 $$
-For Brownian motion $\mathbb{E}[W(s)W(t)]=\min\{s,t\}$, so here
+Note that ror Brownian motion $\mathbb{E}[W(s)W(t)]=\min\{s,t\}$.
 $$
-\mathbb{E}[W(i/N)W(j/N)]=\frac{\min\{i,j\}}N.
+\mathbb{E}[W(i/N)W(j/N)]=\frac{\min\{i,j\}}N
 $$
-Thus  
+Therefore,
 $$
-\operatorname{Var}(Z_N)=\frac1{N^{3}}\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}\min\{i,j\}.
+\operatorname{Var}(Z_N)=\frac1{N^{3}}\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}\min\{i,j\}
 $$
-A classical double–sum evaluation gives  
+Evaluating the double sum,
 $$
-\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}\min\{i,j\}=\frac{(N-1)N(2N-1)}6,
+\sum_{i=0}^{N-1}\sum_{j=0}^{N-1}\min\{i,j\}=\frac{N(N-1)(2N-1)}6
 $$
-so  
 $$
-\operatorname{Var}(Z_N)=\frac{(N-1)(2N-1)}{6N^{2}}.
+\operatorname{Var}(Z_N)=\frac{(N-1)(2N-1)}{6N^{2}}
 $$
-Hence  
+Thus,
 $$
-Z_N\sim\mathcal{N}\!\Bigl(0,\frac{(N-1)(2N-1)}{6N^{2}}\Bigr).
+Z_N\sim\mathcal{N}\!\Bigl(0,\frac{(N-1)(2N-1)}{6N^{2}}\Bigr)
 $$
-Notice that as $N\to\infty$, this variance converges to $1/3$.
+Note that 
+as $N\to\infty$, variance converges to $1/3$.
 }
 
 
@@ -309,31 +333,30 @@ $X \sim \mathcal{N}(\lim_n \mu_n, \lim_n \sigma_n^2).$
 
 
 \textcolor{blue}{
-    \textbf{b) The random variable $\displaystyle\int_{0}^{1}W(t)\,dt$ is normal with mean $0$ and variance $1/3$.}   \\
-\emph{Step 1 – Pathwise Riemann–sum approximation.}  
-Brownian paths are almost surely continuous.  Define the (left‑endpoint) Riemann sums  
+    % \textbf{b) The random variable $\displaystyle\int_{0}^{1}W(t)\,dt$ is normal with mean $0$ and variance $1/3$.}   \\
+% \emph{Step 1 – Pathwise Riemann–sum approximation.}  
+Recall that Brownian paths are continuous w.p. 1. Define the left‑endpoint Riemann sums  
 $$
-R_N:=\frac1N\sum_{k=0}^{N-1}W(k/N)=Z_N\qquad(N\ge1).
+R_N=\frac1N\sum_{k=0}^{N-1}W(k/N)=Z_N\qquad(N\ge1)
 $$
-Because $W(\,\cdot\,)$ is continuous on $[0,1]$ with probability one, the Riemann sums of $W$ with mesh $1/N$ converge almost surely to the Riemann integral:  
+Since $W(\,\cdot\,)$ is continuous on $[0,1]$ w.p. 1, the Riemann sums of $W$ with mesh $1/N$ converge w.p. 1 to the Riemann integral,
 $$
-\lim_{N\to\infty}R_N=\int_{0}^{1}W(t)\,dt\quad\text{a.s.}
+\lim_{N\to\infty}R_N=\int_{0}^{1}W(t)\,dt\quad\text{w.p. 1}
 $$
-\emph{Step 2 – Identification of the limiting distribution.}  
-For every $N$, part (a) shows that $R_N=Z_N$ is Gaussian with mean $0$ and variance $(N-1)(2N-1)/(6N^{2})$.  Therefore we have a sequence of centred normal random variables
+Next, in order to identify the limiting distribution, see that 
+for every $N$, part (a) shows that $R_N=Z_N$ is Gaussian with mean $0$ and variance $(N-1)(2N-1)/(6N^{2})$.  Therefore we have a sequence of centred normal random variables
 $$
-R_N\sim\mathcal{N}\!\Bigl(0,\frac{(N-1)(2N-1)}{6N^{2}}\Bigr),\qquad N\ge1,
+R_N\sim\mathcal{N}\!\Bigl(0,\frac{(N-1)(2N-1)}{6N^{2}}\Bigr),\qquad N\ge1
 $$
-converging almost surely to $X:=\displaystyle\int_{0}^{1}W(t)\,dt$.  The variance term satisfies
+converging w.p. 1 to $X=\displaystyle\int_{0}^{1}W(t)\,dt$. Recall that the variance term
 $$
-\lim_{N\to\infty}\frac{(N-1)(2N-1)}{6N^{2}}=\frac13.
+\lim_{N\to\infty}\frac{(N-1)(2N-1)}{6N^{2}}=\frac13
 $$
-By the stated hint, an almost–sure limit of normal variables remains normal, with mean and variance being the limits of the corresponding sequences.  Consequently
+From the given hint, an almost–sure limit of normal variables remains normal, with mean and variance being the limits of the corresponding sequences.  Consequently
 $$
-\int_{0}^{1}W(t)\,dt\;\sim\;\mathcal{N}\!\Bigl(0,\frac13\Bigr).
+\int_{0}^{1}W(t)\,dt\;\sim\;\mathcal{N}\!\Bigl(0,\frac13\Bigr)
 $$
-\emph{Conclusion.}  
-We have proved that the integral of standard Brownian motion over $[0,1]$ is itself Gaussian, centred, with variance $1/3$, completing the solution of Problem 5.
+% We have proved that the integral of standard Brownian motion over $[0,1]$ is itself Gaussian, centred, with variance $1/3$, completing the solution of Problem 5.
 }
 
 
@@ -348,70 +371,67 @@ $$X(t) = \sqrt{2}e^{-t} \int_0^t e^s dW(s).$$
 
 
 \textcolor{blue}{
-    Prove rigorously that for the Ornstein–Uhlenbeck (OU) process  
-$$dX(t)=-X(t)\,dt+\sqrt{2}\,dW(t),\qquad X(0)=0,$$  
-one has  
-$$d\!\bigl(e^{t}X(t)\bigr)=\sqrt{2}\,e^{t}\,dW(t)$$  
-and therefore  
-$$X(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s)\qquad(t\ge0).$$  
-\bigskip
-\textbf{Proof.}  
-Throughout we work on a complete filtered probability space $({\Omega},\mathcal
-F,(\mathcal F_t)_{t\ge0},\mathbb P)$ that satisfies the usual hypotheses and
-carries a standard $(\mathcal F_t)$‑Brownian motion $W$.  Because both drift
-and diffusion coefficients of the SDE are globally Lipschitz and of linear
-growth, there exists a \emph{unique} strong, continuous, adapted solution $X$
-(e.g.\ Theorem 5.2.1 in Karatzas \& Shreve).
-\medskip
-\textbf{Step 1: Applying Itô’s formula to the product \(e^{t}X(t)\).}  
-Denote by $Y(t):=e^{t}X(t)$.  We have $Y(0)=X(0)=0$.  Since $t\mapsto e^{t}$ is $C^{1}$, Itô’s product rule (which is a special case of Itô’s formula taking $f(t,x)=e^{t}x$) yields
+%     Prove rigorously that for the Ornstein–Uhlenbeck (OU) process  
+% $$dX(t)=-X(t)\,dt+\sqrt{2}\,dW(t),\qquad X(0)=0,$$  
+% one has  
+% $$d\!\bigl(e^{t}X(t)\bigr)=\sqrt{2}\,e^{t}\,dW(t)$$  
+% and therefore  
+% $$X(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s)\qquad(t\ge0).$$  
+% \bigskip
+% \textbf{Proof.}  
+% Throughout we work on a complete filtered probability space $({\Omega},\mathcal
+% F,(\mathcal F_t)_{t\ge0},\mathbb P)$ that satisfies the usual hypotheses and
+% carries a standard $(\mathcal F_t)$‑Brownian motion $W$.  Because both drift
+% and diffusion coefficients of the SDE are globally Lipschitz and of linear
+% growth, there exists a \emph{unique} strong, continuous, adapted solution $X$
+% (e.g.\ Theorem 5.2.1 in Karatzas \& Shreve).
+% \medskip
+% First, applying Itô’s formula to the product \(e^{t}X(t)\).
+Denote by $Y(t)=e^{t}X(t)$. As such, $Y(0)=X(0)=0$.  Since $t\mapsto e^{t}$ is $C^{1}$, Itô’s product rule (which is a special case of Itô’s formula taking $f(t,x)=e^{t}x$) yields
 $$
-dY(t)=e^{t}X(t)\,dt+e^{t}\,dX(t)+d\bigl[e^{t},X\bigr]_t.
+dY(t)=e^{t}X(t)\,dt+e^{t}\,dX(t)+d\bigl[e^{t},X\bigr]_t
 $$
-Because $e^{t}$ is of finite variation, its quadratic covariation with the semimartingale $X$ vanishes:
+Because $e^{t}$ is of finite variation, its quadratic covariation with the semimartingale $X$ vanishes (as shown previously)
 $$
-d\bigl[e^{t},X\bigr]_t=0.
+d\bigl[e^{t},X\bigr]_t=0
 $$
-Substituting $dX(t)=-X(t)\,dt+\sqrt{2}\,dW(t)$ we obtain
+Substituting $dX(t)=-X(t)\,dt+\sqrt{2}\,dW(t)$,
 $$
 dY(t)=e^{t}X(t)\,dt+e^{t}\bigl[-X(t)\,dt+\sqrt{2}\,dW(t)\bigr]
-      =\sqrt{2}\,e^{t}\,dW(t).
+      =\sqrt{2}\,e^{t}\,dW(t)
 $$
-\medskip
-\textbf{Step 2: Integrating the differential identity.}  
-Integrate from $0$ to $t\,(>0)$ and use $Y(0)=0$:
+% \textbf{Step 2: Integrating the differential identity.}  
+Integrating from $0$ to $t\,(>0)$ and using $Y(0)=0$,
 $$
 Y(t)-Y(0)=\sqrt{2}\int_{0}^{t}e^{s}\,dW(s)\;\Longrightarrow\;
-e^{t}X(t)=\sqrt{2}\int_{0}^{t}e^{s}\,dW(s).
+e^{t}X(t)=\sqrt{2}\int_{0}^{t}e^{s}\,dW(s)
 $$
-Dividing by $e^{t}$ gives the explicit representation
+Dividing by $e^{t}$ yields
 $$
-X(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s).
+X(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s)
 $$
-\medskip
-\textbf{Step 3: Verifying that the representation indeed solves the SDE.}  
-Define
+% \textbf{Step 3: Verifying that the representation indeed solves the SDE.}  
+In order to verify that the representation solves the SDE, define
 $$
-\widetilde{X}(t):=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s),\qquad t\ge0.
+\widetilde{X}(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s),\qquad t\ge0
 $$
-\emph{(i) Adaptedness and continuity.} The stochastic integral is $(\mathcal F_t)$‑adapted with continuous paths, hence so is $\widetilde{X}$.   \\
-\emph{(ii) Initial condition.} Using Itô isometry,
+Validating the conditions, see that for: \\
+(i) adaptedness and continuity, the stochastic integral is $(\mathcal F_t)$‑adapted with continuous paths, hence so is $\widetilde{X}$.   \\
+(ii) the initial condition, Itô's isometry can be used to show
 $$
-\widetilde{X}(0)=\sqrt{2}\int_{0}^{0}e^{s}\,dW(s)=0.
+\widetilde{X}(0)=\sqrt{2}\int_{0}^{0}e^{s}\,dW(s)=0
 $$
-\emph{(iii) Dynamics.} Applying Itô’s formula once more, now to $e^{t}\widetilde{X}(t)$, reproduces
+(iii) dynamics, Itô’s formula can be applied to $e^{t}\widetilde{X}(t)$, reproducing
 $$
-d\!\bigl(e^{t}\widetilde{X}(t)\bigr)=\sqrt{2}\,e^{t}\,dW(t),
+d\!\bigl(e^{t}\widetilde{X}(t)\bigr)=\sqrt{2}\,e^{t}\,dW(t)
 $$
-which rearranges to
 $$
-d\widetilde{X}(t)=-\widetilde{X}(t)\,dt+\sqrt{2}\,dW(t).
+d\widetilde{X}(t)=-\widetilde{X}(t)\,dt+\sqrt{2}\,dW(t)
 $$
-\emph{(iv) Uniqueness.} The linear SDE admits a unique strong solution, so $\widetilde{X}\equiv X$ almost surely.  
-\medskip
-\textbf{Conclusion.} The integrating‑factor calculation is thus fully justified:  
+(iv) uniqueness, the linear SDE admits a unique strong solution, so $\widetilde{X}\equiv X$ w.p. 1.   \\
+As such,
 $$d\!\bigl(e^{t}X(t)\bigr)=\sqrt{2}\,e^{t}\,dW(t),\qquad
-  X(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s). $$
+  X(t)=\sqrt{2}\,e^{-t}\int_{0}^{t}e^{s}\,dW(s) $$
 }
 
 
@@ -422,37 +442,38 @@ Prove that $Z_N$ is Gaussian and find its mean and a formula for its variance. W
 
 
 \textcolor{blue}{
-    \textbf{(b) The random sum $Z_N$}
-Define  
+%     \textbf{(b) The random sum $Z_N$}
+% Define  
+% $$
+% Z_N:=\sum_{k=0}^{N-1}e^{k/N}\Bigl(W\!\bigl((k+1)/N\bigr)-W(k/N)\Bigr), \qquad N\ge1.
+% $$
+Proving gaussianity: See that the Brownian increments  
 $$
-Z_N:=\sum_{k=0}^{N-1}e^{k/N}\Bigl(W\!\bigl((k+1)/N\bigr)-W(k/N)\Bigr), \qquad N\ge1.
+\Delta W_{k}=W\!\bigl((k+1)/N\bigr)-W(k/N),\qquad k=0,\dots,N-1
 $$
-\emph{Gaussianity.} The Brownian increments  
+are independent centred Gaussian variables with variance $1/N$. Since $Z_N$ is a finite linear combination of jointly Gaussian variables, $Z_N$ itself is Gaussian. \\
+Calculating the mean: For each $k$, $\mathbb E[\Delta W_{k}]=0$. As such,
 $$
-\Delta W_{k}:=W\!\bigl((k+1)/N\bigr)-W(k/N),\qquad k=0,\dots,N-1,
+\mathbb E[Z_N]=0
 $$
-are independent centred Gaussian variables with variance $1/N$.  Because $Z_N$ is a finite linear combination of jointly Gaussian variables, $Z_N$ itself is Gaussian.
-\emph{Mean.} For each $k$, $\mathbb E[\Delta W_{k}]=0$, so
-$$
-\boxed{\mathbb E[Z_N]=0.}
-$$
-\emph{Variance.} Independence of the increments yields
+Calculating variance: See that the independence of the increments yields
 \begin{align*}
 \operatorname{Var}(Z_N)
 &=\sum_{k=0}^{N-1}e^{2k/N}\operatorname{Var}(\Delta W_{k})
-=\frac1N\sum_{k=0}^{N-1}e^{2k/N}.
+=\frac1N\sum_{k=0}^{N-1}e^{2k/N}
 \end{align*}
-Hence
+Therefore,
 $$
-\boxed{\operatorname{Var}(Z_N)=\frac1N\sum_{k=0}^{N-1}e^{2k/N}.}
+\operatorname{Var}(Z_N)=\frac1N\sum_{k=0}^{N-1}e^{2k/N}
 $$
-\emph{Limit as $N\to\infty$.} The variance is a Riemann sum:
+Trivially, the mean converges to $0$ as $N\to\infty$. \\
+Regarding the variance, see that the variance is a Riemann sum,
 $$
-\lim_{N\to\infty}\frac1N\sum_{k=0}^{N-1}e^{2k/N}=\int_{0}^{1}e^{2s}\,ds=\frac{e^{2}-1}{2}.
+\lim_{N\to\infty}\frac1N\sum_{k=0}^{N-1}e^{2k/N}=\int_{0}^{1}e^{2s}\,ds=\frac{e^{2}-1}{2}
 $$
-Thus
+Thus,
 $$
-Z_N \xrightarrow[N\to\infty]{\;\text{d}\;} \mathcal N\!\Bigl(0,\frac{e^{2}-1}{2}\Bigr).
+Z_N \xrightarrow[N\to\infty]{\;\text{d}\;} \mathcal N\!\Bigl(0,\frac{e^{2}-1}{2}\Bigr)
 $$
 }
 
@@ -462,8 +483,8 @@ $\int_0^t e^{-s} dW(s)?$
 What about the distribution of $X(t)$ as $t \rightarrow +\infty$?
 
 \textcolor{blue}{
-    \textbf{(c) Distribution of $\displaystyle\int_{0}^{t}e^{-s}\,dW(s)$ and of $X(t)$ as $t\to\infty$} \\
-Because the stochastic integral of a deterministic function against Brownian motion is Gaussian with mean $0$ and variance equal to the $L^{2}$‑norm of that function, we have  
+    % (c) Distribution of $\displaystyle\int_{0}^{t}e^{-s}\,dW(s)$ and of $X(t)$ as $t\to\infty$} \\
+Because the stochastic integral of a deterministic function against Brownian motion is Gaussian with mean $0$ and variance equal to the $L^{2}$‑norm of that function,
 $$
 \int_{0}^{t}e^{-s}\,dW(s)\;\sim\;\mathcal N\!\Bigl(0,\int_{0}^{t}e^{-2s}\,ds\Bigr)
           =\mathcal N\!\Bigl(0,\tfrac12(1-e^{-2t})\Bigr).
@@ -474,11 +495,11 @@ X(t)=\sqrt2\,e^{-t}\int_{0}^{t}e^{s}\,dW(s)
      \;\sim\;\mathcal N\!\Bigl(0,2e^{-2t}\!\int_{0}^{t}e^{2s}\,ds\Bigr)
      =\mathcal N\!\bigl(0,1-e^{-2t}\bigr).
 $$
-Hence, as $t\to\infty$, the variance approaches $1$ and
+Thus, as $t\to\infty$, the variance approaches $1$.
 $$
-\boxed{X(t)\xrightarrow[t\to\infty]{\;\text{d}\;}\mathcal N(0,1).}
+X(t)\xrightarrow[t\to\infty]{\;\text{d}\;}\mathcal N(0,1)
 $$
-This limiting distribution $N(0,1)$ is precisely the stationary (invariant) law of the Ornstein–Uhlenbeck process.
+Note that this limiting distribution $N(0,1)$ is precisely the stationary law of the Ornstein–Uhlenbeck process.
 }
 
 
